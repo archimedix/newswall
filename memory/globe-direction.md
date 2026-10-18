@@ -7,7 +7,7 @@ metadata:
 
 Il 2026-10-18 l'utente ha deciso di affiancare al muro una vista esplorazione 3D (`globe.html`,
 three.js vendorizzato). Piano completo in `docs/globe-plan.md`, **approvato il 2026-10-18** (fasi 0→1→2→3; relay
-Cloudflare verificato gratuito). Fase 0 fatta lo stesso giorno.
+Cloudflare verificato gratuito). Fasi 0 e 1 fatte lo stesso giorno (globo funzionante, `globe.html`).
 
 Decisioni: globo come pagina separata (il muro resta minimale e non carica 3D); niente YouTube nel
 globo (solo HLS come texture WebGL); 4–6 schermi live, gli altri logo/ultimo fotogramma; niente

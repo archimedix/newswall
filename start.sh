@@ -8,7 +8,6 @@ cd "$(dirname "$0")"
 
 command -v python3 >/dev/null || { echo "python3 is required"; exit 1; }
 
-echo "Newswall  →  http://localhost:${PORT}"
 echo "(Ctrl-C to stop)"
 command -v open >/dev/null && (sleep 1 && open "http://localhost:${PORT}") &
-exec python3 -m http.server "${PORT}" --bind 127.0.0.1
+exec python3 scripts/serve.py "${PORT}"

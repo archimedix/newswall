@@ -4,7 +4,7 @@
     {
       "name": "newswall",
       "runtimeExecutable": "python3",
-      "runtimeArgs": ["-m", "http.server", "8091", "--bind", "127.0.0.1"],
+      "runtimeArgs": ["scripts/serve.py", "8091"],
       "port": 8091
     }
   ]

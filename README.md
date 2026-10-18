@@ -7,6 +7,10 @@ same moment.
 News is the main wall, not the only one: the switch in the top bar turns it into a
 **Sport**, **Markets** or **Weather** wall, with the same rule — many countries, one screen.
 
+Beside the wall there is **the globe** (`globe.html`): the same channels as screens hanging
+over their countries, on an Earth with the real day and night. It is for exploring; the
+wall is for watching.
+
 A static page: no backend, no account, no cookies, no data collected. Streams go straight
 from the broadcasters to your browser.
 
@@ -17,7 +21,9 @@ from the broadcasters to your browser.
 ```
 
 Opens <http://localhost:8080>. A real HTTP server is needed: from `file://` YouTube embeds
-get a `null` origin and are refused.
+get a `null` origin and are refused. `start.sh` runs `scripts/serve.py`, a plain static
+server that adds `Cache-Control: no-cache`: without it the browser keeps old JS modules
+after an edit, even on reload.
 
 ## Controls
 
@@ -31,6 +37,7 @@ get a `null` origin and are refused.
 | `S` | catalog · `M` mute everything · `F` full screen |
 | `Esc` | back to the grid · `?` shortcuts |
 | News · Sport · Markets · Weather | switches wall (top bar) |
+| `G` · Globe | opens the globe on the same wall |
 
 ### Building the wall
 
@@ -65,6 +72,56 @@ A wall is an [iptv-org category](https://iptv-org.github.io/api/categories.json)
 wall keeps playing the channels the two walls share, for the same reason as above.
 It is also kept in `localStorage` for convenience.
 
+## The globe
+
+`globe.html` is the exploration view. The Earth is graphite by day and dark at night, with
+the city lights (NASA's Black Marble) showing only on the night side: at a glance you see
+where it is night and the news is on reruns. The terminator is computed from the UTC time.
+
+Every channel of the current mode is a screen hanging over its country, with a thread down
+to the place it broadcasts from (the capital, or the city its newsrooms work in). Crowded
+regions push their screens apart, but the thread always goes back to the real place.
+
+- **Only the screens in front of you play**: the 4 nearest the centre of the view (3 on
+  touch devices), at 360p. Decoding dozens of streams is impossible; the others show a
+  still title card. A live screen stays live until it drops out of the first 6, so turning
+  the globe a little does not restart everything, and new streams start only once the
+  camera has stopped.
+- **Selecting** a screen (click, or `Enter` on the one in the crosshair) flies to it,
+  enlarges it, gives it full quality and the audio: its frame turns red, the only red on
+  the globe, as on the wall. Its country lights up.
+- **Front row** (`F`, a double click, or the card's button) brings the channel to the
+  front, as large as the window allows: it flies in from its place on the globe, which
+  stays blurred behind it, and flies back there with one click, `Esc` or *Back to the
+  globe*. `←` `→` change channel without leaving it. It is the same `<video>` that paints
+  the screen on the globe: no second player, no second download.
+- **The look**: screens in glass bezels with a soft shadow, a glow on the one targeted
+  (red and breathing on the one talking), frosted-glass panes with a faint grain, a
+  viewfinder whose crosshair locks onto the screen in the middle, and a telemetry pane
+  (view, altitude, where the sun is overhead, how many are live). The page opens with
+  the camera flying in from far out.
+- **The basket** collects up to 12 channels; *Open in the wall* (`⇧Enter`) opens them as a
+  wall, through the same URL a shared link uses.
+- **No YouTube.** A YouTube iframe cannot become a WebGL texture, so channels that only
+  live on YouTube stay on the wall. For the same reason the globe always uses hls.js,
+  never Safari's native HLS.
+
+| | mouse / touch | keyboard | gamepad |
+|---|---|---|---|
+| turn | drag (with inertia) | arrows / WASD | left stick |
+| zoom | wheel / pinch | `+` `-` | triggers |
+| next screen | — | `Tab` / `⇧Tab` | right stick / pad |
+| select, and listen | click | `Enter` | A |
+| front row, and back | double click / *Front row* | `F` | A again / B |
+| audio on / off | click the selected one | `Space` | X |
+| basket | *+ Basket* | `B` | Y |
+| mode | top bar | `1`–`4` | LB / RB |
+| back | — | `Esc` | B |
+| open the basket in the wall | *Open in the wall* | `⇧Enter` | Start |
+
+The plan for what comes next (clusters, last frames, a phone as a remote) is in
+[`docs/globe-plan.md`](docs/globe-plan.md).
+
 ## The interface
 
 A control room at night: the video is the content, everything else is frosted glass
@@ -83,8 +140,11 @@ Mono** for clocks, codes and origins. They live in the repo, not on a CDN: the p
 
 ## How it's built
 
-Vanilla JS, no build step, a single runtime dependency
-([hls.js](https://github.com/video-dev/hls.js), vendored in `assets/vendor/`).
+Vanilla JS, no build step. Runtime dependencies are vendored in `assets/vendor/`:
+[hls.js](https://github.com/video-dev/hls.js), and [three.js](https://threejs.org) 0.170.0
+for the globe only (the wall never loads it). The globe's Earth is in `assets/earth/`: NASA
+Blue Marble and Black Marble (public domain), resized to 2048×1024, and Natural Earth
+1:110m outlines (public domain) turned into a compact JSON by `scripts/build-borders.py`.
 `index.html`, `styles.css`, and native ES modules in `js/` (no bundler: the browser loads
 them as they are):
 
@@ -95,6 +155,12 @@ them as they are):
 - `js/wall/` — the wall: `wall.js` (entry point: grid, tiles, audio, focus, keys),
   `panel.js` (catalog and quick search), `youtube.js` (iframes driven by postMessage),
   `state.js` (what they share).
+- `js/globe/` — the globe, loaded by `globe.html` with an import map for three:
+  `globe.js` (entry point: scene, camera, selection, audio, basket), `earth.js` (shaders,
+  atmosphere, outlines, stars), `sun.js` (subsolar point), `geo.js` (where each country's
+  screens hang), `screens.js` (screens, threads, markers), `livepool.js` (who is live),
+  `controls.js` (mouse, touch, keyboard, gamepad → commands), `hud.js` (the HTML on top),
+  `frontrow.js` (the front row and its flight in and out).
 
 Two kinds of stream, and they are not equivalent:
 
@@ -281,14 +347,17 @@ CORS, against all expectations, is not the problem: 1 in 70.
 - **Geoblocking.** Some broadcasters serve the manifest to anyone but the segments only in
   their own country: the automatic check passes them and then the video does not start.
   The tile notices on its own after a few seconds and says so, instead of staying black.
-- **Autoplay.** Browsers forbid automatic playback without a user gesture: that is what
-  the start screen is for.
+- **Autoplay.** Browsers allow automatic playback only without sound: the wall and the
+  globe open straight away, muted, and the first click on a channel brings its audio.
 - **Sources come and go.** Daily breakages are normal: the Action detects them, and the
   tile says what happened.
+- **A crowded globe.** Europe and the Middle East have dozens of screens close together:
+  until the clusters of phase 2, zoom in to tell them apart.
 
 ## Possible improvements
 
-Ideas collected along the way, not yet done.
+Ideas collected along the way, not yet done. The globe's own next steps are in
+[`docs/globe-plan.md`](docs/globe-plan.md).
 
 - **Stream URLs that update themselves.** Broadcasters change CDN and a curated channel
   dies even when iptv-org already lists its new address. Today that is recovered only by

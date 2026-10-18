@@ -1,7 +1,7 @@
 # Newswall Globe — piano
 
-> Stato: **proposta, da leggere e approvare**. Niente di quanto descritto qui è ancora
-> implementato. Quando una fase è fatta, va tolta da qui e raccontata nel README.
+> Stato: **approvato il 18/10/2026**. Fasi 0 e 1 fatte; restano la 2 e la 3. Quando una
+> fase è fatta, va raccontata nel README e qui ne resta solo una nota.
 
 ## 1. Vision
 
@@ -86,22 +86,24 @@ Il player gestisce **uno** stream: il passaggio allo stream successivo della sor
 Fatta: moduli `js/core/*` e `js/wall/*`, `createHlsPlayer()`, `GB` al posto di `UK`. Descritta
 nel README ("How it's built") e in CLAUDE.md.
 
-### Fase 1 — Il globo
+### Fase 1 — Il globo ✅ (18/10/2026)
 
-1. Vendorizzare three.js (versione esatta) e le risorse della Terra (§5).
-2. `geo.js`: coordinate per i ~70 paesi del catalogo.
-3. Terra con giorno/notte reali, atmosfera, confini.
-4. Schermi sospesi: tutti i canali HLS del modo corrente, con logo come immagine ferma.
-5. `livepool.js`: 4 live (configurabile fino a 6), con isteresi (§6).
-6. Controlli: mouse/touch, tastiera, gamepad (§6).
-7. Selezione: la camera vola sullo schermo, che si ingrandisce, passa a piena qualità e
-   prende l'audio. Cestino → "Apri nel muro".
-8. Selettore dei modi (News · Sport · Markets · Weather) come nel muro.
-9. Schermata d'ingresso (serve il gesto dell'utente per l'autoplay, come `#gate`).
-10. Pulsante "Globe" nel muro, "Wall" nel globo.
+Fatta: `globe.html` e `js/globe/*`, descritti nel README ("The globe") e in CLAUDE.md. Scelte
+prese durante la realizzazione:
 
-**Fatto quando:** apri `globe.html`, giri il globo con mouse e gamepad, 4 schermi frontali
-sono live, ne selezioni uno e lo ascolti, mandi 6 canali al muro e il muro li apre.
+- **Terre piene**, non a punti: la Blue Marble virata a grafite nello shader, con gli oceani
+  quasi neri. La griglia di punti resta un'idea per la fase 2, se il pieno stanca.
+- Gli schermi di paesi vicini **si respingono** (rilassamento sulla sfera con molla verso
+  il paese) e il filo torna sempre al punto vero: l'Europa resta comunque affollata finché
+  non arrivano i cluster.
+- Hysteresis come da §6, quindi fino a K+2 player insieme (6 su desktop, 5 su touch).
+- Il cestino vive solo nella pagina (non in localStorage): apre il muro via URL.
+- **Niente schermata d'ingresso**, né nel globo né nel muro: si parte muti (l'autoplay muto
+  non richiede gesti) e il primo clic su un canale dà l'audio.
+- Aggiunti su richiesta: **primo piano** (il canale vola dal globo a tutta finestra e torna
+  al suo posto), schermi in vetro con ombra e alone, HUD in vetro con mirino e telemetria.
+- `scripts/serve.py` al posto di `http.server`: senza `no-cache` il browser tiene i moduli
+  vecchi anche al reload.
 
 ### Fase 2 — Rifinitura
 

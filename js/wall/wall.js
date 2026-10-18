@@ -32,12 +32,13 @@ async function boot() {
   buildPanel();
   syncGrid();
   save();
-
-  $('#gate-n').textContent = state.active.filter(isPlayable).length;
-  $('#gate').hidden = false;
 }
 
-const save = () => saveWall(state.mode, state.active);
+/* The globe opens on the same mode as the wall. */
+const save = () => {
+  saveWall(state.mode, state.active);
+  $('#to-globe').href = `globe.html${state.mode === 'news' ? '' : `#c=${state.mode}`}`;
+};
 
 function renderCount() {
   const on = state.sources.filter((s) => isPlayable(s.id)).length;
@@ -284,7 +285,8 @@ function attach(tile, src, idx) {
     state.players.set(src.id, { kind: 'yt', el: frame });
   }
 
-  if (state.started) play(state.players.get(src.id));
+  // Muted autoplay needs no gesture; the first click on a tile brings the sound.
+  play(state.players.get(src.id));
 }
 
 function stopPlayer(id) {
@@ -340,8 +342,6 @@ function setOnAir(id) {
   if (id) box.querySelector('.who').textContent = byId(id).name;
   $('[data-act="mute-all"]').classList.toggle('idle', state.audioOn === null);
 }
-
-function startAll() { for (const p of state.players.values()) play(p); }
 
 /* --------------------------------------------------------------- focus */
 
@@ -477,15 +477,6 @@ $('#controls').addEventListener('click', (e) => {
 $('#keys').addEventListener('mousedown', (e) => { if (e.target.id === 'keys') toggleKeys(false); });
 $('#keys-close').onclick = () => toggleKeys(false);
 
-$('#gate-go').onclick = () => {
-  state.started = true;
-  const gate = $('#gate');
-  gate.classList.add('leaving');
-  setTimeout(() => { gate.hidden = true; gate.classList.remove('leaving'); }, 420);
-  startAll();
-  toast('Wall on. Click a tile to give it the audio.');
-};
-
 addEventListener('keydown', (e) => {
   const typing = !!e.target.closest?.('input, textarea, select');
 
@@ -522,6 +513,7 @@ addEventListener('keydown', (e) => {
   if (k === 's') { e.preventDefault(); return togglePanel(); }
   if (k === 'm') { e.preventDefault(); return setOnAir(null); }
   if (k === 'f') { e.preventDefault(); return toggleFullscreen(); }
+  if (k === 'g') { e.preventDefault(); location.href = $('#to-globe').href; }
 });
 
 addEventListener('resize', layout);

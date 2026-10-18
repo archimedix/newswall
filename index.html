@@ -42,6 +42,7 @@
       <span>Search</span><kbd class="k">⌘K</kbd>
     </button>
     <button data-act="sources" title="Browse the catalog (S)">Sources</button>
+    <a id="to-globe" href="globe.html" title="Explore the channels on a globe (G)">Globe</a>
     <button data-act="mute-all" title="Mute everything (M)">Mute</button>
     <button data-act="fullscreen" title="Full screen (F)">Full screen</button>
     <button data-act="keys" class="icon" title="Shortcuts (?)">?</button>
@@ -49,20 +50,6 @@
 </header>
 
 <main id="grid" aria-label="Wall of live streams"></main>
-
-<!-- The first play must come from a user gesture: without it, browsers
-     block playback and the tiles stay black. -->
-<div id="gate" hidden>
-  <div class="gate-card glass">
-    <div class="gate-kicker"><span class="dot"></span>live, right now</div>
-    <h1>The whole world,<br>all at once.</h1>
-    <p><strong id="gate-n">—</strong> live streams ready to go. They start muted:
-       tap a tile to give it the floor.</p>
-    <button id="gate-go">Turn on the wall</button>
-    <p class="fine">No account, no cookies, no data collected.
-       Streams come from the broadcasters, and each tile says where from.</p>
-  </div>
-</div>
 
 <aside id="panel" class="glass" hidden>
   <div class="panel-head">
@@ -116,6 +103,7 @@
       <dt><kbd>S</kbd></dt><dd>catalog</dd>
       <dt><kbd>M</kbd></dt><dd>mute everything</dd>
       <dt><kbd>F</kbd></dt><dd>full screen</dd>
+      <dt><kbd>G</kbd></dt><dd>the globe</dd>
       <dt><kbd>Esc</kbd></dt><dd>back to the grid</dd>
       <dt><kbd>drag</kbd></dt><dd>reorder the tiles</dd>
     </dl>

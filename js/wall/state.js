@@ -11,7 +11,6 @@ export const state = {
   players: new Map(),   // id -> { kind, el, player }
   audioOn: null,        // one audio at a time: house rule
   focused: null,
-  started: false,
   drag: null,           // id of the tile being dragged
 };
 

@@ -6,7 +6,9 @@
 
 const WATCHDOG_MS = 15000;
 
-export function createHlsPlayer(url, { muted = true, cap = null, onReady, onFail } = {}) {
+/* `native: false` refuses Safari's built-in HLS: that video cannot be drawn
+   into WebGL, so the globe would get a black texture. */
+export function createHlsPlayer(url, { muted = true, cap = null, native = true, onReady, onFail } = {}) {
   const video = document.createElement('video');
   video.muted = muted;
   video.playsInline = true;
@@ -57,7 +59,7 @@ export function createHlsPlayer(url, { muted = true, cap = null, onReady, onFail
       clearTimeout(watchdog);
       if (!done) onReady?.();
     }, { once: true });
-  } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+  } else if (native && video.canPlayType('application/vnd.apple.mpegurl')) {
     video.src = url;                                // Safari plays HLS natively
     video.addEventListener('loadeddata', () => { if (!done) onReady?.(); }, { once: true });
   } else {

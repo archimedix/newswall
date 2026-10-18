@@ -5,17 +5,21 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## What this is
 
 Newswall: a static page showing a wall of live channels (HLS and YouTube), one with audio
-at a time, to compare how different countries tell the same event. News is the main wall; the
+at a time, to compare how different countries tell the same event. `globe.html` is a second
+view of the same catalog: a three.js globe with the channels' screens over their countries. News is the main wall; the
 others (Sport, Markets, Weather) are "modes" keyed by iptv-org category ids. No backend, no build step,
 no package manager, no tests. Vanilla JS as native ES modules in `js/` (no bundler), plus
-`index.html` and `styles.css`; the only runtime dependency is hls.js, vendored in `assets/vendor/`. Fonts are vendored in
+`index.html` and `styles.css`; runtime dependencies are vendored in `assets/vendor/` (hls.js;
+three.js 0.170.0, loaded only by the globe through an import map). Fonts are vendored in
 `assets/fonts/` on purpose: the page must make **no third-party requests** to render (do not add
 CDN links). The README is the design document — read it before non-trivial changes. Its "Possible improvements" section is the backlog: add ideas there, remove them once done.
 
 ## Commands
 
 ```bash
-./start.sh [port]                                   # python http.server on 127.0.0.1:8080 (file:// breaks YouTube embeds)
+./start.sh [port]                                   # scripts/serve.py on 127.0.0.1:8080 (file:// breaks YouTube embeds;
+                                                    # serve.py adds Cache-Control: no-cache, or stale ES modules survive reloads)
+python3 scripts/build-borders.py                    # Natural Earth outlines -> assets/earth/borders.json (rarely needed)
 python3 scripts/refresh-live.py                     # check every stream, rewrite live.json
 python3 scripts/annotate-origin.py [--write]        # (re)compute each stream's `origin`
 python3 scripts/harvest-iptv.py [--category sports] [--write] [--cache DIR]
@@ -64,6 +68,7 @@ Native ES modules, loaded as they are (`<script type="module">`). Two layers:
   `destroy()` no callback fires. hls.js stays a classic global script.
 - **`js/wall/`** — `wall.js` is the entry point; `panel.js` (catalog + quick search; gets
   `toggleSource` via `initPanel`), `youtube.js`, `state.js` (wall `state`, `$`, `toast`).
+- **`js/globe/`** — `globe.js` is the entry point (see "Globe" below).
 
 Wall behaviour:
 
@@ -88,8 +93,32 @@ Wall behaviour:
 - YouTube iframes are controlled via postMessage (`yt()`, `ytHello()`); mouse events don't reach
   through iframes, hence the `⠿` drag grip.
 - One audio at a time (`setAudio`/`setOnAir`); red is reserved for the on-air tile.
-- Autoplay needs a user gesture: the `#gate` start screen calls `startAll()`.
+- No start screen: muted autoplay needs no gesture, so tiles `play()` as soon as they mount;
+  the first click on a tile (a gesture) unmutes it. Same on the globe.
 - Country codes are ISO 3166 (`GB`, not iptv-org's `UK`: `harvest-iptv.py` maps it).
+
+## Globe
+
+- Earth-fixed frame: the globe never rotates, the camera orbits it (`view = {lat, lon, dist}`,
+  `flyTo()` animates it). `geo.js` `toVec(lat, lon)` matches three's `SphereGeometry` UVs;
+  the sun direction comes from `sun.js` `subsolar()` and drives the day/night shader.
+- `screens.js`: one group per HLS channel of the mode (no YouTube: iframes can't be textures),
+  placed by `relax()` (repulsion + spring to `geo.js` `ANCHOR[country]`); a country missing
+  from `ANCHOR` gets no screen. Each frame `update()` sets `facing` (dot with the camera
+  direction), orientation, scale, colours; idle cards and labels are canvas textures.
+- `livepool.js`: plays the top K by `facing` plus `pinned` (selected, on air), keeps them
+  until they leave the top K+2, starts new ones only after 400 ms of still camera, 2 at a
+  time; `hlsOrder(src)` = HLS streams from `live.use`, skipping those `live.json` marks dead.
+  Players use `createHlsPlayer(…, {native: false})` — Safari's native HLS can't be a texture.
+- Controls only emit commands (`rotate, zoom, pick, hover, front, next, select, audio, basket,
+  mode, back, openWall`): the phase 3 phone remote is meant to send the same ones.
+- `frontrow.js`: FLIP animation (stage laid out at its final rect, a transform starts it from
+  `rectOf(screen)` = the projected face corners). It borrows the screen's own `<video>`; a
+  video removed from the document gets paused by the browser after the task, so `empty()`
+  restarts it with a short timeout. While open, a capture-phase keydown in `globe.js` takes
+  Esc/F/arrows/Space/B before the globe controls.
+- Same house rules as the wall: one audio at a time, red only for the one talking, orange
+  for rebroadcasts, `backdrop-filter` only on HUD surfaces seen one at a time.
 
 ## UI conventions
 

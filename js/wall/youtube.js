@@ -52,6 +52,6 @@ window.addEventListener('message', (e) => {
     if (p.kind !== 'yt' || p.el.contentWindow !== e.source) continue;
     clearInterval(p.hello);
     ytAudio(p.el, sid === state.audioOn);
-    if (state.started) yt(p.el, 'playVideo');
+    yt(p.el, 'playVideo');
   }
 });
