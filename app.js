@@ -1,13 +1,25 @@
-/* Newswall — a wall of live news streams.
+/* Newswall — a wall of live streams: news, and other walls beside it.
    No backend, no server-side state: the configuration lives in the URL
    (so a wall can be shared with a link) and in localStorage for convenience. */
 
-const DEFAULT_WALL = ['aljazeera-en', 'france24-en', 'dw-news', 'rainews24', 'cgtn', 'trt-world'];
+/* One wall per mode. The keys are iptv-org category ids, the same ones the
+   sources carry in `categories`. Without a hand-picked wall, the default is
+   the first live channels of the mode, one per country. */
+const MODES = {
+  news: { label: 'News', wall: ['aljazeera-en', 'france24-en', 'dw-news', 'rainews24', 'cgtn', 'trt-world'] },
+  // National sport channels are often geoblocked: these play from abroad.
+  sports: { label: 'Sport', wall: ['tvr-sport', 'a-spor', 'ge-fast', 'real-madrid-tv', 'red-bull-tv', 'tyc-sports'] },
+  business: { label: 'Markets' },
+  weather: { label: 'Weather' },
+};
+const DEFAULT_TILES = 6;
 const LOW_QUALITY_CAP = 480;   // max height for tiles that are not enlarged
 const MAX_TILES = 12;
 
 const state = {
-  sources: [],          // curated catalog
+  all: [],              // curated catalog, every mode
+  mode: 'news',
+  sources: [],          // the catalog of the current mode
   live: {},             // result of the last refresh, by id
   active: [],           // ids on the wall, in order
   players: new Map(),   // id -> { kind, el, hls }
@@ -27,22 +39,27 @@ async function boot() {
     fetch('sources.json').then((r) => r.json()),
     fetch('live.json').then((r) => r.json()).catch(() => ({ entries: {} })),
   ]);
-  state.sources = sources.sources;
+  state.all = sources.sources;
   state.live = live.entries || {};
+  state.generated = live.generated;
 
-  state.active = readWallFromUrl() || readWallFromStorage() || DEFAULT_WALL.slice();
-  state.active = state.active.filter(byId).slice(0, MAX_TILES);
-  if (!state.active.length) state.active = DEFAULT_WALL.slice();
+  const mode = readModeFromUrl() || readModeFromStorage();
+  state.mode = MODES[mode] ? mode : 'news';
+  state.sources = state.all.filter(inMode);
+  state.active = wallFor(readWallFromUrl() || readWallFromStorage());
 
-  renderCount(live.generated);
+  renderModes();
+  renderCount();
   buildPanel();
   syncGrid();
+  saveWall();
 
   $('#gate-n').textContent = state.active.filter(isPlayable).length;
   $('#gate').hidden = false;
 }
 
-const byId = (id) => state.sources.find((s) => s.id === id);
+const byId = (id) => state.all.find((s) => s.id === id);
+const inMode = (s) => (s.categories || ['news']).includes(state.mode);
 const isPlayable = (id) => (state.live[id] ? state.live[id].ok !== false : true);
 const tileEl = (id) => [...grid.children].find((t) => t.dataset.id === id);
 
@@ -81,12 +98,54 @@ function originText(stream) {
   return `${who} — ${ORIGIN_LABEL[o.kind] || o.kind || ''}`.trim();
 }
 
-function renderCount(generated) {
+function renderCount() {
   const on = state.sources.filter((s) => isPlayable(s.id)).length;
-  const when = generated
-    ? new Date(generated).toLocaleString('en-GB', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' })
+  const when = state.generated
+    ? new Date(state.generated).toLocaleString('en-GB', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' })
     : '—';
   $('#live-count').textContent = `${on}/${state.sources.length} live · checked ${when}`;
+}
+
+/* ---------------------------------------------------------------- modes */
+
+/* The ids that make up a wall of the current mode: what was asked for, if it
+   belongs here, otherwise the default. */
+function wallFor(ids) {
+  const ok = (ids || []).filter((id) => { const s = byId(id); return s && inMode(s); });
+  if (ok.length) return ok.slice(0, MAX_TILES);
+  const wall = (MODES[state.mode].wall || []).filter((id) => byId(id));
+  if (wall.length) return wall;
+  // One per country first, so that the default already compares something.
+  const live = state.sources.filter((s) => isPlayable(s.id));
+  const seen = new Set();
+  const pick = live.filter((s) => !seen.has(s.country) && seen.add(s.country));
+  return [...pick, ...live.filter((s) => !pick.includes(s))].slice(0, DEFAULT_TILES).map((s) => s.id);
+}
+
+function renderModes() {
+  $('#modes').innerHTML = Object.entries(MODES).map(([m, { label }]) => {
+    const n = state.all.filter((s) => (s.categories || ['news']).includes(m)).length;
+    return `<button data-mode="${m}" class="${m === state.mode ? 'on' : ''}"
+      title="${label} wall · ${n} channels">${label}</button>`;
+  }).join('');
+}
+
+/* Switching wall keeps what the two walls share: the reconciling grid only
+   touches the tiles that change, so a channel in both walls keeps playing. */
+function setMode(m) {
+  if (!MODES[m] || m === state.mode) return;
+  state.mode = m;
+  state.sources = state.all.filter(inMode);
+  state.active = wallFor(readWallFromStorage());
+  try { localStorage.setItem('newswall:mode', m); } catch { /* private mode */ }
+
+  Object.assign(filters, { tag: '', country: '', q: '' });
+  $('#panel-search').value = '';
+  renderModes();
+  renderCount();
+  buildPanel();
+  commit();
+  toast(`${MODES[m].label} wall · ${state.sources.length} channels`);
 }
 
 /* ------------------------------------------------------- grid layout */
@@ -624,17 +683,30 @@ function palMove(d) {
 
 /* -------------------------------------------------------- state in URL */
 
+/* #c=sports&s=a,b,c — no "c" means news, so the old links still work. */
 function readWallFromUrl() {
   const m = new URLSearchParams(location.hash.slice(1)).get('s');
   return m ? m.split(',').filter(Boolean) : null;
 }
+function readModeFromUrl() {
+  return new URLSearchParams(location.hash.slice(1)).get('c');
+}
+function readModeFromStorage() {
+  try { return localStorage.getItem('newswall:mode'); } catch { return null; }
+}
+/* Each mode remembers its own wall. The news one keeps the historic key. */
+const storageKey = () => (state.mode === 'news' ? 'newswall' : `newswall:${state.mode}`);
 function readWallFromStorage() {
-  try { return JSON.parse(localStorage.getItem('newswall') || 'null'); } catch { return null; }
+  try { return JSON.parse(localStorage.getItem(storageKey()) || 'null'); } catch { return null; }
 }
 function saveWall() {
-  const q = new URLSearchParams({ s: state.active.join(',') });
+  const q = new URLSearchParams(state.mode === 'news' ? {} : { c: state.mode });
+  q.set('s', state.active.join(','));
   history.replaceState(null, '', '#' + q);
-  try { localStorage.setItem('newswall', JSON.stringify(state.active)); } catch { /* private mode */ }
+  try {
+    localStorage.setItem(storageKey(), JSON.stringify(state.active));
+    localStorage.setItem('newswall:mode', state.mode);
+  } catch { /* private mode */ }
 }
 
 /* --------------------------------------------------------------- clocks */
@@ -711,6 +783,10 @@ $('#panel-list').addEventListener('click', (e) => {
   if (row) toggleSource(row.dataset.id);
 });
 $('#panel-close').onclick = () => togglePanel(false);
+$('#modes').addEventListener('click', (e) => {
+  const b = e.target.closest('[data-mode]');
+  if (b) setMode(b.dataset.mode);
+});
 $('#logo').onclick = () => togglePanel();
 
 $('#controls').addEventListener('click', (e) => {

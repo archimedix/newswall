@@ -121,6 +121,18 @@ kbd{
   100%{box-shadow:0 0 0 0 rgba(255,75,43,0)}
 }
 
+#modes{
+  display:flex;align-items:center;gap:2px;padding:2px;
+  border:1px solid var(--edge);border-radius:var(--r-sm);background:rgba(255,255,255,.03);
+}
+#modes button{
+  padding:4px 10px;border-radius:calc(var(--r-sm) - 2px);color:var(--mute);
+  font-size:12px;white-space:nowrap;
+  transition:background .16s var(--ease),color .16s var(--ease);
+}
+#modes button:hover{background:var(--hover);color:var(--ice)}
+#modes button.on{background:var(--ice);color:var(--ink);font-weight:600}
+
 #controls{display:flex;align-items:center;gap:3px}
 #controls button{
   display:flex;align-items:center;gap:7px;
@@ -505,6 +517,7 @@ body.focus .tile:not(.is-focus),body.focus .add-slot{display:none}
   #controls .ghost span,#controls .ghost kbd{display:none}
   #controls button[data-act="fullscreen"]{display:none}
   #logo span{display:none}
+  #modes button{padding:4px 7px}
   #live-count{display:none}
   #panel{top:auto;left:8px;right:8px;bottom:8px;height:72vh;width:auto}
   .gate-card{padding:28px 24px 24px}

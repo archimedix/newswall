@@ -1,0 +1,14 @@
+# Weather wall: iptv-org "weather" channels admitted to the catalog, hand-picked
+# among those that pass the technical check. One feed per broadcaster (WeatherSpy
+# has a copy per country), no rebroadcasts.
+# Regenerate the candidates with: python3 scripts/harvest-iptv.py --category weather
+
+the-weather-channel    # US
+accuweather-now        # US
+fox-weather            # US
+weathernation          # US
+weatherspy-us          # US, extreme weather footage
+sky-news-weather       # UK
+sky-news-weather-channel # Australia
+weathernews            # Japan
+3cat-cameres-del-temps # Spain, Catalan public: live weather cams

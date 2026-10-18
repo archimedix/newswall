@@ -4,6 +4,9 @@ Several live news channels on the same screen. Only one talks, you keep an eye o
 others. The point is to see **how the same event is told by different countries**, at the
 same moment.
 
+News is the main wall, not the only one: the switch in the top bar turns it into a
+**Sport**, **Markets** or **Weather** wall, with the same rule — many countries, one screen.
+
 A static page: no backend, no account, no cookies, no data collected. Streams go straight
 from the broadcasters to your browser.
 
@@ -27,6 +30,7 @@ get a `null` origin and are refused.
 | `1`–`9` | quick audio on the n-th tile |
 | `S` | catalog · `M` mute everything · `F` full screen |
 | `Esc` | back to the grid · `?` shortcuts |
+| News · Sport · Markets · Weather | switches wall (top bar) |
 
 ### Building the wall
 
@@ -47,7 +51,16 @@ Adding or removing a channel **does not stop the others**: the grid reconciles i
 what is already there, and visual order is set by the CSS grid's `order`, not the DOM
 (moving a node would reload the YouTube iframes).
 
-The wall's layout ends up in the URL: **the link is the configuration**, shareable as is.
+The wall's layout ends up in the URL: **the link is the configuration**, shareable as is
+(`#c=sports&s=…`; no `c` means news, so older links still work). Each wall remembers its
+own channels.
+
+### Walls
+
+A wall is an [iptv-org category](https://iptv-org.github.io/api/categories.json): `news`,
+`sports`, `business` (Markets), `weather`. Every source says which walls it belongs to in
+`categories`, and can be in more than one (CNBC is both news and markets). Switching
+wall keeps playing the channels the two walls share, for the same reason as above.
 It is also kept in `localStorage` for convenience.
 
 ## The interface
@@ -85,7 +98,7 @@ Two kinds of stream, and they are not equivalent:
 
 Each source lists **one or more streams in order of preference**. If the first one does
 not start — dead CDN, geoblocking, stream ended — the app falls back to the next one on its
-own, without the tile going dark. There are currently **167 streams for 107 channels**:
+own, without the tile going dark. There are currently **230 streams for 170 channels**:
 thirty-eight have at least one fallback.
 
 ```json
@@ -144,14 +157,29 @@ project needs no server.
 
 ## The catalog
 
-**107 sources from 56 countries, in 21 languages**, 71 of them fished out of
-[iptv-org](https://github.com/iptv-org/iptv) and hand-picked. The criterion is the point
-of the project — comparing national narratives — so national and international
-broadcasters are in; local TV, radio and duplicates are out.
+**170 sources from 68 countries**, 134 of them fished out of
+[iptv-org](https://github.com/iptv-org/iptv) and hand-picked:
+
+| wall | channels | countries |
+|---|---|---|
+| News | 107 | 56 |
+| Sport | 35 | 25 |
+| Markets | 22 | 17 |
+| Weather | 9 | 5 |
+
+The criterion is the point of the project — comparing national narratives — so national
+and international broadcasters are in; local TV, radio and duplicates are out.
 
 In practice, that means putting IRINN (Iranian state TV) and Iran International (the
 opposition, based in London) on the same screen; Al-Manar and Makan 33; CCTV, Telesur and
 RT in four languages.
+
+The other walls follow the same idea. **Sport** is national sport channels (Iran's Varzesh
+next to Romania's TVR Sport and Kazakhstan's QazSport), clubs and leagues on their own
+channels, and the official free channels: live matches are almost never free, and pay
+channels that only turn up through anonymous proxies (Eurosport, ESPN, beIN…) are out.
+**Markets** is one financial channel per market, so the same session reads differently in
+Mumbai, Dubai, Frankfurt and New York.
 
 Of RT in English only the Indian feed is left: `rt-glb.rttv.com`, the global one, answers
 **403** from the very same server that serves `rt-india` without complaint — RT closed the
@@ -160,18 +188,23 @@ endpoint, not someone along the way.
 ### Fishing from the public catalog
 
 ```bash
-python3 scripts/harvest-iptv.py              # preview the candidates
-python3 scripts/harvest-iptv.py --write      # add them to sources.json
+python3 scripts/harvest-iptv.py                     # preview the news candidates
+python3 scripts/harvest-iptv.py --category sports   # …or those of another wall
+python3 scripts/harvest-iptv.py --write             # add the curated ones to sources.json
 ```
 
-It downloads the iptv-org catalog, keeps only `news` channels that pass the technical
+It downloads the iptv-org catalog, keeps only the channels of that category that pass the technical
 check (HTTPS + CORS + manifest, and no mandatory referrer or user-agent: those would not
 work from a browser), drops radio and niche channels, and caps the number of channels per
 country — without that cap the 219 Indian broadcasters would take over the whole wall.
 
-Out of 858 candidates, **577 turned out to be usable (67%)**. The final selection lives
-in [`scripts/curated-iptv.txt`](scripts/curated-iptv.txt), one id per line with the
-reason next to it: that is where things get added or removed.
+Out of 858 news candidates, **577 turned out to be usable (67%)**. The final selection
+lives in [`scripts/curated/`](scripts/curated), one file per wall (`news.txt`,
+`sports.txt`…), one id per line with the reason next to it: that is where things get
+added or removed. `--write` only adds the candidates listed there (marked `*` in the
+preview); the others are just shown. An id that is already in the catalog simply joins
+that wall too. Each channel gets its first stream that works: iptv-org often lists dead
+mirrors first.
 
 With `--alternatives` it adds no new channels: instead it looks for **other sources for
 the ones already there**, and queues them as fallbacks.
@@ -186,12 +219,20 @@ One entry in `sources.json`, then a PR:
 
 ```json
 { "id": "channel-name", "name": "Channel Name", "lang": "en", "country": "XX",
-  "tz": "Area/City", "kind": "hls", "url": "https://.../playlist.m3u8",
-  "tags": ["world"] }
+  "tz": "Area/City", "tags": ["world"], "categories": ["news"],
+  "streams": [
+    { "kind": "hls", "url": "https://.../playlist.m3u8" },
+    { "kind": "youtube", "channelId": "UC..." }
+  ] }
 ```
 
-For YouTube, `"kind": "youtube"` and `"channelId": "UC..."` instead of `url`.
-Run `refresh-live.py` to check that it holds up before opening the PR.
+One or more streams, in order of preference. Then fill in the `origin` fields and
+check that it holds up before opening the PR:
+
+```bash
+python3 scripts/annotate-origin.py --write
+python3 scripts/refresh-live.py
+```
 
 Rejects are almost all plain `http://` (blocked as mixed content) and dead streams.
 CORS, against all expectations, is not the problem: 1 in 70.

@@ -1,0 +1,47 @@
+# Sport wall: iptv-org "sports" channels admitted to the catalog, hand-picked
+# among those that pass the technical check. Live matches are almost never free:
+# what is here is published by the broadcaster, a club, a league or an official
+# free (FAST) channel. Pay channels that only show up through anonymous proxies
+# (Eurosport, ESPN, beIN Turkey, Star Sports…) are out, and so are rebroadcasts.
+# Regenerate the candidates with: python3 scripts/harvest-iptv.py --category sports
+
+# --- National sport channels: how each country tells its sport ---
+belarus-5              # Belarus, state
+esport3                # Spain, Catalan public
+teledeporte            # Spain, RTVE
+tvr-sport              # Romania, public
+san-marino-rtv-sport   # San Marino, public
+sportitalia            # Italy
+qazsport               # Kazakhstan, state
+mnb-sport              # Mongolia, public
+mrtv-sports            # Myanmar, state
+varzesh-tv             # Iran, IRIB
+al-iraqia-sport        # Iraq, state
+jordan-sport           # Jordan, state
+oman-sports-tv         # Oman, state
+ktv-sport              # Kuwait, state
+bahrain-sports-1       # Bahrain, state
+a-spor                 # Turkey
+el-heddaf-tv           # Algeria
+africa-24-sport        # Pan-African
+fox-sports-news        # Australia
+tyc-sports             # Argentina, official FAST feed
+ge-fast                # Brazil, Globo's free channel
+azteca-deportes-network # Mexico
+
+# --- Clubs, federations and leagues, from their own channels ---
+real-madrid-tv         # Spain
+inter-tv               # Italy
+mutv                   # UK, Manchester United
+supertennis            # Italy, tennis federation
+fifa-women             # FIFA+
+nhl-network            # US/Canada, ice hockey
+
+# --- Free international sport channels ---
+red-bull-tv            # Austria, extreme sports
+world-of-freesports    # Germany
+talksport              # UK
+nbc-sports-now         # US
+cbs-sports-golazo-network # US, world football
+bein-sports-xtra       # US, beIN's free channel
+willow-sports          # US, cricket

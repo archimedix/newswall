@@ -4,18 +4,21 @@ Fishes new sources out of the public iptv-org catalog and adds them to sources.j
 
 iptv-org lists thousands of channels but does not say which ones work from a
 static page: only what really holds up is kept here, i.e. HTTPS + CORS + a
-valid manifest. Entries already in sources.json are left untouched.
+valid manifest. Entries already in sources.json are left untouched, except
+that a curated one can join another wall (its "categories" grows).
 
-    python3 scripts/harvest-iptv.py            # show what would be added
-    python3 scripts/harvest-iptv.py --write    # actually write
+    python3 scripts/harvest-iptv.py                      # show the news candidates
+    python3 scripts/harvest-iptv.py --category sports    # any iptv-org category = a wall mode
+    python3 scripts/harvest-iptv.py --write              # add the ones in scripts/curated/<category>.txt
 
-Options: --max N (overall cap), --per-country N, --cache DIR
+Options: --category ID (default news), --max N (overall cap), --per-country N, --cache DIR
 """
 import argparse, gzip, json, re, ssl, sys, unicodedata, urllib.request, urllib.error, zlib
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
+CURATED = ROOT / "scripts" / "curated"      # one <category>.txt per wall mode
 API = "https://iptv-org.github.io/api"
 UA = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36"
 CTX = ssl.create_default_context()
@@ -33,10 +36,12 @@ AREA = {
     **{c: 'americas' for c in "AR BO BR CL CO CR CU DO EC GT HN JM MX NI PA PE PR PY SV UY VE".split()},
     **{c: 'oceania' for c in "AU FJ NZ PG".split()},
 }
-# iptv-org's "news" category is generous: radio, trailer channels and
-# teleshopping end up in it. Better to lose a few than pollute the catalog.
-EXCLUDE = re.compile(r"\b(radij|radio|fm|trailer|music|musik|shop|teleshop|sport|kids|"
-                     r"cinema|movie|series|weather|meteo|traffic|test|vertical)\b", re.I)
+# iptv-org's categories are generous: radio, trailer channels and
+# teleshopping end up in them. Better to lose a few than pollute the catalog.
+EXCLUDE = re.compile(r"\b(radij|radio|fm|trailer|shop|teleshop|kids|"
+                     r"cinema|movie|series|traffic|test|vertical)\b", re.I)
+# What belongs to another wall when it shows up under "news".
+OFF_TOPIC = {"news": re.compile(r"\b(music|musik|sport|weather|meteo)\b", re.I)}
 
 LANG = {'eng': 'en', 'ita': 'it', 'fra': 'fr', 'spa': 'es', 'deu': 'de', 'por': 'pt',
         'ara': 'ar', 'rus': 'ru', 'zho': 'zh', 'jpn': 'ja', 'kor': 'ko', 'hin': 'hi',
@@ -45,12 +50,14 @@ LANG = {'eng': 'en', 'ita': 'it', 'fra': 'fr', 'spa': 'es', 'deu': 'de', 'por': 
         'fas': 'fa', 'urd': 'ur', 'tha': 'th', 'vie': 'vi', 'ind': 'id', 'msa': 'ms'}
 
 
-def fetch(url, timeout=12, origin=None):
+def fetch(url, timeout=12, origin=None, limit=None):
     h = {"User-Agent": UA}
     if origin:
         h["Origin"] = origin
     with urllib.request.urlopen(urllib.request.Request(url, headers=h), timeout=timeout, context=CTX) as r:
-        raw = r.read()
+        # Some "streams" are raw endless video, not a manifest: reading them to
+        # the end would never return, the timeout only fires when data stops.
+        raw = r.read(limit) if limit else r.read()
         enc = (r.headers.get("Content-Encoding") or "").lower()
         if enc == "gzip" or raw[:2] == b"\x1f\x8b":
             raw = gzip.decompress(raw)
@@ -82,7 +89,7 @@ def probe(url):
     if not url.startswith("https://"):
         return None
     try:
-        headers, body = fetch(url, timeout=8, origin="https://example.org")
+        headers, body = fetch(url, timeout=8, origin="https://example.org", limit=512 * 1024)
     except Exception:
         return None
     if not headers.get("Access-Control-Allow-Origin"):
@@ -130,7 +137,7 @@ def add_alternatives(current, channels, streams, probe_pool=40):
         src = index[sid]
         if len(src["streams"]) >= 3:      # three sources are enough: beyond that is dead weight
             continue
-        src["streams"].append({"kind": "hls", "url": url})
+        src["streams"].append({"kind": "hls", "url": url, "via": "iptv-org"})
         added += 1
     return added
 
@@ -138,6 +145,7 @@ def add_alternatives(current, channels, streams, probe_pool=40):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--write", action="store_true", help="write to sources.json")
+    ap.add_argument("--category", default="news", help="iptv-org category, i.e. the wall mode")
     ap.add_argument("--max", type=int, default=90, help="maximum number of sources to add")
     ap.add_argument("--per-country", type=int, default=3, help="per-country cap, so no country takes over")
     ap.add_argument("--cache", default="/tmp/iptv-cache")
@@ -167,34 +175,58 @@ def main():
         else:
             print("(preview — run again with --write)")
         return
+    cat = args.category
+    off_topic = OFF_TOPIC.get(cat)
+
+    # The final word is scripts/curated/<category>.txt: candidates listed there
+    # always get in, the others are only shown, so they can be judged. An id
+    # that is already in the catalog simply joins this wall too.
+    lst = CURATED / f"{cat}.txt"
+    curated = ({l.split("#")[0].strip() for l in lst.read_text().splitlines()} - {""}
+               if lst.exists() else set())
+    tagged = []
+    for src in current["sources"]:
+        cats = src.setdefault("categories", ["news"])
+        if src["id"] in curated and cat not in cats:
+            cats.append(cat)
+            tagged.append(src["id"])
+
     taken_ids = {s["id"] for s in current["sources"]}
     taken_urls = {st.get("url") for s in current["sources"] for st in s["streams"]}
     taken_names = {slug(s["name"]) for s in current["sources"]}
 
-    # One channel, its best stream. Local live news channels are countless:
+    # One channel, its first working stream. Local live news channels are countless:
     # the per-country cap keeps the wall international rather than, say, Indian.
     candidates = {}
     for s in streams:
         cid = s.get("channel")
-        if not cid or cid in candidates:
-            continue
         ch = channels.get(cid)
         if not ch or ch.get("closed") or ch.get("is_nsfw"):
             continue
-        if "news" not in (ch.get("categories") or []):
+        if cat not in (ch.get("categories") or []):
             continue
-        if EXCLUDE.search(ch["name"]):
+        if EXCLUDE.search(ch["name"]) or (off_topic and off_topic.search(ch["name"])):
             continue
         if s["url"] in taken_urls or s.get("referrer") or s.get("user_agent"):
             continue      # streams that require a referrer/UA do not work from a browser
-        candidates[cid] = s
+        if s["url"].startswith("https://"):
+            candidates.setdefault(cid, []).append(s)
 
-    print(f"news candidates from iptv-org: {len(candidates)}", file=sys.stderr)
+    print(f"{cat} candidates from iptv-org: {len(candidates)}", file=sys.stderr)
     print("checking HTTPS + CORS + manifest …", file=sys.stderr)
+
+    # A channel's first stream is often a dead mirror: try them in order.
+    def first_working(item):
+        cid, lst = item
+        for s in lst:
+            r = probe(s["url"])
+            if r:
+                return cid, s, r
+        return cid, None, None
 
     items = list(candidates.items())
     with ThreadPoolExecutor(40) as ex:
-        results = list(ex.map(lambda kv: (kv[0], kv[1], probe(kv[1]["url"])), items))
+        results = list(ex.map(first_working, items))
 
     good = [(cid, s, r) for cid, s, r in results if r]
     print(f"usable: {len(good)}/{len(items)}", file=sys.stderr)
@@ -203,20 +235,19 @@ def main():
     # called "France 24", local variants are not).
     good.sort(key=lambda t: (-(max(t[2]["heights"]) if t[2]["heights"] else 0), len(channels[t[0]]["name"])))
 
-    added, per_country = [], {}
+    added, picked, per_country = [], [], {}
     for cid, s, r in good:
-        if len(added) >= args.max:
-            break
         ch = channels[cid]
         country = ch.get("country") or "??"
-        if per_country.get(country, 0) >= args.per_country:
+        listed = {slug(ch["name"]), f"{slug(ch['name'])}-{country.lower()}"} & curated
+        if not listed and (len(added) >= args.max or per_country.get(country, 0) >= args.per_country):
             continue
         feed = feed_of.get(cid, {})
         tz = (feed.get("timezones") or ["UTC"])[0]
         lang = LANG.get((feed.get("languages") or [""])[0], "")
         sid = slug(ch["name"])
         if sid in taken_names:
-            continue          # already in the curated catalog, maybe via YouTube
+            continue          # already in the catalog, maybe via YouTube
         if sid in taken_ids:
             sid = f"{sid}-{country.lower()}"
         if sid in taken_ids:
@@ -225,16 +256,21 @@ def main():
         per_country[country] = per_country.get(country, 0) + 1
         added.append({
             "id": sid, "name": ch["name"], "lang": lang, "country": country, "tz": tz,
-            "tags": [AREA.get(country, "world")], "via": "iptv-org",
+            "tags": [AREA.get(country, "world")], "categories": [cat], "via": "iptv-org",
             "streams": [{"kind": "hls", "url": s["url"]}],
         })
+        if listed:
+            picked.append(added[-1])
 
-    print(f"\nto add: {len(added)}")
+    print(f"\ncandidates: {len(added)}, in {lst.relative_to(ROOT)}: {len(picked)} (marked *)")
+    if tagged:
+        print(f"already in the catalog, now also in '{cat}': {', '.join(tagged)}")
     for a in added:
-        print(f"  {a['country']:3} {a['name'][:38]:40} {a['tags'][0]}")
+        mark = "*" if a in picked else " "
+        print(f" {mark} {a['country']:3} {a['id'][:38]:40} {a['tags'][0]}")
 
     if args.write:
-        current["sources"].extend(added)
+        current["sources"].extend(picked)
         (ROOT / "sources.json").write_text(json.dumps(current, indent=2, ensure_ascii=False) + "\n")
         print(f"\nsources.json: {len(current['sources'])} sources in total")
     else:

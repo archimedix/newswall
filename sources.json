@@ -33,6 +33,9 @@
           },
           "channelId": "UCNye-wNBqNL5ZzHSJj3l8Bg"
         }
+      ],
+      "categories": [
+        "news"
       ]
     },
     {
@@ -76,6 +79,9 @@
             "label": "cloudfront.net"
           }
         }
+      ],
+      "categories": [
+        "news"
       ]
     },
     {
@@ -109,6 +115,9 @@
           },
           "channelId": "UCQfwfsi5VrQ8yKZ-UWmAEFg"
         }
+      ],
+      "categories": [
+        "news"
       ]
     },
     {
@@ -142,6 +151,9 @@
           },
           "channelId": "UCknLrEdhRCp1aegoMqRaCZg"
         }
+      ],
+      "categories": [
+        "news"
       ]
     },
     {
@@ -185,6 +197,9 @@
             "label": "short.gy"
           }
         }
+      ],
+      "categories": [
+        "news"
       ]
     },
     {
@@ -227,6 +242,9 @@
             "label": "Antik Telecom"
           }
         }
+      ],
+      "categories": [
+        "news"
       ]
     },
     {
@@ -270,6 +288,9 @@
             "label": "amagi.tv"
           }
         }
+      ],
+      "categories": [
+        "news"
       ]
     },
     {
@@ -313,6 +334,9 @@
             "label": "cloudfront.net"
           }
         }
+      ],
+      "categories": [
+        "news"
       ]
     },
     {
@@ -355,6 +379,9 @@
             "label": "doubleclick.net"
           }
         }
+      ],
+      "categories": [
+        "news"
       ]
     },
     {
@@ -397,6 +424,9 @@
             "label": "akamaized.net"
           }
         }
+      ],
+      "categories": [
+        "news"
       ]
     },
     {
@@ -430,6 +460,9 @@
           },
           "channelId": "UCVgO39Bk5sMo66-6o6Spn6Q"
         }
+      ],
+      "categories": [
+        "news"
       ]
     },
     {
@@ -472,6 +505,9 @@
             "label": "cloudfront.net"
           }
         }
+      ],
+      "categories": [
+        "news"
       ]
     },
     {
@@ -504,6 +540,9 @@
           },
           "channelId": "UCBi2mrWuNuyYy4gbM6fU18Q"
         }
+      ],
+      "categories": [
+        "news"
       ]
     },
     {
@@ -536,6 +575,9 @@
           },
           "channelId": "UC8p1vwvWtl6T73JiExfWs1g"
         }
+      ],
+      "categories": [
+        "news"
       ]
     },
     {
@@ -559,6 +601,9 @@
           },
           "channelId": "UCzuqE7-t13O4NIDYJfakrhw"
         }
+      ],
+      "categories": [
+        "news"
       ]
     },
     {
@@ -592,6 +637,9 @@
             "label": "TRT"
           }
         }
+      ],
+      "categories": [
+        "news"
       ]
     },
     {
@@ -614,6 +662,9 @@
           },
           "url": "https://d3k8wzt41aflvx.cloudfront.net/RAINEWS24/Live.m3u8"
         }
+      ],
+      "categories": [
+        "news"
       ]
     },
     {
@@ -657,6 +708,9 @@
             "label": "jmp2.uk"
           }
         }
+      ],
+      "categories": [
+        "news"
       ]
     },
     {
@@ -699,6 +753,9 @@
             "label": "nhkworld.jp"
           }
         }
+      ],
+      "categories": [
+        "news"
       ]
     },
     {
@@ -721,6 +778,9 @@
           },
           "url": "https://d2e1asnsl7br7b.cloudfront.net/7782e205e72f43aeb4a48ec97f66ebbe/index.m3u8"
         }
+      ],
+      "categories": [
+        "news"
       ]
     },
     {
@@ -743,6 +803,9 @@
           },
           "url": "https://live.alarabiya.net/alarabiapublish/english/playlist_dvr.m3u8"
         }
+      ],
+      "categories": [
+        "news"
       ]
     },
     {
@@ -775,6 +838,9 @@
             "label": "akamaized.net"
           }
         }
+      ],
+      "categories": [
+        "news"
       ]
     },
     {
@@ -792,12 +858,15 @@
           "kind": "hls",
           "origin": {
             "host": "tv-trtarabi.medya.trt.com.tr",
-            "via": "curated",
+            "via": "iptv-org",
             "kind": "broadcaster",
             "label": "TRT"
           },
           "url": "https://tv-trtarabi.medya.trt.com.tr/master.m3u8"
         }
+      ],
+      "categories": [
+        "news"
       ]
     },
     {
@@ -815,12 +884,15 @@
           "kind": "hls",
           "origin": {
             "host": "tv-trthaber.medya.trt.com.tr",
-            "via": "curated",
+            "via": "iptv-org",
             "kind": "broadcaster",
             "label": "TRT"
           },
           "url": "https://tv-trthaber.medya.trt.com.tr/master.m3u8"
         }
+      ],
+      "categories": [
+        "news"
       ]
     },
     {
@@ -838,7 +910,7 @@
           "kind": "hls",
           "origin": {
             "host": "dwamdstream103.akamaized.net",
-            "via": "curated",
+            "via": "iptv-org",
             "kind": "cdn",
             "label": "akamaized.net"
           },
@@ -849,7 +921,7 @@
           "url": "https://amg01644-amg01644c1-amgplt0343.playout.now3.amagi.tv/ts-eu-w1-n2/playlist/amg01644-amg01644c1-amgplt0343/playlist.m3u8",
           "origin": {
             "host": "amg01644-amg01644c1-amgplt0343.playout.now3.amagi.tv",
-            "via": "curated",
+            "via": "iptv-org",
             "kind": "cdn",
             "label": "amagi.tv"
           }
@@ -859,11 +931,14 @@
           "url": "https://dwamdstream102.akamaized.net/hls/live/2015525/dwstream102/master.m3u8",
           "origin": {
             "host": "dwamdstream102.akamaized.net",
-            "via": "curated",
+            "via": "iptv-org",
             "kind": "cdn",
             "label": "akamaized.net"
           }
         }
+      ],
+      "categories": [
+        "news"
       ]
     },
     {
@@ -881,7 +956,7 @@
           "kind": "hls",
           "origin": {
             "host": "hlive.ktv.go.kr",
-            "via": "curated",
+            "via": "iptv-org",
             "kind": "broadcaster",
             "label": "KTV Korea"
           },
@@ -892,7 +967,7 @@
           "url": "https://ktvhdsg.ekantipur.com:8443/high_quality_85840165/hd/kantipurtv/hd_1080/chunks.m3u8",
           "origin": {
             "host": "ktvhdsg.ekantipur.com",
-            "via": "curated",
+            "via": "iptv-org",
             "kind": "unknown",
             "label": "ekantipur.com"
           }
@@ -902,11 +977,14 @@
           "url": "https://ktvhdsg.ekantipur.com:8443/high_quality_85840165/hd/playlist.m3u8",
           "origin": {
             "host": "ktvhdsg.ekantipur.com",
-            "via": "curated",
+            "via": "iptv-org",
             "kind": "unknown",
             "label": "ekantipur.com"
           }
         }
+      ],
+      "categories": [
+        "news"
       ]
     },
     {
@@ -924,12 +1002,15 @@
           "kind": "hls",
           "origin": {
             "host": "d1ib1gsg71oarf.cloudfront.net",
-            "via": "curated",
+            "via": "iptv-org",
             "kind": "cdn",
             "label": "cloudfront.net"
           },
           "url": "https://d1ib1gsg71oarf.cloudfront.net/v1/master/3722c60a815c199d9c0ef36c5b73da68a62b09d1/cc-scp7wda722jph/BFM2_FR.m3u8"
         }
+      ],
+      "categories": [
+        "news"
       ]
     },
     {
@@ -947,7 +1028,7 @@
           "kind": "hls",
           "origin": {
             "host": "mncmedia.malingtv.workers.dev",
-            "via": "curated",
+            "via": "iptv-org",
             "kind": "rebroadcast",
             "label": "workers.dev"
           },
@@ -958,7 +1039,7 @@
           "url": "https://yuppnimresmum.akamaized.net/28072023/smil:inews.smil/playlist.m3u8?hdnts=st=1735898689~exp=1835898688~acl=*~hmac=f5fe24724fe05481e3841f9eb5ab8efdee0a3dd83645ae9dcf45703f525bab7b",
           "origin": {
             "host": "yuppnimresmum.akamaized.net",
-            "via": "curated",
+            "via": "iptv-org",
             "kind": "cdn",
             "label": "akamaized.net"
           }
@@ -968,11 +1049,14 @@
           "url": "https://mumt03.tangotv.in/Dsly5z3HINEWS/index.m3u8",
           "origin": {
             "host": "mumt03.tangotv.in",
-            "via": "curated",
+            "via": "iptv-org",
             "kind": "rebroadcast",
             "label": "tangotv.in"
           }
         }
+      ],
+      "categories": [
+        "news"
       ]
     },
     {
@@ -990,12 +1074,15 @@
           "kind": "hls",
           "origin": {
             "host": "547f72e6652371c3.mediapackage.us-east-1.amazonaws.com",
-            "via": "curated",
+            "via": "iptv-org",
             "kind": "cdn",
             "label": "amazonaws.com"
           },
           "url": "https://547f72e6652371c3.mediapackage.us-east-1.amazonaws.com/out/v1/e3e6e29095844c4ba7d887f01e44a5ef/index.m3u8"
         }
+      ],
+      "categories": [
+        "news"
       ]
     },
     {
@@ -1013,7 +1100,7 @@
           "kind": "hls",
           "origin": {
             "host": "rt-ger.rttv.com",
-            "via": "curated",
+            "via": "iptv-org",
             "kind": "broadcaster",
             "label": "RT"
           },
@@ -1024,11 +1111,14 @@
           "url": "https://rt-ger.rttv.com/live/rtdeutsch/playlist.m3u8",
           "origin": {
             "host": "rt-ger.rttv.com",
-            "via": "curated",
+            "via": "iptv-org",
             "kind": "broadcaster",
             "label": "RT"
           }
         }
+      ],
+      "categories": [
+        "news"
       ]
     },
     {
@@ -1046,12 +1136,15 @@
           "kind": "hls",
           "origin": {
             "host": "live.visir.is",
-            "via": "curated",
+            "via": "iptv-org",
             "kind": "broadcaster",
             "label": "Vísir"
           },
           "url": "https://live.visir.is/hls-live/visir.smil/playlist.m3u8"
         }
+      ],
+      "categories": [
+        "news"
       ]
     },
     {
@@ -1069,7 +1162,7 @@
           "kind": "hls",
           "origin": {
             "host": "feeds.intoday.in",
-            "via": "curated",
+            "via": "iptv-org",
             "kind": "broadcaster",
             "label": "India Today"
           },
@@ -1080,7 +1173,7 @@
           "url": "https://livehub-voidnet.onrender.com/cluster/streamcore/in/AAJTAK_REDIS.m3u8",
           "origin": {
             "host": "livehub-voidnet.onrender.com",
-            "via": "curated",
+            "via": "iptv-org",
             "kind": "rebroadcast",
             "label": "onrender.com"
           }
@@ -1090,11 +1183,14 @@
           "url": "https://d1rc86nwwc9fag.cloudfront.net/vglive-sk-791258/master.m3u8",
           "origin": {
             "host": "d1rc86nwwc9fag.cloudfront.net",
-            "via": "curated",
+            "via": "iptv-org",
             "kind": "cdn",
             "label": "cloudfront.net"
           }
         }
+      ],
+      "categories": [
+        "news"
       ]
     },
     {
@@ -1112,7 +1208,7 @@
           "kind": "hls",
           "origin": {
             "host": "amg01079-nbcuuk-amg01079c2-lg-gb-2030.playouts.now.amagi.tv",
-            "via": "curated",
+            "via": "iptv-org",
             "kind": "cdn",
             "label": "amagi.tv"
           },
@@ -1123,11 +1219,15 @@
           "url": "https://amg01079-nbcuuk-amg01079c2-samsung-gb-1258.playouts.now.amagi.tv/playlist.m3u8",
           "origin": {
             "host": "amg01079-nbcuuk-amg01079c2-samsung-gb-1258.playouts.now.amagi.tv",
-            "via": "curated",
+            "via": "iptv-org",
             "kind": "cdn",
             "label": "amagi.tv"
           }
         }
+      ],
+      "categories": [
+        "news",
+        "business"
       ]
     },
     {
@@ -1145,7 +1245,7 @@
           "kind": "hls",
           "origin": {
             "host": "d3qs3d2rkhfqrt.cloudfront.net",
-            "via": "curated",
+            "via": "iptv-org",
             "kind": "cdn",
             "label": "cloudfront.net"
           },
@@ -1156,11 +1256,14 @@
           "url": "https://streams.tangotv.in/DDNEWS/ORIGIN/index.m3u8",
           "origin": {
             "host": "streams.tangotv.in",
-            "via": "curated",
+            "via": "iptv-org",
             "kind": "rebroadcast",
             "label": "tangotv.in"
           }
         }
+      ],
+      "categories": [
+        "news"
       ]
     },
     {
@@ -1178,12 +1281,15 @@
           "kind": "hls",
           "origin": {
             "host": "ncdn.telewebion.ir",
-            "via": "curated",
+            "via": "iptv-org",
             "kind": "broadcaster",
             "label": "Telewebion"
           },
           "url": "https://ncdn.telewebion.ir/irinn2/live/playlist.m3u8"
         }
+      ],
+      "categories": [
+        "news"
       ]
     },
     {
@@ -1201,12 +1307,15 @@
           "kind": "hls",
           "origin": {
             "host": "directes-tv-int.3catdirectes.cat",
-            "via": "curated",
+            "via": "iptv-org",
             "kind": "broadcaster",
             "label": "3Cat"
           },
           "url": "https://directes-tv-int.3catdirectes.cat/live-origin/canal324-hls/master.m3u8"
         }
+      ],
+      "categories": [
+        "news"
       ]
     },
     {
@@ -1224,12 +1333,15 @@
           "kind": "hls",
           "origin": {
             "host": "edge.fastpublish.me",
-            "via": "curated",
+            "via": "iptv-org",
             "kind": "rebroadcast",
             "label": "fastpublish.me"
           },
           "url": "https://edge.fastpublish.me/live/index.m3u8"
         }
+      ],
+      "categories": [
+        "news"
       ]
     },
     {
@@ -1247,7 +1359,7 @@
           "kind": "hls",
           "origin": {
             "host": "stream-gtlc.telecentro.net.ar",
-            "via": "curated",
+            "via": "iptv-org",
             "kind": "unknown",
             "label": "telecentro.net.ar"
           },
@@ -1258,7 +1370,7 @@
           "url": "https://live.obslivestream.com/makaomux/index.m3u8",
           "origin": {
             "host": "live.obslivestream.com",
-            "via": "curated",
+            "via": "iptv-org",
             "kind": "unknown",
             "label": "obslivestream.com"
           }
@@ -1268,11 +1380,14 @@
           "url": "https://live.obslivestream.com/makaomux/tracks-v2a1/playlist.m3u8",
           "origin": {
             "host": "live.obslivestream.com",
-            "via": "curated",
+            "via": "iptv-org",
             "kind": "unknown",
             "label": "obslivestream.com"
           }
         }
+      ],
+      "categories": [
+        "news"
       ]
     },
     {
@@ -1290,12 +1405,15 @@
           "kind": "hls",
           "origin": {
             "host": "ert-ucdn.broadpeak-aas.com",
-            "via": "curated",
+            "via": "iptv-org",
             "kind": "broadcaster",
             "label": "ERT"
           },
           "url": "https://ert-ucdn.broadpeak-aas.com/bpk-tv/ERTNews/default/index.m3u8"
         }
+      ],
+      "categories": [
+        "news"
       ]
     },
     {
@@ -1313,12 +1431,15 @@
           "kind": "hls",
           "origin": {
             "host": "kancdn.medonecdn.net",
-            "via": "curated",
+            "via": "iptv-org",
             "kind": "cdn",
             "label": "medonecdn.net"
           },
           "url": "https://kancdn.medonecdn.net/livehls/oil/kancdn-live/live/makan/live.livx/playlist.m3u8"
         }
+      ],
+      "categories": [
+        "news"
       ]
     },
     {
@@ -1336,7 +1457,7 @@
           "kind": "hls",
           "origin": {
             "host": "live.kwikmotion.com",
-            "via": "curated",
+            "via": "iptv-org",
             "kind": "cdn",
             "label": "kwikmotion.com"
           },
@@ -1347,7 +1468,7 @@
           "url": "https://stream.ads.ottera.tv/playlist.m3u8?network_id=6017",
           "origin": {
             "host": "stream.ads.ottera.tv",
-            "via": "curated",
+            "via": "iptv-org",
             "kind": "unknown",
             "label": "ottera.tv"
           }
@@ -1357,11 +1478,14 @@
           "url": "https://svs.itworkscdn.net/syriatvlive/syriatv.smil/playlist_dvr.m3u8",
           "origin": {
             "host": "svs.itworkscdn.net",
-            "via": "curated",
+            "via": "iptv-org",
             "kind": "unknown",
             "label": "itworkscdn.net"
           }
         }
+      ],
+      "categories": [
+        "news"
       ]
     },
     {
@@ -1379,12 +1503,15 @@
           "kind": "hls",
           "origin": {
             "host": "stream.badinan.xyz",
-            "via": "curated",
+            "via": "iptv-org",
             "kind": "rebroadcast",
             "label": "badinan.xyz"
           },
           "url": "https://stream.badinan.xyz/welat/tv/playlist.m3u8"
         }
+      ],
+      "categories": [
+        "news"
       ]
     },
     {
@@ -1402,12 +1529,15 @@
           "kind": "hls",
           "origin": {
             "host": "live-vgtrksmotrim.cdnvideo.ru",
-            "via": "curated",
+            "via": "iptv-org",
             "kind": "cdn",
             "label": "cdnvideo.ru"
           },
           "url": "https://live-vgtrksmotrim.cdnvideo.ru/vgtrksmotrim/smotrim-live-03-srt.smil/playlist.m3u8"
         }
+      ],
+      "categories": [
+        "news"
       ]
     },
     {
@@ -1425,12 +1555,15 @@
           "kind": "hls",
           "origin": {
             "host": "live.alarabiya.net",
-            "via": "curated",
+            "via": "iptv-org",
             "kind": "broadcaster",
             "label": "Al Arabiya"
           },
           "url": "https://live.alarabiya.net/alarabiapublish/alarabiya.smil/playlist.m3u8"
         }
+      ],
+      "categories": [
+        "news"
       ]
     },
     {
@@ -1448,12 +1581,15 @@
           "kind": "hls",
           "origin": {
             "host": "av.alarabiya.net",
-            "via": "curated",
+            "via": "iptv-org",
             "kind": "broadcaster",
             "label": "Al Arabiya"
           },
           "url": "https://av.alarabiya.net/alarabiapublish/alhadath.smil/playlist.m3u8"
         }
+      ],
+      "categories": [
+        "news"
       ]
     },
     {
@@ -1471,12 +1607,15 @@
           "kind": "hls",
           "origin": {
             "host": "contact.gostreaming.tv",
-            "via": "curated",
+            "via": "iptv-org",
             "kind": "cdn",
             "label": "gostreaming.tv"
           },
           "url": "https://contact.gostreaming.tv/Con-11/index.m3u8"
         }
+      ],
+      "categories": [
+        "news"
       ]
     },
     {
@@ -1494,12 +1633,15 @@
           "kind": "hls",
           "origin": {
             "host": "live1.acangroup.org",
-            "via": "curated",
+            "via": "iptv-org",
             "kind": "unknown",
             "label": "acangroup.org"
           },
           "url": "https://live1.acangroup.org:1929/publiclive/crtv_news/playlist.m3u8"
         }
+      ],
+      "categories": [
+        "news"
       ]
     },
     {
@@ -1517,12 +1659,15 @@
           "kind": "hls",
           "origin": {
             "host": "mrtvott.com",
-            "via": "curated",
+            "via": "iptv-org",
             "kind": "broadcaster",
             "label": "mrtvott.com"
           },
           "url": "https://mrtvott.com/cache/MRTV-NEWS-HD/master.m3u8"
         }
+      ],
+      "categories": [
+        "news"
       ]
     },
     {
@@ -1540,12 +1685,15 @@
           "kind": "hls",
           "origin": {
             "host": "rt-arb.rttv.com",
-            "via": "curated",
+            "via": "iptv-org",
             "kind": "broadcaster",
             "label": "RT"
           },
           "url": "https://rt-arb.rttv.com/dvr/rtarab/playlist.m3u8"
         }
+      ],
+      "categories": [
+        "news"
       ]
     },
     {
@@ -1563,7 +1711,7 @@
           "kind": "hls",
           "origin": {
             "host": "rt-fra.rttv.com",
-            "via": "curated",
+            "via": "iptv-org",
             "kind": "broadcaster",
             "label": "RT"
           },
@@ -1574,11 +1722,14 @@
           "url": "https://rt-fra.rttv.com/live/rtfrance/playlist.m3u8",
           "origin": {
             "host": "rt-fra.rttv.com",
-            "via": "curated",
+            "via": "iptv-org",
             "kind": "broadcaster",
             "label": "RT"
           }
         }
+      ],
+      "categories": [
+        "news"
       ]
     },
     {
@@ -1597,7 +1748,7 @@
           "url": "https://rt-india.rttv.com/live/rtindia/playlist.m3u8",
           "origin": {
             "host": "rt-india.rttv.com",
-            "via": "curated",
+            "via": "iptv-org",
             "kind": "broadcaster",
             "label": "RT"
           }
@@ -1607,11 +1758,14 @@
           "url": "https://wisewatchoott.wiseplayout.com/RT/master.m3u8",
           "origin": {
             "host": "wisewatchoott.wiseplayout.com",
-            "via": "curated",
+            "via": "iptv-org",
             "kind": "unknown",
             "label": "wiseplayout.com"
           }
         }
+      ],
+      "categories": [
+        "news"
       ]
     },
     {
@@ -1629,12 +1783,15 @@
           "kind": "hls",
           "origin": {
             "host": "sabconetanw.cdn.mangomolo.com",
-            "via": "curated",
+            "via": "iptv-org",
             "kind": "cdn",
             "label": "mangomolo.com"
           },
           "url": "https://sabconetanw.cdn.mangomolo.com/news/smil:news.stream.smil/master.m3u8"
         }
+      ],
+      "categories": [
+        "news"
       ]
     },
     {
@@ -1652,12 +1809,15 @@
           "kind": "hls",
           "origin": {
             "host": "live.cdnbridge.tv",
-            "via": "curated",
+            "via": "iptv-org",
             "kind": "cdn",
             "label": "cdnbridge.tv"
           },
           "url": "https://live.cdnbridge.tv/Almasirah/Almasirah_all/playlist.m3u8"
         }
+      ],
+      "categories": [
+        "news"
       ]
     },
     {
@@ -1675,12 +1835,15 @@
           "kind": "hls",
           "origin": {
             "host": "amdlive-ch02-ctnd-com.akamaized.net",
-            "via": "curated",
+            "via": "iptv-org",
             "kind": "cdn",
             "label": "akamaized.net"
           },
           "url": "https://amdlive-ch02-ctnd-com.akamaized.net/arirang_2ch/smil:arirang_2ch.smil/playlist.m3u8"
         }
+      ],
+      "categories": [
+        "news"
       ]
     },
     {
@@ -1698,7 +1861,7 @@
           "kind": "hls",
           "origin": {
             "host": "ngtrk.dc.beltelecom.by",
-            "via": "curated",
+            "via": "iptv-org",
             "kind": "broadcaster",
             "label": "Beltelecom"
           },
@@ -1709,11 +1872,14 @@
           "url": "https://streaming.thestream.cyou/live/7003.m3u8",
           "origin": {
             "host": "streaming.thestream.cyou",
-            "via": "curated",
+            "via": "iptv-org",
             "kind": "unknown",
             "label": "thestream.cyou"
           }
         }
+      ],
+      "categories": [
+        "news"
       ]
     },
     {
@@ -1731,12 +1897,15 @@
           "kind": "hls",
           "origin": {
             "host": "streamvideol1.luxnet.ua",
-            "via": "curated",
+            "via": "iptv-org",
             "kind": "unknown",
             "label": "luxnet.ua"
           },
           "url": "https://streamvideol1.luxnet.ua/news24/smil:news24.stream.smil/playlist.m3u8"
         }
+      ],
+      "categories": [
+        "news"
       ]
     },
     {
@@ -1754,12 +1923,15 @@
           "kind": "hls",
           "origin": {
             "host": "cmero-ott-live.ssl.cdn.cra.cz",
-            "via": "curated",
+            "via": "iptv-org",
             "kind": "cdn",
             "label": "cra.cz"
           },
           "url": "https://cmero-ott-live.ssl.cdn.cra.cz/channels/cme-ro-voyo-news/playlist.m3u8?offsetSeconds=0&url=0"
         }
+      ],
+      "categories": [
+        "news"
       ]
     },
     {
@@ -1777,12 +1949,15 @@
           "kind": "hls",
           "origin": {
             "host": "live.kwikmotion.com",
-            "via": "curated",
+            "via": "iptv-org",
             "kind": "cdn",
             "label": "kwikmotion.com"
           },
           "url": "https://live.kwikmotion.com/alaraby1live/alaraby_abr/playlist.m3u8"
         }
+      ],
+      "categories": [
+        "news"
       ]
     },
     {
@@ -1800,12 +1975,16 @@
           "kind": "hls",
           "origin": {
             "host": "live-news.asharq.com",
-            "via": "curated",
+            "via": "iptv-org",
             "kind": "broadcaster",
             "label": "asharq.com"
           },
           "url": "https://live-news.asharq.com/asharq.m3u8"
         }
+      ],
+      "categories": [
+        "news",
+        "business"
       ]
     },
     {
@@ -1823,12 +2002,15 @@
           "kind": "hls",
           "origin": {
             "host": "cdn0-03837-liveedge0.dna.ip-only.net",
-            "via": "curated",
+            "via": "iptv-org",
             "kind": "unknown",
             "label": "ip-only.net"
           },
           "url": "https://cdn0-03837-liveedge0.dna.ip-only.net/03837-liveedge0/smil:03837-tx2/playlist.m3u8"
         }
+      ],
+      "categories": [
+        "news"
       ]
     },
     {
@@ -1846,12 +2028,15 @@
           "kind": "hls",
           "origin": {
             "host": "cdn.live.easybroadcast.io",
-            "via": "curated",
+            "via": "iptv-org",
             "kind": "cdn",
             "label": "easybroadcast.io"
           },
           "url": "https://cdn.live.easybroadcast.io/abr_corp/83_medi1tv-arabic_g90v4ec/playlist.m3u8"
         }
+      ],
+      "categories": [
+        "news"
       ]
     },
     {
@@ -1869,12 +2054,15 @@
           "kind": "hls",
           "origin": {
             "host": "cdn.live.easybroadcast.io",
-            "via": "curated",
+            "via": "iptv-org",
             "kind": "cdn",
             "label": "easybroadcast.io"
           },
           "url": "https://cdn.live.easybroadcast.io/abr_corp/83_medi1tv-afrique_tm7tu45/playlist.m3u8"
         }
+      ],
+      "categories": [
+        "news"
       ]
     },
     {
@@ -1892,12 +2080,15 @@
           "kind": "hls",
           "origin": {
             "host": "telmaco.ascdn.broadpeak.io",
-            "via": "curated",
+            "via": "iptv-org",
             "kind": "cdn",
             "label": "broadpeak.io"
           },
           "url": "https://telmaco.ascdn.broadpeak.io/nafteboriki/default/index.m3u8"
         }
+      ],
+      "categories": [
+        "news"
       ]
     },
     {
@@ -1915,12 +2106,15 @@
           "kind": "hls",
           "origin": {
             "host": "newsmaxadria.mts-si.tv",
-            "via": "curated",
+            "via": "iptv-org",
             "kind": "unknown",
             "label": "mts-si.tv"
           },
           "url": "https://newsmaxadria.mts-si.tv/newsmaxadria/index.m3u8"
         }
+      ],
+      "categories": [
+        "news"
       ]
     },
     {
@@ -1938,12 +2132,15 @@
           "kind": "hls",
           "origin": {
             "host": "partwota.cdn.mgmlcdn.com",
-            "via": "curated",
+            "via": "iptv-org",
             "kind": "cdn",
             "label": "mgmlcdn.com"
           },
           "url": "https://partwota.cdn.mgmlcdn.com/omlive/smil:omlive.stream.smil/chunklist.m3u8"
         }
+      ],
+      "categories": [
+        "news"
       ]
     },
     {
@@ -1961,12 +2158,15 @@
           "kind": "hls",
           "origin": {
             "host": "eu1.servers10.com",
-            "via": "curated",
+            "via": "iptv-org",
             "kind": "unknown",
             "label": "servers10.com"
           },
           "url": "https://eu1.servers10.com:8081/8192/index.m3u8"
         }
+      ],
+      "categories": [
+        "news"
       ]
     },
     {
@@ -1984,7 +2184,7 @@
           "kind": "hls",
           "origin": {
             "host": "amtvusdvr.tulix.tv",
-            "via": "curated",
+            "via": "iptv-org",
             "kind": "cdn",
             "label": "tulix.tv"
           },
@@ -1995,11 +2195,14 @@
           "url": "https://amtvusdvr.tulix.tv/am3abr/tracks-v1a1/mono.ts.m3u8",
           "origin": {
             "host": "amtvusdvr.tulix.tv",
-            "via": "curated",
+            "via": "iptv-org",
             "kind": "cdn",
             "label": "tulix.tv"
           }
         }
+      ],
+      "categories": [
+        "news"
       ]
     },
     {
@@ -2017,7 +2220,7 @@
           "kind": "hls",
           "origin": {
             "host": "hlspackager.akamaized.net",
-            "via": "curated",
+            "via": "iptv-org",
             "kind": "cdn",
             "label": "akamaized.net"
           },
@@ -2028,7 +2231,7 @@
           "url": "https://dev-live.livetvstream.co.uk/LS-63503-4/index.m3u8",
           "origin": {
             "host": "dev-live.livetvstream.co.uk",
-            "via": "curated",
+            "via": "iptv-org",
             "kind": "unknown",
             "label": "livetvstream.co.uk"
           }
@@ -2038,11 +2241,14 @@
           "url": "https://live.livetvstream.co.uk/LS-63503-4/index.m3u8",
           "origin": {
             "host": "live.livetvstream.co.uk",
-            "via": "curated",
+            "via": "iptv-org",
             "kind": "unknown",
             "label": "livetvstream.co.uk"
           }
         }
+      ],
+      "categories": [
+        "news"
       ]
     },
     {
@@ -2060,7 +2266,7 @@
           "kind": "hls",
           "origin": {
             "host": "dai.google.com",
-            "via": "curated",
+            "via": "iptv-org",
             "kind": "cdn",
             "label": "google.com"
           },
@@ -2071,11 +2277,14 @@
           "url": "https://redirector.rudo.video/hls-video/567ffde3fa319fadf3419efda25619456231dfea/latinanoticias/latinanoticias.smil/playlist.m3u8",
           "origin": {
             "host": "redirector.rudo.video",
-            "via": "curated",
+            "via": "iptv-org",
             "kind": "unknown",
             "label": "rudo.video"
           }
         }
+      ],
+      "categories": [
+        "news"
       ]
     },
     {
@@ -2093,12 +2302,15 @@
           "kind": "hls",
           "origin": {
             "host": "play.cdn.enetres.net",
-            "via": "curated",
+            "via": "iptv-org",
             "kind": "cdn",
             "label": "enetres.net"
           },
           "url": "https://play.cdn.enetres.net/621B146D29C541AFB1507809F038F471021/021/playlist.m3u8"
         }
+      ],
+      "categories": [
+        "news"
       ]
     },
     {
@@ -2116,12 +2328,15 @@
           "kind": "hls",
           "origin": {
             "host": "ngtrk.dc.beltelecom.by",
-            "via": "curated",
+            "via": "iptv-org",
             "kind": "broadcaster",
             "label": "Beltelecom"
           },
           "url": "https://ngtrk.dc.beltelecom.by/ngtrk/smil:informacionnyy.smil/playlist.m3u8"
         }
+      ],
+      "categories": [
+        "news"
       ]
     },
     {
@@ -2139,12 +2354,15 @@
           "kind": "hls",
           "origin": {
             "host": "amg19223-amg19223c11-amgplt0352.playout.now3.amagi.tv",
-            "via": "curated",
+            "via": "iptv-org",
             "kind": "cdn",
             "label": "amagi.tv"
           },
           "url": "https://amg19223-amg19223c11-amgplt0352.playout.now3.amagi.tv/playlist/amg19223-amg19223c11-amgplt0352/playlist.m3u8"
         }
+      ],
+      "categories": [
+        "news"
       ]
     },
     {
@@ -2162,7 +2380,7 @@
           "kind": "hls",
           "origin": {
             "host": "protokolldns.xyz",
-            "via": "curated",
+            "via": "iptv-org",
             "kind": "rebroadcast",
             "label": "protokolldns.xyz"
           },
@@ -2173,7 +2391,7 @@
           "url": "https://media.slactech.com:1936/NTvDirect/ngrp:NTvDirect_all/playlist.m3u8",
           "origin": {
             "host": "media.slactech.com",
-            "via": "curated",
+            "via": "iptv-org",
             "kind": "unknown",
             "label": "slactech.com"
           }
@@ -2183,11 +2401,14 @@
           "url": "https://strhlslb01.streamakaci.tv/str_ntv_ntv/str_ntv_ntv_multi/playlist.m3u8",
           "origin": {
             "host": "strhlslb01.streamakaci.tv",
-            "via": "curated",
+            "via": "iptv-org",
             "kind": "unknown",
             "label": "streamakaci.tv"
           }
         }
+      ],
+      "categories": [
+        "news"
       ]
     },
     {
@@ -2205,12 +2426,15 @@
           "kind": "hls",
           "origin": {
             "host": "rcavlive.akamaized.net",
-            "via": "curated",
+            "via": "iptv-org",
             "kind": "cdn",
             "label": "akamaized.net"
           },
           "url": "https://rcavlive.akamaized.net/hls/live/704025/xcanrdi/master.m3u8"
         }
+      ],
+      "categories": [
+        "news"
       ]
     },
     {
@@ -2228,12 +2452,15 @@
           "kind": "hls",
           "origin": {
             "host": "cdn15.live-tv.cloud",
-            "via": "curated",
+            "via": "iptv-org",
             "kind": "cdn",
             "label": "live-tv.cloud"
           },
           "url": "https://cdn15.live-tv.cloud/ua_infinitas_tv/news24-abr/playlist.m3u8"
         }
+      ],
+      "categories": [
+        "news"
       ]
     },
     {
@@ -2251,12 +2478,15 @@
           "kind": "hls",
           "origin": {
             "host": "htvmada.mada.ps",
-            "via": "curated",
+            "via": "iptv-org",
             "kind": "unknown",
             "label": "mada.ps"
           },
           "url": "https://htvmada.mada.ps:4443/maannews/index.m3u8"
         }
+      ],
+      "categories": [
+        "news"
       ]
     },
     {
@@ -2274,7 +2504,7 @@
           "kind": "hls",
           "origin": {
             "host": "edge.medcom.id",
-            "via": "curated",
+            "via": "iptv-org",
             "kind": "unknown",
             "label": "medcom.id"
           },
@@ -2285,7 +2515,7 @@
           "url": "https://s.emisoras.tv:8081/metrotv/index.m3u8",
           "origin": {
             "host": "s.emisoras.tv",
-            "via": "curated",
+            "via": "iptv-org",
             "kind": "unknown",
             "label": "emisoras.tv"
           }
@@ -2295,11 +2525,14 @@
           "url": "https://mercury.streambridge.link:8042/telugu/metrotv/index.m3u8",
           "origin": {
             "host": "mercury.streambridge.link",
-            "via": "curated",
+            "via": "iptv-org",
             "kind": "unknown",
             "label": "streambridge.link"
           }
         }
+      ],
+      "categories": [
+        "news"
       ]
     },
     {
@@ -2317,12 +2550,15 @@
           "kind": "hls",
           "origin": {
             "host": "vodzong.mjunoon.tv",
-            "via": "curated",
+            "via": "iptv-org",
             "kind": "unknown",
             "label": "mjunoon.tv"
           },
           "url": "https://vodzong.mjunoon.tv:8087/streamtest/NEWS1-128/playlist.m3u8"
         }
+      ],
+      "categories": [
+        "news"
       ]
     },
     {
@@ -2340,12 +2576,15 @@
           "kind": "hls",
           "origin": {
             "host": "tgn.bozztv.com",
-            "via": "curated",
+            "via": "iptv-org",
             "kind": "rebroadcast",
             "label": "bozztv.com"
           },
           "url": "https://tgn.bozztv.com/eshgtv-dvrfl05/gin-tolonews/index.m3u8"
         }
+      ],
+      "categories": [
+        "news"
       ]
     },
     {
@@ -2363,12 +2602,15 @@
           "kind": "hls",
           "origin": {
             "host": "mdstrm.com",
-            "via": "curated",
+            "via": "iptv-org",
             "kind": "cdn",
             "label": "mdstrm.com"
           },
           "url": "https://mdstrm.com/live-stream-playlist/69f8df22a762c9b1ab3eabca.m3u8"
         }
+      ],
+      "categories": [
+        "news"
       ]
     },
     {
@@ -2386,12 +2628,15 @@
           "kind": "hls",
           "origin": {
             "host": "live.streaming.a2d.tv",
-            "via": "curated",
+            "via": "iptv-org",
             "kind": "unknown",
             "label": "a2d.tv"
           },
           "url": "https://live.streaming.a2d.tv/asset/20025962.isml/.m3u8"
         }
+      ],
+      "categories": [
+        "news"
       ]
     },
     {
@@ -2409,12 +2654,15 @@
           "kind": "hls",
           "origin": {
             "host": "live.x2.co.th",
-            "via": "curated",
+            "via": "iptv-org",
             "kind": "unknown",
             "label": "x2.co.th"
           },
           "url": "https://live.x2.co.th/live/13livetv-th.m3u8"
         }
+      ],
+      "categories": [
+        "news"
       ]
     },
     {
@@ -2432,12 +2680,15 @@
           "kind": "hls",
           "origin": {
             "host": "wf.newscentral.ng",
-            "via": "curated",
+            "via": "iptv-org",
             "kind": "broadcaster",
             "label": "newscentral.ng"
           },
           "url": "https://wf.newscentral.ng:8443/hls/stream.m3u8"
         }
+      ],
+      "categories": [
+        "news"
       ]
     },
     {
@@ -2455,7 +2706,7 @@
           "kind": "hls",
           "origin": {
             "host": "cd-live-stream.news.cctvplus.com",
-            "via": "curated",
+            "via": "iptv-org",
             "kind": "broadcaster",
             "label": "CCTV+"
           },
@@ -2466,11 +2717,14 @@
           "url": "https://liveplay-srs.voc.com.cn/hls/tv/134_180adf.m3u8",
           "origin": {
             "host": "liveplay-srs.voc.com.cn",
-            "via": "curated",
+            "via": "iptv-org",
             "kind": "unknown",
             "label": "voc.com.cn"
           }
         }
+      ],
+      "categories": [
+        "news"
       ]
     },
     {
@@ -2488,12 +2742,15 @@
           "kind": "hls",
           "origin": {
             "host": "cd-live-stream.news.cctvplus.com",
-            "via": "curated",
+            "via": "iptv-org",
             "kind": "broadcaster",
             "label": "CCTV+"
           },
           "url": "https://cd-live-stream.news.cctvplus.com/live/smil:CHANNEL2.smil/playlist.m3u8"
         }
+      ],
+      "categories": [
+        "news"
       ]
     },
     {
@@ -2511,12 +2768,15 @@
           "kind": "hls",
           "origin": {
             "host": "live-us1.thaimomo.com",
-            "via": "curated",
+            "via": "iptv-org",
             "kind": "unknown",
             "label": "thaimomo.com"
           },
           "url": "https://live-us1.thaimomo.com/live-as/chNation-3/playlist.m3u8"
         }
+      ],
+      "categories": [
+        "news"
       ]
     },
     {
@@ -2534,7 +2794,7 @@
           "kind": "hls",
           "origin": {
             "host": "mblenmain01.telesur.ultrabase.net",
-            "via": "curated",
+            "via": "iptv-org",
             "kind": "broadcaster",
             "label": "ultrabase.net"
           },
@@ -2545,7 +2805,7 @@
           "url": "https://mblenmain01.telesur.ultrabase.net/mblivev3/hd/playlist.m3u8",
           "origin": {
             "host": "mblenmain01.telesur.ultrabase.net",
-            "via": "curated",
+            "via": "iptv-org",
             "kind": "broadcaster",
             "label": "ultrabase.net"
           }
@@ -2555,11 +2815,14 @@
           "url": "https://mblesmain01.telesur.ultrabase.net/mbliveMain/hd/playlist.m3u8",
           "origin": {
             "host": "mblesmain01.telesur.ultrabase.net",
-            "via": "curated",
+            "via": "iptv-org",
             "kind": "broadcaster",
             "label": "ultrabase.net"
           }
         }
+      ],
+      "categories": [
+        "news"
       ]
     },
     {
@@ -2577,12 +2840,15 @@
           "kind": "hls",
           "origin": {
             "host": "mumt05.tangotv.in",
-            "via": "curated",
+            "via": "iptv-org",
             "kind": "rebroadcast",
             "label": "tangotv.in"
           },
           "url": "https://mumt05.tangotv.in/87NeALx2CNA/index.m3u8"
         }
+      ],
+      "categories": [
+        "news"
       ]
     },
     {
@@ -2610,7 +2876,7 @@
           "kind": "hls",
           "origin": {
             "host": "lowa8026-cmyk.github.io",
-            "via": "curated",
+            "via": "iptv-org",
             "kind": "rebroadcast",
             "label": "github.io"
           },
@@ -2621,7 +2887,7 @@
           "url": "https://lowa8026-cmyk.github.io/Poland/POLAIN.m3u8",
           "origin": {
             "host": "lowa8026-cmyk.github.io",
-            "via": "curated",
+            "via": "iptv-org",
             "kind": "rebroadcast",
             "label": "github.io"
           }
@@ -2631,11 +2897,14 @@
           "url": "https://dash2.antik.sk/live/test_tvp_world/playlist.m3u8",
           "origin": {
             "host": "dash2.antik.sk",
-            "via": "curated",
+            "via": "iptv-org",
             "kind": "rebroadcast",
             "label": "Antik Telecom"
           }
         }
+      ],
+      "categories": [
+        "news"
       ]
     },
     {
@@ -2653,12 +2922,15 @@
           "kind": "hls",
           "origin": {
             "host": "fs.uplink.kz",
-            "via": "curated",
+            "via": "iptv-org",
             "kind": "cdn",
             "label": "uplink.kz"
           },
           "url": "https://fs.uplink.kz/24KZ/mono.m3u8?token=onlinetv"
         }
+      ],
+      "categories": [
+        "news"
       ]
     },
     {
@@ -2676,12 +2948,15 @@
           "kind": "hls",
           "origin": {
             "host": "live-stream.dvb.no",
-            "via": "curated",
+            "via": "iptv-org",
             "kind": "unknown",
             "label": "dvb.no"
           },
           "url": "https://live-stream.dvb.no/hls/stream_src/index.m3u8"
         }
+      ],
+      "categories": [
+        "news"
       ]
     },
     {
@@ -2699,12 +2974,15 @@
           "kind": "hls",
           "origin": {
             "host": "cdn.live.easybroadcast.io",
-            "via": "curated",
+            "via": "iptv-org",
             "kind": "cdn",
             "label": "easybroadcast.io"
           },
           "url": "https://cdn.live.easybroadcast.io/abr_corp/66_al24_u4yga6h/corp/66_al24_u4yga6h_240p/chunks.m3u8"
         }
+      ],
+      "categories": [
+        "news"
       ]
     },
     {
@@ -2722,12 +3000,15 @@
           "kind": "hls",
           "origin": {
             "host": "eazyvwqssi.erbvr.com",
-            "via": "curated",
+            "via": "iptv-org",
             "kind": "unknown",
             "label": "erbvr.com"
           },
           "url": "https://eazyvwqssi.erbvr.com/alghadtv/alghadtv.m3u8"
         }
+      ],
+      "categories": [
+        "news"
       ]
     },
     {
@@ -2750,6 +3031,9 @@
             "via": "curated"
           }
         }
+      ],
+      "categories": [
+        "news"
       ]
     },
     {
@@ -2772,6 +3056,10 @@
             "via": "curated"
           }
         }
+      ],
+      "categories": [
+        "news",
+        "business"
       ]
     },
     {
@@ -2794,6 +3082,9 @@
             "via": "curated"
           }
         }
+      ],
+      "categories": [
+        "news"
       ]
     },
     {
@@ -2816,6 +3107,9 @@
             "via": "curated"
           }
         }
+      ],
+      "categories": [
+        "news"
       ]
     },
     {
@@ -2838,6 +3132,9 @@
             "via": "curated"
           }
         }
+      ],
+      "categories": [
+        "news"
       ]
     },
     {
@@ -2860,6 +3157,9 @@
             "via": "curated"
           }
         }
+      ],
+      "categories": [
+        "news"
       ]
     },
     {
@@ -2882,6 +3182,9 @@
             "via": "curated"
           }
         }
+      ],
+      "categories": [
+        "news"
       ]
     },
     {
@@ -2904,6 +3207,9 @@
             "via": "curated"
           }
         }
+      ],
+      "categories": [
+        "news"
       ]
     },
     {
@@ -2926,6 +3232,9 @@
             "via": "curated"
           }
         }
+      ],
+      "categories": [
+        "news"
       ]
     },
     {
@@ -2948,6 +3257,9 @@
             "via": "curated"
           }
         }
+      ],
+      "categories": [
+        "news"
       ]
     },
     {
@@ -2970,6 +3282,9 @@
             "via": "curated"
           }
         }
+      ],
+      "categories": [
+        "news"
       ]
     },
     {
@@ -2992,6 +3307,9 @@
             "via": "curated"
           }
         }
+      ],
+      "categories": [
+        "news"
       ]
     },
     {
@@ -3014,6 +3332,9 @@
             "via": "curated"
           }
         }
+      ],
+      "categories": [
+        "news"
       ]
     },
     {
@@ -3034,6 +3355,1647 @@
             "kind": "youtube",
             "label": "YouTube",
             "via": "curated"
+          }
+        }
+      ],
+      "categories": [
+        "news"
+      ]
+    },
+    {
+      "id": "tvr-sport",
+      "name": "TVR Sport",
+      "lang": "ro",
+      "country": "RO",
+      "tz": "Europe/Bucharest",
+      "tags": [
+        "europe"
+      ],
+      "categories": [
+        "sports"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://tvr-sport.lg.mncdn.com/tvrsport/smil:tvrsport.smil/playlist.m3u8",
+          "origin": {
+            "host": "tvr-sport.lg.mncdn.com",
+            "via": "iptv-org",
+            "kind": "broadcaster",
+            "label": "mncdn.com"
+          }
+        }
+      ]
+    },
+    {
+      "id": "san-marino-rtv-sport",
+      "name": "San Marino RTV Sport",
+      "lang": "it",
+      "country": "SM",
+      "tz": "Europe/San_Marino",
+      "tags": [
+        "world"
+      ],
+      "categories": [
+        "sports"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://d2hrvno5bw6tg2.cloudfront.net/smrtv-ch02/smil:ch-02.smil/master.m3u8",
+          "origin": {
+            "host": "d2hrvno5bw6tg2.cloudfront.net",
+            "via": "iptv-org",
+            "kind": "cdn",
+            "label": "cloudfront.net"
+          }
+        }
+      ]
+    },
+    {
+      "id": "varzesh-tv",
+      "name": "Varzesh TV",
+      "lang": "fa",
+      "country": "IR",
+      "tz": "Asia/Tehran",
+      "tags": [
+        "mideast"
+      ],
+      "categories": [
+        "sports"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://ncdn.telewebion.ir/varzesh/live/playlist.m3u8",
+          "origin": {
+            "host": "ncdn.telewebion.ir",
+            "via": "iptv-org",
+            "kind": "broadcaster",
+            "label": "Telewebion"
+          }
+        }
+      ]
+    },
+    {
+      "id": "a-spor",
+      "name": "A Spor",
+      "lang": "tr",
+      "country": "TR",
+      "tz": "Europe/Istanbul",
+      "tags": [
+        "mideast"
+      ],
+      "categories": [
+        "sports"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://rnttwmjcin.turknet.ercdn.net/lcpmvefbyo/aspor/aspor.m3u8",
+          "origin": {
+            "host": "rnttwmjcin.turknet.ercdn.net",
+            "via": "iptv-org",
+            "kind": "unknown",
+            "label": "ercdn.net"
+          }
+        }
+      ]
+    },
+    {
+      "id": "esport3",
+      "name": "Esport3",
+      "lang": "",
+      "country": "ES",
+      "tz": "Europe/Madrid",
+      "tags": [
+        "europe"
+      ],
+      "categories": [
+        "sports"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://directes-tv-int.3catdirectes.cat/live-content/esport3-hls/master.m3u8",
+          "origin": {
+            "host": "directes-tv-int.3catdirectes.cat",
+            "via": "iptv-org",
+            "kind": "broadcaster",
+            "label": "3Cat"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ge-fast",
+      "name": "ge Fast",
+      "lang": "pt",
+      "country": "BR",
+      "tz": "America/Sao_Paulo",
+      "tags": [
+        "americas"
+      ],
+      "categories": [
+        "sports"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://amg00716-globo-amg00716c1-tcl-br-9495.playouts.now.amagi.tv/playlist.m3u8",
+          "origin": {
+            "host": "amg00716-globo-amg00716c1-tcl-br-9495.playouts.now.amagi.tv",
+            "via": "iptv-org",
+            "kind": "cdn",
+            "label": "amagi.tv"
+          }
+        }
+      ]
+    },
+    {
+      "id": "inter-tv",
+      "name": "Inter TV",
+      "lang": "it",
+      "country": "IT",
+      "tz": "Europe/Rome",
+      "tags": [
+        "italy"
+      ],
+      "categories": [
+        "sports"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://d3k8wzt41aflvx.cloudfront.net/INTERTV/Live.m3u8",
+          "origin": {
+            "host": "d3k8wzt41aflvx.cloudfront.net",
+            "via": "iptv-org",
+            "kind": "cdn",
+            "label": "cloudfront.net"
+          }
+        }
+      ]
+    },
+    {
+      "id": "qazsport",
+      "name": "QazSport",
+      "lang": "",
+      "country": "KZ",
+      "tz": "Asia/Almaty",
+      "tags": [
+        "asia"
+      ],
+      "categories": [
+        "sports"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://qazsporttv-stream.qazcdn.com/qazsporttv/qazsporttv/playlist.m3u8",
+          "origin": {
+            "host": "qazsporttv-stream.qazcdn.com",
+            "via": "iptv-org",
+            "kind": "broadcaster",
+            "label": "qazcdn.com"
+          }
+        }
+      ]
+    },
+    {
+      "id": "belarus-5",
+      "name": "Belarus-5",
+      "lang": "ru",
+      "country": "BY",
+      "tz": "Europe/Minsk",
+      "tags": [
+        "europe"
+      ],
+      "categories": [
+        "sports"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://edge59.dc.beltelecom.by/ngtrk/smil:belarus5int.smil/playlist.m3u8",
+          "origin": {
+            "host": "edge59.dc.beltelecom.by",
+            "via": "iptv-org",
+            "kind": "broadcaster",
+            "label": "Beltelecom"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ktv-sport",
+      "name": "KTV Sport",
+      "lang": "en",
+      "country": "KW",
+      "tz": "Asia/Kuwait",
+      "tags": [
+        "mideast"
+      ],
+      "categories": [
+        "sports"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://kwtspta.cdn.mangomolo.com/sp/smil:sp.stream.smil/chunklist.m3u8",
+          "origin": {
+            "host": "kwtspta.cdn.mangomolo.com",
+            "via": "iptv-org",
+            "kind": "cdn",
+            "label": "mangomolo.com"
+          }
+        }
+      ]
+    },
+    {
+      "id": "talksport",
+      "name": "talkSPORT",
+      "lang": "en",
+      "country": "UK",
+      "tz": "Europe/London",
+      "tags": [
+        "europe"
+      ],
+      "categories": [
+        "sports"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://af7a8b4e.wurl.com/master/f36d25e7e52f1ba8d7e56eb859c636563214f541/TEctZ2JfdGFsa1NQT1JUX0hMUw/playlist.m3u8",
+          "origin": {
+            "host": "af7a8b4e.wurl.com",
+            "via": "iptv-org",
+            "kind": "cdn",
+            "label": "wurl.com"
+          }
+        }
+      ]
+    },
+    {
+      "id": "tyc-sports",
+      "name": "TyC Sports",
+      "lang": "es",
+      "country": "AR",
+      "tz": "America/Argentina/Buenos_Aires",
+      "tags": [
+        "americas"
+      ],
+      "categories": [
+        "sports"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://amg26268-amg26268c14-freelivesports-emea-10267.playouts.now.amagi.tv/ts-us-e2-n2/playlist/amg26268-sportsstudio-tycsports-freelivesportsemea/playlist.m3u8",
+          "origin": {
+            "host": "amg26268-amg26268c14-freelivesports-emea-10267.playouts.now.amagi.tv",
+            "via": "iptv-org",
+            "kind": "cdn",
+            "label": "amagi.tv"
+          }
+        }
+      ]
+    },
+    {
+      "id": "mrtv-sports",
+      "name": "MRTV Sports",
+      "lang": "",
+      "country": "MM",
+      "tz": "Asia/Yangon",
+      "tags": [
+        "asia"
+      ],
+      "categories": [
+        "sports"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://mrtvott.com/cache/MRTV-SPORT/master.m3u8",
+          "origin": {
+            "host": "mrtvott.com",
+            "via": "iptv-org",
+            "kind": "broadcaster",
+            "label": "mrtvott.com"
+          }
+        }
+      ]
+    },
+    {
+      "id": "red-bull-tv",
+      "name": "Red Bull TV",
+      "lang": "en",
+      "country": "AT",
+      "tz": "Europe/Vienna",
+      "tags": [
+        "europe"
+      ],
+      "categories": [
+        "sports"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://db34cc6127ac459db55cab5f97cd66b9.mediatailor.us-west-2.amazonaws.com/v1/master/ba62fe743df0fe93366eba3a257d792884136c7f/LINEAR-680-WORBAUENFAST-WHALETVPLUS/680/whaletvplus/hls/master/playlist.m3u8",
+          "origin": {
+            "host": "db34cc6127ac459db55cab5f97cd66b9.mediatailor.us-west-2.amazonaws.com",
+            "via": "iptv-org",
+            "kind": "cdn",
+            "label": "amazonaws.com"
+          }
+        }
+      ]
+    },
+    {
+      "id": "sportitalia",
+      "name": "Sportitalia",
+      "lang": "it",
+      "country": "IT",
+      "tz": "Europe/Rome",
+      "tags": [
+        "italy"
+      ],
+      "categories": [
+        "sports"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://edge-001.streamup.eu/sportitalia/sihd_abr/playlist.m3u8",
+          "origin": {
+            "host": "edge-001.streamup.eu",
+            "via": "iptv-org",
+            "kind": "unknown",
+            "label": "streamup.eu"
+          }
+        }
+      ]
+    },
+    {
+      "id": "supertennis",
+      "name": "SuperTennis",
+      "lang": "it",
+      "country": "IT",
+      "tz": "Europe/Rome",
+      "tags": [
+        "italy"
+      ],
+      "categories": [
+        "sports"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://live-embed.supertennix.hiway.media/restreamer/supertennix_client/gpu-a-c0-16/restreamer/outgest/aa3673f1-e178-44a9-a947-ef41db73211a/manifest.m3u8",
+          "origin": {
+            "host": "live-embed.supertennix.hiway.media",
+            "via": "iptv-org",
+            "kind": "broadcaster",
+            "label": "hiway.media"
+          }
+        }
+      ]
+    },
+    {
+      "id": "el-heddaf-tv",
+      "name": "El-Heddaf TV",
+      "lang": "ar",
+      "country": "DZ",
+      "tz": "Africa/Algiers",
+      "tags": [
+        "africa"
+      ],
+      "categories": [
+        "sports"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://live.elheddaftv.com:8081/elheddaftv/index.m3u8",
+          "origin": {
+            "host": "live.elheddaftv.com",
+            "via": "iptv-org",
+            "kind": "broadcaster",
+            "label": "elheddaftv.com"
+          }
+        }
+      ]
+    },
+    {
+      "id": "nbc-sports-now",
+      "name": "NBC Sports NOW",
+      "lang": "en",
+      "country": "US",
+      "tz": "America/New_York",
+      "tags": [
+        "us"
+      ],
+      "categories": [
+        "sports"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://d4whmvwm0rdvi.cloudfront.net/10007/99993008/hls/master.m3u8?ads.xumo_channelId=99993008",
+          "origin": {
+            "host": "d4whmvwm0rdvi.cloudfront.net",
+            "via": "iptv-org",
+            "kind": "cdn",
+            "label": "cloudfront.net"
+          }
+        }
+      ]
+    },
+    {
+      "id": "oman-sports-tv",
+      "name": "Oman Sports TV",
+      "lang": "en",
+      "country": "OM",
+      "tz": "Asia/Muscat",
+      "tags": [
+        "mideast"
+      ],
+      "categories": [
+        "sports"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://partneta.cdn.mgmlcdn.com/omsport/smil:omsport.stream.smil/chunklist.m3u8",
+          "origin": {
+            "host": "partneta.cdn.mgmlcdn.com",
+            "via": "iptv-org",
+            "kind": "cdn",
+            "label": "mgmlcdn.com"
+          }
+        }
+      ]
+    },
+    {
+      "id": "africa-24-sport",
+      "name": "Africa 24 Sport",
+      "lang": "fr",
+      "country": "FR",
+      "tz": "Europe/Paris",
+      "tags": [
+        "europe"
+      ],
+      "categories": [
+        "sports"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://africa24.vedge.infomaniak.com/livecast/ik:africa24sport/manifest.m3u8",
+          "origin": {
+            "host": "africa24.vedge.infomaniak.com",
+            "via": "iptv-org",
+            "kind": "broadcaster",
+            "label": "infomaniak.com"
+          }
+        }
+      ]
+    },
+    {
+      "id": "world-of-freesports",
+      "name": "World of Freesports",
+      "lang": "de",
+      "country": "DE",
+      "tz": "Europe/Berlin",
+      "tags": [
+        "europe"
+      ],
+      "categories": [
+        "sports"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://mainstreammedia-worldoffreesportsintl-rakuten.amagi.tv/hls/amagi_hls_data_rakutenAA-mainstreammediafreesportsintl-rakuten/CDN/master.m3u8",
+          "origin": {
+            "host": "mainstreammedia-worldoffreesportsintl-rakuten.amagi.tv",
+            "via": "iptv-org",
+            "kind": "broadcaster",
+            "label": "amagi.tv"
+          }
+        }
+      ]
+    },
+    {
+      "id": "cbs-sports-golazo-network",
+      "name": "CBS Sports Golazo Network",
+      "lang": "en",
+      "country": "US",
+      "tz": "America/New_York",
+      "tags": [
+        "us"
+      ],
+      "categories": [
+        "sports"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://dai.google.com/linear/hls/event/7f3Wv6f7QEKfQna22jHqLQ/master.m3u8",
+          "origin": {
+            "host": "dai.google.com",
+            "via": "iptv-org",
+            "kind": "cdn",
+            "label": "google.com"
+          }
+        }
+      ]
+    },
+    {
+      "id": "mutv",
+      "name": "MUTV",
+      "lang": "en",
+      "country": "UK",
+      "tz": "Europe/London",
+      "tags": [
+        "europe"
+      ],
+      "categories": [
+        "sports"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://fastly.live.brightcove.com/6374054671112/eu-west-1/6058004203001/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJob3N0IjoiYXplMnp5LmVncmVzcy55ODN1ZWIiLCJhY2NvdW50X2lkIjoiNjA1ODAwNDIwMzAwMSIsImVobiI6ImZhc3RseS5saXZlLmJyaWdodGNvdmUuY29tIiwiaXNzIjoiYmxpdmUtcGxheWJhY2stc291cmNlLWFwaSIsInN1YiI6InBhdGhtYXB0b2tlbiIsImF1ZCI6WyI2MDU4MDA0MjAzMDAxIl0sImp0aSI6IjYzNzQwNTQ2NzExMTIifQ.3FmuTna3DAmY7xlhK5fk6LMrosrtrR5VsU2QOgYO5y4/playlist-hls.m3u8",
+          "origin": {
+            "host": "fastly.live.brightcove.com",
+            "via": "iptv-org",
+            "kind": "cdn",
+            "label": "brightcove.com"
+          }
+        }
+      ]
+    },
+    {
+      "id": "fifa-women",
+      "name": "FIFA+ Women",
+      "lang": "en",
+      "country": "UK",
+      "tz": "Europe/London",
+      "tags": [
+        "europe"
+      ],
+      "categories": [
+        "sports"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://cffda8ff.wurl.com/master/f36d25e7e52f1ba8d7e56eb859c636563214f541/U2Ftc3VuZy1nYl9GSUZBUGx1c3dvbWVuX0hMUw/playlist.m3u8",
+          "origin": {
+            "host": "cffda8ff.wurl.com",
+            "via": "iptv-org",
+            "kind": "cdn",
+            "label": "wurl.com"
+          }
+        }
+      ]
+    },
+    {
+      "id": "teledeporte",
+      "name": "Teledeporte",
+      "lang": "es",
+      "country": "ES",
+      "tz": "Europe/Madrid",
+      "tags": [
+        "europe"
+      ],
+      "categories": [
+        "sports"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://rtvelivestream.rtve.es/rtvesec/tdp/tdp_main.m3u8",
+          "origin": {
+            "host": "rtvelivestream.rtve.es",
+            "via": "iptv-org",
+            "kind": "unknown",
+            "label": "rtve.es"
+          }
+        }
+      ]
+    },
+    {
+      "id": "bahrain-sports-1",
+      "name": "Bahrain Sports 1",
+      "lang": "ar",
+      "country": "BH",
+      "tz": "Asia/Bahrain",
+      "tags": [
+        "mideast"
+      ],
+      "categories": [
+        "sports"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://5c7b683162943.streamlock.net/live/ngrp:sportsone_all/playlist.m3u8",
+          "origin": {
+            "host": "5c7b683162943.streamlock.net",
+            "via": "iptv-org",
+            "kind": "cdn",
+            "label": "streamlock.net"
+          }
+        }
+      ]
+    },
+    {
+      "id": "azteca-deportes-network",
+      "name": "Azteca Deportes Network",
+      "lang": "es",
+      "country": "MX",
+      "tz": "America/Mexico_City",
+      "tags": [
+        "americas"
+      ],
+      "categories": [
+        "sports"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://live-manifest.production-public.tubi.io/live/6bf131c3-d664-424c-93c9-49188a788980/playlist.m3u8",
+          "origin": {
+            "host": "live-manifest.production-public.tubi.io",
+            "via": "iptv-org",
+            "kind": "unknown",
+            "label": "tubi.io"
+          }
+        }
+      ]
+    },
+    {
+      "id": "mnb-sport",
+      "name": "MNB Sport",
+      "lang": "",
+      "country": "MN",
+      "tz": "Asia/Ulaanbaatar",
+      "tags": [
+        "asia"
+      ],
+      "categories": [
+        "sports"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://live.mnb.mn/hls/mnb_sport.stream.m3u8",
+          "origin": {
+            "host": "live.mnb.mn",
+            "via": "iptv-org",
+            "kind": "unknown",
+            "label": "mnb.mn"
+          }
+        }
+      ]
+    },
+    {
+      "id": "jordan-sport",
+      "name": "Jordan Sport",
+      "lang": "ar",
+      "country": "JO",
+      "tz": "Asia/Amman",
+      "tags": [
+        "mideast"
+      ],
+      "categories": [
+        "sports"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://jrtv-live.ercdn.net/jordansporthd/jordansporthd.m3u8",
+          "origin": {
+            "host": "jrtv-live.ercdn.net",
+            "via": "iptv-org",
+            "kind": "unknown",
+            "label": "ercdn.net"
+          }
+        }
+      ]
+    },
+    {
+      "id": "willow-sports",
+      "name": "Willow Sports",
+      "lang": "en",
+      "country": "US",
+      "tz": "America/Los_Angeles",
+      "tags": [
+        "us"
+      ],
+      "categories": [
+        "sports"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://d36r8jifhgsk5j.cloudfront.net/Willow_TV1080p.m3u8",
+          "origin": {
+            "host": "d36r8jifhgsk5j.cloudfront.net",
+            "via": "iptv-org",
+            "kind": "cdn",
+            "label": "cloudfront.net"
+          }
+        }
+      ]
+    },
+    {
+      "id": "al-iraqia-sport",
+      "name": "Al Iraqia Sport",
+      "lang": "ar",
+      "country": "IQ",
+      "tz": "Asia/Baghdad",
+      "tags": [
+        "mideast"
+      ],
+      "categories": [
+        "sports"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://imn-live.esite-lab.com/hls/iraqia-sports-1.m3u8",
+          "origin": {
+            "host": "imn-live.esite-lab.com",
+            "via": "iptv-org",
+            "kind": "unknown",
+            "label": "esite-lab.com"
+          }
+        }
+      ]
+    },
+    {
+      "id": "fox-sports-news",
+      "name": "Fox Sports News",
+      "lang": "en",
+      "country": "AU",
+      "tz": "America/Santiago",
+      "tags": [
+        "oceania"
+      ],
+      "categories": [
+        "sports"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://skynewsau-live-premium.akamaized.net/hls/live/2105307/foxsportsnews/live_1080p.m3u8",
+          "origin": {
+            "host": "skynewsau-live-premium.akamaized.net",
+            "via": "iptv-org",
+            "kind": "cdn",
+            "label": "akamaized.net"
+          }
+        }
+      ]
+    },
+    {
+      "id": "cnbc-e",
+      "name": "CNBC-e",
+      "lang": "tr",
+      "country": "TR",
+      "tz": "Europe/Istanbul",
+      "tags": [
+        "mideast"
+      ],
+      "categories": [
+        "business"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://hnpsechtsc.turknet.ercdn.net/xpnvudnlsv/cnbc-e/cnbc-e.m3u8",
+          "origin": {
+            "host": "hnpsechtsc.turknet.ercdn.net",
+            "via": "iptv-org",
+            "kind": "unknown",
+            "label": "ercdn.net"
+          }
+        }
+      ]
+    },
+    {
+      "id": "kanaal-z",
+      "name": "Kanaal Z",
+      "lang": "nl",
+      "country": "BE",
+      "tz": "Europe/Brussels",
+      "tags": [
+        "europe"
+      ],
+      "categories": [
+        "business"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://d1hz1p2gea2zy4.cloudfront.net/live/rmgtv/RMG-TRENDSZNL-LIVE/index.m3u8",
+          "origin": {
+            "host": "d1hz1p2gea2zy4.cloudfront.net",
+            "via": "iptv-org",
+            "kind": "cdn",
+            "label": "cloudfront.net"
+          }
+        }
+      ]
+    },
+    {
+      "id": "cnbc-tv18",
+      "name": "CNBC TV18",
+      "lang": "en",
+      "country": "IN",
+      "tz": "Asia/Kolkata",
+      "tags": [
+        "asia"
+      ],
+      "categories": [
+        "business"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://n18syndication.akamaized.net/bpk-tv/CNBC_TV18_NW18_MOB/output01/index.m3u8",
+          "origin": {
+            "host": "n18syndication.akamaized.net",
+            "via": "iptv-org",
+            "kind": "cdn",
+            "label": "akamaized.net"
+          }
+        }
+      ]
+    },
+    {
+      "id": "class-cnbc",
+      "name": "Class CNBC",
+      "lang": "it",
+      "country": "IT",
+      "tz": "Europe/Rome",
+      "tags": [
+        "italy"
+      ],
+      "categories": [
+        "business"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://amg14891-amg14891c5-amgplt0020.playout.now3.amagi.tv/playlist.m3u8",
+          "origin": {
+            "host": "amg14891-amg14891c5-amgplt0020.playout.now3.amagi.tv",
+            "via": "iptv-org",
+            "kind": "cdn",
+            "label": "amagi.tv"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ndtv-profit",
+      "name": "NDTV Profit",
+      "lang": "en",
+      "country": "IN",
+      "tz": "Asia/Kolkata",
+      "tags": [
+        "asia"
+      ],
+      "categories": [
+        "business"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://ndtvprofit.akamaized.net/hls/live/2107404/ndtvprofit/master_1.m3u8",
+          "origin": {
+            "host": "ndtvprofit.akamaized.net",
+            "via": "iptv-org",
+            "kind": "broadcaster",
+            "label": "akamaized.net"
+          }
+        }
+      ]
+    },
+    {
+      "id": "cnbc-arabiya",
+      "name": "CNBC Arabiya",
+      "lang": "ar",
+      "country": "AE",
+      "tz": "Asia/Dubai",
+      "tags": [
+        "mideast"
+      ],
+      "categories": [
+        "business"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://cnbc-live.akamaized.net/cnbc/master.m3u8",
+          "origin": {
+            "host": "cnbc-live.akamaized.net",
+            "via": "iptv-org",
+            "kind": "cdn",
+            "label": "akamaized.net"
+          }
+        }
+      ]
+    },
+    {
+      "id": "schwab-network",
+      "name": "Schwab Network",
+      "lang": "en",
+      "country": "US",
+      "tz": "America/New_York",
+      "tags": [
+        "us"
+      ],
+      "categories": [
+        "business"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://content.uplynk.com/channel/f9aafa1f132e40af9b9e7238bc18d128.m3u8",
+          "origin": {
+            "host": "content.uplynk.com",
+            "via": "iptv-org",
+            "kind": "unknown",
+            "label": "uplynk.com"
+          }
+        }
+      ]
+    },
+    {
+      "id": "yahoo-finance",
+      "name": "Yahoo! Finance",
+      "lang": "en",
+      "country": "US",
+      "tz": "America/New_York",
+      "tags": [
+        "us"
+      ],
+      "categories": [
+        "business"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://d1ewctnvcwvvvu.cloudfront.net/playlist.m3u8",
+          "origin": {
+            "host": "d1ewctnvcwvvvu.cloudfront.net",
+            "via": "iptv-org",
+            "kind": "cdn",
+            "label": "cloudfront.net"
+          }
+        }
+      ]
+    },
+    {
+      "id": "cgtn-global-biz",
+      "name": "CGTN Global Biz",
+      "lang": "zh",
+      "country": "CN",
+      "tz": "Asia/Shanghai",
+      "tags": [
+        "asia"
+      ],
+      "categories": [
+        "business"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://fastlive.cctvplus.com/out/v1/2b3d8a0c805d437f9dc85b764c2ac599/index.m3u8",
+          "origin": {
+            "host": "fastlive.cctvplus.com",
+            "via": "iptv-org",
+            "kind": "broadcaster",
+            "label": "CCTV+"
+          }
+        }
+      ]
+    },
+    {
+      "id": "al-arabiya-business",
+      "name": "Al Arabiya Business",
+      "lang": "ar",
+      "country": "AE",
+      "tz": "Asia/Dubai",
+      "tags": [
+        "mideast"
+      ],
+      "categories": [
+        "business"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://live.alarabiya.net/alarabiapublish/aswaaq.smil/playlist.m3u8",
+          "origin": {
+            "host": "live.alarabiya.net",
+            "via": "iptv-org",
+            "kind": "broadcaster",
+            "label": "Al Arabiya"
+          }
+        }
+      ]
+    },
+    {
+      "id": "telewizja-biznesowa",
+      "name": "Telewizja Biznesowa",
+      "lang": "pl",
+      "country": "PL",
+      "tz": "Europe/Warsaw",
+      "tags": [
+        "europe"
+      ],
+      "categories": [
+        "business"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://s-pl-01.mediatool.tv/playout/tbpl-abr/index.m3u8",
+          "origin": {
+            "host": "s-pl-01.mediatool.tv",
+            "via": "iptv-org",
+            "kind": "unknown",
+            "label": "mediatool.tv"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ausbiz-tv",
+      "name": "Ausbiz TV",
+      "lang": "en",
+      "country": "AU",
+      "tz": "Australia/Sydney",
+      "tags": [
+        "oceania"
+      ],
+      "categories": [
+        "business"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://d9quh89lh7dtw.cloudfront.net/public-output/index.m3u8",
+          "origin": {
+            "host": "d9quh89lh7dtw.cloudfront.net",
+            "via": "iptv-org",
+            "kind": "cdn",
+            "label": "cloudfront.net"
+          }
+        }
+      ]
+    },
+    {
+      "id": "bloomberg-tv",
+      "name": "Bloomberg TV",
+      "lang": "en",
+      "country": "US",
+      "tz": "America/New_York",
+      "tags": [
+        "us"
+      ],
+      "categories": [
+        "business"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://bloomberg.com/media-manifest/streams/asia.m3u8",
+          "origin": {
+            "host": "bloomberg.com",
+            "via": "iptv-org",
+            "kind": "broadcaster",
+            "label": "bloomberg.com"
+          }
+        }
+      ]
+    },
+    {
+      "id": "aleph-business",
+      "name": "Aleph Business",
+      "lang": "ro",
+      "country": "RO",
+      "tz": "Europe/Bucharest",
+      "tags": [
+        "europe"
+      ],
+      "categories": [
+        "business"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://streamw.m.ro/Aleph/ngrp:Alephbiz.stream_all/playlist.m3u8",
+          "origin": {
+            "host": "streamw.m.ro",
+            "via": "iptv-org",
+            "kind": "unknown",
+            "label": "m.ro"
+          }
+        }
+      ]
+    },
+    {
+      "id": "nw-economie",
+      "name": "NW Economie",
+      "lang": "fr",
+      "country": "TG",
+      "tz": "Africa/Lome",
+      "tags": [
+        "africa"
+      ],
+      "categories": [
+        "business"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://hls.newworldtv.com/nw-economie/video/live.m3u8",
+          "origin": {
+            "host": "hls.newworldtv.com",
+            "via": "iptv-org",
+            "kind": "unknown",
+            "label": "newworldtv.com"
+          }
+        }
+      ]
+    },
+    {
+      "id": "bfm-business",
+      "name": "BFM Business",
+      "lang": "fr",
+      "country": "FR",
+      "tz": "Europe/Paris",
+      "tags": [
+        "europe"
+      ],
+      "categories": [
+        "business"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://live-cdn-stream-euw1.bfmb.bct.nextradiotv.com/master.m3u8",
+          "origin": {
+            "host": "live-cdn-stream-euw1.bfmb.bct.nextradiotv.com",
+            "via": "iptv-org",
+            "kind": "unknown",
+            "label": "nextradiotv.com"
+          }
+        }
+      ]
+    },
+    {
+      "id": "negocios-tv",
+      "name": "Negocios TV",
+      "lang": "es",
+      "country": "ES",
+      "tz": "Europe/Madrid",
+      "tags": [
+        "europe"
+      ],
+      "categories": [
+        "business"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://streaming013.gestec-video.com/hls/negociostv.m3u8",
+          "origin": {
+            "host": "streaming013.gestec-video.com",
+            "via": "iptv-org",
+            "kind": "unknown",
+            "label": "gestec-video.com"
+          }
+        }
+      ]
+    },
+    {
+      "id": "accuweather-now",
+      "name": "AccuWeather NOW",
+      "lang": "en",
+      "country": "US",
+      "tz": "America/New_York",
+      "tags": [
+        "us"
+      ],
+      "categories": [
+        "weather"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://cdn-ue1-prod.tsv2.amagi.tv/linear/amg00684-accuweather-accuweather-plex/playlist.m3u8",
+          "origin": {
+            "host": "cdn-ue1-prod.tsv2.amagi.tv",
+            "via": "iptv-org",
+            "kind": "cdn",
+            "label": "amagi.tv"
+          }
+        }
+      ]
+    },
+    {
+      "id": "3cat-cameres-del-temps",
+      "name": "3Cat Cameres del temps",
+      "lang": "",
+      "country": "ES",
+      "tz": "Europe/Madrid",
+      "tags": [
+        "europe"
+      ],
+      "categories": [
+        "weather"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://directes-tv-int.3catdirectes.cat/live-content/beauties-hls/master.m3u8",
+          "origin": {
+            "host": "directes-tv-int.3catdirectes.cat",
+            "via": "iptv-org",
+            "kind": "broadcaster",
+            "label": "3Cat"
+          }
+        }
+      ]
+    },
+    {
+      "id": "weatherspy-us",
+      "name": "WeatherSpy",
+      "lang": "en",
+      "country": "US",
+      "tz": "America/New_York",
+      "tags": [
+        "us"
+      ],
+      "categories": [
+        "weather"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://beaece44.wurl.com/master/f36d25e7e52f1ba8d7e56eb859c636563214f541/UmFrdXRlblRWLWV1X1dlYXRoZXJTcHlfSExT/playlist.m3u8",
+          "origin": {
+            "host": "beaece44.wurl.com",
+            "via": "iptv-org",
+            "kind": "cdn",
+            "label": "wurl.com"
+          }
+        }
+      ]
+    },
+    {
+      "id": "fox-weather",
+      "name": "Fox Weather",
+      "lang": "en",
+      "country": "US",
+      "tz": "America/New_York",
+      "tags": [
+        "us"
+      ],
+      "categories": [
+        "weather"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://247wlive.foxweather.com/stream/index.m3u8",
+          "origin": {
+            "host": "247wlive.foxweather.com",
+            "via": "iptv-org",
+            "kind": "broadcaster",
+            "label": "foxweather.com"
+          }
+        }
+      ]
+    },
+    {
+      "id": "weathernews",
+      "name": "Weathernews",
+      "lang": "ja",
+      "country": "JP",
+      "tz": "Asia/Tokyo",
+      "tags": [
+        "asia"
+      ],
+      "categories": [
+        "weather"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://rch01e-alive-hls.akamaized.net/38fb45b25cdb05a1/out/v1/4e907bfabc684a1dae10df8431a84d21/index.m3u8",
+          "origin": {
+            "host": "rch01e-alive-hls.akamaized.net",
+            "via": "iptv-org",
+            "kind": "cdn",
+            "label": "akamaized.net"
+          }
+        }
+      ]
+    },
+    {
+      "id": "weathernation",
+      "name": "WeatherNation",
+      "lang": "en",
+      "country": "US",
+      "tz": "America/New_York",
+      "tags": [
+        "us"
+      ],
+      "categories": [
+        "weather"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://d2ferbiwcx1539.cloudfront.net/v1/master/3722c60a815c199d9c0ef36c5b73da68a62b09d1/cc-8zd06wicndthf-ssai-prd/WNNationalSamsung/WNNationalSamsung.m3u8",
+          "origin": {
+            "host": "d2ferbiwcx1539.cloudfront.net",
+            "via": "iptv-org",
+            "kind": "cdn",
+            "label": "cloudfront.net"
+          }
+        }
+      ]
+    },
+    {
+      "id": "sky-news-weather",
+      "name": "Sky News Weather",
+      "lang": "en",
+      "country": "UK",
+      "tz": "Europe/London",
+      "tags": [
+        "europe"
+      ],
+      "categories": [
+        "weather"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://distro001-gb-hls1-prd.delivery.skycdp.com/easel_cdn/ngrp:weather_loop.stream_all/playlist.m3u8",
+          "origin": {
+            "host": "distro001-gb-hls1-prd.delivery.skycdp.com",
+            "via": "iptv-org",
+            "kind": "unknown",
+            "label": "skycdp.com"
+          }
+        }
+      ]
+    },
+    {
+      "id": "the-weather-channel",
+      "name": "The Weather Channel",
+      "lang": "en",
+      "country": "US",
+      "tz": "America/New_York",
+      "tags": [
+        "us"
+      ],
+      "categories": [
+        "weather"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://twcprod-live.twc-tv.com/v1/manifest/b4d4d63a49309cc5140171fb2e92485c31be1e9e/DSP_6228e4760505741a116f1ba2_twcprod-live/6bf09ce5-366b-463c-b67e-c4b799f73c3f/4.m3u8",
+          "origin": {
+            "host": "twcprod-live.twc-tv.com",
+            "via": "iptv-org",
+            "kind": "broadcaster",
+            "label": "twc-tv.com"
+          }
+        }
+      ]
+    },
+    {
+      "id": "sky-news-weather-channel",
+      "name": "Sky News Weather Channel",
+      "lang": "en",
+      "country": "AU",
+      "tz": "Australia/Sydney",
+      "tags": [
+        "oceania"
+      ],
+      "categories": [
+        "weather"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://skynewsau-live-premium.akamaized.net/hls/live/2105305/skynewsweather/live_540p.m3u8",
+          "origin": {
+            "host": "skynewsau-live-premium.akamaized.net",
+            "via": "iptv-org",
+            "kind": "cdn",
+            "label": "akamaized.net"
+          }
+        }
+      ]
+    },
+    {
+      "id": "nhl-network",
+      "name": "NHL Network",
+      "lang": "en",
+      "country": "US",
+      "tz": "America/New_York",
+      "tags": [
+        "us"
+      ],
+      "categories": [
+        "sports"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://aegis-cloudfront-1.tubi.video/1f4cbb33-cb23-40ab-b54b-2965cc551b32/playlist.m3u8",
+          "origin": {
+            "host": "aegis-cloudfront-1.tubi.video",
+            "via": "iptv-org",
+            "kind": "unknown",
+            "label": "tubi.video"
+          }
+        }
+      ]
+    },
+    {
+      "id": "bein-sports-xtra",
+      "name": "beIN SPORTS XTRA",
+      "lang": "en",
+      "country": "US",
+      "tz": "America/New_York",
+      "tags": [
+        "us"
+      ],
+      "categories": [
+        "sports"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://bein-beinxtrasports-firetv.amagi.tv/playlist.m3u8",
+          "origin": {
+            "host": "bein-beinxtrasports-firetv.amagi.tv",
+            "via": "iptv-org",
+            "kind": "cdn",
+            "label": "amagi.tv"
+          }
+        }
+      ]
+    },
+    {
+      "id": "real-madrid-tv",
+      "name": "Real Madrid TV",
+      "lang": "es",
+      "country": "ES",
+      "tz": "Europe/Madrid",
+      "tags": [
+        "europe"
+      ],
+      "categories": [
+        "sports"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://rmtv.akamaized.net/hls/live/2043153/rmtv-es-web/master.m3u8",
+          "origin": {
+            "host": "rmtv.akamaized.net",
+            "via": "iptv-org",
+            "kind": "cdn",
+            "label": "akamaized.net"
+          }
+        }
+      ]
+    },
+    {
+      "id": "qbc",
+      "name": "QBC",
+      "lang": "ar",
+      "country": "QA",
+      "tz": "Asia/Qatar",
+      "tags": [
+        "mideast"
+      ],
+      "categories": [
+        "business"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://live.kwikmotion.com/qbusinesslive/qbusiness.smil/playlist.m3u8",
+          "origin": {
+            "host": "live.kwikmotion.com",
+            "via": "iptv-org",
+            "kind": "cdn",
+            "label": "kwikmotion.com"
+          }
+        }
+      ]
+    },
+    {
+      "id": "rbk-tv",
+      "name": "RBK-TV",
+      "lang": "ru",
+      "country": "RU",
+      "tz": "Europe/Moscow",
+      "tags": [
+        "europe"
+      ],
+      "categories": [
+        "business"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://online-video.rbc.ru/spb/rbctv_spb.m3u8",
+          "origin": {
+            "host": "online-video.rbc.ru",
+            "via": "iptv-org",
+            "kind": "unknown",
+            "label": "rbc.ru"
           }
         }
       ]

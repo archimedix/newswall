@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-18T00:24:40+00:00",
+  "generated": "2026-10-18T01:25:39+00:00",
   "entries": {
     "aljazeera-en": {
       "ok": true,
@@ -205,8 +205,8 @@
         },
         {
           "ok": true,
-          "videoId": "odq_0Yan3LI",
-          "title": "Live | Trump Destroyed IRAN | World On Brink Of World War3 | Trump Warning To Iran | US News Live"
+          "videoId": "zTEARPuz2Ro",
+          "title": "US NEWS LIVE: Trump Stuns Everyone With Urgent 24-Hour Announcement | Donald Trump Speech LIVE"
         },
         {
           "ok": true,
@@ -230,8 +230,8 @@
         },
         {
           "ok": true,
-          "videoId": "ktngDN9kOa0",
-          "title": "Kolkata Stampede LIVE: CM Suvendu Adhikari Speaks To India Today | Durga Puja Pandal Collapse News"
+          "videoId": "152mUAip60Y",
+          "title": "LIVE: 17 Dead In Stampede At Durga Puja Pandal At Kolkata, CM Suvendu Reaches Hospital | India Today"
         },
         {
           "ok": true,
@@ -804,21 +804,15 @@
       "reason": null
     },
     "al-manar": {
-      "ok": true,
-      "use": 0,
+      "ok": false,
+      "use": null,
       "streams": [
         {
-          "ok": true,
-          "heights": [
-            144,
-            240,
-            360,
-            576,
-            1080
-          ]
+          "ok": false,
+          "reason": "unreachable (URLError)"
         }
       ],
-      "reason": null
+      "reason": "unreachable (URLError)"
     },
     "canal-26": {
       "ok": true,
@@ -1623,10 +1617,10 @@
       "streams": [
         {
           "ok": false,
-          "reason": "HTTP 503"
+          "reason": "HTTP 404"
         }
       ],
-      "reason": "HTTP 503"
+      "reason": "HTTP 404"
     },
     "cctv-1": {
       "ok": true,
@@ -1895,8 +1889,8 @@
       "streams": [
         {
           "ok": true,
-          "videoId": "Yr80K_NfbkY",
-          "title": "France Protest LIVE: Thousands Take To Streets | France Unrest, Demonstrations | France Violence"
+          "videoId": "--NNcEDmj2s",
+          "title": "NDTV LIVE: Kolkata Durga Puja Stampede | Chorebagan Durga Puja | France Protest | CJP | West Bengal"
         }
       ],
       "reason": null
@@ -1919,8 +1913,8 @@
       "streams": [
         {
           "ok": true,
-          "videoId": "amNC1NPDfr8",
-          "title": "Kolkata Durga Puja Stampede LIVE Updates: 17 Dead; PM Announces Ex-Gratia, HM Shah To Visit Injured"
+          "videoId": "FefL8kCFGu0",
+          "title": "Republic TV LIVE: October 17, 2026 | India | Global News | Kolkata Pandal Stampede"
         }
       ],
       "reason": null
@@ -1945,6 +1939,973 @@
           "ok": true,
           "videoId": "ppgTP8xQQsM",
           "title": "البث المباشر لقناة سكاي نيوز عربية - Sky News Arabia Live"
+        }
+      ],
+      "reason": null
+    },
+    "tvr-sport": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            240,
+            480,
+            720,
+            1080,
+            1440
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "san-marino-rtv-sport": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            1280
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "varzesh-tv": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            240,
+            480,
+            720,
+            1080,
+            1082
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "a-spor": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            360,
+            480,
+            720,
+            1080
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "esport3": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            480,
+            720,
+            1080
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "ge-fast": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            240,
+            360,
+            480,
+            720,
+            1080
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "inter-tv": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            408,
+            540,
+            720,
+            1080
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "qazsport": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            360,
+            540,
+            720,
+            1080
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "belarus-5": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            360,
+            720,
+            1080
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "ktv-sport": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            240,
+            360,
+            720,
+            1080
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "talksport": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            360,
+            540,
+            720,
+            1080
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "tyc-sports": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            360,
+            480,
+            720,
+            1080
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "mrtv-sports": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            404,
+            720,
+            1080
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "red-bull-tv": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            216,
+            360,
+            576,
+            720,
+            1080
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "sportitalia": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            480,
+            720,
+            1080
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "supertennis": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            480,
+            720,
+            1080
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "el-heddaf-tv": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            1080
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "nbc-sports-now": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            240,
+            360,
+            432,
+            720,
+            1080
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "oman-sports-tv": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            240,
+            480,
+            720,
+            1080
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "africa-24-sport": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            1080
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "world-of-freesports": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            240,
+            360,
+            480,
+            720,
+            1080
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "cbs-sports-golazo-network": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            270,
+            360,
+            432,
+            540,
+            720,
+            1080
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "mutv": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            270,
+            360,
+            540,
+            720
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "fifa-women": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            360,
+            540,
+            720
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "teledeporte": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            360,
+            576,
+            720
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "bahrain-sports-1": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            360,
+            720
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "azteca-deportes-network": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            360,
+            480,
+            540,
+            720
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "mnb-sport": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": []
+        }
+      ],
+      "reason": null
+    },
+    "jordan-sport": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": []
+        }
+      ],
+      "reason": null
+    },
+    "willow-sports": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": []
+        }
+      ],
+      "reason": null
+    },
+    "al-iraqia-sport": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": []
+        }
+      ],
+      "reason": null
+    },
+    "fox-sports-news": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": []
+        }
+      ],
+      "reason": null
+    },
+    "cnbc-e": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            360,
+            480,
+            720,
+            1080
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "kanaal-z": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            144,
+            240,
+            360,
+            480,
+            720,
+            1080
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "cnbc-tv18": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            180,
+            360,
+            540,
+            720,
+            1080
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "class-cnbc": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            240,
+            360,
+            480,
+            720,
+            1080
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "ndtv-profit": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            144,
+            240,
+            360,
+            480,
+            720,
+            1080
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "cnbc-arabiya": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            480,
+            720,
+            1080
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "schwab-network": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            144,
+            234,
+            360,
+            540,
+            720,
+            1080
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "yahoo-finance": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            240,
+            360,
+            480,
+            720,
+            1080
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "cgtn-global-biz": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            360,
+            504,
+            720,
+            1080
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "al-arabiya-business": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            240,
+            360,
+            720,
+            1080
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "telewizja-biznesowa": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            360,
+            540,
+            720,
+            1080
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "ausbiz-tv": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            360,
+            432,
+            576,
+            720
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "bloomberg-tv": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            272,
+            360,
+            540,
+            720
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "aleph-business": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            360,
+            720
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "nw-economie": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            144,
+            240,
+            360,
+            576
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "bfm-business": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            270,
+            360,
+            540
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "negocios-tv": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": []
+        }
+      ],
+      "reason": null
+    },
+    "accuweather-now": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            240,
+            360,
+            480,
+            720,
+            1080
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "3cat-cameres-del-temps": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            480,
+            720,
+            1080
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "weatherspy-us": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            216,
+            360,
+            576,
+            720
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "fox-weather": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            288,
+            360,
+            432,
+            540,
+            720
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "weathernews": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            216,
+            360,
+            540,
+            720
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "weathernation": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            216,
+            288,
+            360,
+            540,
+            720
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "sky-news-weather": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            160,
+            240,
+            360,
+            540,
+            720
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "the-weather-channel": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": []
+        }
+      ],
+      "reason": null
+    },
+    "sky-news-weather-channel": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": []
+        }
+      ],
+      "reason": null
+    },
+    "nhl-network": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            240,
+            360,
+            480,
+            720,
+            1080
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "bein-sports-xtra": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            240,
+            360,
+            480,
+            576,
+            720,
+            1080
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "real-madrid-tv": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            180,
+            360,
+            720
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "qbc": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            240,
+            480,
+            1080
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "rbk-tv": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            270,
+            360,
+            404,
+            576
+          ]
         }
       ],
       "reason": null

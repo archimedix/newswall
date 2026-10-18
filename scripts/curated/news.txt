@@ -1,4 +1,4 @@
-# iptv-org sources admitted to the catalog, hand-picked among those that pass
+# News wall: iptv-org "news" sources admitted to the catalog, hand-picked among those that pass
 # the technical check. The criterion is the point of the project: comparing
 # national narratives. National and international broadcasters are in; local
 # TV, radio, duplicates and niche channels are out.
@@ -25,6 +25,7 @@ trt-arabi          # Turkey, in Arabic
 
 # --- Russia, Eastern Europe, former USSR ---
 rt-arabic
+rt-india           # the only RT in English still reachable
 rt-france
 rt-de
 360-news           # Russia

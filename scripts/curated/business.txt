@@ -1,0 +1,38 @@
+# Markets wall: iptv-org "business" channels admitted to the catalog, hand-picked
+# among those that pass the technical check. The same criterion as the news:
+# one financial channel per market, so that the same session reads differently
+# in Mumbai, Dubai, Frankfurt and New York.
+# Ids that are already in sources.json (cnbc, cnbc-uk, asharq-news) just join this wall.
+# Regenerate the candidates with: python3 scripts/harvest-iptv.py --category business
+
+# --- Already in the catalog ---
+cnbc                   # US
+cnbc-uk                # UK
+asharq-news            # Saudi Arabia, Bloomberg's Arabic partner
+
+# --- Americas ---
+bloomberg-tv           # US
+yahoo-finance          # US
+schwab-network         # US
+
+# --- Europe ---
+bfm-business           # France
+class-cnbc             # Italy
+negocios-tv            # Spain
+kanaal-z               # Belgium
+telewizja-biznesowa    # Poland
+aleph-business         # Romania
+cnbc-e                 # Turkey
+rbk-tv                 # Russia, RBC
+
+# --- Middle East and Africa ---
+al-arabiya-business    # UAE
+cnbc-arabiya           # UAE
+qbc                    # Qatar
+nw-economie            # Togo
+
+# --- Asia and Oceania ---
+cnbc-tv18              # India
+ndtv-profit            # India
+cgtn-global-biz        # China, state
+ausbiz-tv              # Australia
