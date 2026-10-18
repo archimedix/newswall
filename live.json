@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-18T01:25:39+00:00",
+  "generated": "2026-10-18T05:52:08+00:00",
   "entries": {
     "aljazeera-en": {
       "ok": true,
@@ -17,8 +17,8 @@
         },
         {
           "ok": true,
-          "videoId": "gCNeDWCI0vo",
-          "title": "🔴 Al Jazeera English | Live"
+          "videoId": "duWUa9Md_tU",
+          "title": "Former CIA Spy: How to Read Anyone, Think Clearly, and Protect Yourself"
         }
       ],
       "reason": null
@@ -40,8 +40,8 @@
         },
         {
           "ok": true,
-          "videoId": "N8xxOD0nT1Y",
-          "title": "الجزيرة 2 | متابعات إخبارية وبرامج مختارة"
+          "videoId": "yAGGkDvbjAs",
+          "title": "Jon Stewart and The News Team Tackle the 2026 Midterm Candidates | The Daily Show"
         },
         {
           "ok": true,
@@ -65,8 +65,8 @@
         },
         {
           "ok": true,
-          "videoId": "HvZt-nh9sGg",
-          "title": "FRANCE 24 English – LIVE – International Breaking News & Top stories - 24/7 stream"
+          "videoId": "E38Bo9gg4V8",
+          "title": "Why Houthis Hate Saudi Arabia | Reason Behind War Between Yemen And Saudi Arabia | The Blueprint"
         }
       ],
       "reason": null
@@ -87,8 +87,8 @@
         },
         {
           "ok": true,
-          "videoId": "LuKwFajn37U",
-          "title": "DW News livestream | Headline news from around the world"
+          "videoId": "duWUa9Md_tU",
+          "title": "Former CIA Spy: How to Read Anyone, Think Clearly, and Protect Yourself"
         }
       ],
       "reason": null
@@ -103,8 +103,8 @@
         },
         {
           "ok": true,
-          "videoId": "xDWQ3LkccY8",
-          "title": "Watch Sky News"
+          "videoId": "8mmmWkduHEo",
+          "title": "🇺🇸 State Sec. Marco Rubio Briefs Press at Joint Base Andrews before India & Uzbekistan Trip [LIVE]"
         },
         {
           "ok": false,
@@ -129,8 +129,8 @@
         },
         {
           "ok": true,
-          "videoId": "pykpO5kQJ98",
-          "title": "Euronews English Live"
+          "videoId": "SChm4DyivOU",
+          "title": "Can Pro Bikers Beat this IMPOSSIBLE Obstacle Course?"
         },
         {
           "ok": true,
@@ -154,8 +154,8 @@
         },
         {
           "ok": true,
-          "videoId": "0i7n3r01L2U",
-          "title": "🔴 Watch CGTN LIVE 24/7 #CGTNLIVE"
+          "videoId": "ECtad3LCPPE",
+          "title": "*Magical* EFREN REYES vs MIKE SIGEL $200,000 8-BALL"
         },
         {
           "ok": true,
@@ -179,8 +179,8 @@
         },
         {
           "ok": true,
-          "videoId": "GqVuCwBeq3w",
-          "title": "Ukraine STRIKES Russia LIVE: Putin’s Skies Under Siege? Zelensky Hits Russian Refinery | WION Live"
+          "videoId": "ph5UU8dkCOc",
+          "title": "Solitary Genius vs. The German War Machine: How Two Continents Built the Rocket Age"
         },
         {
           "ok": true,
@@ -205,8 +205,8 @@
         },
         {
           "ok": true,
-          "videoId": "zTEARPuz2Ro",
-          "title": "US NEWS LIVE: Trump Stuns Everyone With Urgent 24-Hour Announcement | Donald Trump Speech LIVE"
+          "videoId": "jw-nEfwD8zA",
+          "title": "Florida State Seminoles vs. Miami Hurricanes | Full Game Highlights | ESPN College Football"
         },
         {
           "ok": true,
@@ -230,8 +230,8 @@
         },
         {
           "ok": true,
-          "videoId": "152mUAip60Y",
-          "title": "LIVE: 17 Dead In Stampede At Durga Puja Pandal At Kolkata, CM Suvendu Reaches Hospital | India Today"
+          "videoId": "A4Q8q0KQQ14",
+          "title": "Tesla Saves Owner From Prison"
         },
         {
           "ok": true,
@@ -256,8 +256,8 @@
         },
         {
           "ok": true,
-          "videoId": "vOTiJkg1voo",
-          "title": "Watch ABC NEWS Australia live | ABC NEWS"
+          "videoId": "XGgJ-jLQYVU",
+          "title": "Grand Ambition: Paul Keating and James Curran in Conversation"
         }
       ],
       "reason": null
@@ -272,8 +272,8 @@
         },
         {
           "ok": true,
-          "videoId": "KQT3uyD6jQQ",
-          "title": "LIVE: NBC News NOW"
+          "videoId": "Y5SxQTYfiwc",
+          "title": "LIVE: NBC News NOW - Oct. 19"
         },
         {
           "ok": true,
@@ -298,8 +298,8 @@
         },
         {
           "ok": true,
-          "videoId": "iipR5yUp36o",
-          "title": "LIVE: ABC News Live - 24/7 news, context and analysis"
+          "videoId": "CugtQaWd2fI",
+          "title": "Close Encounters Of The Third Kind (Director's Cut)"
         }
       ],
       "reason": null
@@ -319,8 +319,8 @@
         },
         {
           "ok": true,
-          "videoId": "MMCqhcEgwLQ",
-          "title": "LIVE: Breaking News and Top Stories on CBS News 24/7"
+          "videoId": "V_4U0LBjNso",
+          "title": "Rally with Jon Ossoff | Atlanta, GA | 10.17.2026"
         }
       ],
       "reason": null
@@ -804,15 +804,21 @@
       "reason": null
     },
     "al-manar": {
-      "ok": false,
-      "use": null,
+      "ok": true,
+      "use": 0,
       "streams": [
         {
-          "ok": false,
-          "reason": "unreachable (URLError)"
+          "ok": true,
+          "heights": [
+            144,
+            240,
+            360,
+            576,
+            1080
+          ]
         }
       ],
-      "reason": "unreachable (URLError)"
+      "reason": null
     },
     "canal-26": {
       "ok": true,
@@ -1528,7 +1534,7 @@
         {
           "ok": true,
           "heights": [
-            1080
+            720
           ]
         },
         {
@@ -1713,8 +1719,8 @@
       "streams": [
         {
           "ok": true,
-          "videoId": "tvXWIgsWuK0",
-          "title": "🔴 LIVESTREAM: Latest news, headlines and events | TVP World"
+          "videoId": "jw-nEfwD8zA",
+          "title": "Florida State Seminoles vs. Miami Hurricanes | Full Game Highlights | ESPN College Football"
         },
         {
           "ok": false,
@@ -1781,8 +1787,8 @@
       "streams": [
         {
           "ok": true,
-          "videoId": "5vfaDsMhCF4",
-          "title": "LIVE: Latest breaking news and analysis for October 17th | CBC News Live"
+          "videoId": "yAGGkDvbjAs",
+          "title": "Jon Stewart and The News Team Tackle the 2026 Midterm Candidates | The Daily Show"
         }
       ],
       "reason": null
@@ -1793,8 +1799,8 @@
       "streams": [
         {
           "ok": true,
-          "videoId": "9NyxcX3rhQs",
-          "title": "LIVE: CNBC Marathon - Documentaries and deep dives 24/7"
+          "videoId": "jw-nEfwD8zA",
+          "title": "Florida State Seminoles vs. Miami Hurricanes | Full Game Highlights | ESPN College Football"
         }
       ],
       "reason": null
@@ -1805,8 +1811,8 @@
       "streams": [
         {
           "ok": true,
-          "videoId": "t9Ilev-uk4w",
-          "title": "Прямой эфир телеканала Настоящее Время"
+          "videoId": "gmXdJ-CkMv4",
+          "title": "⚡️НОВОСТИ | КОЛЛАПС В АЭРОПОРТАХ МОСКВЫ | ГАЗ В КРЫМУ ТЕПЕРЬ ПЛАТНЫЙ | ФРАНЦИЮ ОХВАТИЛИ ПОГРОМЫ"
         }
       ],
       "reason": null
@@ -1817,8 +1823,8 @@
       "streams": [
         {
           "ok": true,
-          "videoId": "9X37FfIrKio",
-          "title": "DD India 24x7 | Breaking News | International News |  Latest News Updates From Across The World"
+          "videoId": "fRsPT_Ojxis",
+          "title": "Elon Musk's HUGE Donation to Republicans! & Botched Campaign Ads! | Have I Got News for You US S5 E5"
         }
       ],
       "reason": null
@@ -1829,8 +1835,8 @@
       "streams": [
         {
           "ok": true,
-          "videoId": "yZh3xsFqCt8",
-          "title": "🔴 DW Español | En vivo"
+          "videoId": "OTnRnFKu-sg",
+          "title": "Crisis de la vivienda en Los Ángeles - Vivir en la calle entre propiedades de lujo | DW Documental"
         }
       ],
       "reason": null
@@ -1841,8 +1847,8 @@
       "streams": [
         {
           "ok": true,
-          "videoId": "NiRIbKwAejk",
-          "title": "Euronews français en direct"
+          "videoId": "zLPwiYqBHB0",
+          "title": "Objectif Élysée 2027 : Marine Le Pen face à Laurence Ferrari"
         }
       ],
       "reason": null
@@ -1853,8 +1859,8 @@
       "streams": [
         {
           "ok": true,
-          "videoId": "ewqleNex-YI",
-          "title": "LIVE | US Midterms: Polls Predict Democrats Win As Trump Struggles to Win Support | Vantage"
+          "videoId": "8mmmWkduHEo",
+          "title": "🇺🇸 State Sec. Marco Rubio Briefs Press at Joint Base Andrews before India & Uzbekistan Trip [LIVE]"
         }
       ],
       "reason": null
@@ -1865,8 +1871,8 @@
       "streams": [
         {
           "ok": true,
-          "videoId": "ggGefEfnIjA",
-          "title": "The Late Show Live | Saturday 17th October"
+          "videoId": "8mmmWkduHEo",
+          "title": "🇺🇸 State Sec. Marco Rubio Briefs Press at Joint Base Andrews before India & Uzbekistan Trip [LIVE]"
         }
       ],
       "reason": null
@@ -1889,8 +1895,8 @@
       "streams": [
         {
           "ok": true,
-          "videoId": "--NNcEDmj2s",
-          "title": "NDTV LIVE: Kolkata Durga Puja Stampede | Chorebagan Durga Puja | France Protest | CJP | West Bengal"
+          "videoId": "jw-nEfwD8zA",
+          "title": "Florida State Seminoles vs. Miami Hurricanes | Full Game Highlights | ESPN College Football"
         }
       ],
       "reason": null
@@ -1901,8 +1907,8 @@
       "streams": [
         {
           "ok": true,
-          "videoId": "N3GJ8o_qZHQ",
-          "title": "NEWSMAX2 LIVE | Real News for Real People"
+          "videoId": "Y4yKWXNDaK8",
+          "title": "The Fugitive (1993)"
         }
       ],
       "reason": null
@@ -1913,8 +1919,8 @@
       "streams": [
         {
           "ok": true,
-          "videoId": "FefL8kCFGu0",
-          "title": "Republic TV LIVE: October 17, 2026 | India | Global News | Kolkata Pandal Stampede"
+          "videoId": "jw-nEfwD8zA",
+          "title": "Florida State Seminoles vs. Miami Hurricanes | Full Game Highlights | ESPN College Football"
         }
       ],
       "reason": null
@@ -1937,8 +1943,8 @@
       "streams": [
         {
           "ok": true,
-          "videoId": "ppgTP8xQQsM",
-          "title": "البث المباشر لقناة سكاي نيوز عربية - Sky News Arabia Live"
+          "videoId": "vmSgQAbL2DM",
+          "title": "الردع بين واشنطن وطهران.. أزمة هرمز وأمن الخليج والتفويض المصري - نقاش الساعة"
         }
       ],
       "reason": null
@@ -2060,12 +2066,7 @@
       "streams": [
         {
           "ok": true,
-          "heights": [
-            360,
-            540,
-            720,
-            1080
-          ]
+          "heights": []
         }
       ],
       "reason": null
@@ -2181,19 +2182,15 @@
       "reason": null
     },
     "supertennis": {
-      "ok": true,
-      "use": 0,
+      "ok": false,
+      "use": null,
       "streams": [
         {
-          "ok": true,
-          "heights": [
-            480,
-            720,
-            1080
-          ]
+          "ok": false,
+          "reason": "HTTP 403"
         }
       ],
-      "reason": null
+      "reason": "HTTP 403"
     },
     "el-heddaf-tv": {
       "ok": true,
@@ -2437,22 +2434,15 @@
       "reason": null
     },
     "kanaal-z": {
-      "ok": true,
-      "use": 0,
+      "ok": false,
+      "use": null,
       "streams": [
         {
-          "ok": true,
-          "heights": [
-            144,
-            240,
-            360,
-            480,
-            720,
-            1080
-          ]
+          "ok": false,
+          "reason": "HTTP 403"
         }
       ],
-      "reason": null
+      "reason": "HTTP 403"
     },
     "cnbc-tv18": {
       "ok": true,
@@ -2651,20 +2641,15 @@
       "reason": null
     },
     "nw-economie": {
-      "ok": true,
-      "use": 0,
+      "ok": false,
+      "use": null,
       "streams": [
         {
-          "ok": true,
-          "heights": [
-            144,
-            240,
-            360,
-            576
-          ]
+          "ok": false,
+          "reason": "HTTP 403"
         }
       ],
-      "reason": null
+      "reason": "HTTP 403"
     },
     "bfm-business": {
       "ok": true,
@@ -2847,22 +2832,15 @@
       "reason": null
     },
     "bein-sports-xtra": {
-      "ok": true,
-      "use": 0,
+      "ok": false,
+      "use": null,
       "streams": [
         {
-          "ok": true,
-          "heights": [
-            240,
-            360,
-            480,
-            576,
-            720,
-            1080
-          ]
+          "ok": false,
+          "reason": "no CORS: would need a proxy"
         }
       ],
-      "reason": null
+      "reason": "no CORS: would need a proxy"
     },
     "real-madrid-tv": {
       "ok": true,
