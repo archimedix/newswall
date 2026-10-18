@@ -1,0 +1,1 @@
+- [Direzione vista globo](globe-direction.md) — decisioni sul globo 3D e piano da approvare in docs/globe-plan.md
