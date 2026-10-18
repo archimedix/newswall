@@ -215,6 +215,23 @@ the ones already there**, and queues them as fallbacks.
 python3 scripts/harvest-iptv.py --alternatives --write
 ```
 
+#### Free-TV as a second catalog
+
+```bash
+python3 scripts/harvest-iptv.py --source free-tv                  # preview
+python3 scripts/harvest-iptv.py --source free-tv --alternatives   # fallbacks for existing channels
+```
+
+[Free-TV/IPTV](https://github.com/Free-TV/IPTV) is much smaller than iptv-org (~1,800
+channels) but stricter, and closer to this project's criterion: only channels officially free
+to everyone, one URL per channel, no paid channels or alternate feeds. Its `tvg-id` uses
+iptv-org's channel ids, so most entries borrow iptv-org's categories, language and time zone,
+and keep the same source id: the same `scripts/curated/<category>.txt` works for both catalogs.
+Channels iptv-org does not know take language and time zone from their country, and get a
+category only from Free-TV's own "News" / "Business" / "Weather" groups; otherwise they are in
+only if curated. Geo-blocked (`Ⓖ`), VOD, Twitch and Dailymotion entries are skipped; YouTube
+entries are resolved to their `channelId`. What it adds carries `via: "free-tv"`.
+
 ## Adding a source by hand
 
 One entry in `sources.json`, then a PR:
@@ -277,6 +294,9 @@ Ideas collected along the way, not yet done.
 - **IRIB streams in the browser.** IRINN and Varzesh (`ncdn.telewebion.ir`) pass the hourly
   check but stay on "connecting…" in the browser, where the request is blocked by CORS:
   find out why the check and the browser disagree, and look for alternative streams.
+- **Free-TV in the hourly Action.** `--source free-tv --alternatives` could join the
+  "stream URLs that update themselves" step above: Free-TV fixes broken URLs by hand,
+  often sooner than iptv-org.
 - **Older fallbacks without their real `via`.** Fallbacks added before `via` was recorded
   per stream show up as `curated` even when they came from iptv-org.
 

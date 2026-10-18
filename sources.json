@@ -574,6 +574,17 @@
             "via": "curated"
           },
           "channelId": "UC8p1vwvWtl6T73JiExfWs1g"
+        },
+        {
+          "kind": "hls",
+          "url": "https://cbsnews.akamaized.net/hls/live/2020607/cbsnlineup_8/master.m3u8",
+          "via": "free-tv",
+          "origin": {
+            "host": "cbsnews.akamaized.net",
+            "via": "free-tv",
+            "kind": "broadcaster",
+            "label": "akamaized.net"
+          }
         }
       ],
       "categories": [
@@ -635,6 +646,17 @@
             "via": "curated",
             "kind": "broadcaster",
             "label": "TRT"
+          }
+        },
+        {
+          "kind": "youtube",
+          "channelId": "UC7fWeaHhqgM4Ry-RMpM2YYw",
+          "via": "free-tv",
+          "origin": {
+            "host": "youtube.com",
+            "kind": "youtube",
+            "label": "YouTube",
+            "via": "free-tv"
           }
         }
       ],
@@ -1260,6 +1282,17 @@
             "kind": "rebroadcast",
             "label": "tangotv.in"
           }
+        },
+        {
+          "kind": "youtube",
+          "channelId": "UCKwucPzHZ7zCUIf7If-Wo1g",
+          "via": "free-tv",
+          "origin": {
+            "host": "youtube.com",
+            "kind": "youtube",
+            "label": "YouTube",
+            "via": "free-tv"
+          }
         }
       ],
       "categories": [
@@ -1612,6 +1645,17 @@
             "label": "gostreaming.tv"
           },
           "url": "https://contact.gostreaming.tv/Con-11/index.m3u8"
+        },
+        {
+          "kind": "youtube",
+          "channelId": "UCixtbfonx_QIjS1DB96zcFg",
+          "via": "free-tv",
+          "origin": {
+            "host": "youtube.com",
+            "kind": "youtube",
+            "label": "YouTube",
+            "via": "free-tv"
+          }
         }
       ],
       "categories": [
@@ -1788,6 +1832,17 @@
             "label": "mangomolo.com"
           },
           "url": "https://sabconetanw.cdn.mangomolo.com/news/smil:news.stream.smil/master.m3u8"
+        },
+        {
+          "kind": "hls",
+          "url": "https://sabconetanw.cdn.mangomolo.com/news/smil:news.stream.smil/chunklist_b250000_t64MjQwcA==.m3u8",
+          "via": "free-tv",
+          "origin": {
+            "host": "sabconetanw.cdn.mangomolo.com",
+            "via": "free-tv",
+            "kind": "cdn",
+            "label": "mangomolo.com"
+          }
         }
       ],
       "categories": [
@@ -1875,6 +1930,17 @@
             "via": "iptv-org",
             "kind": "unknown",
             "label": "thestream.cyou"
+          }
+        },
+        {
+          "kind": "hls",
+          "url": "https://edge55.dc.beltelecom.by/ngtrk/smil:belarus24.smil/playlist.m3u8",
+          "via": "free-tv",
+          "origin": {
+            "host": "edge55.dc.beltelecom.by",
+            "via": "free-tv",
+            "kind": "broadcaster",
+            "label": "Beltelecom"
           }
         }
       ],
@@ -2633,6 +2699,17 @@
             "label": "a2d.tv"
           },
           "url": "https://live.streaming.a2d.tv/asset/20025962.isml/.m3u8"
+        },
+        {
+          "kind": "hls",
+          "url": "https://live.streaming.a2d.tv/content/channels/uutiset/cmaf.m3u8",
+          "via": "free-tv",
+          "origin": {
+            "host": "live.streaming.a2d.tv",
+            "via": "free-tv",
+            "kind": "unknown",
+            "label": "a2d.tv"
+          }
         }
       ],
       "categories": [
@@ -2845,6 +2922,17 @@
             "label": "tangotv.in"
           },
           "url": "https://mumt05.tangotv.in/87NeALx2CNA/index.m3u8"
+        },
+        {
+          "kind": "youtube",
+          "channelId": "UC83jt4dlz1Gjl58fzQrrKZg",
+          "via": "free-tv",
+          "origin": {
+            "host": "youtube.com",
+            "kind": "youtube",
+            "label": "YouTube",
+            "via": "free-tv"
+          }
         }
       ],
       "categories": [
@@ -3131,6 +3219,17 @@
             "label": "YouTube",
             "via": "curated"
           }
+        },
+        {
+          "kind": "hls",
+          "url": "https://dwamdstream104.akamaized.net/hls/live/2015530/dwstream104/stream04/streamPlaylist.m3u8",
+          "via": "free-tv",
+          "origin": {
+            "host": "dwamdstream104.akamaized.net",
+            "via": "free-tv",
+            "kind": "cdn",
+            "label": "akamaized.net"
+          }
         }
       ],
       "categories": [
@@ -3231,6 +3330,17 @@
             "label": "YouTube",
             "via": "curated"
           }
+        },
+        {
+          "kind": "hls",
+          "url": "https://fox-foxnewsnow-vizio.amagi.tv/playlist.m3u8",
+          "via": "free-tv",
+          "origin": {
+            "host": "fox-foxnewsnow-vizio.amagi.tv",
+            "via": "free-tv",
+            "kind": "cdn",
+            "label": "amagi.tv"
+          }
         }
       ],
       "categories": [
@@ -3330,6 +3440,17 @@
             "kind": "youtube",
             "label": "YouTube",
             "via": "curated"
+          }
+        },
+        {
+          "kind": "hls",
+          "url": "https://amg00453-reuters-amg00453c1-rakuten-uk-2110.playouts.now.amagi.tv/playlist/amg00453-reuters-reuters-rakutenuk/playlist.m3u8",
+          "via": "free-tv",
+          "origin": {
+            "host": "amg00453-reuters-amg00453c1-rakuten-uk-2110.playouts.now.amagi.tv",
+            "via": "free-tv",
+            "kind": "broadcaster",
+            "label": "amagi.tv"
           }
         }
       ],
@@ -3593,6 +3714,17 @@
             "kind": "broadcaster",
             "label": "Beltelecom"
           }
+        },
+        {
+          "kind": "hls",
+          "url": "https://edge55.dc.beltelecom.by/ngtrk/smil:belarus5.smil/playlist.m3u8",
+          "via": "free-tv",
+          "origin": {
+            "host": "edge55.dc.beltelecom.by",
+            "via": "free-tv",
+            "kind": "broadcaster",
+            "label": "Beltelecom"
+          }
         }
       ]
     },
@@ -3748,6 +3880,17 @@
             "via": "iptv-org",
             "kind": "unknown",
             "label": "streamup.eu"
+          }
+        },
+        {
+          "kind": "hls",
+          "url": "https://sportsitalia-samsungitaly.amagi.tv/playlist.m3u8",
+          "via": "free-tv",
+          "origin": {
+            "host": "sportsitalia-samsungitaly.amagi.tv",
+            "via": "free-tv",
+            "kind": "cdn",
+            "label": "amagi.tv"
           }
         }
       ]
@@ -4526,6 +4669,28 @@
           "origin": {
             "host": "bloomberg.com",
             "via": "iptv-org",
+            "kind": "broadcaster",
+            "label": "bloomberg.com"
+          }
+        },
+        {
+          "kind": "hls",
+          "url": "https://bloomberg.com/media-manifest/streams/eu.m3u8",
+          "via": "free-tv",
+          "origin": {
+            "host": "bloomberg.com",
+            "via": "free-tv",
+            "kind": "broadcaster",
+            "label": "bloomberg.com"
+          }
+        },
+        {
+          "kind": "hls",
+          "url": "https://bloomberg.com/media-manifest/streams/phoenix-us.m3u8",
+          "via": "free-tv",
+          "origin": {
+            "host": "bloomberg.com",
+            "via": "free-tv",
             "kind": "broadcaster",
             "label": "bloomberg.com"
           }

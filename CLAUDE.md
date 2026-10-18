@@ -21,6 +21,7 @@ python3 scripts/annotate-origin.py [--write]        # (re)compute each stream's 
 python3 scripts/harvest-iptv.py [--category sports] [--write] [--cache DIR]
                                                     # candidates from iptv-org; --write adds only ids in scripts/curated/<category>.txt
 python3 scripts/harvest-iptv.py --alternatives --write   # add fallback streams to existing channels
+python3 scripts/harvest-iptv.py --source free-tv [...]  # same, from the Free-TV/IPTV playlist
 ```
 
 Python scripts use the standard library only — keep it that way (they run bare in a GitHub Action).
@@ -32,7 +33,7 @@ Python scripts use the standard library only — keep it that way (they run bare
   ISO 639-3 code when there is no two-letter one; the UI names both via `Intl.DisplayNames`. `categories` holds iptv-org
   category ids = the walls the source appears in (`news`, `sports`, `business`, `weather`). `streams` is an ordered preference list of
   `{kind: "hls", url}` or `{kind: "youtube", channelId}`, each with an `origin`
-  (`host, kind, label, via`), filled in by `annotate-origin.py`. `via` (`curated` / `iptv-org`)
+  (`host, kind, label, via`), filled in by `annotate-origin.py`. `via` (`curated` / `iptv-org` / `free-tv`)
   comes from the source's top-level `via`, overridden by a stream-level `via` (fallbacks added by
   `--alternatives` carry their own).
 - **`live.json`** — generated, never edit by hand. `refresh-live.py` writes per-source
