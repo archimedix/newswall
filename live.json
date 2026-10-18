@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-18T05:52:08+00:00",
+  "generated": "2026-10-18T11:00:47+00:00",
   "entries": {
     "aljazeera-en": {
       "ok": true,
@@ -17,8 +17,8 @@
         },
         {
           "ok": true,
-          "videoId": "duWUa9Md_tU",
-          "title": "Former CIA Spy: How to Read Anyone, Think Clearly, and Protect Yourself"
+          "videoId": "4WFNmPpzZk0",
+          "title": "Victims identified in deadly Oregon school shooting"
         }
       ],
       "reason": null
@@ -40,8 +40,8 @@
         },
         {
           "ok": true,
-          "videoId": "yAGGkDvbjAs",
-          "title": "Jon Stewart and The News Team Tackle the 2026 Midterm Candidates | The Daily Show"
+          "videoId": "XjTA1K4CSts",
+          "title": "السيسي.. \"الخروج الآمن\" والوصاية على العرش؟!"
         },
         {
           "ok": true,
@@ -65,8 +65,8 @@
         },
         {
           "ok": true,
-          "videoId": "E38Bo9gg4V8",
-          "title": "Why Houthis Hate Saudi Arabia | Reason Behind War Between Yemen And Saudi Arabia | The Blueprint"
+          "videoId": "7bv_d6OFnCA",
+          "title": "17 days to midterms: Massive 'No KINGS' turnout, El-Sayed responds to Trump | MS NOW Highlights"
         }
       ],
       "reason": null
@@ -87,8 +87,8 @@
         },
         {
           "ok": true,
-          "videoId": "duWUa9Md_tU",
-          "title": "Former CIA Spy: How to Read Anyone, Think Clearly, and Protect Yourself"
+          "videoId": "r9PeYPHdpNo",
+          "title": "Our Planet | Coastal Seas | FULL EPISODE | Netflix"
         }
       ],
       "reason": null
@@ -103,8 +103,8 @@
         },
         {
           "ok": true,
-          "videoId": "8mmmWkduHEo",
-          "title": "🇺🇸 State Sec. Marco Rubio Briefs Press at Joint Base Andrews before India & Uzbekistan Trip [LIVE]"
+          "videoId": "scwlR0QHGOk",
+          "title": "The NEW Tesla Roadster: My Honest Reaction"
         },
         {
           "ok": false,
@@ -129,8 +129,8 @@
         },
         {
           "ok": true,
-          "videoId": "SChm4DyivOU",
-          "title": "Can Pro Bikers Beat this IMPOSSIBLE Obstacle Course?"
+          "videoId": "okPNe2EjP8M",
+          "title": "Ukraine destroys key $100 million Russian Nebo-U radar | World News Tonight"
         },
         {
           "ok": true,
@@ -154,8 +154,8 @@
         },
         {
           "ok": true,
-          "videoId": "ECtad3LCPPE",
-          "title": "*Magical* EFREN REYES vs MIKE SIGEL $200,000 8-BALL"
+          "videoId": "NtFbKsKEiUU",
+          "title": "Inside the World's Biggest Trade Show The -140th Canton Fair  2026 Walkthrough"
         },
         {
           "ok": true,
@@ -179,8 +179,8 @@
         },
         {
           "ok": true,
-          "videoId": "ph5UU8dkCOc",
-          "title": "Solitary Genius vs. The German War Machine: How Two Continents Built the Rocket Age"
+          "videoId": "D8ln5ilDKWs",
+          "title": "US-Iran War LIVE: US Preparing MEGA Strike On Iran? Trump Unveils ‘MOTHER OF ALL BOMBS’ | WION Live"
         },
         {
           "ok": true,
@@ -205,8 +205,8 @@
         },
         {
           "ok": true,
-          "videoId": "jw-nEfwD8zA",
-          "title": "Florida State Seminoles vs. Miami Hurricanes | Full Game Highlights | ESPN College Football"
+          "videoId": "duWUa9Md_tU",
+          "title": "Former CIA Spy: How to Read Anyone, Think Clearly, and Protect Yourself"
         },
         {
           "ok": true,
@@ -230,8 +230,8 @@
         },
         {
           "ok": true,
-          "videoId": "A4Q8q0KQQ14",
-          "title": "Tesla Saves Owner From Prison"
+          "videoId": "k8JP04qqpmg",
+          "title": "आँखों देखी : भ्रम का शिकार विपक्षी दल"
         },
         {
           "ok": true,
@@ -256,8 +256,8 @@
         },
         {
           "ok": true,
-          "videoId": "XGgJ-jLQYVU",
-          "title": "Grand Ambition: Paul Keating and James Curran in Conversation"
+          "videoId": "yekRZ-7JUiQ",
+          "title": "Jim Chalmers GOES NUTS as Nat Barr DESTROYS Him with Brutal Capital Gains Tax Questions"
         }
       ],
       "reason": null
@@ -298,8 +298,8 @@
         },
         {
           "ok": true,
-          "videoId": "CugtQaWd2fI",
-          "title": "Close Encounters Of The Third Kind (Director's Cut)"
+          "videoId": "uoH0YM5LrZM",
+          "title": "EXCLUSIVE: James Talarico talks Texas Senate race in one-on-one interview with FOX SA"
         }
       ],
       "reason": null
@@ -319,8 +319,8 @@
         },
         {
           "ok": true,
-          "videoId": "V_4U0LBjNso",
-          "title": "Rally with Jon Ossoff | Atlanta, GA | 10.17.2026"
+          "videoId": "B6a9_bEebYM",
+          "title": "Inside the Spitfire"
         }
       ],
       "reason": null
@@ -1182,21 +1182,15 @@
       "reason": null
     },
     "al-araby-tv": {
-      "ok": true,
-      "use": 0,
+      "ok": false,
+      "use": null,
       "streams": [
         {
-          "ok": true,
-          "heights": [
-            240,
-            360,
-            480,
-            720,
-            1080
-          ]
+          "ok": false,
+          "reason": "unreachable (IncompleteRead)"
         }
       ],
-      "reason": null
+      "reason": "unreachable (IncompleteRead)"
     },
     "asharq-news": {
       "ok": true,
@@ -1534,7 +1528,7 @@
         {
           "ok": true,
           "heights": [
-            720
+            1080
           ]
         },
         {
@@ -1618,15 +1612,18 @@
       "reason": null
     },
     "news-central": {
-      "ok": false,
-      "use": null,
+      "ok": true,
+      "use": 0,
       "streams": [
         {
-          "ok": false,
-          "reason": "HTTP 404"
+          "ok": true,
+          "heights": [
+            480,
+            720
+          ]
         }
       ],
-      "reason": "HTTP 404"
+      "reason": null
     },
     "cctv-1": {
       "ok": true,
@@ -1719,8 +1716,8 @@
       "streams": [
         {
           "ok": true,
-          "videoId": "jw-nEfwD8zA",
-          "title": "Florida State Seminoles vs. Miami Hurricanes | Full Game Highlights | ESPN College Football"
+          "videoId": "i9reaZ4duE8",
+          "title": "NATO’s Eastern Flank on alert after radar detections | Morning Report"
         },
         {
           "ok": false,
@@ -1760,15 +1757,15 @@
       "reason": null
     },
     "al24-news": {
-      "ok": false,
-      "use": null,
+      "ok": true,
+      "use": 0,
       "streams": [
         {
-          "ok": false,
-          "reason": "HTTP 404"
+          "ok": true,
+          "heights": []
         }
       ],
-      "reason": "HTTP 404"
+      "reason": null
     },
     "al-ghad-tv": {
       "ok": true,
@@ -1787,8 +1784,8 @@
       "streams": [
         {
           "ok": true,
-          "videoId": "yAGGkDvbjAs",
-          "title": "Jon Stewart and The News Team Tackle the 2026 Midterm Candidates | The Daily Show"
+          "videoId": "duWUa9Md_tU",
+          "title": "Former CIA Spy: How to Read Anyone, Think Clearly, and Protect Yourself"
         }
       ],
       "reason": null
@@ -1799,8 +1796,8 @@
       "streams": [
         {
           "ok": true,
-          "videoId": "jw-nEfwD8zA",
-          "title": "Florida State Seminoles vs. Miami Hurricanes | Full Game Highlights | ESPN College Football"
+          "videoId": "SmWK6WWeuMo",
+          "title": "What Really Happens When an Undersea Internet Cable Breaks?"
         }
       ],
       "reason": null
@@ -1811,8 +1808,8 @@
       "streams": [
         {
           "ok": true,
-          "videoId": "gmXdJ-CkMv4",
-          "title": "⚡️НОВОСТИ | КОЛЛАПС В АЭРОПОРТАХ МОСКВЫ | ГАЗ В КРЫМУ ТЕПЕРЬ ПЛАТНЫЙ | ФРАНЦИЮ ОХВАТИЛИ ПОГРОМЫ"
+          "videoId": "l1c36-RG4w0",
+          "title": "Самая масштабная атака на Петербург. Трамп предлагает ЕС российский газ. Погромы в Париже и Милане"
         }
       ],
       "reason": null
@@ -1823,8 +1820,8 @@
       "streams": [
         {
           "ok": true,
-          "videoId": "fRsPT_Ojxis",
-          "title": "Elon Musk's HUGE Donation to Republicans! & Botched Campaign Ads! | Have I Got News for You US S5 E5"
+          "videoId": "WU9jn7sWJdU",
+          "title": "Trump Could Legalise 'Shadow Ships' to Fight Oil Prices | The Palki Sharma Show | IGR"
         }
       ],
       "reason": null
@@ -1835,8 +1832,8 @@
       "streams": [
         {
           "ok": true,
-          "videoId": "OTnRnFKu-sg",
-          "title": "Crisis de la vivienda en Los Ángeles - Vivir en la calle entre propiedades de lujo | DW Documental"
+          "videoId": "6cbFZRHLYi8",
+          "title": "Los Dolomitas - Verano en los Alpes italianos | DW Documental"
         }
       ],
       "reason": null
@@ -1847,8 +1844,8 @@
       "streams": [
         {
           "ok": true,
-          "videoId": "zLPwiYqBHB0",
-          "title": "Objectif Élysée 2027 : Marine Le Pen face à Laurence Ferrari"
+          "videoId": "Zv1mWO9DEn8",
+          "title": "Lycéens, Gilets jaunes, casseurs : le début d'un embrasement ?"
         }
       ],
       "reason": null
@@ -1859,8 +1856,8 @@
       "streams": [
         {
           "ok": true,
-          "videoId": "8mmmWkduHEo",
-          "title": "🇺🇸 State Sec. Marco Rubio Briefs Press at Joint Base Andrews before India & Uzbekistan Trip [LIVE]"
+          "videoId": "NXWY4QeCc4Q",
+          "title": "RAYS vs. GUARDIANS: ALCS Full Game 4 Highlights (October 17) | 2026 MLB Postseason"
         }
       ],
       "reason": null
@@ -1871,8 +1868,8 @@
       "streams": [
         {
           "ok": true,
-          "videoId": "8mmmWkduHEo",
-          "title": "🇺🇸 State Sec. Marco Rubio Briefs Press at Joint Base Andrews before India & Uzbekistan Trip [LIVE]"
+          "videoId": "C7T3oeL_HGg",
+          "title": "Watch: Highlights from Vance's CBS News town hall"
         }
       ],
       "reason": null
@@ -1883,8 +1880,8 @@
       "streams": [
         {
           "ok": true,
-          "videoId": "Z7lQMpZIKaE",
-          "title": "LIVE NEWS: Trump waives Russia sanctions, US weighs strikes on Iran, Katie Zacharia out & more"
+          "videoId": "C96oohpWBGw",
+          "title": "LIVE NEWS: LiveNOW FOX 24/7 LIVE STREAM"
         }
       ],
       "reason": null
@@ -1895,8 +1892,8 @@
       "streams": [
         {
           "ok": true,
-          "videoId": "jw-nEfwD8zA",
-          "title": "Florida State Seminoles vs. Miami Hurricanes | Full Game Highlights | ESPN College Football"
+          "videoId": "1MsLWFqaJmk",
+          "title": "Flydubai captain on the cockpit battle to save his plane"
         }
       ],
       "reason": null
@@ -1907,8 +1904,8 @@
       "streams": [
         {
           "ok": true,
-          "videoId": "Y4yKWXNDaK8",
-          "title": "The Fugitive (1993)"
+          "videoId": "4WFNmPpzZk0",
+          "title": "Victims identified in deadly Oregon school shooting"
         }
       ],
       "reason": null
@@ -1919,8 +1916,8 @@
       "streams": [
         {
           "ok": true,
-          "videoId": "jw-nEfwD8zA",
-          "title": "Florida State Seminoles vs. Miami Hurricanes | Full Game Highlights | ESPN College Football"
+          "videoId": "-vWOlsXpaSY",
+          "title": "LIVE: Looting at Stores In Paris and Lille After Massive Unrest in France I Protest"
         }
       ],
       "reason": null
@@ -1943,8 +1940,8 @@
       "streams": [
         {
           "ok": true,
-          "videoId": "vmSgQAbL2DM",
-          "title": "الردع بين واشنطن وطهران.. أزمة هرمز وأمن الخليج والتفويض المصري - نقاش الساعة"
+          "videoId": "UHU-RnzEE70",
+          "title": "تقرير أميركي يكشف مفاجأة.. هل بدأت أذرع إيران تموّل الحرس الثوري؟ | #غرفة_الأخبار"
         }
       ],
       "reason": null
@@ -2396,15 +2393,15 @@
       "reason": null
     },
     "al-iraqia-sport": {
-      "ok": true,
-      "use": 0,
+      "ok": false,
+      "use": null,
       "streams": [
         {
-          "ok": true,
-          "heights": []
+          "ok": false,
+          "reason": "HTTP 404"
         }
       ],
-      "reason": null
+      "reason": "HTTP 404"
     },
     "fox-sports-news": {
       "ok": true,
