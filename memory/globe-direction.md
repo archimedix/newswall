@@ -6,7 +6,8 @@ metadata:
 ---
 
 Il 2026-10-18 l'utente ha deciso di affiancare al muro una vista esplorazione 3D (`globe.html`,
-three.js vendorizzato). Piano completo in `docs/globe-plan.md`, **da approvare prima di eseguire**.
+three.js vendorizzato). Piano completo in `docs/globe-plan.md`, **approvato il 2026-10-18** (fasi 0→1→2→3; relay
+Cloudflare verificato gratuito). Fase 0 fatta lo stesso giorno.
 
 Decisioni: globo come pagina separata (il muro resta minimale e non carica 3D); niente YouTube nel
 globo (solo HLS come texture WebGL); 4–6 schermi live, gli altri logo/ultimo fotogramma; niente
@@ -16,5 +17,5 @@ smartphone via QR con relay Cloudflare Worker + Durable Object, cifrato end-to-e
 **Why:** l'utente vuole un'esperienza "videogioco" per esplorare, senza appesantire il muro che si
 proietta; preferisce discutere e leggere il piano prima che si scriva codice.
 
-**How to apply:** non iniziare fasi del piano senza il via esplicito; quando una fase è fatta,
+**How to apply:** procedere per fasi nell'ordine, verificando il muro nel browser a ogni fase; quando una fase è fatta,
 spostarla nel README e toglierla dal piano.

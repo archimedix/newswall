@@ -66,30 +66,25 @@ assets/
 relay/                (fase 3) Cloudflare Worker + Durable Object
 ```
 
-Il punto chiave è `hls-player.js`: oggi `attach()`/`detach()` vivono dentro la logica delle
-tile. Va estratta un'API che il globo possa usare con un `<video>` fuori dal DOM:
+Il punto chiave è `hls-player.js` (fatto in fase 0): un'API che il globo può usare con un
+`<video>` fuori dal DOM:
 
 ```js
-const p = createHlsPlayer(source, { cap: 360, onPlaying, onDead });
+const p = createHlsPlayer(url, { cap: 360, onReady, onFail });
 p.video        // <video> da usare come texture
-p.setCap(1080) // quando lo schermo viene selezionato
+p.setCap(null) // piena qualità quando lo schermo viene selezionato
 p.destroy()
 ```
 
+Il player gestisce **uno** stream: il passaggio allo stream successivo della sorgente
+(saltando quelli YouTube) lo fa chi lo usa, nel globo `livepool.js`.
+
 ## 4. Fasi
 
-### Fase 0 — Fondamenta (nessun cambiamento visibile)
+### Fase 0 — Fondamenta ✅ (18/10/2026)
 
-1. Dividere `app.js` nei moduli `js/core/*` e `js/wall/*`; `index.html` con
-   `<script type="module">`.
-2. Estrarre `createHlsPlayer()` dalle tile, con lo stesso comportamento di oggi
-   (fallback `idx + 1`, watchdog, `markDead`, controllo `isConnected`).
-3. Normalizzare `country: "UK"` → `"GB"` in `sources.json` (4 sorgenti) e fare in modo
-   che `harvest-iptv.py` scriva sempre `GB` (iptv-org usa `UK`).
-4. Aggiornare CLAUDE.md e README ("How it's built").
-
-**Fatto quando:** il muro si comporta esattamente come prima (modi, URL, drag, audio,
-fallback, palette), verificato nel browser.
+Fatta: moduli `js/core/*` e `js/wall/*`, `createHlsPlayer()`, `GB` al posto di `UK`. Descritta
+nel README ("How it's built") e in CLAUDE.md.
 
 ### Fase 1 — Il globo
 

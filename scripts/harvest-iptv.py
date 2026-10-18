@@ -39,12 +39,21 @@ AREA = {
     **{c: 'mideast' for c in "AE BH EG IL IQ IR JO KW LB OM PS QA SA SY TR YE".split()},
     **{c: 'asia' for c in "AF AZ BD BT CN GE HK ID IN JP KG KH KP KR KZ LA LK MM MN MY NP PH PK SG TH TJ TM TW UZ VN".split()},
     **{c: 'africa' for c in "AO BF BI BJ BW CD CF CG CI CM CV DJ DZ ET GA GH GM GN GQ KE LR LY MA MG ML MR MU MW MZ NA NE NG RW SD SN SO SS SZ TD TG TN TZ UG ZA ZM ZW".split()},
-    **{c: 'europe' for c in "RU UK XK".split()},
+    **{c: 'europe' for c in "RU XK".split()},
     **{c: 'asia' for c in "AM HK TW".split()},
     'US': 'us', 'CA': 'us',
     **{c: 'americas' for c in "AR BO BR CL CO CR CU DO EC GT HN JM MX NI PA PE PR PY SV UY VE".split()},
     **{c: 'oceania' for c in "AU FJ NZ PG".split()},
 }
+# iptv-org writes "UK" for the United Kingdom; the catalog keeps ISO 3166 ("GB"),
+# which is what flags, Intl.DisplayNames and the globe's coordinates expect.
+ISO = {"UK": "GB"}
+
+
+def iso(cc):
+    return ISO.get(cc, cc)
+
+
 # iptv-org's categories are generous: radio, trailer channels and
 # teleshopping end up in them. Better to lose a few than pollute the catalog.
 EXCLUDE = re.compile(r"\b(radij|radio|fm|trailer|shop|teleshop|kids|"
@@ -143,7 +152,7 @@ def entries_iptv(channels, feed_of, streams):
 def meta(ch, feed_of, e):
     feed = feed_of.get(ch["id"], {})
     code = (feed.get("languages") or [""])[0]
-    return {**e, "name": ch["name"], "id_name": ch["name"], "country": ch.get("country") or "??",
+    return {**e, "name": ch["name"], "id_name": ch["name"], "country": iso(ch.get("country") or "??"),
             "categories": ch.get("categories") or [], "lang": LANG.get(code, code),
             "tz": (feed.get("timezones") or ["UTC"])[0],
             "names": [ch["name"]] + (ch.get("alt_names") or [])}
@@ -174,7 +183,7 @@ def entries_freetv(text, channels, feed_of, countries, tz_of):
             # tvg-id follows iptv-org's "Name.cc" even for channels iptv-org lacks
             cc = (attrs.get("tvg-country") or attrs.get("tvg-id", "").rpartition(".")[2] or "??")[:2].upper()
             code = (countries.get(cc, {}).get("languages") or [""])[0]
-            e = {**e, "key": f"free-tv:{slug(name)}:{cc}", "name": name, "id_name": name, "country": cc,
+            e = {**e, "key": f"free-tv:{slug(name)}:{cc}", "name": name, "id_name": name, "country": iso(cc),
                  "categories": [], "lang": LANG.get(code, code), "tz": tz_of.get(cc, "UTC"),
                  "names": [name]}
         if group in GROUP_CATEGORY and GROUP_CATEGORY[group] not in e["categories"]:

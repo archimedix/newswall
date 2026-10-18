@@ -7,8 +7,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 Newswall: a static page showing a wall of live channels (HLS and YouTube), one with audio
 at a time, to compare how different countries tell the same event. News is the main wall; the
 others (Sport, Markets, Weather) are "modes" keyed by iptv-org category ids. No backend, no build step,
-no package manager, no tests. Vanilla JS in three files (`index.html`, `styles.css`, `app.js`);
-the only runtime dependency is hls.js, vendored in `assets/vendor/`. Fonts are vendored in
+no package manager, no tests. Vanilla JS as native ES modules in `js/` (no bundler), plus
+`index.html` and `styles.css`; the only runtime dependency is hls.js, vendored in `assets/vendor/`. Fonts are vendored in
 `assets/fonts/` on purpose: the page must make **no third-party requests** to render (do not add
 CDN links). The README is the design document — read it before non-trivial changes. Its "Possible improvements" section is the backlog: add ideas there, remove them once done.
 
@@ -51,30 +51,45 @@ Python scripts use the standard library only — keep it that way (they run bare
   origin (broadcaster, club/league, official FAST feed), no rebroadcasts or pay channels via proxies. Selection criterion: national/international broadcasters that represent a national
   narrative; no local TV, radio, duplicates.
 
-## app.js architecture
+## JS architecture
+
+Native ES modules, loaded as they are (`<script type="module">`). Two layers:
+
+- **`js/core/`** — shared by every view (the wall today, the globe planned in
+  `docs/globe-plan.md`). `data.js`: `loadCatalog()` fills `catalog` (`all`, `live`,
+  `generated`); `MODES`, `byId`, `inMode(s, mode)`, `isPlayable`, `firstStream`, `flag`,
+  `countryName`, `langName`, `originText`, `escapeHtml`. `url.js`: URL hash and localStorage.
+  `hls-player.js`: `createHlsPlayer(url, {muted, cap, onReady, onFail})` → `{video, hls, play,
+  setCap(height|null), destroy}` — one stream, retries + 15 s watchdog, then `onFail`; after
+  `destroy()` no callback fires. hls.js stays a classic global script.
+- **`js/wall/`** — `wall.js` is the entry point; `panel.js` (catalog + quick search; gets
+  `toggleSource` via `initPanel`), `youtube.js`, `state.js` (wall `state`, `$`, `toast`).
+
+Wall behaviour:
 
 - **Modes**: `MODES` maps category id → label and optional hand-picked default `wall` (else
-  `wallFor()` picks the first live channels, one per country). `state.all` is the whole catalog,
-  `state.sources` the current mode's subset (panel and search use it); `byId` looks in `state.all`.
-  URL `#c=<mode>&s=…` (no `c` = news), localStorage `newswall` (news) / `newswall:<mode>` per wall,
-  `newswall:mode` for the last mode. `setMode()` swaps the wall through `commit()`, so shared
-  tiles keep playing.
-- Global `state` (`live`, `active` ids in order, `players` Map id → `{kind, el, hls}`,
-  `audioOn`, `focused`). `boot()` loads both JSON files; wall comes from URL hash `#s=a,b,c`,
-  then `localStorage['newswall']`, then `DEFAULT_WALL`. `saveWall()`/`commit()` write both back —
-  the URL *is* the shareable configuration. Max `MAX_TILES` = 12.
+  `wallFor()` picks the first live channels, one per country). `catalog.all` is the whole
+  catalog, `state.sources` the current mode's subset (panel and search use it); `byId` looks in
+  `catalog.all`. URL `#c=<mode>&s=…` (no `c` = news), localStorage `newswall` (news) /
+  `newswall:<mode>` per wall, `newswall:mode` for the last mode. `setMode()` swaps the wall
+  through `commit()`, so shared tiles keep playing.
+- `state` (`active` ids in order, `players` Map id → `{kind, el, player}`, `audioOn`,
+  `focused`). Wall comes from URL hash `#s=a,b,c`, then localStorage, then the mode default.
+  `saveWall()`/`commit()` write both back — the URL *is* the shareable configuration.
+  Max `MAX_TILES` = 12.
 - **Reconcile, don't rebuild**: `syncGrid()` only adds/removes changed tiles, and visual order is
   CSS `order` (`orderTiles()`), never DOM moves — moving a node reloads a YouTube iframe. Preserve
   this in any grid/reorder change.
 - **Stream fallback**: `attach(tile, src, idx)` mounts stream `idx` (starting from `live.use` via
-  `firstStream`), with watchdogs/error handlers that `detach` and try `idx + 1`, ending in
-  `markDead`. Async callbacks must check `tile.isConnected` before reattaching.
-- **Quality**: HLS tiles are capped at `LOW_QUALITY_CAP` (480p) via hls.js level capping; only
+  `firstStream`); the player's `onFail` (or a missing videoId) `detach`es and tries `idx + 1`,
+  ending in `markDead`. Async callbacks must check `tile.isConnected` before reattaching.
+- **Quality**: HLS tiles are capped at `LOW_QUALITY_CAP` (480p) via `player.setCap()`; only
   the focused tile (`setFocus`) gets full resolution. YouTube ignores quality requests.
 - YouTube iframes are controlled via postMessage (`yt()`, `ytHello()`); mouse events don't reach
   through iframes, hence the `⠿` drag grip.
 - One audio at a time (`setAudio`/`setOnAir`); red is reserved for the on-air tile.
 - Autoplay needs a user gesture: the `#gate` start screen calls `startAll()`.
+- Country codes are ISO 3166 (`GB`, not iptv-org's `UK`: `harvest-iptv.py` maps it).
 
 ## UI conventions
 

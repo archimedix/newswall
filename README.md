@@ -85,7 +85,16 @@ Mono** for clocks, codes and origins. They live in the repo, not on a CDN: the p
 
 Vanilla JS, no build step, a single runtime dependency
 ([hls.js](https://github.com/video-dev/hls.js), vendored in `assets/vendor/`).
-Three files: `index.html`, `styles.css`, `app.js`.
+`index.html`, `styles.css`, and native ES modules in `js/` (no bundler: the browser loads
+them as they are):
+
+- `js/core/` — what any view of the catalog needs: `data.js` (load `sources.json` and
+  `live.json`, modes, names, flags, origins), `url.js` (the wall in the URL and in
+  localStorage), `hls-player.js` (one HLS stream in a `<video>`, with retries, watchdog and
+  quality cap, knowing nothing about tiles).
+- `js/wall/` — the wall: `wall.js` (entry point: grid, tiles, audio, focus, keys),
+  `panel.js` (catalog and quick search), `youtube.js` (iframes driven by postMessage),
+  `state.js` (what they share).
 
 Two kinds of stream, and they are not equivalent:
 

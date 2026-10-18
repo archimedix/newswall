@@ -3825,7 +3825,7 @@
       "id": "talksport",
       "name": "talkSPORT",
       "lang": "en",
-      "country": "UK",
+      "country": "GB",
       "tz": "Europe/London",
       "tags": [
         "europe"
@@ -4148,7 +4148,7 @@
       "id": "mutv",
       "name": "MUTV",
       "lang": "en",
-      "country": "UK",
+      "country": "GB",
       "tz": "Europe/London",
       "tags": [
         "europe"
@@ -4174,7 +4174,7 @@
       "id": "fifa-women",
       "name": "FIFA+ Women",
       "lang": "en",
-      "country": "UK",
+      "country": "GB",
       "tz": "Europe/London",
       "tags": [
         "europe"
@@ -5028,7 +5028,7 @@
       "id": "sky-news-weather",
       "name": "Sky News Weather",
       "lang": "en",
-      "country": "UK",
+      "country": "GB",
       "tz": "Europe/London",
       "tags": [
         "europe"
