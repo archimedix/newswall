@@ -217,9 +217,17 @@ intero): è proprio l'uso "proiettato" dove non hai la tastiera a portata.
 può farlo da sola. Opzioni considerate:
 
 1. **Relay minimo su Cloudflare (Worker + Durable Object)** — *raccomandato*.
-2. Servizi pubblici (PeerJS cloud): un terzo vede chi si collega. Contro lo spirito del
-   progetto.
-3. WebRTC con scambio manuale di due QR: senza server, ma macchinoso.
+2. **Deno Deploy** — alternativa valida: gratuito, WebSocket supportati; le istanze sono
+   separate, quindi telefono e globo si parlano via `BroadcastChannel`.
+3. Relay proprio (un container Node/Python sullo swarm già gestito): costo zero e nessun
+   terzo, ma va mantenuto e lega Newswall a quella macchina.
+4. Servizi pubblici (PeerJS cloud) o BaaS (Supabase Realtime, Firebase): un terzo vede chi si
+   collega, account e chiavi nella pagina. Contro lo spirito del progetto.
+5. WebRTC con scambio manuale di due QR: senza server, ma macchinoso.
+
+Esclusi: **Vercel** e **Netlify** (le funzioni vivono una richiesta, niente WebSocket
+persistenti); **Render** free (si addormenta dopo ~15 min, risveglio 30–60 s); **Fly.io** e
+**Railway** (niente più piano gratuito vero).
 
 **Come funziona il relay**
 - Il globo genera un `room` casuale (128 bit) e una chiave `k`. Il QR contiene
@@ -231,6 +239,9 @@ può farlo da sola. Opzioni considerate:
   Il relay vede solo il `room` e byte cifrati.
 - Niente WebRTC: sono pochi messaggi piccoli, la latenza via edge Cloudflare (20–50 ms) basta
   per un telecomando, e si evitano NAT, ICE e TURN.
+- Il Durable Object usa la **WebSocket Hibernation API** (`state.acceptWebSocket`), non
+  `accept()`: da fermo non consuma durata. Nessuno storage (classe SQLite, l'unica sul piano
+  Free, ma senza scriverci).
 - La stanza muore quando entrambi si disconnettono, o dopo 2 ore. Nessun log persistente.
 - Un solo telecomando alla volta: il secondo che si aggancia prende il controllo.
 - Se il relay non risponde, il pulsante "Telecomando" non compare: il globo funziona uguale.
@@ -257,8 +268,14 @@ generato nel browser da una libreria vendorizzata (qrcode-generator, MIT, ~20 KB
   K e pixel ratio vanno tarati in fase 2.
 - **CORS**: gli stream che hls.js non riesce a caricare per CORS non compaiono nemmeno nel
   globo (stesso limite del muro, es. IRIB).
-- **Cloudflare**: verificare che i Durable Objects rientrino nel piano gratuito alle
-  condizioni attuali prima della fase 3.
+- **Cloudflare** — verificato il 18/10/2026
+  ([pricing](https://developers.cloudflare.com/durable-objects/platform/pricing/),
+  [limits](https://developers.cloudflare.com/durable-objects/platform/limits/)): i Durable
+  Objects sono nel piano **Free** (solo backend SQLite). Limiti al giorno: 100.000 richieste,
+  13.000 GB-s di durata, reset alle 00:00 UTC; oltre, errore e nessun addebito. Un WebSocket
+  aperto = 1 richiesta, i messaggi in arrivo contano 1 ogni 20, quelli in uscita sono gratis.
+  Caso peggiore, 30 msg/s di trascinamento continuo ≈ 1,5 richieste/s → ~18 ore al giorno:
+  margine ampio. Da ricontrollare solo se le condizioni cambiano.
 - **Terre a punti o piene?** Da decidere su un prototipo della fase 1.
 - **Sorgenti senza paese preciso** (canali internazionali, panarabi): si ancorano alla sede
   (`country` attuale). Eventuale override `geo` per sorgente solo se serve.
@@ -267,4 +284,5 @@ generato nel browser da una libreria vendorizzata (qrcode-generator, MIT, ~20 KB
 
 1. L'impostazione generale (due pagine, moduli ES, niente build).
 2. L'ordine delle fasi: 0 → 1 → 2 → 3.
-3. Il relay Cloudflare per il telecomando (si decide prima della fase 3).
+3. Il relay Cloudflare per il telecomando (fattibile e gratuito, vedi §8; si decide prima
+   della fase 3).
