@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-18T14:59:30+00:00",
+  "generated": "2026-10-18T15:46:53+00:00",
   "entries": {
     "aljazeera-en": {
       "ok": true,
@@ -95,8 +95,19 @@
     },
     "sky-news": {
       "ok": true,
-      "use": 1,
+      "use": 0,
       "streams": [
+        {
+          "ok": true,
+          "heights": [
+            144,
+            288,
+            432,
+            576,
+            720,
+            1080
+          ]
+        },
         {
           "ok": false,
           "reason": "HTTP 404"
@@ -179,8 +190,8 @@
         },
         {
           "ok": true,
-          "videoId": "D235yFpWfvo",
-          "title": "US-Iran War LIVE: Trump Threatens Iran With DEADLY ‘Mother Of All Bombs’ Strike | WION Live"
+          "videoId": "1UxGUTiHaj4",
+          "title": "Tiger Shroff Attacked LIVE: Gunshots Fired At Bollywood Actor in Juhu | WION"
         },
         {
           "ok": true,
@@ -205,8 +216,8 @@
         },
         {
           "ok": true,
-          "videoId": "RqgLuZJMULc",
-          "title": "BREAKING NEWS LIVE: Firing Incident Reported Near Tiger Shroff in Juhu, Mumbai | Tiger Shroff"
+          "videoId": "tAAnSBVprJU",
+          "title": "Trump Nerws LIVE: FBI Director Kash Patel UNMASKS The Trump Assassination Plot Details | US News"
         },
         {
           "ok": true,
@@ -230,8 +241,8 @@
         },
         {
           "ok": true,
-          "videoId": "l-g00JCHjY8",
-          "title": "LIVE: Shots Fired At Tiger Shroff’s Mumbai Residence, Bishnoi Gang Claims Responsibility"
+          "videoId": "Vy4fLJnJbkM",
+          "title": "LIVE: Gunfire At Actor Tiger Shroff’s Car In Juhu, Bishnoi Gang Claims Responsibility; Probe On"
         },
         {
           "ok": true,
@@ -248,11 +259,16 @@
     },
     "abc-au": {
       "ok": true,
-      "use": 1,
+      "use": 0,
       "streams": [
         {
-          "ok": false,
-          "reason": "HTTP 403"
+          "ok": true,
+          "heights": [
+            288,
+            360,
+            576,
+            720
+          ]
         },
         {
           "ok": true,
@@ -321,6 +337,15 @@
           "ok": false,
           "videoId": "vrGcefntYYg",
           "reason": "no live stream right now"
+        },
+        {
+          "ok": true,
+          "heights": [
+            180,
+            360,
+            540,
+            720
+          ]
         }
       ],
       "reason": null
@@ -343,10 +368,6 @@
       "streams": [
         {
           "ok": true,
-          "heights": []
-        },
-        {
-          "ok": true,
           "heights": [
             360,
             480,
@@ -354,6 +375,15 @@
             1080,
             1440
           ]
+        },
+        {
+          "ok": true,
+          "heights": []
+        },
+        {
+          "ok": true,
+          "videoId": "qBe59l6p_EU",
+          "title": "LIVE: Watch TRT World"
         }
       ],
       "reason": null
@@ -768,6 +798,11 @@
           "heights": [
             360
           ]
+        },
+        {
+          "ok": true,
+          "videoId": "qD6GkaU2lD0",
+          "title": "DD News LIVE Stream | News Update | Latest News | Top News | 24x7 News Channel"
         }
       ],
       "reason": null
@@ -977,6 +1012,11 @@
           "heights": [
             1080
           ]
+        },
+        {
+          "ok": true,
+          "videoId": "CGv0PWdv85o",
+          "title": "КАТАСТРОФА НА ГРАНИЦЕ С ЙЕМЕНОМ. ЕСТЬ ЖЕРТВЫ. ВОЙНА С ХУСИТАМИ ОБОСТРЯЕТСЯ. 18/10. 16:00"
         }
       ],
       "reason": null
@@ -1084,6 +1124,10 @@
             720,
             1080
           ]
+        },
+        {
+          "ok": true,
+          "heights": []
         }
       ],
       "reason": null
@@ -1140,6 +1184,14 @@
             240,
             360,
             576
+          ]
+        },
+        {
+          "ok": true,
+          "heights": [
+            360,
+            720,
+            1080
           ]
         }
       ],
@@ -1198,6 +1250,15 @@
       "ok": true,
       "use": 0,
       "streams": [
+        {
+          "ok": true,
+          "heights": [
+            240,
+            480,
+            720,
+            1080
+          ]
+        },
         {
           "ok": true,
           "heights": [
@@ -1588,15 +1649,24 @@
       "reason": null
     },
     "mtv-uutiset": {
-      "ok": false,
-      "use": null,
+      "ok": true,
+      "use": 1,
       "streams": [
         {
           "ok": false,
           "reason": "HTTP 503"
+        },
+        {
+          "ok": true,
+          "heights": [
+            216,
+            432,
+            576,
+            720
+          ]
         }
       ],
-      "reason": "HTTP 503"
+      "reason": null
     },
     "13-siam-thai": {
       "ok": true,
@@ -1614,15 +1684,18 @@
       "reason": null
     },
     "news-central": {
-      "ok": false,
-      "use": null,
+      "ok": true,
+      "use": 0,
       "streams": [
         {
-          "ok": false,
-          "reason": "HTTP 404"
+          "ok": true,
+          "heights": [
+            480,
+            720
+          ]
         }
       ],
-      "reason": "HTTP 404"
+      "reason": null
     },
     "cctv-1": {
       "ok": true,
@@ -1705,6 +1778,11 @@
           "heights": [
             360
           ]
+        },
+        {
+          "ok": true,
+          "videoId": "-PWMxjBgr0k",
+          "title": "CNA 24/7 LIVE: Breaking news on Asia and award-winning documentaries and shows"
         }
       ],
       "reason": null
@@ -1783,8 +1861,8 @@
       "streams": [
         {
           "ok": true,
-          "videoId": "NvQs1ltlkvE",
-          "title": "Multiple people killed, injured in 'disaster' at Alberta military base training area"
+          "videoId": "HAoPulu2cfo",
+          "title": "Rosemary Barton Live | Oct. 18, 2026"
         }
       ],
       "reason": null
@@ -1807,8 +1885,28 @@
       "streams": [
         {
           "ok": true,
+          "heights": [
+            240,
+            360,
+            480,
+            720,
+            1080
+          ]
+        },
+        {
+          "ok": true,
           "videoId": "t9Ilev-uk4w",
           "title": "Прямой эфир телеканала Настоящее Время"
+        },
+        {
+          "ok": true,
+          "heights": [
+            240,
+            360,
+            480,
+            720,
+            1080
+          ]
         }
       ],
       "reason": null
@@ -1831,8 +1929,22 @@
       "streams": [
         {
           "ok": true,
+          "heights": [
+            270,
+            360,
+            540,
+            720,
+            1080
+          ]
+        },
+        {
+          "ok": true,
           "videoId": "yZh3xsFqCt8",
           "title": "🔴 DW Español | En vivo"
+        },
+        {
+          "ok": true,
+          "heights": []
         }
       ],
       "reason": null
@@ -1881,6 +1993,14 @@
           "ok": true,
           "videoId": "4hA9l5Ikzcc",
           "title": "TOP STORIES: Pope Leo returns, Iran war latest, midterm elections"
+        },
+        {
+          "ok": true,
+          "heights": [
+            240,
+            480,
+            720
+          ]
         }
       ],
       "reason": null
@@ -1891,8 +2011,8 @@
       "streams": [
         {
           "ok": true,
-          "videoId": "mTyQUc2mSqk",
-          "title": "LIVE | Tiger Shroff | Three Men Open Fire Near Tiger Shroff In Mumbai's Juhu Area | LIVE Updates"
+          "videoId": "qzFlnS9vEgU",
+          "title": "Tiger Shroff Firing LIVE | Mumbai Police Reveal Sequence Of Events In Tiger Shroff Firing Case LIVE"
         }
       ],
       "reason": null
@@ -1915,23 +2035,34 @@
       "streams": [
         {
           "ok": true,
-          "videoId": "SIi92m2GlWo",
-          "title": "BREAKING: Tiger Shroff Escapes Unhurt After Shots Fired in Juhu | 2 Injured in Mumbai"
+          "videoId": "g3D2441lc34",
+          "title": "LIVE:Shots Fired at Tiger Shroff in Juhu; Actor Safe, 3 Injured | Bishnoi Gang Claim | Mumbai Police"
         }
       ],
       "reason": null
     },
     "reuters": {
-      "ok": false,
-      "use": null,
+      "ok": true,
+      "use": 1,
       "streams": [
         {
           "ok": false,
           "videoId": "cN7UiZxjTdY",
           "reason": "no live stream right now"
+        },
+        {
+          "ok": true,
+          "heights": [
+            240,
+            360,
+            480,
+            576,
+            720,
+            1080
+          ]
         }
       ],
-      "reason": "no live stream right now"
+      "reason": null
     },
     "sky-news-arabia": {
       "ok": true,
@@ -2078,6 +2209,14 @@
             720,
             1080
           ]
+        },
+        {
+          "ok": true,
+          "heights": [
+            360,
+            720,
+            1080
+          ]
         }
       ],
       "reason": null
@@ -2169,6 +2308,15 @@
         {
           "ok": true,
           "heights": [
+            480,
+            720,
+            1080
+          ]
+        },
+        {
+          "ok": true,
+          "heights": [
+            360,
             480,
             720,
             1080
@@ -2628,6 +2776,24 @@
             360,
             540,
             720
+          ]
+        },
+        {
+          "ok": true,
+          "heights": [
+            272,
+            360,
+            540,
+            720
+          ]
+        },
+        {
+          "ok": true,
+          "heights": [
+            272,
+            360,
+            720,
+            1080
           ]
         }
       ],

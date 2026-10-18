@@ -121,7 +121,7 @@ someone else rebroadcasting it:
 
 | `kind` | meaning |
 |---|---|
-| `broadcaster` | the domain belongs to the broadcaster itself |
+| `broadcaster` | the domain belongs to the broadcaster itself, or the broadcaster's own page publishes the URL |
 | `cdn` | technical delivery (Akamai, CloudFront, Amagi…): it tells how it arrives, not who publishes it |
 | `rebroadcast` | a third party putting someone else's feed back on air — highlighted in orange |
 | `youtube` | the broadcaster's official YouTube channel |
@@ -130,6 +130,12 @@ someone else rebroadcasting it:
 Labels are never made up: host and the way the stream was found are hard facts and are
 always recorded; the broadcaster name only appears when the domain makes it obvious. The
 rest stays `cdn` or `unknown`, which is honest information rather than a guess.
+
+The other proof is a stream's `page`: the broadcaster's own live page where that URL was
+found (`https://news.sky.com/watch-live`, `https://www.dw.com/en/live-tv/channel-english`…).
+A stream published there is the broadcaster's whatever CDN delivers it, and its label is the
+page's domain. Such official URLs go first in the preference list; third-party copies stay
+behind them as fallbacks.
 
 ```bash
 python3 scripts/annotate-origin.py --write
@@ -240,12 +246,13 @@ One entry in `sources.json`, then a PR:
 { "id": "channel-name", "name": "Channel Name", "lang": "en", "country": "XX",
   "tz": "Area/City", "tags": ["world"], "categories": ["news"],
   "streams": [
-    { "kind": "hls", "url": "https://.../playlist.m3u8" },
+    { "kind": "hls", "url": "https://.../playlist.m3u8", "page": "https://broadcaster/live" },
     { "kind": "youtube", "channelId": "UC..." }
   ] }
 ```
 
-One or more streams, in order of preference. Then fill in the `origin` fields and
+One or more streams, in order of preference; `page` (optional) is the official page that
+publishes the URL. Then fill in the `origin` fields and
 check that it holds up before opening the PR:
 
 ```bash
@@ -294,6 +301,14 @@ Ideas collected along the way, not yet done.
 - **IRIB streams in the browser.** IRINN and Varzesh (`ncdn.telewebion.ir`) pass the hourly
   check but stay on "connecting…" in the browser, where the request is blocked by CORS:
   find out why the check and the browser disagree, and look for alternative streams.
+- **More official URLs.** Scraping the broadcasters' live pages found usable URLs for Sky News,
+  ABC Australia, DW, Current Time, TRT, RT DE, Asharq and Press TV. The rest do not yield one
+  to a plain HTTP request: the player is behind a consent wall that blocks it until cookies
+  are accepted (GB News, France 24, Euronews, CNA, Africanews), the URL is signed with a token
+  that expires within minutes (Euronews `hdnea`, Rai's relinker), or the page refuses
+  scripts (WION, NDTV, TOLOnews, Kan: 403). Tokenised URLs could only work through a
+  resolver at refresh time, like YouTube's `videoId`, and expire well before the next
+  refresh: not worth it.
 - **Free-TV in the hourly Action.** `--source free-tv --alternatives` could join the
   "stream URLs that update themselves" step above: Free-TV fixes broken URLs by hand,
   often sooner than iptv-org.

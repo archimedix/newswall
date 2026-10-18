@@ -42,7 +42,8 @@ Python scripts use the standard library only — keep it that way (they run bare
   in `sources.json`). `.github/workflows/refresh.yml` runs it hourly and commits `live.json` as
   `newswall-bot` — expect frequent bot commits upstream; pull before editing `live.json`-adjacent work.
 - **`origin` honesty rule** (`annotate-origin.py`): never invent a broadcaster label. Only label it
-  when the domain makes it obvious; otherwise `cdn` / `unknown`. Relays/personal hosts
+  when the domain makes it obvious, or when the stream has a `page` (the broadcaster's own page
+  that publishes the URL: the label is that page's domain); otherwise `cdn` / `unknown`. Relays/personal hosts
   (`github.io`, `workers.dev`, …) are `rebroadcast` and shown in orange in the UI.
 - **`scripts/curated/<category>.txt`** — the hand-picked iptv-org ids per wall (one per line,
   reason in a comment); `harvest-iptv.py --write` only adds candidates listed there, and an id

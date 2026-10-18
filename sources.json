@@ -133,12 +133,14 @@
       "streams": [
         {
           "kind": "hls",
-          "url": "https://dwamdstream102.akamaized.net/hls/live/2015525/dwstream102/index.m3u8",
+          "url": "https://dwamdstream102.akamaized.net/hls/live/2015525/dwstream102/master.m3u8",
+          "page": "https://www.dw.com/en/live-tv/channel-english",
+          "via": "curated",
           "origin": {
             "host": "dwamdstream102.akamaized.net",
             "via": "curated",
-            "kind": "cdn",
-            "label": "akamaized.net"
+            "kind": "broadcaster",
+            "label": "dw.com"
           }
         },
         {
@@ -167,6 +169,18 @@
         "europe"
       ],
       "streams": [
+        {
+          "kind": "hls",
+          "url": "https://linear901-oo-hls0-prd-gtm.delivery.skycdp.com/17501/sde-fast-skynews/master.m3u8",
+          "page": "https://news.sky.com/watch-live",
+          "via": "curated",
+          "origin": {
+            "host": "linear901-oo-hls0-prd-gtm.delivery.skycdp.com",
+            "via": "curated",
+            "kind": "broadcaster",
+            "label": "sky.com"
+          }
+        },
         {
           "kind": "hls",
           "url": "https://lbgo.bozztv.com/ssh101/ssh101/skynews/playlist.m3u8",
@@ -442,12 +456,14 @@
       "streams": [
         {
           "kind": "hls",
-          "url": "https://abc-news-dmd-streams-1.akamaized.net/out/v1/701126012d044971b3e5b1291d3f9fd2/index.m3u8",
+          "url": "https://abc-news-dmd-streams-1.akamaized.net/out/v1/abc83881886746b0802dc3e7ca2bc792/index.m3u8",
+          "page": "https://www.abc.net.au/news/newschannel",
+          "via": "curated",
           "origin": {
             "host": "abc-news-dmd-streams-1.akamaized.net",
             "via": "curated",
-            "kind": "cdn",
-            "label": "akamaized.net"
+            "kind": "broadcaster",
+            "label": "abc.net.au"
           }
         },
         {
@@ -630,6 +646,17 @@
       "streams": [
         {
           "kind": "hls",
+          "url": "https://tv-trtworld.medya.trt.com.tr/master.m3u8",
+          "origin": {
+            "host": "tv-trtworld.medya.trt.com.tr",
+            "via": "curated",
+            "kind": "broadcaster",
+            "label": "TRT"
+          },
+          "page": "https://www.trtworld.com/live"
+        },
+        {
+          "kind": "hls",
           "origin": {
             "host": "dash2.antik.sk",
             "via": "curated",
@@ -637,16 +664,6 @@
             "label": "Antik Telecom"
           },
           "url": "https://dash2.antik.sk/live/test_trt_world_atktv/playlist.m3u8"
-        },
-        {
-          "kind": "hls",
-          "url": "https://tv-trtworld.medya.trt.com.tr/master.m3u8",
-          "origin": {
-            "host": "tv-trtworld.medya.trt.com.tr",
-            "via": "curated",
-            "kind": "broadcaster",
-            "label": "TRT"
-          }
         },
         {
           "kind": "youtube",
@@ -884,7 +901,8 @@
             "kind": "broadcaster",
             "label": "TRT"
           },
-          "url": "https://tv-trtarabi.medya.trt.com.tr/master.m3u8"
+          "url": "https://tv-trtarabi.medya.trt.com.tr/master.m3u8",
+          "page": "https://www.trtworld.com/live"
         }
       ],
       "categories": [
@@ -1126,7 +1144,8 @@
             "kind": "broadcaster",
             "label": "RT"
           },
-          "url": "https://rt-ger.rttv.com/dvr/rtdeutsch/playlist.m3u8"
+          "url": "https://rt-ger.rttv.com/dvr/rtdeutsch/playlist.m3u8",
+          "page": "https://de.rt.com/livetv/"
         },
         {
           "kind": "hls",
@@ -2046,6 +2065,18 @@
             "label": "asharq.com"
           },
           "url": "https://live-news.asharq.com/asharq.m3u8"
+        },
+        {
+          "kind": "hls",
+          "url": "https://live-news-v2.asharq.com/asharq.m3u8",
+          "page": "https://asharq.com/live/",
+          "via": "curated",
+          "origin": {
+            "host": "live-news-v2.asharq.com",
+            "via": "curated",
+            "kind": "broadcaster",
+            "label": "asharq.com"
+          }
         }
       ],
       "categories": [
@@ -3161,6 +3192,18 @@
       ],
       "streams": [
         {
+          "kind": "hls",
+          "url": "https://rferl-ingest.akamaized.net/hls/live/2121657/tvmc05/playlist.m3u8",
+          "page": "https://www.currenttime.tv/live/video",
+          "via": "curated",
+          "origin": {
+            "host": "rferl-ingest.akamaized.net",
+            "via": "curated",
+            "kind": "broadcaster",
+            "label": "currenttime.tv"
+          }
+        },
+        {
           "kind": "youtube",
           "channelId": "UCBG57608Hukev3d0d-gvLhQ",
           "origin": {
@@ -3168,6 +3211,18 @@
             "kind": "youtube",
             "label": "YouTube",
             "via": "curated"
+          }
+        },
+        {
+          "kind": "hls",
+          "url": "https://rferl-ingest.akamaized.net/hls/live/2121657-b/tvmc05/playlist.m3u8",
+          "page": "https://www.currenttime.tv/live/video",
+          "via": "curated",
+          "origin": {
+            "host": "rferl-ingest.akamaized.net",
+            "via": "curated",
+            "kind": "broadcaster",
+            "label": "currenttime.tv"
           }
         }
       ],
@@ -3210,6 +3265,18 @@
         "europe"
       ],
       "streams": [
+        {
+          "kind": "hls",
+          "url": "https://dwamdstream104.akamaized.net/hls/live/2015530/dwstream104/master.m3u8",
+          "page": "https://www.dw.com/es/live-tv/channel-spanish",
+          "via": "curated",
+          "origin": {
+            "host": "dwamdstream104.akamaized.net",
+            "via": "curated",
+            "kind": "broadcaster",
+            "label": "dw.com"
+          }
+        },
         {
           "kind": "youtube",
           "channelId": "UCT4Jg8h03dD0iN3Pb5L0PMA",
@@ -5186,8 +5253,9 @@
             "host": "live.presstv.co.uk",
             "via": "iptv-org",
             "kind": "broadcaster",
-            "label": "presstv.co.uk"
-          }
+            "label": "presstv.ir"
+          },
+          "page": "https://www.presstv.ir/Live"
         }
       ]
     }

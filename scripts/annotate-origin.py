@@ -4,8 +4,10 @@ Records, for every source, where the stream really comes from.
 
 The principle: nothing is attributed that cannot be proven. Host and the way
 the stream was found are hard facts and are always recorded; the broadcaster
-label only appears when the domain makes it obvious. The rest stays "cdn" or
-"unknown", which is honest information rather than a guess.
+label only appears when the domain makes it obvious, or when the stream has a
+"page": the broadcaster's own page that publishes that URL, which is proof
+enough. The rest stays "cdn" or "unknown", which is honest information rather
+than a guess.
 
     python3 scripts/annotate-origin.py [--write]
 """
@@ -76,6 +78,10 @@ def classify(stream, name, via):
     for suffix, label in KNOWN.items():
         if host.endswith(suffix):
             return {**out, "kind": "broadcaster", "label": label}
+
+    # Found on the broadcaster's own live page: published by them, whatever the CDN.
+    if stream.get("page"):
+        return {**out, "kind": "broadcaster", "label": registrable(host_of(stream["page"]))}
 
     for suffix, label in RELAY_KNOWN.items():
         if host.endswith(suffix):
