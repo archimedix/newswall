@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-18T20:39:22+00:00",
+  "generated": "2026-10-18T23:09:27+00:00",
   "entries": {
     "aljazeera-en": {
       "ok": true,
@@ -17,8 +17,8 @@
         },
         {
           "ok": true,
-          "videoId": "FWPvDbRC01M",
-          "title": "This Week with George Stephanopoulos Full Broadcast - Sunday, October 18, 2026"
+          "videoId": "vf4ksuXiQ1M",
+          "title": "Pittsburgh Steelers vs. Tampa Bay Buccaneers Game Highlights | 2026 NFL Season Week 6"
         }
       ],
       "reason": null
@@ -40,8 +40,8 @@
         },
         {
           "ok": true,
-          "videoId": "EdJhlChhacQ",
-          "title": "ساعة حوار | أرقام ترعب الخصوم.. قهوجي يستعرض الترسانة الكاسحة للجيش المصري"
+          "videoId": "fLbS3KJI0lE",
+          "title": "The Iron Giant"
         },
         {
           "ok": true,
@@ -65,8 +65,8 @@
         },
         {
           "ok": true,
-          "videoId": "4NhX14XJ9qg",
-          "title": "“A beautiful deal” and “a rotten fish”: how Trump’s diesel deal is being reported in Russia."
+          "videoId": "FWPvDbRC01M",
+          "title": "This Week with George Stephanopoulos Full Broadcast - Sunday, October 18, 2026"
         }
       ],
       "reason": null
@@ -87,8 +87,8 @@
         },
         {
           "ok": true,
-          "videoId": "4XifV69yOeY",
-          "title": "Elon Musk DENIES restricting Ukraine's Starlink access"
+          "videoId": "FWPvDbRC01M",
+          "title": "This Week with George Stephanopoulos Full Broadcast - Sunday, October 18, 2026"
         }
       ],
       "reason": null
@@ -114,8 +114,8 @@
         },
         {
           "ok": true,
-          "videoId": "FWPvDbRC01M",
-          "title": "This Week with George Stephanopoulos Full Broadcast - Sunday, October 18, 2026"
+          "videoId": "xDWQ3LkccY8",
+          "title": "Watch Sky News"
         },
         {
           "ok": false,
@@ -140,8 +140,8 @@
         },
         {
           "ok": true,
-          "videoId": "bvvjwSQO8sw",
-          "title": "Attacks ramp up in Russia-Ukraine war as Zelenskyy questions Starlink outage"
+          "videoId": "u8usFhuV9bE",
+          "title": "What Happened to France’s Aristocratic Families After the Revolution?"
         },
         {
           "ok": true,
@@ -165,8 +165,8 @@
         },
         {
           "ok": true,
-          "videoId": "4NhX14XJ9qg",
-          "title": "“A beautiful deal” and “a rotten fish”: how Trump’s diesel deal is being reported in Russia."
+          "videoId": "fWsfs1oqzuQ",
+          "title": "RUMBLE IN THE JUMBLE | Day 230 | Trump v Zelensky | France in flames | West Bank settler attacks"
         },
         {
           "ok": true,
@@ -190,8 +190,8 @@
         },
         {
           "ok": true,
-          "videoId": "hELElqlKdZc",
-          "title": "The REAL REASON Rubio is skipping New Delhi in this visit, Tariff Waiver & more! • Sridhar Chityala"
+          "videoId": "FWPvDbRC01M",
+          "title": "This Week with George Stephanopoulos Full Broadcast - Sunday, October 18, 2026"
         },
         {
           "ok": true,
@@ -216,8 +216,8 @@
         },
         {
           "ok": true,
-          "videoId": "FWPvDbRC01M",
-          "title": "This Week with George Stephanopoulos Full Broadcast - Sunday, October 18, 2026"
+          "videoId": "aIwcN6uuUo8",
+          "title": "Salt (Extended Edition)"
         },
         {
           "ok": true,
@@ -272,8 +272,8 @@
         },
         {
           "ok": true,
-          "videoId": "vGMJZSfVW1M",
-          "title": "The Secret Lives of Hummingbirds | Narrated by David Attenborough | Nature Documentary"
+          "videoId": "7x-qq154bgs",
+          "title": "Carolina Panthers vs. Philadelphia Eagles Game Highlights | NFL 2026 Season Week 6"
         }
       ],
       "reason": null
@@ -314,8 +314,8 @@
         },
         {
           "ok": true,
-          "videoId": "iipR5yUp36o",
-          "title": "LIVE: ABC News Live - 24/7 news, context and analysis"
+          "videoId": "FWPvDbRC01M",
+          "title": "This Week with George Stephanopoulos Full Broadcast - Sunday, October 18, 2026"
         }
       ],
       "reason": null
@@ -382,8 +382,8 @@
         },
         {
           "ok": true,
-          "videoId": "SzR5XGzZ9gY",
-          "title": "Siege of Acre, 1189 - 1191 ⚔️ Third Crusade (Part 1) ⚔️ Lionheart vs Saladin"
+          "videoId": "x-5gOFaB9mc",
+          "title": "The Centrists Built the AfD | Yanis Varoufakis and Grace Blakeley"
         }
       ],
       "reason": null
@@ -801,8 +801,8 @@
         },
         {
           "ok": true,
-          "videoId": "ossisfKxfd8",
-          "title": "Iyer Aur Babita Ji Ki Nayi Gaadi चोरी हो गई! | FULL MOVIE | Taarak Mehta Ka Ooltah Chashmah"
+          "videoId": "Wkb08pfQL0M",
+          "title": "Dipke छूटे! ये आंदोलन अब बहुत तेज होने जा रहा.. GenZ की ऐसी तैयारी! रिपोर्ट ने बढ़ाई धड़कन.."
         }
       ],
       "reason": null
@@ -1039,19 +1039,15 @@
       "reason": null
     },
     "mrtv-news": {
-      "ok": true,
-      "use": 0,
+      "ok": false,
+      "use": null,
       "streams": [
         {
-          "ok": true,
-          "heights": [
-            404,
-            720,
-            1080
-          ]
+          "ok": false,
+          "reason": "unreachable (URLError)"
         }
       ],
-      "reason": null
+      "reason": "unreachable (URLError)"
     },
     "rt-arabic": {
       "ok": true,
@@ -1693,10 +1689,10 @@
       "streams": [
         {
           "ok": false,
-          "reason": "unreachable (URLError)"
+          "reason": "HTTP 503"
         }
       ],
-      "reason": "unreachable (URLError)"
+      "reason": "HTTP 503"
     },
     "cctv-1": {
       "ok": true,
@@ -1782,8 +1778,8 @@
         },
         {
           "ok": true,
-          "videoId": "duWUa9Md_tU",
-          "title": "Former CIA Spy: How to Read Anyone, Think Clearly, and Protect Yourself"
+          "videoId": "v-6Wa8x0TKw",
+          "title": "10 Shocking $1,000,000 Border Busts | Border Security Australia"
         }
       ],
       "reason": null
@@ -1794,8 +1790,8 @@
       "streams": [
         {
           "ok": true,
-          "videoId": "gQNXCLt-sCo",
-          "title": "Ukrainian drones strike St. Petersburg in the largest-ever attack on the city | World News Tonight"
+          "videoId": "yqsyTQFAYSY",
+          "title": "Meet the Press Full Episode — October 18"
         },
         {
           "ok": false,
@@ -1862,8 +1858,8 @@
       "streams": [
         {
           "ok": true,
-          "videoId": "wkf-U9cODzI",
-          "title": "I ORDERED HONG KONG'S FAMOUS REUBEN SANDWICH CHALLENGE! | BeardMeatsFood"
+          "videoId": "xJKwRJBsrV8",
+          "title": "Paris Is On Fire... Rioters Take Over France"
         }
       ],
       "reason": null
@@ -1874,8 +1870,8 @@
       "streams": [
         {
           "ok": true,
-          "videoId": "yqsyTQFAYSY",
-          "title": "Meet the Press Full Episode — October 18"
+          "videoId": "r9PeYPHdpNo",
+          "title": "Our Planet | Coastal Seas | FULL EPISODE | Netflix"
         }
       ],
       "reason": null
@@ -1918,8 +1914,8 @@
       "streams": [
         {
           "ok": true,
-          "videoId": "wkf-U9cODzI",
-          "title": "I ORDERED HONG KONG'S FAMOUS REUBEN SANDWICH CHALLENGE! | BeardMeatsFood"
+          "videoId": "H82sLvw_lcU",
+          "title": "Chicago Bears vs Atlanta Falcons Game Highlights | 2026 NFL Season Week 6"
         }
       ],
       "reason": null
@@ -1956,8 +1952,8 @@
       "streams": [
         {
           "ok": true,
-          "videoId": "KQNFIBDsJoE",
-          "title": "Le journal de 20h de France Télévisions - 18 octobre 2026"
+          "videoId": "Zv1mWO9DEn8",
+          "title": "Lycéens, Gilets jaunes, casseurs : le début d'un embrasement ?"
         }
       ],
       "reason": null
@@ -1968,8 +1964,8 @@
       "streams": [
         {
           "ok": true,
-          "videoId": "VfWGiwIFVb0",
-          "title": "John Mearsheimer: Ukraine Can’t Win. Is Trump Right? | Tom Switzer"
+          "videoId": "OMeX3gmPyEI",
+          "title": "HOUTHI LIVE: 5 Killed, 16 Injured in Houthi Strike on Yemen Presidential Palace | Saudi Houthi War"
         }
       ],
       "reason": null
@@ -1980,8 +1976,8 @@
       "streams": [
         {
           "ok": true,
-          "videoId": "VpD5Le7OPqA",
-          "title": "Major Flydubai Update: 2 More Pilots Detained"
+          "videoId": "MJMpDS7Ic70",
+          "title": "LIVE: Decision Desk ‘26: Midterm preview powered by 2WAY and The Hill"
         }
       ],
       "reason": null
@@ -2012,8 +2008,8 @@
       "streams": [
         {
           "ok": true,
-          "videoId": "FWPvDbRC01M",
-          "title": "This Week with George Stephanopoulos Full Broadcast - Sunday, October 18, 2026"
+          "videoId": "j0vgVn24ohc",
+          "title": "The Pursuit Of Happyness (2006)"
         }
       ],
       "reason": null
@@ -2024,8 +2020,8 @@
       "streams": [
         {
           "ok": true,
-          "videoId": "lVDgpWHvWNI",
-          "title": "The Burmese Python is Vanishing in the Florida Everglades — The Predator Was Unexpected"
+          "videoId": "msaDTT18brA",
+          "title": "Exclusive: Federal Agents Collected Ilhan Omar's DNA From Trash, Sources Say | On Balance Full Show"
         }
       ],
       "reason": null
@@ -2071,8 +2067,8 @@
       "streams": [
         {
           "ok": true,
-          "videoId": "NuWp3te67ZM",
-          "title": "مقابلتي حول كيف أصبح من الممكن أن \"تستأجر هاكر\" أو تشتري خدمات وأدوات جاهزة لتنفيذ هجمات إلكترونية"
+          "videoId": "7ZGdHSD62xg",
+          "title": "Never Back Down"
         }
       ],
       "reason": null
@@ -2194,7 +2190,12 @@
       "streams": [
         {
           "ok": true,
-          "heights": []
+          "heights": [
+            360,
+            540,
+            720,
+            1080
+          ]
         }
       ],
       "reason": null
@@ -2271,19 +2272,15 @@
       "reason": null
     },
     "mrtv-sports": {
-      "ok": true,
-      "use": 0,
+      "ok": false,
+      "use": null,
       "streams": [
         {
-          "ok": true,
-          "heights": [
-            404,
-            720,
-            1080
-          ]
+          "ok": false,
+          "reason": "unreachable (URLError)"
         }
       ],
-      "reason": null
+      "reason": "unreachable (URLError)"
     },
     "red-bull-tv": {
       "ok": true,
