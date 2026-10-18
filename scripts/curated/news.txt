@@ -17,6 +17,7 @@ makan-33           # Israel, in Arabic
 channel-9          # Israel, in Russian
 ma-an-tv           # Palestine
 irinn-2            # Iran, state TV
+press-tv           # Iran, state TV for abroad, in English
 iran-international # Iran, opposition based in London
 oman-tv-mubashir   # Oman
 al-ghad-tv         # Egypt

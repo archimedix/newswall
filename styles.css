@@ -195,6 +195,7 @@ body.dragging .tile video,body.dragging .tile iframe{pointer-events:none}
   padding:3px 5px;border-radius:4px;background:rgba(255,255,255,.10);
   text-shadow:none;
 }
+.tile .cc.lang{color:#9fb0c2;background:rgba(255,255,255,.06)}
 .tile .clock{
   margin-left:auto;flex:none;
   font:11px/1 var(--mono);color:#d3dde7;text-shadow:0 1px 4px rgba(0,0,0,.9);
@@ -367,18 +368,18 @@ body.focus .tile:not(.is-focus),body.focus .add-slot{display:none}
 .icon:hover{background:var(--hover);color:var(--ice)}
 .panel-head .icon{margin-left:auto}
 
-.panel-find{display:flex;gap:6px;padding:0 14px 10px}
+.panel-find{display:flex;flex-wrap:wrap;gap:6px;padding:0 14px 10px}
 .panel-find input,.panel-find select{
   background:rgba(255,255,255,.05);border:1px solid var(--edge);border-radius:10px;
   color:var(--ice);font-size:12.5px;padding:8px 10px;min-width:0;
   transition:border-color .16s,background .16s;
 }
-.panel-find input{flex:1}
+.panel-find input{flex:1 1 100%}
 .panel-find input::placeholder{color:var(--dim)}
 .panel-find input:focus,.panel-find select:focus{
   outline:0;border-color:rgba(255,255,255,.3);background:rgba(255,255,255,.08);
 }
-.panel-find select{flex:0 0 40%;cursor:pointer;color:var(--ice)}
+.panel-find select{flex:1 1 0;min-width:0;cursor:pointer;color:var(--ice)}
 .panel-find select option{background:#0d1117;color:var(--ice)}
 
 #panel-filters{

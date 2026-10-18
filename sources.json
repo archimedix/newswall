@@ -1124,7 +1124,7 @@
     {
       "id": "visir",
       "name": "Visir",
-      "lang": "",
+      "lang": "is",
       "country": "IS",
       "tz": "Atlantic/Reykjavik",
       "tags": [
@@ -1295,7 +1295,7 @@
     {
       "id": "3catinfo",
       "name": "3CatInfo",
-      "lang": "",
+      "lang": "ca",
       "country": "ES",
       "tz": "Europe/Madrid",
       "tags": [
@@ -1647,7 +1647,7 @@
     {
       "id": "mrtv-news",
       "name": "MRTV News",
-      "lang": "",
+      "lang": "my",
       "country": "MM",
       "tz": "Asia/Yangon",
       "tags": [
@@ -2094,7 +2094,7 @@
     {
       "id": "newsmax-balkans",
       "name": "Newsmax Balkans",
-      "lang": "",
+      "lang": "bs",
       "country": "BA",
       "tz": "Europe/Sarajevo",
       "tags": [
@@ -2172,7 +2172,7 @@
     {
       "id": "first-channel-news",
       "name": "First Channel News",
-      "lang": "",
+      "lang": "hy",
       "country": "AM",
       "tz": "Asia/Yerevan",
       "tags": [
@@ -2316,7 +2316,7 @@
     {
       "id": "perviy-informationniy",
       "name": "Perviy Informationniy",
-      "lang": "",
+      "lang": "be",
       "country": "BY",
       "tz": "Europe/Minsk",
       "tags": [
@@ -2368,7 +2368,7 @@
     {
       "id": "ntv",
       "name": "ntv",
-      "lang": "",
+      "lang": "sq",
       "country": "AL",
       "tz": "Europe/Tirane",
       "tags": [
@@ -2564,7 +2564,7 @@
     {
       "id": "tolonews",
       "name": "TOLOnews",
-      "lang": "",
+      "lang": "ps",
       "country": "AF",
       "tz": "Asia/Kabul",
       "tags": [
@@ -2910,7 +2910,7 @@
     {
       "id": "24kz",
       "name": "24KZ",
-      "lang": "",
+      "lang": "kk",
       "country": "KZ",
       "tz": "Asia/Almaty",
       "tags": [
@@ -2936,7 +2936,7 @@
     {
       "id": "dvb-tv",
       "name": "DVB TV",
-      "lang": "",
+      "lang": "my",
       "country": "MM",
       "tz": "Asia/Yangon",
       "tags": [
@@ -3469,7 +3469,7 @@
     {
       "id": "esport3",
       "name": "Esport3",
-      "lang": "",
+      "lang": "ca",
       "country": "ES",
       "tz": "Europe/Madrid",
       "tags": [
@@ -3547,7 +3547,7 @@
     {
       "id": "qazsport",
       "name": "QazSport",
-      "lang": "",
+      "lang": "kk",
       "country": "KZ",
       "tz": "Asia/Almaty",
       "tags": [
@@ -3677,7 +3677,7 @@
     {
       "id": "mrtv-sports",
       "name": "MRTV Sports",
-      "lang": "",
+      "lang": "my",
       "country": "MM",
       "tz": "Asia/Yangon",
       "tags": [
@@ -4067,7 +4067,7 @@
     {
       "id": "mnb-sport",
       "name": "MNB Sport",
-      "lang": "",
+      "lang": "mn",
       "country": "MN",
       "tz": "Asia/Ulaanbaatar",
       "tags": [
@@ -4665,7 +4665,7 @@
     {
       "id": "3cat-cameres-del-temps",
       "name": "3Cat Cameres del temps",
-      "lang": "",
+      "lang": "ca",
       "country": "ES",
       "tz": "Europe/Madrid",
       "tags": [
@@ -4996,6 +4996,32 @@
             "via": "iptv-org",
             "kind": "unknown",
             "label": "rbc.ru"
+          }
+        }
+      ]
+    },
+    {
+      "id": "press-tv",
+      "name": "Press TV",
+      "lang": "en",
+      "country": "IR",
+      "tz": "Asia/Tehran",
+      "tags": [
+        "mideast"
+      ],
+      "categories": [
+        "news"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://live.presstv.co.uk/hls/presstv.m3u8",
+          "origin": {
+            "host": "live.presstv.co.uk",
+            "via": "iptv-org",
+            "kind": "broadcaster",
+            "label": "presstv.co.uk"
           }
         }
       ]

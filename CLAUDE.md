@@ -10,7 +10,7 @@ others (Sport, Markets, Weather) are "modes" keyed by iptv-org category ids. No 
 no package manager, no tests. Vanilla JS in three files (`index.html`, `styles.css`, `app.js`);
 the only runtime dependency is hls.js, vendored in `assets/vendor/`. Fonts are vendored in
 `assets/fonts/` on purpose: the page must make **no third-party requests** to render (do not add
-CDN links). The README is the design document — read it before non-trivial changes.
+CDN links). The README is the design document — read it before non-trivial changes. Its "Possible improvements" section is the backlog: add ideas there, remove them once done.
 
 ## Commands
 
@@ -28,7 +28,8 @@ Python scripts use the standard library only — keep it that way (they run bare
 ## Data flow
 
 - **`sources.json`** — curated catalog, edited by hand or by the scripts. Each source has
-  `id, name, lang, country, tz, tags, categories, streams[]`. `categories` holds iptv-org
+  `id, name, lang, country, tz, tags, categories, streams[]`. `lang` is ISO 639-1, or the
+  ISO 639-3 code when there is no two-letter one; the UI names both via `Intl.DisplayNames`. `categories` holds iptv-org
   category ids = the walls the source appears in (`news`, `sports`, `business`, `weather`). `streams` is an ordered preference list of
   `{kind: "hls", url}` or `{kind: "youtube", channelId}`, each with an `origin`
   (`host, kind, label, via`), filled in by `annotate-origin.py`. `via` (`curated` / `iptv-org`)

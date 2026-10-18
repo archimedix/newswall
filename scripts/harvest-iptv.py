@@ -47,7 +47,14 @@ LANG = {'eng': 'en', 'ita': 'it', 'fra': 'fr', 'spa': 'es', 'deu': 'de', 'por': 
         'ara': 'ar', 'rus': 'ru', 'zho': 'zh', 'jpn': 'ja', 'kor': 'ko', 'hin': 'hi',
         'tur': 'tr', 'ell': 'el', 'nld': 'nl', 'pol': 'pl', 'ukr': 'uk', 'ron': 'ro',
         'swe': 'sv', 'nor': 'no', 'dan': 'da', 'fin': 'fi', 'ces': 'cs', 'heb': 'he',
-        'fas': 'fa', 'urd': 'ur', 'tha': 'th', 'vie': 'vi', 'ind': 'id', 'msa': 'ms'}
+        'fas': 'fa', 'urd': 'ur', 'tha': 'th', 'vie': 'vi', 'ind': 'id', 'msa': 'ms',
+        'cat': 'ca', 'isl': 'is', 'mya': 'my', 'bos': 'bs', 'hye': 'hy', 'bel': 'be',
+        'sqi': 'sq', 'pus': 'ps', 'kaz': 'kk', 'mon': 'mn', 'ben': 'bn', 'srp': 'sr',
+        'hrv': 'hr', 'bul': 'bg', 'hun': 'hu', 'slk': 'sk', 'slv': 'sl', 'lit': 'lt',
+        'lav': 'lv', 'est': 'et', 'kat': 'ka', 'aze': 'az', 'uzb': 'uz', 'tam': 'ta',
+        'tel': 'te', 'mar': 'mr', 'swa': 'sw', 'amh': 'am', 'som': 'so', 'khm': 'km'}
+# Codes not listed above stay in their three-letter form: the browser can
+# still name them (Intl.DisplayNames knows ISO 639-3), so nothing is lost.
 
 
 def fetch(url, timeout=12, origin=None, limit=None):
@@ -244,7 +251,8 @@ def main():
             continue
         feed = feed_of.get(cid, {})
         tz = (feed.get("timezones") or ["UTC"])[0]
-        lang = LANG.get((feed.get("languages") or [""])[0], "")
+        code = (feed.get("languages") or [""])[0]
+        lang = LANG.get(code, code)
         sid = slug(ch["name"])
         if sid in taken_names:
             continue          # already in the catalog, maybe via YouTube

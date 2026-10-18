@@ -37,15 +37,17 @@ get a `null` origin and are refused.
 Three ways, depending on what you already know:
 
 - **Quick search** (`⌘K`) — type and press enter. It searches the name, the country (also
-  spelled out: *germany* → DW, DW Español, RT DE), the language, the tags and the initials
+  spelled out: *germany* → DW, DW Español, RT DE), the language (code or name: *pashto* →
+  TOLOnews), the tags and the initials
   (*aje* → Al Jazeera English). With an empty query it puts the channels already on the
   wall at the top, so removing one is a single enter.
 - **On the tile** — hovering shows the controls: audio, enlarge, **switch source** (when
   the channel has more than one) and **✕ to remove it**. The dashed `+` slot takes the
   grid's leftover cell and opens the search.
-- **Catalog** (`S`) — for browsing. Filter by **country** (a menu with country names and
-  the number of channels per country), by **area**, and with free-text search. The three
-  filters combine. Every channel carries its flag, on the tile and in the list.
+- **Catalog** (`S`) — for browsing. Filter by **country** and by **language** (menus with
+  the names and the number of channels for each), by **area**, and with free-text search.
+  The filters combine. Every channel carries its flag and its language, on the tile and in
+  the list.
 
 Adding or removing a channel **does not stop the others**: the grid reconciles itself with
 what is already there, and visual order is set by the CSS grid's `order`, not the DOM
@@ -98,7 +100,7 @@ Two kinds of stream, and they are not equivalent:
 
 Each source lists **one or more streams in order of preference**. If the first one does
 not start — dead CDN, geoblocking, stream ended — the app falls back to the next one on its
-own, without the tile going dark. There are currently **230 streams for 170 channels**:
+own, without the tile going dark. There are currently **231 streams for 171 channels**:
 thirty-eight have at least one fallback.
 
 ```json
@@ -157,12 +159,12 @@ project needs no server.
 
 ## The catalog
 
-**170 sources from 68 countries**, 134 of them fished out of
+**171 sources from 68 countries**, 135 of them fished out of
 [iptv-org](https://github.com/iptv-org/iptv) and hand-picked:
 
 | wall | channels | countries |
 |---|---|---|
-| News | 107 | 56 |
+| News | 108 | 56 |
 | Sport | 35 | 25 |
 | Markets | 22 | 17 |
 | Weather | 9 | 5 |
@@ -170,9 +172,9 @@ project needs no server.
 The criterion is the point of the project — comparing national narratives — so national
 and international broadcasters are in; local TV, radio and duplicates are out.
 
-In practice, that means putting IRINN (Iranian state TV) and Iran International (the
-opposition, based in London) on the same screen; Al-Manar and Makan 33; CCTV, Telesur and
-RT in four languages.
+In practice, that means putting IRINN (Iranian state TV), Press TV (its English voice
+abroad) and Iran International (the opposition, based in London) on the same screen;
+Al-Manar and Makan 33; CCTV, Telesur and RT in four languages.
 
 The other walls follow the same idea. **Sport** is national sport channels (Iran's Varzesh
 next to Romania's TVR Sport and Kazakhstan's QazSport), clubs and leagues on their own
@@ -250,6 +252,33 @@ CORS, against all expectations, is not the problem: 1 in 70.
   the start screen is for.
 - **Sources come and go.** Daily breakages are normal: the Action detects them, and the
   tile says what happened.
+
+## Possible improvements
+
+Ideas collected along the way, not yet done.
+
+- **Stream URLs that update themselves.** Broadcasters change CDN and a curated channel
+  dies even when iptv-org already lists its new address. Today that is recovered only by
+  running `harvest-iptv.py --alternatives` by hand: a daily step in the Action could do it,
+  adding new working streams of channels *already in the catalog* as fallbacks and
+  committing them. The selection stays hand-made; only the addresses stay fresh.
+  (Loading the iptv-org list straight from the page was considered and set aside: ~12 MB
+  per visit, hundreds of streams to test from every browser, no curation, and shared
+  links would break when iptv-org ids change.)
+- **Honour iptv-org's `blocklist.json`.** Channels removed after DMCA notices or for being
+  NSFW are listed there: `harvest-iptv.py` could skip them, instead of relying on the
+  curated lists alone.
+- **An "explore iptv-org" mode.** Opt-in, loaded only on request, clearly labelled as
+  unverified and not hand-picked: for browsing beyond the curated walls, kept apart from
+  them.
+- **A parliaments wall.** iptv-org's `legislative` category has ~100 usable channels from
+  24 countries (Camera dei Deputati, Congreso, Tweede Kamer, Sansad TV…): one more
+  `scripts/curated/legislative.txt` and an entry in `MODES`.
+- **IRIB streams in the browser.** IRINN and Varzesh (`ncdn.telewebion.ir`) pass the hourly
+  check but stay on "connecting…" in the browser, where the request is blocked by CORS:
+  find out why the check and the browser disagree, and look for alternative streams.
+- **Older fallbacks without their real `via`.** Fallbacks added before `via` was recorded
+  per stream show up as `curated` even when they came from iptv-org.
 
 ## License
 

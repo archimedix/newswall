@@ -83,6 +83,13 @@ const REGION = (() => {
 const countryName = (cc) => {
   try { return REGION?.of(cc) || cc; } catch { return cc; }
 };
+/* Same for languages: two-letter codes, or three where ISO 639-1 has none. */
+const LANGUAGE = (() => {
+  try { return new Intl.DisplayNames(['en'], { type: 'language' }); } catch { return null; }
+})();
+const langName = (l) => {
+  try { return (l && LANGUAGE?.of(l)) || l || '?'; } catch { return l || '?'; }
+};
 
 const ORIGIN_LABEL = {
   broadcaster: 'from the broadcaster',
@@ -139,7 +146,7 @@ function setMode(m) {
   state.active = wallFor(readWallFromStorage());
   try { localStorage.setItem('newswall:mode', m); } catch { /* private mode */ }
 
-  Object.assign(filters, { tag: '', country: '', q: '' });
+  Object.assign(filters, { tag: '', country: '', lang: '', q: '' });
   $('#panel-search').value = '';
   renderModes();
   renderCount();
@@ -230,6 +237,7 @@ function makeTile(id) {
       <span class="flag" title="${escapeHtml(countryName(src.country))}">${flag(src.country)}</span>
       <span class="name">${escapeHtml(src.name)}</span>
       <span class="cc" title="${escapeHtml(countryName(src.country))}">${escapeHtml(src.country)}</span>
+      <span class="cc lang" title="In ${escapeHtml(langName(src.lang))}">${escapeHtml((src.lang || '').toUpperCase())}</span>
       <span class="clock" data-tz="${escapeHtml(src.tz || 'UTC')}"></span>
     </div>
     <div class="ops">
@@ -539,7 +547,7 @@ function commit() {
 
 /* ---------------------------------------------------------------- panel */
 
-const filters = { tag: '', country: '', q: '' };
+const filters = { tag: '', country: '', lang: '', q: '' };
 
 function buildCountrySelect() {
   const counts = {};
@@ -549,6 +557,16 @@ function buildCountrySelect() {
   $('#panel-country').innerHTML =
     `<option value="">🌍 All (${list.length})</option>` +
     list.map((c) => `<option value="${c}">${flag(c)} ${escapeHtml(countryName(c))} · ${counts[c]}</option>`).join('');
+}
+
+function buildLangSelect() {
+  const counts = {};
+  for (const s of state.sources) counts[s.lang] = (counts[s.lang] || 0) + 1;
+  const list = Object.keys(counts).sort((a, b) =>
+    langName(a).localeCompare(langName(b), 'en'));
+  $('#panel-lang').innerHTML =
+    `<option value="">💬 All languages (${list.length})</option>` +
+    list.map((l) => `<option value="${escapeHtml(l)}">${escapeHtml(langName(l))} · ${counts[l]}</option>`).join('');
 }
 
 function buildPanel() {
@@ -567,20 +585,24 @@ function buildPanel() {
   };
 
   buildCountrySelect();
+  buildLangSelect();
   $('#panel-country').onchange = (e) => { filters.country = e.target.value; listSources(); };
+  $('#panel-lang').onchange = (e) => { filters.lang = e.target.value; listSources(); };
   $('#panel-search').oninput = (e) => { filters.q = e.target.value.trim().toLowerCase(); listSources(); };
 
   listSources();
 }
 
 function listSources() {
-  const { tag, country, q } = filters;
+  const { tag, country, lang, q } = filters;
   const list = state.sources.filter((s) => {
     if (tag && !(s.tags || []).includes(tag)) return false;
     if (country && s.country !== country) return false;
+    if (lang && s.lang !== lang) return false;
     if (!q) return true;
-    // Search also matches the full country name: "germany" finds DW.
-    const hay = `${s.name} ${s.country} ${countryName(s.country)} ${s.lang} ${(s.tags || []).join(' ')}`;
+    // Search also matches the full country and language names: "germany" finds
+    // DW, "arabic" finds every channel in Arabic.
+    const hay = `${s.name} ${s.country} ${countryName(s.country)} ${s.lang} ${langName(s.lang)} ${(s.tags || []).join(' ')}`;
     return hay.toLowerCase().includes(q);
   });
 
@@ -597,7 +619,7 @@ function listSources() {
         <span class="rname">${escapeHtml(s.name)}</span>
         <span class="rorigin ${stream.origin?.kind || ''}">${escapeHtml(originText(stream))}${alt}</span>
       </span>
-      <span class="rmeta">${dead ? 'off air' : escapeHtml(countryName(s.country))}</span>
+      <span class="rmeta">${dead ? 'off air' : `${escapeHtml(countryName(s.country))} · ${escapeHtml(langName(s.lang))}`}</span>
     </div>`;
   }).join('') : `<div class="empty">No channels match these filters.</div>`;
 
@@ -631,6 +653,7 @@ function palScore(s, t) {
   if (cname.startsWith(t)) return 65;
   if (cname.includes(t)) return 55;
   if (s.lang.toLowerCase() === t) return 45;
+  if (t.length > 2 && langName(s.lang).toLowerCase().startsWith(t)) return 45;
   if ((s.tags || []).some((x) => x.includes(t))) return 35;
   return 0;
 }
@@ -660,7 +683,7 @@ function palRender() {
       <span class="pflag">${flag(s.country)}</span>
       <span class="ptext">
         <span class="pname">${escapeHtml(s.name)}</span>
-        <span class="psub">${escapeHtml(countryName(s.country))} · ${escapeHtml(s.lang)} · ${escapeHtml(originText(stream))}</span>
+        <span class="psub">${escapeHtml(countryName(s.country))} · ${escapeHtml(langName(s.lang))} · ${escapeHtml(originText(stream))}</span>
       </span>
       <span class="pact">${on ? 'remove' : 'add'}</span>
     </div>`;
