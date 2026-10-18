@@ -1,0 +1,1953 @@
+{
+  "generated": "2026-10-18T00:24:40+00:00",
+  "entries": {
+    "aljazeera-en": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            240,
+            360,
+            480,
+            720,
+            1080
+          ]
+        },
+        {
+          "ok": true,
+          "videoId": "gCNeDWCI0vo",
+          "title": "🔴 Al Jazeera English | Live"
+        }
+      ],
+      "reason": null
+    },
+    "aljazeera-ar": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            240,
+            360,
+            420,
+            540,
+            720,
+            1080
+          ]
+        },
+        {
+          "ok": true,
+          "videoId": "N8xxOD0nT1Y",
+          "title": "الجزيرة 2 | متابعات إخبارية وبرامج مختارة"
+        },
+        {
+          "ok": true,
+          "heights": []
+        }
+      ],
+      "reason": null
+    },
+    "france24-en": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            360,
+            480,
+            720,
+            1080
+          ]
+        },
+        {
+          "ok": true,
+          "videoId": "HvZt-nh9sGg",
+          "title": "FRANCE 24 English – LIVE – International Breaking News & Top stories - 24/7 stream"
+        }
+      ],
+      "reason": null
+    },
+    "dw-news": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            270,
+            360,
+            540,
+            720,
+            1080
+          ]
+        },
+        {
+          "ok": true,
+          "videoId": "LuKwFajn37U",
+          "title": "DW News livestream | Headline news from around the world"
+        }
+      ],
+      "reason": null
+    },
+    "sky-news": {
+      "ok": true,
+      "use": 1,
+      "streams": [
+        {
+          "ok": false,
+          "reason": "HTTP 404"
+        },
+        {
+          "ok": true,
+          "videoId": "xDWQ3LkccY8",
+          "title": "Watch Sky News"
+        },
+        {
+          "ok": false,
+          "reason": "HTTP 403"
+        }
+      ],
+      "reason": null
+    },
+    "euronews-en": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            240,
+            360,
+            480,
+            576,
+            720
+          ]
+        },
+        {
+          "ok": true,
+          "videoId": "pykpO5kQJ98",
+          "title": "Euronews English Live"
+        },
+        {
+          "ok": true,
+          "heights": []
+        }
+      ],
+      "reason": null
+    },
+    "cgtn": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            180,
+            360,
+            720,
+            1080
+          ]
+        },
+        {
+          "ok": true,
+          "videoId": "0i7n3r01L2U",
+          "title": "🔴 Watch CGTN LIVE 24/7 #CGTNLIVE"
+        },
+        {
+          "ok": true,
+          "heights": [
+            360,
+            540,
+            720,
+            1080
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "wion": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": []
+        },
+        {
+          "ok": true,
+          "videoId": "GqVuCwBeq3w",
+          "title": "Ukraine STRIKES Russia LIVE: Putin’s Skies Under Siege? Zelensky Hits Russian Refinery | WION Live"
+        },
+        {
+          "ok": true,
+          "heights": []
+        }
+      ],
+      "reason": null
+    },
+    "times-now": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            216,
+            360,
+            504,
+            720,
+            1080
+          ]
+        },
+        {
+          "ok": true,
+          "videoId": "odq_0Yan3LI",
+          "title": "Live | Trump Destroyed IRAN | World On Brink Of World War3 | Trump Warning To Iran | US News Live"
+        },
+        {
+          "ok": true,
+          "heights": [
+            240,
+            360,
+            480,
+            720
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "india-today": {
+      "ok": true,
+      "use": 1,
+      "streams": [
+        {
+          "ok": false,
+          "reason": "HTTP 404"
+        },
+        {
+          "ok": true,
+          "videoId": "ktngDN9kOa0",
+          "title": "Kolkata Stampede LIVE: CM Suvendu Adhikari Speaks To India Today | Durga Puja Pandal Collapse News"
+        },
+        {
+          "ok": true,
+          "heights": [
+            180,
+            234,
+            360,
+            404,
+            720
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "abc-au": {
+      "ok": true,
+      "use": 1,
+      "streams": [
+        {
+          "ok": false,
+          "reason": "HTTP 403"
+        },
+        {
+          "ok": true,
+          "videoId": "vOTiJkg1voo",
+          "title": "Watch ABC NEWS Australia live | ABC NEWS"
+        }
+      ],
+      "reason": null
+    },
+    "nbc-news": {
+      "ok": true,
+      "use": 1,
+      "streams": [
+        {
+          "ok": false,
+          "reason": "HTTP 400"
+        },
+        {
+          "ok": true,
+          "videoId": "KQT3uyD6jQQ",
+          "title": "LIVE: NBC News NOW"
+        },
+        {
+          "ok": true,
+          "heights": [
+            240,
+            360,
+            432,
+            720,
+            1080
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "abc-us": {
+      "ok": true,
+      "use": 1,
+      "streams": [
+        {
+          "ok": false,
+          "reason": "HTTP 404"
+        },
+        {
+          "ok": true,
+          "videoId": "iipR5yUp36o",
+          "title": "LIVE: ABC News Live - 24/7 news, context and analysis"
+        }
+      ],
+      "reason": null
+    },
+    "cbs-news": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            180,
+            360,
+            540,
+            720
+          ]
+        },
+        {
+          "ok": true,
+          "videoId": "MMCqhcEgwLQ",
+          "title": "LIVE: Breaking News and Top Stories on CBS News 24/7"
+        }
+      ],
+      "reason": null
+    },
+    "democracy-now": {
+      "ok": false,
+      "use": null,
+      "streams": [
+        {
+          "ok": false,
+          "videoId": "M384Jv3EeiY",
+          "reason": "no live stream right now"
+        }
+      ],
+      "reason": "no live stream right now"
+    },
+    "trt-world": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": []
+        },
+        {
+          "ok": true,
+          "heights": [
+            360,
+            480,
+            720,
+            1080,
+            1440
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "rainews24": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            408,
+            540,
+            720,
+            1080
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "euronews-it": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            240,
+            360,
+            480,
+            576,
+            720
+          ]
+        },
+        {
+          "ok": true,
+          "heights": [
+            240,
+            360,
+            480,
+            576,
+            720
+          ]
+        },
+        {
+          "ok": true,
+          "heights": []
+        }
+      ],
+      "reason": null
+    },
+    "nhk-world": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            234,
+            432,
+            720,
+            1080
+          ]
+        },
+        {
+          "ok": true,
+          "heights": [
+            720,
+            1080
+          ]
+        },
+        {
+          "ok": true,
+          "heights": [
+            180,
+            360,
+            720
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "cna": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            270,
+            360,
+            540,
+            720,
+            1080
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "alarabiya-en": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            1080
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "africanews-en": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            240,
+            360,
+            480,
+            576,
+            720
+          ]
+        },
+        {
+          "ok": true,
+          "heights": [
+            240,
+            360,
+            480,
+            576,
+            720
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "trt-arabi": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            360,
+            480,
+            720,
+            1080,
+            1440
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "trt-haber": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            360,
+            480,
+            720,
+            1080,
+            1440
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "dw": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            270,
+            360,
+            540,
+            720,
+            1080
+          ]
+        },
+        {
+          "ok": true,
+          "heights": [
+            240,
+            360,
+            480,
+            720,
+            1080
+          ]
+        },
+        {
+          "ok": true,
+          "heights": [
+            270,
+            360,
+            540,
+            720,
+            1080
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "ktv": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            1080
+          ]
+        },
+        {
+          "ok": true,
+          "heights": []
+        },
+        {
+          "ok": true,
+          "heights": [
+            720,
+            1080
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "bfm2": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            360,
+            540,
+            720,
+            1080
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "inews": {
+      "ok": true,
+      "use": 1,
+      "streams": [
+        {
+          "ok": false,
+          "reason": "HTTP 451"
+        },
+        {
+          "ok": true,
+          "heights": [
+            288,
+            396
+          ]
+        },
+        {
+          "ok": true,
+          "heights": [
+            360
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "newsy": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            216,
+            360,
+            540,
+            720,
+            1080
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "rt-de": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            360,
+            540,
+            720,
+            1080
+          ]
+        },
+        {
+          "ok": true,
+          "heights": [
+            360,
+            540,
+            720,
+            1080
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "visir": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            360,
+            720,
+            1080
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "aaj-tak": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            180,
+            234,
+            360,
+            404,
+            720,
+            1080
+          ]
+        },
+        {
+          "ok": true,
+          "heights": [
+            180,
+            234,
+            360,
+            404,
+            720,
+            1080
+          ]
+        },
+        {
+          "ok": true,
+          "heights": [
+            180,
+            234,
+            360,
+            404,
+            720
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "cnbc-uk": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            360,
+            540,
+            720,
+            1080
+          ]
+        },
+        {
+          "ok": true,
+          "heights": [
+            360,
+            540,
+            720,
+            1080
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "dd-news": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            216,
+            360,
+            504,
+            720,
+            1080
+          ]
+        },
+        {
+          "ok": true,
+          "heights": [
+            360
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "irinn-2": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            240,
+            480,
+            720,
+            1080
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "3catinfo": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            480,
+            720,
+            1080
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "al-manar": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            144,
+            240,
+            360,
+            576,
+            1080
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "canal-26": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            1080
+          ]
+        },
+        {
+          "ok": true,
+          "heights": [
+            1080
+          ]
+        },
+        {
+          "ok": true,
+          "heights": []
+        }
+      ],
+      "reason": null
+    },
+    "ert-news": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            360,
+            576,
+            720,
+            1080
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "makan-33": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            360,
+            540,
+            720,
+            1080
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "syria-tv": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            240,
+            360,
+            480,
+            720,
+            1080
+          ]
+        },
+        {
+          "ok": true,
+          "heights": [
+            240,
+            360,
+            480,
+            720,
+            1080
+          ]
+        },
+        {
+          "ok": true,
+          "heights": [
+            240,
+            360,
+            480,
+            720,
+            1080
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "welat-tv": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            1080
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "360-news": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            576,
+            720,
+            1080
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "alarabiya": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            240,
+            360,
+            720,
+            1080
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "al-hadath": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            240,
+            360,
+            720,
+            1080
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "channel-9": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            1080
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "crtv-news": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            1080
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "mrtv-news": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            404,
+            720,
+            1080
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "rt-arabic": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            360,
+            540,
+            720,
+            1080
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "rt-france": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            360,
+            540,
+            720,
+            1080
+          ]
+        },
+        {
+          "ok": true,
+          "heights": [
+            360,
+            540,
+            720,
+            1080
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "rt-india": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            360,
+            576,
+            720,
+            1080
+          ]
+        },
+        {
+          "ok": true,
+          "heights": [
+            1080
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "sabc-news": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            240,
+            360,
+            720,
+            1080
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "al-masirah": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            160,
+            240,
+            360,
+            480,
+            720,
+            1080
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "arirang-un": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            360,
+            540,
+            720,
+            1080
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "belarus-24": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            360,
+            720,
+            1080
+          ]
+        },
+        {
+          "ok": true,
+          "heights": [
+            240,
+            360,
+            576
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "channel-24": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            360,
+            720,
+            1080
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "protv-news": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            360,
+            432,
+            576,
+            720,
+            1080
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "al-araby-tv": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            240,
+            360,
+            480,
+            720,
+            1080
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "asharq-news": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            240,
+            480,
+            720,
+            1080
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "expressen-tv": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            240,
+            360,
+            480,
+            720,
+            1080
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "medi1tv-arabic": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            240,
+            360,
+            720,
+            1080
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "medi1tv-afrique": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            240,
+            360,
+            720,
+            1080
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "naftemporiki-tv": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            576,
+            720,
+            1080
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "newsmax-balkans": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            270,
+            576,
+            720,
+            1080
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "oman-tv-mubashir": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            240,
+            480,
+            720,
+            1080
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "prensa-latina-tv": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            1080
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "first-channel-news": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            360,
+            1080
+          ]
+        },
+        {
+          "ok": true,
+          "heights": []
+        }
+      ],
+      "reason": null
+    },
+    "iran-international": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            576,
+            720,
+            1080
+          ]
+        },
+        {
+          "ok": true,
+          "heights": [
+            240,
+            360,
+            720
+          ]
+        },
+        {
+          "ok": true,
+          "heights": [
+            240,
+            360,
+            720
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "latina-noticias-24-7": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            240,
+            480,
+            720,
+            1080
+          ]
+        },
+        {
+          "ok": true,
+          "heights": [
+            240,
+            480,
+            720,
+            1080
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "noticiero-90-minutos": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            480,
+            720,
+            1080
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "perviy-informationniy": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            360,
+            720,
+            1080
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "bilyonaryo-news-channel": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            360,
+            480,
+            720,
+            1080
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "ntv": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            720
+          ]
+        },
+        {
+          "ok": true,
+          "heights": [
+            360,
+            480,
+            720,
+            1080
+          ]
+        },
+        {
+          "ok": true,
+          "heights": [
+            360,
+            720,
+            1080
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "ici-rdi": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            234,
+            270,
+            360,
+            480,
+            720
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "24-kanal": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            360,
+            720
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "ma-an-tv": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            720
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "metro-tv": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            160,
+            240,
+            360,
+            480,
+            720
+          ]
+        },
+        {
+          "ok": true,
+          "heights": [
+            1080
+          ]
+        },
+        {
+          "ok": true,
+          "heights": [
+            1080
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "news-one": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            270,
+            480,
+            720
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "tolonews": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            720
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "guatevision": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            144,
+            240,
+            360,
+            480,
+            720
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "mtv-uutiset": {
+      "ok": false,
+      "use": null,
+      "streams": [
+        {
+          "ok": false,
+          "reason": "HTTP 503"
+        }
+      ],
+      "reason": "HTTP 503"
+    },
+    "13-siam-thai": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            240,
+            480,
+            720
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "news-central": {
+      "ok": false,
+      "use": null,
+      "streams": [
+        {
+          "ok": false,
+          "reason": "HTTP 503"
+        }
+      ],
+      "reason": "HTTP 503"
+    },
+    "cctv-1": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            240,
+            360,
+            600
+          ]
+        },
+        {
+          "ok": true,
+          "heights": []
+        }
+      ],
+      "reason": null
+    },
+    "cctv-2": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            240,
+            360,
+            600
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "nation-tv": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            576
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "telesur": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            360
+          ]
+        },
+        {
+          "ok": true,
+          "heights": [
+            1080
+          ]
+        },
+        {
+          "ok": true,
+          "heights": [
+            1080
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "cna-international": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": [
+            360
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "tvp-world": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "videoId": "tvXWIgsWuK0",
+          "title": "🔴 LIVESTREAM: Latest news, headlines and events | TVP World"
+        },
+        {
+          "ok": false,
+          "reason": "HTTP 404"
+        },
+        {
+          "ok": false,
+          "reason": "HTTP 404"
+        },
+        {
+          "ok": true,
+          "heights": []
+        }
+      ],
+      "reason": null
+    },
+    "24kz": {
+      "ok": false,
+      "use": null,
+      "streams": [
+        {
+          "ok": false,
+          "reason": "HTTP 403"
+        }
+      ],
+      "reason": "HTTP 403"
+    },
+    "dvb-tv": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": []
+        }
+      ],
+      "reason": null
+    },
+    "al24-news": {
+      "ok": false,
+      "use": null,
+      "streams": [
+        {
+          "ok": false,
+          "reason": "HTTP 404"
+        }
+      ],
+      "reason": "HTTP 404"
+    },
+    "al-ghad-tv": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "heights": []
+        }
+      ],
+      "reason": null
+    },
+    "cbc-news": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "videoId": "5vfaDsMhCF4",
+          "title": "LIVE: Latest breaking news and analysis for October 17th | CBC News Live"
+        }
+      ],
+      "reason": null
+    },
+    "cnbc": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "videoId": "9NyxcX3rhQs",
+          "title": "LIVE: CNBC Marathon - Documentaries and deep dives 24/7"
+        }
+      ],
+      "reason": null
+    },
+    "current-time": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "videoId": "t9Ilev-uk4w",
+          "title": "Прямой эфир телеканала Настоящее Время"
+        }
+      ],
+      "reason": null
+    },
+    "dd-india": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "videoId": "9X37FfIrKio",
+          "title": "DD India 24x7 | Breaking News | International News |  Latest News Updates From Across The World"
+        }
+      ],
+      "reason": null
+    },
+    "dw-espanol": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "videoId": "yZh3xsFqCt8",
+          "title": "🔴 DW Español | En vivo"
+        }
+      ],
+      "reason": null
+    },
+    "euronews-fr": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "videoId": "NiRIbKwAejk",
+          "title": "Euronews français en direct"
+        }
+      ],
+      "reason": null
+    },
+    "firstpost": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "videoId": "ewqleNex-YI",
+          "title": "LIVE | US Midterms: Polls Predict Democrats Win As Trump Struggles to Win Support | Vantage"
+        }
+      ],
+      "reason": null
+    },
+    "gb-news": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "videoId": "ggGefEfnIjA",
+          "title": "The Late Show Live | Saturday 17th October"
+        }
+      ],
+      "reason": null
+    },
+    "livenow-fox": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "videoId": "Z7lQMpZIKaE",
+          "title": "LIVE NEWS: Trump waives Russia sanctions, US weighs strikes on Iran, Katie Zacharia out & more"
+        }
+      ],
+      "reason": null
+    },
+    "ndtv": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "videoId": "Yr80K_NfbkY",
+          "title": "France Protest LIVE: Thousands Take To Streets | France Unrest, Demonstrations | France Violence"
+        }
+      ],
+      "reason": null
+    },
+    "newsmax": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "videoId": "N3GJ8o_qZHQ",
+          "title": "NEWSMAX2 LIVE | Real News for Real People"
+        }
+      ],
+      "reason": null
+    },
+    "republic-world": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "videoId": "amNC1NPDfr8",
+          "title": "Kolkata Durga Puja Stampede LIVE Updates: 17 Dead; PM Announces Ex-Gratia, HM Shah To Visit Injured"
+        }
+      ],
+      "reason": null
+    },
+    "reuters": {
+      "ok": false,
+      "use": null,
+      "streams": [
+        {
+          "ok": false,
+          "videoId": "cN7UiZxjTdY",
+          "reason": "no live stream right now"
+        }
+      ],
+      "reason": "no live stream right now"
+    },
+    "sky-news-arabia": {
+      "ok": true,
+      "use": 0,
+      "streams": [
+        {
+          "ok": true,
+          "videoId": "ppgTP8xQQsM",
+          "title": "البث المباشر لقناة سكاي نيوز عربية - Sky News Arabia Live"
+        }
+      ],
+      "reason": null
+    }
+  }
+}

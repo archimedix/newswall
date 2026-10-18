@@ -1,0 +1,87 @@
+# iptv-org sources admitted to the catalog, hand-picked among those that pass
+# the technical check. The criterion is the point of the project: comparing
+# national narratives. National and international broadcasters are in; local
+# TV, radio, duplicates and niche channels are out.
+# Regenerate the candidates with: python3 scripts/harvest-iptv.py
+
+# --- Middle East: perspectives that contradict each other ---
+al-hadath          # Saudi Arabia
+alarabiya          # UAE
+asharq-news        # Saudi Arabia
+al-araby-tv        # Qatar
+al-manar           # Lebanon, Hezbollah-aligned
+al-masirah         # Yemen, Houthi-aligned
+syria-tv           # Syria
+welat-tv           # Syrian Kurdish
+makan-33           # Israel, in Arabic
+channel-9          # Israel, in Russian
+ma-an-tv           # Palestine
+irinn-2            # Iran, state TV
+iran-international # Iran, opposition based in London
+oman-tv-mubashir   # Oman
+al-ghad-tv         # Egypt
+trt-haber          # Turkey
+trt-arabi          # Turkey, in Arabic
+
+# --- Russia, Eastern Europe, former USSR ---
+rt-arabic
+rt-france
+rt-de
+360-news           # Russia
+perviy-informationniy  # Belarus
+belarus-24         # Belarus
+channel-24         # Ukraine
+24-kanal           # Ukraine
+first-channel-news # Armenia
+24kz               # Kazakhstan
+
+# --- Asia ---
+cctv-1             # China
+cctv-2             # China
+dd-news            # India, state TV
+aaj-tak            # India
+news-one           # Pakistan
+tolonews           # Afghanistan
+dvb-tv             # Myanmar, in exile
+mrtv-news          # Myanmar, state TV
+nation-tv          # Thailand
+13-siam-thai       # Thailand
+metro-tv           # Indonesia
+inews              # Indonesia
+cna-international  # Singapore
+bilyonaryo-news-channel  # Philippines
+arirang-un         # South Korea
+ktv                # South Korea, state TV
+
+# --- Africa ---
+sabc-news          # South Africa
+news-central       # Nigeria
+crtv-news          # Cameroon
+al24-news          # Algeria
+medi1tv-arabic     # Morocco
+medi1tv-afrique    # Morocco, in French
+
+# --- Europe ---
+dw                 # Germany, via HLS: better than the YouTube embed
+bfm2               # France
+ert-news           # Greece
+naftemporiki-tv    # Greece
+3catinfo           # Catalonia
+expressen-tv       # Sweden
+mtv-uutiset        # Finland
+visir              # Iceland
+protv-news         # Romania
+tvp-world          # Poland
+newsmax-balkans    # Bosnia
+ntv                # Albania
+
+# --- Americas ---
+telesur            # Venezuela
+prensa-latina-tv   # Cuba
+canal-26           # Argentina
+latina-noticias-24-7   # Peru
+noticiero-90-minutos   # Colombia
+guatevision        # Guatemala
+ici-rdi            # Canada, in French
+newsy              # United States
+cnbc-uk            # United Kingdom, business

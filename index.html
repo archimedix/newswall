@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Newswall — the whole world, all at once</title>
+<meta name="description" content="Watch several live news channels on the same screen. No account, no data collected.">
+<meta name="color-scheme" content="dark">
+<link rel="stylesheet" href="styles.css">
+<link rel="preload" href="assets/fonts/schibsted-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%2305070a'/><g fill='%23e9eef4'><rect x='5' y='7' width='9' height='7' rx='1.5'/><rect x='17' y='7' width='10' height='7' rx='1.5'/><rect x='5' y='17' width='10' height='7' rx='1.5'/></g><rect x='18' y='17' width='9' height='7' rx='1.5' fill='%23ff4b2b'/></svg>">
+<!-- hls.js and the fonts live in the repo: no third-party calls to render the page. -->
+<script src="assets/vendor/hls.min.js"></script>
+</head>
+<body>
+
+<header id="bar" class="glass">
+  <button id="logo" title="Newswall — open the sources (S)">
+    <svg viewBox="0 0 32 32" width="16" height="16" aria-hidden="true">
+      <g fill="currentColor">
+        <rect x="4" y="6" width="10" height="8" rx="1.5"/><rect x="17" y="6" width="11" height="8" rx="1.5"/>
+        <rect x="4" y="17" width="11" height="8" rx="1.5"/>
+      </g>
+      <rect x="18" y="17" width="10" height="8" rx="1.5" fill="var(--tally)"/>
+    </svg>
+    <span>NEWSWALL</span>
+  </button>
+
+  <!-- The control room's red tally light: it always shows who is talking. -->
+  <div id="onair" hidden><span class="dot"></span><span class="who"></span></div>
+
+  <div class="spacer"></div>
+
+  <div id="live-count" class="meta"></div>
+
+  <nav id="controls">
+    <button data-act="palette" class="ghost" title="Search and add a channel (⌘K)">
+      <svg viewBox="0 0 16 16" width="13" height="13" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="7" cy="7" r="4.2"/><path d="M10.2 10.2 14 14" stroke-linecap="round"/></g></svg>
+      <span>Search</span><kbd class="k">⌘K</kbd>
+    </button>
+    <button data-act="sources" title="Browse the catalog (S)">Sources</button>
+    <button data-act="mute-all" title="Mute everything (M)">Mute</button>
+    <button data-act="fullscreen" title="Full screen (F)">Full screen</button>
+    <button data-act="keys" class="icon" title="Shortcuts (?)">?</button>
+  </nav>
+</header>
+
+<main id="grid" aria-label="Wall of live streams"></main>
+
+<!-- The first play must come from a user gesture: without it, browsers
+     block playback and the tiles stay black. -->
+<div id="gate" hidden>
+  <div class="gate-card glass">
+    <div class="gate-kicker"><span class="dot"></span>live, right now</div>
+    <h1>The whole world,<br>all at once.</h1>
+    <p><strong id="gate-n">—</strong> live streams ready to go. They start muted:
+       tap a tile to give it the floor.</p>
+    <button id="gate-go">Turn on the wall</button>
+    <p class="fine">No account, no cookies, no data collected.
+       Streams come from the broadcasters, and each tile says where from.</p>
+  </div>
+</div>
+
+<aside id="panel" class="glass" hidden>
+  <div class="panel-head">
+    <strong>Catalog</strong>
+    <span class="meta" id="panel-count"></span>
+    <button id="panel-close" class="icon" title="Close (Esc)">✕</button>
+  </div>
+
+  <div class="panel-find">
+    <input id="panel-search" type="search" placeholder="Search channel or country…"
+           autocomplete="off" spellcheck="false">
+    <select id="panel-country" aria-label="Filter by country"></select>
+  </div>
+
+  <div id="panel-filters"></div>
+  <div id="panel-list"></div>
+
+  <div class="panel-foot">
+    <button id="share">Copy the link to this wall</button>
+    <span class="meta" id="share-msg"></span>
+  </div>
+</aside>
+
+<!-- Quick search: the fastest way to add or remove a channel. -->
+<div id="palette" hidden>
+  <div class="pal glass">
+    <div class="pal-in">
+      <svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="7" cy="7" r="4.2"/><path d="M10.2 10.2 14 14" stroke-linecap="round"/></g></svg>
+      <input id="pal-q" type="text" placeholder="Channel, country, language…"
+             autocomplete="off" spellcheck="false">
+      <span class="meta" id="pal-count"></span>
+    </div>
+    <div id="pal-list"></div>
+    <div class="pal-foot">
+      <span><kbd>↑</kbd><kbd>↓</kbd> move</span>
+      <span><kbd>↵</kbd> add or remove</span>
+      <span><kbd>esc</kbd> close</span>
+    </div>
+  </div>
+</div>
+
+<div id="keys" hidden>
+  <div class="keys-card glass">
+    <div class="keys-head"><strong>Shortcuts</strong><button id="keys-close" class="icon">✕</button></div>
+    <dl>
+      <dt><kbd>click</kbd></dt><dd>gives the tile the audio</dd>
+      <dt><kbd>double click</kbd></dt><dd>enlarges</dd>
+      <dt><kbd>1</kbd>–<kbd>9</kbd></dt><dd>quick audio</dd>
+      <dt><kbd>⌘K</kbd> <kbd>/</kbd></dt><dd>search and add</dd>
+      <dt><kbd>S</kbd></dt><dd>catalog</dd>
+      <dt><kbd>M</kbd></dt><dd>mute everything</dd>
+      <dt><kbd>F</kbd></dt><dd>full screen</dd>
+      <dt><kbd>Esc</kbd></dt><dd>back to the grid</dd>
+      <dt><kbd>drag</kbd></dt><dd>reorder the tiles</dd>
+    </dl>
+  </div>
+</div>
+
+<div id="toast" aria-live="polite"></div>
+
+<script src="app.js"></script>
+</body>
+</html>
