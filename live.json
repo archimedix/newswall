@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-18T23:09:27+00:00",
+  "generated": "2026-10-19T01:14:39+00:00",
   "entries": {
     "aljazeera-en": {
       "ok": true,
@@ -17,8 +17,8 @@
         },
         {
           "ok": true,
-          "videoId": "vf4ksuXiQ1M",
-          "title": "Pittsburgh Steelers vs. Tampa Bay Buccaneers Game Highlights | 2026 NFL Season Week 6"
+          "videoId": "XbQv0vO2Ymo",
+          "title": "Alex Gibney on the Myth of Elon Musk"
         }
       ],
       "reason": null
@@ -40,8 +40,8 @@
         },
         {
           "ok": true,
-          "videoId": "fLbS3KJI0lE",
-          "title": "The Iron Giant"
+          "videoId": "kfuYhQ5ruh4",
+          "title": "صيد دموي - سباق صيد السلطعون - الحلقة 11 - الموسم الثاني | الشرق ديسكفري"
         },
         {
           "ok": true,
@@ -65,8 +65,8 @@
         },
         {
           "ok": true,
-          "videoId": "FWPvDbRC01M",
-          "title": "This Week with George Stephanopoulos Full Broadcast - Sunday, October 18, 2026"
+          "videoId": "ZYBw6-9aDI0",
+          "title": "Trump has made a catastrophic miscalculation"
         }
       ],
       "reason": null
@@ -87,8 +87,8 @@
         },
         {
           "ok": true,
-          "videoId": "FWPvDbRC01M",
-          "title": "This Week with George Stephanopoulos Full Broadcast - Sunday, October 18, 2026"
+          "videoId": "ZQbntiErkKA",
+          "title": "NBC Nightly News Full Episode - Oct. 18"
         }
       ],
       "reason": null
@@ -114,8 +114,8 @@
         },
         {
           "ok": true,
-          "videoId": "xDWQ3LkccY8",
-          "title": "Watch Sky News"
+          "videoId": "duWUa9Md_tU",
+          "title": "Former CIA Spy: How to Read Anyone, Think Clearly, and Protect Yourself"
         },
         {
           "ok": false,
@@ -140,8 +140,8 @@
         },
         {
           "ok": true,
-          "videoId": "u8usFhuV9bE",
-          "title": "What Happened to France’s Aristocratic Families After the Revolution?"
+          "videoId": "pykpO5kQJ98",
+          "title": "Euronews English Live"
         },
         {
           "ok": true,
@@ -165,8 +165,8 @@
         },
         {
           "ok": true,
-          "videoId": "fWsfs1oqzuQ",
-          "title": "RUMBLE IN THE JUMBLE | Day 230 | Trump v Zelensky | France in flames | West Bank settler attacks"
+          "videoId": "1MsLWFqaJmk",
+          "title": "Flydubai captain on the cockpit battle to save his plane"
         },
         {
           "ok": true,
@@ -190,8 +190,8 @@
         },
         {
           "ok": true,
-          "videoId": "FWPvDbRC01M",
-          "title": "This Week with George Stephanopoulos Full Broadcast - Sunday, October 18, 2026"
+          "videoId": "1MsLWFqaJmk",
+          "title": "Flydubai captain on the cockpit battle to save his plane"
         },
         {
           "ok": true,
@@ -216,8 +216,8 @@
         },
         {
           "ok": true,
-          "videoId": "aIwcN6uuUo8",
-          "title": "Salt (Extended Edition)"
+          "videoId": "V_4U0LBjNso",
+          "title": "Rally with Jon Ossoff | Atlanta, GA | 10.17.2026"
         },
         {
           "ok": true,
@@ -272,8 +272,8 @@
         },
         {
           "ok": true,
-          "videoId": "7x-qq154bgs",
-          "title": "Carolina Panthers vs. Philadelphia Eagles Game Highlights | NFL 2026 Season Week 6"
+          "videoId": "kGIIPzvK9c0",
+          "title": "Searching for Amelia Earhart (Full Episode) | SPECIAL | National Geographic"
         }
       ],
       "reason": null
@@ -314,8 +314,8 @@
         },
         {
           "ok": true,
-          "videoId": "FWPvDbRC01M",
-          "title": "This Week with George Stephanopoulos Full Broadcast - Sunday, October 18, 2026"
+          "videoId": "ZQbntiErkKA",
+          "title": "NBC Nightly News Full Episode - Oct. 18"
         }
       ],
       "reason": null
@@ -382,8 +382,8 @@
         },
         {
           "ok": true,
-          "videoId": "x-5gOFaB9mc",
-          "title": "The Centrists Built the AfD | Yanis Varoufakis and Grace Blakeley"
+          "videoId": "fWsfs1oqzuQ",
+          "title": "RUMBLE IN THE JUMBLE | Day 230 | Trump v Zelensky | France in flames | West Bank settler attacks"
         }
       ],
       "reason": null
@@ -801,8 +801,8 @@
         },
         {
           "ok": true,
-          "videoId": "Wkb08pfQL0M",
-          "title": "Dipke छूटे! ये आंदोलन अब बहुत तेज होने जा रहा.. GenZ की ऐसी तैयारी! रिपोर्ट ने बढ़ाई धड़कन.."
+          "videoId": "Yq4Fs_dshjk",
+          "title": "New Season | KBC S16 | Ep.90 | Full Episode | Nana Patekar ने किसे कहा Thankyou?"
         }
       ],
       "reason": null
@@ -912,17 +912,11 @@
     },
     "syria-tv": {
       "ok": true,
-      "use": 0,
+      "use": 1,
       "streams": [
         {
-          "ok": true,
-          "heights": [
-            240,
-            360,
-            480,
-            720,
-            1080
-          ]
+          "ok": false,
+          "reason": "unreachable (IncompleteRead)"
         },
         {
           "ok": true,
@@ -935,14 +929,8 @@
           ]
         },
         {
-          "ok": true,
-          "heights": [
-            240,
-            360,
-            480,
-            720,
-            1080
-          ]
+          "ok": false,
+          "reason": "unreachable (IncompleteRead)"
         }
       ],
       "reason": null
@@ -1778,8 +1766,8 @@
         },
         {
           "ok": true,
-          "videoId": "v-6Wa8x0TKw",
-          "title": "10 Shocking $1,000,000 Border Busts | Border Security Australia"
+          "videoId": "yAGGkDvbjAs",
+          "title": "Jon Stewart and The News Team Tackle the 2026 Midterm Candidates | The Daily Show"
         }
       ],
       "reason": null
@@ -1790,8 +1778,8 @@
       "streams": [
         {
           "ok": true,
-          "videoId": "yqsyTQFAYSY",
-          "title": "Meet the Press Full Episode — October 18"
+          "videoId": "gQNXCLt-sCo",
+          "title": "Ukrainian drones strike St. Petersburg in the largest-ever attack on the city | World News Tonight"
         },
         {
           "ok": false,
@@ -1858,8 +1846,8 @@
       "streams": [
         {
           "ok": true,
-          "videoId": "xJKwRJBsrV8",
-          "title": "Paris Is On Fire... Rioters Take Over France"
+          "videoId": "fchopFk65YA",
+          "title": "CBC News: The National | Alberta military base tragedy"
         }
       ],
       "reason": null
@@ -1870,8 +1858,8 @@
       "streams": [
         {
           "ok": true,
-          "videoId": "r9PeYPHdpNo",
-          "title": "Our Planet | Coastal Seas | FULL EPISODE | Netflix"
+          "videoId": "yAGGkDvbjAs",
+          "title": "Jon Stewart and The News Team Tackle the 2026 Midterm Candidates | The Daily Show"
         }
       ],
       "reason": null
@@ -1892,8 +1880,8 @@
         },
         {
           "ok": true,
-          "videoId": "VVLe-nX472s",
-          "title": "ПОМОЖЕТ ЛИ ТРАМП РОССИЙСКОЙ ЭКОНОМИКЕ? БЕСЕДА С ИГОРЕМ ЛИПСИЦЕМ @IgorLipsits_1950"
+          "videoId": "7tmdV27H4m4",
+          "title": "Опасный возраст. Художественный фильм  (1981)"
         },
         {
           "ok": true,
@@ -1914,8 +1902,8 @@
       "streams": [
         {
           "ok": true,
-          "videoId": "H82sLvw_lcU",
-          "title": "Chicago Bears vs Atlanta Falcons Game Highlights | 2026 NFL Season Week 6"
+          "videoId": "1MsLWFqaJmk",
+          "title": "Flydubai captain on the cockpit battle to save his plane"
         }
       ],
       "reason": null
@@ -1952,8 +1940,8 @@
       "streams": [
         {
           "ok": true,
-          "videoId": "Zv1mWO9DEn8",
-          "title": "Lycéens, Gilets jaunes, casseurs : le début d'un embrasement ?"
+          "videoId": "0RDFx-jfMbA",
+          "title": "17 octobre : la convergence des luttes ?"
         }
       ],
       "reason": null
@@ -1964,8 +1952,8 @@
       "streams": [
         {
           "ok": true,
-          "videoId": "OMeX3gmPyEI",
-          "title": "HOUTHI LIVE: 5 Killed, 16 Injured in Houthi Strike on Yemen Presidential Palace | Saudi Houthi War"
+          "videoId": "zX_CzDNg_74",
+          "title": "Notre Dame Fighting Irish vs. BYU Cougars | Full Game Highlights | ESPN College Football"
         }
       ],
       "reason": null
@@ -1976,8 +1964,8 @@
       "streams": [
         {
           "ok": true,
-          "videoId": "MJMpDS7Ic70",
-          "title": "LIVE: Decision Desk ‘26: Midterm preview powered by 2WAY and The Hill"
+          "videoId": "C7T3oeL_HGg",
+          "title": "Watch: Highlights from Vance's CBS News town hall"
         }
       ],
       "reason": null
@@ -2008,8 +1996,8 @@
       "streams": [
         {
           "ok": true,
-          "videoId": "j0vgVn24ohc",
-          "title": "The Pursuit Of Happyness (2006)"
+          "videoId": "1MsLWFqaJmk",
+          "title": "Flydubai captain on the cockpit battle to save his plane"
         }
       ],
       "reason": null
@@ -2020,8 +2008,8 @@
       "streams": [
         {
           "ok": true,
-          "videoId": "msaDTT18brA",
-          "title": "Exclusive: Federal Agents Collected Ilhan Omar's DNA From Trash, Sources Say | On Balance Full Show"
+          "videoId": "FWPvDbRC01M",
+          "title": "This Week with George Stephanopoulos Full Broadcast - Sunday, October 18, 2026"
         }
       ],
       "reason": null
@@ -2067,8 +2055,8 @@
       "streams": [
         {
           "ok": true,
-          "videoId": "7ZGdHSD62xg",
-          "title": "Never Back Down"
+          "videoId": "JpU8Z415rLA",
+          "title": "الحكاية|زلزال عسكري يهز الحوثي..لأول مرة عميد سمير راغب يكشف تدخل مصر الرد الحاسم!سر الخلطة المتفجرة"
         }
       ],
       "reason": null
@@ -2190,12 +2178,7 @@
       "streams": [
         {
           "ok": true,
-          "heights": [
-            360,
-            540,
-            720,
-            1080
-          ]
+          "heights": []
         }
       ],
       "reason": null
