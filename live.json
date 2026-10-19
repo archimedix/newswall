@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-19T19:19:27+00:00",
+  "generated": "2026-10-19T23:37:59+00:00",
   "entries": {
     "aljazeera-en": {
       "ok": true,
@@ -17,8 +17,8 @@
         },
         {
           "ok": true,
-          "videoId": "L7lb7n-rUH8",
-          "title": "Why Alberta voters are weighing separating from Canada"
+          "videoId": "PrXtjyBDyMc",
+          "title": "Top U.S. & World Headlines — October 19, 2026"
         }
       ],
       "reason": null
@@ -40,8 +40,8 @@
         },
         {
           "ok": true,
-          "videoId": "1wPzxBWcn3A",
-          "title": "الدحيح | كيف هزمت بورسعيد ثلاث دول؟"
+          "videoId": "dxWXhIniWDU",
+          "title": "هرمز والدبلوماسية والانتخابات الأمريكية ترسم مسارات التصعيد الإقليمي - نقاش الساعة"
         },
         {
           "ok": true,
@@ -65,8 +65,8 @@
         },
         {
           "ok": true,
-          "videoId": "fLbS3KJI0lE",
-          "title": "The Iron Giant"
+          "videoId": "B6a9_bEebYM",
+          "title": "Inside the Spitfire"
         }
       ],
       "reason": null
@@ -87,8 +87,8 @@
         },
         {
           "ok": true,
-          "videoId": "yQhmMi71v_s",
-          "title": "Zelenskyy turns to EU for help as relations with Trump nosedive | Inside Story"
+          "videoId": "Es653DQkRcc",
+          "title": "Obama calls Trump’s investigation into Ilhan Omar ‘appalling’"
         }
       ],
       "reason": null
@@ -114,8 +114,8 @@
         },
         {
           "ok": true,
-          "videoId": "bIKMCUxCrcE",
-          "title": "French PM announces curfews following protests | The World"
+          "videoId": "VysGUVzwnqA",
+          "title": "What the Sumerians Wrote Before the Bible Existed"
         },
         {
           "ok": false,
@@ -140,8 +140,8 @@
         },
         {
           "ok": true,
-          "videoId": "VzRZG_NEeLk",
-          "title": "The CEO Who Fired An Abusive Kitchen Manager On The Spot | Undercover Boss Usa"
+          "videoId": "gOcmi-LYlVA",
+          "title": "'Not my first rodeo': Dem senator REFUSES to back down, DUNKS ON Trump as he tries to silence her"
         },
         {
           "ok": true,
@@ -165,8 +165,8 @@
         },
         {
           "ok": true,
-          "videoId": "fLbS3KJI0lE",
-          "title": "The Iron Giant"
+          "videoId": "r9PeYPHdpNo",
+          "title": "Our Planet | Coastal Seas | FULL EPISODE | Netflix"
         },
         {
           "ok": true,
@@ -190,8 +190,8 @@
         },
         {
           "ok": true,
-          "videoId": "LS8dEdTSWEY",
-          "title": "'Liar' Husband's Story CRUMBLES in Mamta Bhatt Case"
+          "videoId": "G0ydCssEd_8",
+          "title": "Top 100 Funny Crashes from Red Bull Soapbox Race"
         },
         {
           "ok": true,
@@ -216,8 +216,8 @@
         },
         {
           "ok": true,
-          "videoId": "nghfgViKsLg",
-          "title": "Col. Larry Wilkerson: BREAKING: Iran's 'Father of Missiles' Responds to Trump's MOAB Threat"
+          "videoId": "JGokfRfLPXo",
+          "title": "The Fifth Element"
         },
         {
           "ok": true,
@@ -241,8 +241,8 @@
         },
         {
           "ok": true,
-          "videoId": "sxLJv_jA6sE",
-          "title": "Santo Rosário | Sexta-feira | 04:00 | 16/10/2026 | Live Ao vivo"
+          "videoId": "1MsLWFqaJmk",
+          "title": "Flydubai captain on the cockpit battle to save his plane"
         },
         {
           "ok": true,
@@ -272,8 +272,8 @@
         },
         {
           "ok": true,
-          "videoId": "bLITM4EBgPA",
-          "title": "Midnight In Paris"
+          "videoId": "vGMJZSfVW1M",
+          "title": "The Secret Lives of Hummingbirds | Narrated by David Attenborough | Nature Documentary"
         }
       ],
       "reason": null
@@ -288,8 +288,8 @@
         },
         {
           "ok": true,
-          "videoId": "fLbS3KJI0lE",
-          "title": "The Iron Giant"
+          "videoId": "p0wqASqMMLE",
+          "title": "Morning Joe 10/19/26 | 🅼🆂🅽🅱️🅲 Breaking News Today  October 19, 2026"
         },
         {
           "ok": true,
@@ -335,7 +335,7 @@
         },
         {
           "ok": true,
-          "videoId": "E4zB_LgD-T0",
+          "videoId": "3YNSR2Xzjnw",
           "title": "LIVE: Breaking News and Top Stories on CBS News 24/7"
         },
         {
@@ -382,8 +382,8 @@
         },
         {
           "ok": true,
-          "videoId": "PrXtjyBDyMc",
-          "title": "Top U.S. & World Headlines — October 19, 2026"
+          "videoId": "FQC7d3fAlzk",
+          "title": "All The President's Men"
         }
       ],
       "reason": null
@@ -801,8 +801,8 @@
         },
         {
           "ok": true,
-          "videoId": "fLbS3KJI0lE",
-          "title": "The Iron Giant"
+          "videoId": "JGokfRfLPXo",
+          "title": "The Fifth Element"
         }
       ],
       "reason": null
@@ -839,15 +839,21 @@
       "reason": null
     },
     "al-manar": {
-      "ok": false,
-      "use": null,
+      "ok": true,
+      "use": 0,
       "streams": [
         {
-          "ok": false,
-          "reason": "unreachable (URLError)"
+          "ok": true,
+          "heights": [
+            144,
+            240,
+            360,
+            576,
+            1080
+          ]
         }
       ],
-      "reason": "unreachable (URLError)"
+      "reason": null
     },
     "canal-26": {
       "ok": true,
@@ -1775,8 +1781,8 @@
         },
         {
           "ok": true,
-          "videoId": "j0vgVn24ohc",
-          "title": "The Pursuit Of Happyness (2006)"
+          "videoId": "1MsLWFqaJmk",
+          "title": "Flydubai captain on the cockpit battle to save his plane"
         }
       ],
       "reason": null
@@ -1787,8 +1793,8 @@
       "streams": [
         {
           "ok": true,
-          "videoId": "PrXtjyBDyMc",
-          "title": "Top U.S. & World Headlines — October 19, 2026"
+          "videoId": "_MMVifBZfaI",
+          "title": "Kyiv Caught Off Guard? Zelensky Blasts Warning Gap, Blames Trump After Russian Missile Attack | N18G"
         },
         {
           "ok": false,
@@ -1855,8 +1861,8 @@
       "streams": [
         {
           "ok": true,
-          "videoId": "PrXtjyBDyMc",
-          "title": "Top U.S. & World Headlines — October 19, 2026"
+          "videoId": "oA_0HBLBp40",
+          "title": "Watch JD Vance SCREAM At Host After CAUGHT In LIE!"
         }
       ],
       "reason": null
@@ -1867,8 +1873,8 @@
       "streams": [
         {
           "ok": true,
-          "videoId": "fLbS3KJI0lE",
-          "title": "The Iron Giant"
+          "videoId": "TvzYWtdJNVo",
+          "title": "OIL SPIKES As Brutal Iran Hormuz Strikes COVERED UP"
         }
       ],
       "reason": null
@@ -1889,8 +1895,8 @@
         },
         {
           "ok": true,
-          "videoId": "AVCRxh0yc94",
-          "title": "Масштабные протесты. Удар по столице. Атака на Петербург: итоги. ЧП с самолетом | ВОЗДУХ"
+          "videoId": "iHAXq3Zl8Bo",
+          "title": "⚡️АСЛАНЯН: Путин СРОЧНО ОБРАТИЛСЯ к Трампу и Си! Вот что ЗАДУМАЛ по Украине.В голове НЕ УКЛАДЫВАЕТСЯ"
         },
         {
           "ok": true,
@@ -1911,8 +1917,8 @@
       "streams": [
         {
           "ok": true,
-          "videoId": "--Fjm1dSE8w",
-          "title": "Eating with a Somali Pirate in Somalia!!"
+          "videoId": "od3iWRa9_6w",
+          "title": "Indian-Origin Woman Confronts JD Vance: “You Sold Us the American Dream, Now You Stop Us?”"
         }
       ],
       "reason": null
@@ -1933,8 +1939,8 @@
         },
         {
           "ok": true,
-          "videoId": "O6JRJsbTVSo",
-          "title": "¿Por qué triunfa el mal?"
+          "videoId": "u8wbteYnsI0",
+          "title": "🔴 DW Noticias 19 de octubre: Entran en vigor primeros toques de queda en Francia tras saqueos"
         },
         {
           "ok": true,
@@ -1949,8 +1955,8 @@
       "streams": [
         {
           "ok": true,
-          "videoId": "BOzPt7Kc3mM",
-          "title": "Le journal de 20h de France Télévisions - 19 octobre 2026"
+          "videoId": "tVR3yDp73ms",
+          "title": "Éric Zemmour réagit aux pillages à Paris : \"Ces gens-là doivent être déchus de leur nationalité\""
         }
       ],
       "reason": null
@@ -1961,8 +1967,8 @@
       "streams": [
         {
           "ok": true,
-          "videoId": "sxLJv_jA6sE",
-          "title": "Santo Rosário | Sexta-feira | 04:00 | 16/10/2026 | Live Ao vivo"
+          "videoId": "hh9LsnE0hA0",
+          "title": "Mark Carney on Dealing With Trump, Trade Wars and Putin | The Mishal Husain Show"
         }
       ],
       "reason": null
@@ -1973,8 +1979,8 @@
       "streams": [
         {
           "ok": true,
-          "videoId": "PKfTtpQwvR8",
-          "title": "The Real Story Behind the Riots in France | Nile Gardiner"
+          "videoId": "FGvlk9KbMfY",
+          "title": "Marco Rubio brutally shuts down reporter over absurd Iran war question in fiery exchange"
         }
       ],
       "reason": null
@@ -2001,8 +2007,8 @@
       "streams": [
         {
           "ok": true,
-          "videoId": "sxLJv_jA6sE",
-          "title": "Santo Rosário | Sexta-feira | 04:00 | 16/10/2026 | Live Ao vivo"
+          "videoId": "LS8dEdTSWEY",
+          "title": "'Liar' Husband's Story CRUMBLES in Mamta Bhatt Case"
         }
       ],
       "reason": null
@@ -2013,8 +2019,8 @@
       "streams": [
         {
           "ok": true,
-          "videoId": "bLITM4EBgPA",
-          "title": "Midnight In Paris"
+          "videoId": "vcdTNEqak-Y",
+          "title": "LIVE: President Trump Holds a Rally in Wichita, KS - 10/19/26"
         }
       ],
       "reason": null
@@ -2025,8 +2031,8 @@
       "streams": [
         {
           "ok": true,
-          "videoId": "5d_wkxeTplo",
-          "title": "The Mummy"
+          "videoId": "5fK1pZ38lqw",
+          "title": "The World's Fastest Indian"
         }
       ],
       "reason": null
@@ -2037,8 +2043,8 @@
       "streams": [
         {
           "ok": true,
-          "videoId": "7ZiUbT1-djA",
-          "title": "NASA's SpaceX Crew-13 Launch"
+          "videoId": "cndhY051Mc4",
+          "title": "Former Presidential Advisor Fiona Hill On US, Russia, Ukraine And UK Defence | Lord Speaker Lecture"
         },
         {
           "ok": true,
@@ -2060,8 +2066,8 @@
       "streams": [
         {
           "ok": true,
-          "videoId": "fLbS3KJI0lE",
-          "title": "The Iron Giant"
+          "videoId": "L1tAk9O8qAU",
+          "title": "تغطية خاصة لأعمال الشغب والعنف التي شهدتها الاحتجاجات قي فرنسا"
         }
       ],
       "reason": null
@@ -2183,7 +2189,12 @@
       "streams": [
         {
           "ok": true,
-          "heights": []
+          "heights": [
+            360,
+            540,
+            720,
+            1080
+          ]
         }
       ],
       "reason": null
@@ -2895,20 +2906,15 @@
       "reason": null
     },
     "weathernews": {
-      "ok": true,
-      "use": 0,
+      "ok": false,
+      "use": null,
       "streams": [
         {
-          "ok": true,
-          "heights": [
-            216,
-            360,
-            540,
-            720
-          ]
+          "ok": false,
+          "reason": "unreachable (IncompleteRead)"
         }
       ],
-      "reason": null
+      "reason": "unreachable (IncompleteRead)"
     },
     "weathernation": {
       "ok": true,
@@ -3010,19 +3016,15 @@
       "reason": null
     },
     "qbc": {
-      "ok": true,
-      "use": 0,
+      "ok": false,
+      "use": null,
       "streams": [
         {
-          "ok": true,
-          "heights": [
-            240,
-            480,
-            1080
-          ]
+          "ok": false,
+          "reason": "unreachable (IncompleteRead)"
         }
       ],
-      "reason": null
+      "reason": "unreachable (IncompleteRead)"
     },
     "rbk-tv": {
       "ok": true,
