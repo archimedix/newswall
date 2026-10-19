@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-19T13:11:58+00:00",
+  "generated": "2026-10-19T19:19:27+00:00",
   "entries": {
     "aljazeera-en": {
       "ok": true,
@@ -17,8 +17,8 @@
         },
         {
           "ok": true,
-          "videoId": "LirQGT5uxFY",
-          "title": "How to Lose A Guy In 10 Days"
+          "videoId": "L7lb7n-rUH8",
+          "title": "Why Alberta voters are weighing separating from Canada"
         }
       ],
       "reason": null
@@ -40,8 +40,8 @@
         },
         {
           "ok": true,
-          "videoId": "5d_wkxeTplo",
-          "title": "The Mummy"
+          "videoId": "1wPzxBWcn3A",
+          "title": "الدحيح | كيف هزمت بورسعيد ثلاث دول؟"
         },
         {
           "ok": true,
@@ -65,8 +65,8 @@
         },
         {
           "ok": true,
-          "videoId": "KFKMEiuCY6M",
-          "title": "Mozart - Classical Music for Working, Studying & Brain Power"
+          "videoId": "fLbS3KJI0lE",
+          "title": "The Iron Giant"
         }
       ],
       "reason": null
@@ -87,8 +87,8 @@
         },
         {
           "ok": true,
-          "videoId": "tTlY8xjsqgg",
-          "title": "Can Netanyahu survive his last big fight? | DW News"
+          "videoId": "yQhmMi71v_s",
+          "title": "Zelenskyy turns to EU for help as relations with Trump nosedive | Inside Story"
         }
       ],
       "reason": null
@@ -114,8 +114,8 @@
         },
         {
           "ok": true,
-          "videoId": "yAGGkDvbjAs",
-          "title": "Jon Stewart and The News Team Tackle the 2026 Midterm Candidates | The Daily Show"
+          "videoId": "bIKMCUxCrcE",
+          "title": "French PM announces curfews following protests | The World"
         },
         {
           "ok": false,
@@ -140,8 +140,8 @@
         },
         {
           "ok": true,
-          "videoId": "Y4yKWXNDaK8",
-          "title": "The Fugitive (1993)"
+          "videoId": "VzRZG_NEeLk",
+          "title": "The CEO Who Fired An Abusive Kitchen Manager On The Spot | Undercover Boss Usa"
         },
         {
           "ok": true,
@@ -165,8 +165,8 @@
         },
         {
           "ok": true,
-          "videoId": "r9PeYPHdpNo",
-          "title": "Our Planet | Coastal Seas | FULL EPISODE | Netflix"
+          "videoId": "fLbS3KJI0lE",
+          "title": "The Iron Giant"
         },
         {
           "ok": true,
@@ -190,8 +190,8 @@
         },
         {
           "ok": true,
-          "videoId": "cpVQCWHR3zc",
-          "title": "‘Reset Your Relationship With US’: Jaishankar’s Warning as Washington Changes Global Strategy | 4K"
+          "videoId": "LS8dEdTSWEY",
+          "title": "'Liar' Husband's Story CRUMBLES in Mamta Bhatt Case"
         },
         {
           "ok": true,
@@ -216,8 +216,8 @@
         },
         {
           "ok": true,
-          "videoId": "hDFcq8Zt1a0",
-          "title": "The Nuclear Mistake That Shocked America"
+          "videoId": "nghfgViKsLg",
+          "title": "Col. Larry Wilkerson: BREAKING: Iran's 'Father of Missiles' Responds to Trump's MOAB Threat"
         },
         {
           "ok": true,
@@ -241,8 +241,8 @@
         },
         {
           "ok": true,
-          "videoId": "FWPvDbRC01M",
-          "title": "This Week with George Stephanopoulos Full Broadcast - Sunday, October 18, 2026"
+          "videoId": "sxLJv_jA6sE",
+          "title": "Santo Rosário | Sexta-feira | 04:00 | 16/10/2026 | Live Ao vivo"
         },
         {
           "ok": true,
@@ -272,8 +272,8 @@
         },
         {
           "ok": true,
-          "videoId": "MoptlE2hzpY",
-          "title": "Groundhog Day"
+          "videoId": "bLITM4EBgPA",
+          "title": "Midnight In Paris"
         }
       ],
       "reason": null
@@ -335,8 +335,8 @@
         },
         {
           "ok": true,
-          "videoId": "5d_wkxeTplo",
-          "title": "The Mummy"
+          "videoId": "E4zB_LgD-T0",
+          "title": "LIVE: Breaking News and Top Stories on CBS News 24/7"
         },
         {
           "ok": true,
@@ -382,8 +382,8 @@
         },
         {
           "ok": true,
-          "videoId": "AXLFjcOGs6Q",
-          "title": "Scott Ritter says a new Middle East without America will emerge"
+          "videoId": "PrXtjyBDyMc",
+          "title": "Top U.S. & World Headlines — October 19, 2026"
         }
       ],
       "reason": null
@@ -801,8 +801,8 @@
         },
         {
           "ok": true,
-          "videoId": "4EH6XvtjuwA",
-          "title": "Marco Rubio Admits India Can't Quit Russian Oil | The Chanakya Dialogues Major Gaurav Arya |"
+          "videoId": "fLbS3KJI0lE",
+          "title": "The Iron Giant"
         }
       ],
       "reason": null
@@ -839,21 +839,15 @@
       "reason": null
     },
     "al-manar": {
-      "ok": true,
-      "use": 0,
+      "ok": false,
+      "use": null,
       "streams": [
         {
-          "ok": true,
-          "heights": [
-            144,
-            240,
-            360,
-            576,
-            1080
-          ]
+          "ok": false,
+          "reason": "unreachable (URLError)"
         }
       ],
-      "reason": null
+      "reason": "unreachable (URLError)"
     },
     "canal-26": {
       "ok": true,
@@ -1018,9 +1012,9 @@
           ]
         },
         {
-          "ok": true,
-          "videoId": "OeQA7EsPju4",
-          "title": "Илья Новиков, Кирилл Набутов | Обзор от BILD"
+          "ok": false,
+          "videoId": "mPKgQTG_gSA",
+          "reason": "no live stream right now"
         }
       ],
       "reason": null
@@ -1039,15 +1033,19 @@
       "reason": null
     },
     "mrtv-news": {
-      "ok": false,
-      "use": null,
+      "ok": true,
+      "use": 0,
       "streams": [
         {
-          "ok": false,
-          "reason": "unreachable (URLError)"
+          "ok": true,
+          "heights": [
+            404,
+            720,
+            1080
+          ]
         }
       ],
-      "reason": "unreachable (URLError)"
+      "reason": null
     },
     "rt-arabic": {
       "ok": true,
@@ -1455,19 +1453,15 @@
       "reason": null
     },
     "noticiero-90-minutos": {
-      "ok": true,
-      "use": 0,
+      "ok": false,
+      "use": null,
       "streams": [
         {
-          "ok": true,
-          "heights": [
-            480,
-            720,
-            1080
-          ]
+          "ok": false,
+          "reason": "HTTP 404"
         }
       ],
-      "reason": null
+      "reason": "HTTP 404"
     },
     "perviy-informationniy": {
       "ok": true,
@@ -1781,8 +1775,8 @@
         },
         {
           "ok": true,
-          "videoId": "YZTJN6CZfG0",
-          "title": "Man Turns WWII-Era Stone Ruin Into Dream Home In Just One Year | Start To Finish @luxonbushcraft"
+          "videoId": "j0vgVn24ohc",
+          "title": "The Pursuit Of Happyness (2006)"
         }
       ],
       "reason": null
@@ -1793,8 +1787,8 @@
       "streams": [
         {
           "ok": true,
-          "videoId": "B6a9_bEebYM",
-          "title": "Inside the Spitfire"
+          "videoId": "PrXtjyBDyMc",
+          "title": "Top U.S. & World Headlines — October 19, 2026"
         },
         {
           "ok": false,
@@ -1861,8 +1855,8 @@
       "streams": [
         {
           "ok": true,
-          "videoId": "FWPvDbRC01M",
-          "title": "This Week with George Stephanopoulos Full Broadcast - Sunday, October 18, 2026"
+          "videoId": "PrXtjyBDyMc",
+          "title": "Top U.S. & World Headlines — October 19, 2026"
         }
       ],
       "reason": null
@@ -1873,8 +1867,8 @@
       "streams": [
         {
           "ok": true,
-          "videoId": "Y4lMuvapTik",
-          "title": "Stocks Slide as Hot Inflation & AI Credit Fears Hit Markets"
+          "videoId": "fLbS3KJI0lE",
+          "title": "The Iron Giant"
         }
       ],
       "reason": null
@@ -1895,8 +1889,8 @@
         },
         {
           "ok": true,
-          "videoId": "jtkes744Qyw",
-          "title": "ДЕНЬ 1699. ТРЯСКА ТРАМПА/ ТАЙНЫЙ ПЛАН США/ ПОСАДИЛИ Z-НИЦУ МОНТЯН/ ПИТЕРЦЫ В ШОКЕ ОТ УДАРОВ"
+          "videoId": "AVCRxh0yc94",
+          "title": "Масштабные протесты. Удар по столице. Атака на Петербург: итоги. ЧП с самолетом | ВОЗДУХ"
         },
         {
           "ok": true,
@@ -1917,8 +1911,8 @@
       "streams": [
         {
           "ok": true,
-          "videoId": "bLITM4EBgPA",
-          "title": "Midnight In Paris"
+          "videoId": "--Fjm1dSE8w",
+          "title": "Eating with a Somali Pirate in Somalia!!"
         }
       ],
       "reason": null
@@ -1939,8 +1933,8 @@
         },
         {
           "ok": true,
-          "videoId": "nskYndiHaA8",
-          "title": "Mozart - Classical Music for Studying & Brain Power"
+          "videoId": "O6JRJsbTVSo",
+          "title": "¿Por qué triunfa el mal?"
         },
         {
           "ok": true,
@@ -1955,8 +1949,8 @@
       "streams": [
         {
           "ok": true,
-          "videoId": "MLAgXYpsaaI",
-          "title": "Le journal de 13h de France Télévisions - 19 octobre 2026"
+          "videoId": "BOzPt7Kc3mM",
+          "title": "Le journal de 20h de France Télévisions - 19 octobre 2026"
         }
       ],
       "reason": null
@@ -1967,8 +1961,8 @@
       "streams": [
         {
           "ok": true,
-          "videoId": "WxOkjPdE5fM",
-          "title": "더불어민주당 최고위원회의 생중계 - 10월 19일"
+          "videoId": "sxLJv_jA6sE",
+          "title": "Santo Rosário | Sexta-feira | 04:00 | 16/10/2026 | Live Ao vivo"
         }
       ],
       "reason": null
@@ -1979,8 +1973,8 @@
       "streams": [
         {
           "ok": true,
-          "videoId": "FjFyNox4Xjs",
-          "title": "Breakfast with Stephen and Anne | Sunday 7th September"
+          "videoId": "PKfTtpQwvR8",
+          "title": "The Real Story Behind the Riots in France | Nile Gardiner"
         }
       ],
       "reason": null
@@ -2007,8 +2001,8 @@
       "streams": [
         {
           "ok": true,
-          "videoId": "izMSH3kjPE0",
-          "title": "US Ukraine Disagree on Starshield, Riots in France, Watching Wall Street"
+          "videoId": "sxLJv_jA6sE",
+          "title": "Santo Rosário | Sexta-feira | 04:00 | 16/10/2026 | Live Ao vivo"
         }
       ],
       "reason": null
@@ -2019,8 +2013,8 @@
       "streams": [
         {
           "ok": true,
-          "videoId": "LirQGT5uxFY",
-          "title": "How to Lose A Guy In 10 Days"
+          "videoId": "bLITM4EBgPA",
+          "title": "Midnight In Paris"
         }
       ],
       "reason": null
@@ -2031,8 +2025,8 @@
       "streams": [
         {
           "ok": true,
-          "videoId": "sxLJv_jA6sE",
-          "title": "Santo Rosário | Sexta-feira | 04:00 | 16/10/2026 | Live Ao vivo"
+          "videoId": "5d_wkxeTplo",
+          "title": "The Mummy"
         }
       ],
       "reason": null
@@ -2043,8 +2037,8 @@
       "streams": [
         {
           "ok": true,
-          "videoId": "izMSH3kjPE0",
-          "title": "US Ukraine Disagree on Starshield, Riots in France, Watching Wall Street"
+          "videoId": "7ZiUbT1-djA",
+          "title": "NASA's SpaceX Crew-13 Launch"
         },
         {
           "ok": true,
@@ -2066,8 +2060,8 @@
       "streams": [
         {
           "ok": true,
-          "videoId": "ppgTP8xQQsM",
-          "title": "البث المباشر لقناة سكاي نيوز عربية - Sky News Arabia Live"
+          "videoId": "fLbS3KJI0lE",
+          "title": "The Iron Giant"
         }
       ],
       "reason": null
@@ -2266,15 +2260,19 @@
       "reason": null
     },
     "mrtv-sports": {
-      "ok": false,
-      "use": null,
+      "ok": true,
+      "use": 0,
       "streams": [
         {
-          "ok": false,
-          "reason": "unreachable (URLError)"
+          "ok": true,
+          "heights": [
+            404,
+            720,
+            1080
+          ]
         }
       ],
-      "reason": "unreachable (URLError)"
+      "reason": null
     },
     "red-bull-tv": {
       "ok": true,
