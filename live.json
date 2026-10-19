@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-19T01:14:39+00:00",
+  "generated": "2026-10-19T06:13:25+00:00",
   "entries": {
     "aljazeera-en": {
       "ok": true,
@@ -17,8 +17,8 @@
         },
         {
           "ok": true,
-          "videoId": "XbQv0vO2Ymo",
-          "title": "Alex Gibney on the Myth of Elon Musk"
+          "videoId": "KMQlB8TqyH0",
+          "title": "Recent polls show tight race in Texas day before early voting begins"
         }
       ],
       "reason": null
@@ -40,8 +40,8 @@
         },
         {
           "ok": true,
-          "videoId": "kfuYhQ5ruh4",
-          "title": "صيد دموي - سباق صيد السلطعون - الحلقة 11 - الموسم الثاني | الشرق ديسكفري"
+          "videoId": "yrWZsNT8ogU",
+          "title": "الدحيح | هل «فن الحرب» عبقرية عسكرية أم أسطورة صينية؟"
         },
         {
           "ok": true,
@@ -65,8 +65,8 @@
         },
         {
           "ok": true,
-          "videoId": "ZYBw6-9aDI0",
-          "title": "Trump has made a catastrophic miscalculation"
+          "videoId": "FWPvDbRC01M",
+          "title": "This Week with George Stephanopoulos Full Broadcast - Sunday, October 18, 2026"
         }
       ],
       "reason": null
@@ -87,8 +87,8 @@
         },
         {
           "ok": true,
-          "videoId": "ZQbntiErkKA",
-          "title": "NBC Nightly News Full Episode - Oct. 18"
+          "videoId": "4NhX14XJ9qg",
+          "title": "How is Trump’s diesel deal being reported in Russia?"
         }
       ],
       "reason": null
@@ -114,8 +114,8 @@
         },
         {
           "ok": true,
-          "videoId": "duWUa9Md_tU",
-          "title": "Former CIA Spy: How to Read Anyone, Think Clearly, and Protect Yourself"
+          "videoId": "xDWQ3LkccY8",
+          "title": "Watch Sky News"
         },
         {
           "ok": false,
@@ -140,8 +140,8 @@
         },
         {
           "ok": true,
-          "videoId": "pykpO5kQJ98",
-          "title": "Euronews English Live"
+          "videoId": "4NhX14XJ9qg",
+          "title": "How is Trump’s diesel deal being reported in Russia?"
         },
         {
           "ok": true,
@@ -165,8 +165,8 @@
         },
         {
           "ok": true,
-          "videoId": "1MsLWFqaJmk",
-          "title": "Flydubai captain on the cockpit battle to save his plane"
+          "videoId": "4NxaoU9hohw",
+          "title": "Is Europe becoming poorer?"
         },
         {
           "ok": true,
@@ -190,8 +190,8 @@
         },
         {
           "ok": true,
-          "videoId": "1MsLWFqaJmk",
-          "title": "Flydubai captain on the cockpit battle to save his plane"
+          "videoId": "Nu-5ANlNaic",
+          "title": "‘Armageddon On Election Night’: Chris Christie Predicts Trouble For GOP & Trump In Midterms | N18G"
         },
         {
           "ok": true,
@@ -216,8 +216,8 @@
         },
         {
           "ok": true,
-          "videoId": "V_4U0LBjNso",
-          "title": "Rally with Jon Ossoff | Atlanta, GA | 10.17.2026"
+          "videoId": "Wv1jw-M720c",
+          "title": "3 Years Off Grid | Everything We Built on our Abandoned Homestead in Alaska (TIMELAPSE)"
         },
         {
           "ok": true,
@@ -241,8 +241,8 @@
         },
         {
           "ok": true,
-          "videoId": "1MsLWFqaJmk",
-          "title": "Flydubai captain on the cockpit battle to save his plane"
+          "videoId": "FWPvDbRC01M",
+          "title": "This Week with George Stephanopoulos Full Broadcast - Sunday, October 18, 2026"
         },
         {
           "ok": true,
@@ -272,8 +272,8 @@
         },
         {
           "ok": true,
-          "videoId": "kGIIPzvK9c0",
-          "title": "Searching for Amelia Earhart (Full Episode) | SPECIAL | National Geographic"
+          "videoId": "vf4ksuXiQ1M",
+          "title": "Pittsburgh Steelers vs. Tampa Bay Buccaneers Game Highlights | 2026 NFL Season Week 6"
         }
       ],
       "reason": null
@@ -314,8 +314,8 @@
         },
         {
           "ok": true,
-          "videoId": "ZQbntiErkKA",
-          "title": "NBC Nightly News Full Episode - Oct. 18"
+          "videoId": "Vm3gAEzzHv0",
+          "title": "ABC World News Tonight with David Muir Full Broadcast - Oct. 18, 2026"
         }
       ],
       "reason": null
@@ -382,8 +382,8 @@
         },
         {
           "ok": true,
-          "videoId": "fWsfs1oqzuQ",
-          "title": "RUMBLE IN THE JUMBLE | Day 230 | Trump v Zelensky | France in flames | West Bank settler attacks"
+          "videoId": "FWPvDbRC01M",
+          "title": "This Week with George Stephanopoulos Full Broadcast - Sunday, October 18, 2026"
         }
       ],
       "reason": null
@@ -801,27 +801,22 @@
         },
         {
           "ok": true,
-          "videoId": "Yq4Fs_dshjk",
-          "title": "New Season | KBC S16 | Ep.90 | Full Episode | Nana Patekar ने किसे कहा Thankyou?"
+          "videoId": "RfjfWMGPDgM",
+          "title": "आए भी वो गए भी वो, लो खत्म कहानी हो गई #EP3504 #apkaakhbar #nehabora  #rahulgandhi #prashantbhushan"
         }
       ],
       "reason": null
     },
     "irinn-2": {
-      "ok": true,
-      "use": 0,
+      "ok": false,
+      "use": null,
       "streams": [
         {
-          "ok": true,
-          "heights": [
-            240,
-            480,
-            720,
-            1080
-          ]
+          "ok": false,
+          "reason": "unreachable (URLError)"
         }
       ],
-      "reason": null
+      "reason": "unreachable (URLError)"
     },
     "3catinfo": {
       "ok": true,
@@ -912,11 +907,17 @@
     },
     "syria-tv": {
       "ok": true,
-      "use": 1,
+      "use": 0,
       "streams": [
         {
-          "ok": false,
-          "reason": "unreachable (IncompleteRead)"
+          "ok": true,
+          "heights": [
+            240,
+            360,
+            480,
+            720,
+            1080
+          ]
         },
         {
           "ok": true,
@@ -929,8 +930,14 @@
           ]
         },
         {
-          "ok": false,
-          "reason": "unreachable (IncompleteRead)"
+          "ok": true,
+          "heights": [
+            240,
+            360,
+            480,
+            720,
+            1080
+          ]
         }
       ],
       "reason": null
@@ -1677,10 +1684,10 @@
       "streams": [
         {
           "ok": false,
-          "reason": "HTTP 503"
+          "reason": "HTTP 404"
         }
       ],
-      "reason": "HTTP 503"
+      "reason": "HTTP 404"
     },
     "cctv-1": {
       "ok": true,
@@ -1766,8 +1773,8 @@
         },
         {
           "ok": true,
-          "videoId": "yAGGkDvbjAs",
-          "title": "Jon Stewart and The News Team Tackle the 2026 Midterm Candidates | The Daily Show"
+          "videoId": "QxZ4c0HJxdQ",
+          "title": "Every Single Game Recap from Sunday Afternoon | 2026 NFL Season Week 6"
         }
       ],
       "reason": null
@@ -1778,8 +1785,8 @@
       "streams": [
         {
           "ok": true,
-          "videoId": "gQNXCLt-sCo",
-          "title": "Ukrainian drones strike St. Petersburg in the largest-ever attack on the city | World News Tonight"
+          "videoId": "JmTwSOlQz8g",
+          "title": "Republican Midterm Ads Cold Open - SNL"
         },
         {
           "ok": false,
@@ -1846,8 +1853,8 @@
       "streams": [
         {
           "ok": true,
-          "videoId": "fchopFk65YA",
-          "title": "CBC News: The National | Alberta military base tragedy"
+          "videoId": "-kygPiNSEpg",
+          "title": "The Fight to Control Congress | A Special Washington Week with the Atlantic"
         }
       ],
       "reason": null
@@ -1858,8 +1865,8 @@
       "streams": [
         {
           "ok": true,
-          "videoId": "yAGGkDvbjAs",
-          "title": "Jon Stewart and The News Team Tackle the 2026 Midterm Candidates | The Daily Show"
+          "videoId": "fLbS3KJI0lE",
+          "title": "The Iron Giant"
         }
       ],
       "reason": null
@@ -1880,8 +1887,8 @@
         },
         {
           "ok": true,
-          "videoId": "7tmdV27H4m4",
-          "title": "Опасный возраст. Художественный фильм  (1981)"
+          "videoId": "SI4v9iA6q7E",
+          "title": "Удар по Петербургу: подробности, Трамп спасает Газпром, Макрон грозит погромщикам. Морозов, Катаев"
         },
         {
           "ok": true,
@@ -1902,8 +1909,8 @@
       "streams": [
         {
           "ok": true,
-          "videoId": "1MsLWFqaJmk",
-          "title": "Flydubai captain on the cockpit battle to save his plane"
+          "videoId": "9tKbVBePxyU",
+          "title": "Inside the Pirahã World: Deciphering the Amazon’s Most Enigmatic Language | SLICE | FULL DOCUMENTARY"
         }
       ],
       "reason": null
@@ -1940,8 +1947,8 @@
       "streams": [
         {
           "ok": true,
-          "videoId": "0RDFx-jfMbA",
-          "title": "17 octobre : la convergence des luttes ?"
+          "videoId": "1MsLWFqaJmk",
+          "title": "Flydubai captain on the cockpit battle to save his plane"
         }
       ],
       "reason": null
@@ -1952,8 +1959,8 @@
       "streams": [
         {
           "ok": true,
-          "videoId": "zX_CzDNg_74",
-          "title": "Notre Dame Fighting Irish vs. BYU Cougars | Full Game Highlights | ESPN College Football"
+          "videoId": "4NhX14XJ9qg",
+          "title": "How is Trump’s diesel deal being reported in Russia?"
         }
       ],
       "reason": null
@@ -1964,8 +1971,8 @@
       "streams": [
         {
           "ok": true,
-          "videoId": "C7T3oeL_HGg",
-          "title": "Watch: Highlights from Vance's CBS News town hall"
+          "videoId": "tVIPl_CA2ZI",
+          "title": "What the Heck Just Happened?"
         }
       ],
       "reason": null
@@ -1980,12 +1987,8 @@
           "title": "LIVE NEWS: LiveNOW FOX 24/7 LIVE STREAM"
         },
         {
-          "ok": true,
-          "heights": [
-            240,
-            480,
-            720
-          ]
+          "ok": false,
+          "reason": "no CORS: would need a proxy"
         }
       ],
       "reason": null
@@ -1996,8 +1999,8 @@
       "streams": [
         {
           "ok": true,
-          "videoId": "1MsLWFqaJmk",
-          "title": "Flydubai captain on the cockpit battle to save his plane"
+          "videoId": "N9WORFvhsnY",
+          "title": "Politics Chat, October 15, 2026"
         }
       ],
       "reason": null
@@ -2020,8 +2023,8 @@
       "streams": [
         {
           "ok": true,
-          "videoId": "nxQ8gm-u-rs",
-          "title": "Republic TV 24x7: Stampede-Like Situation At Kolkata Durga Puja Pandal | Global News"
+          "videoId": "ML37RU3ebKU",
+          "title": "Unc Ocho & Iso react to Cowboys-Packers, Ravens-Browns, Texans-Jaguars, Bears-Falcons | Nightcap"
         }
       ],
       "reason": null
@@ -2055,8 +2058,8 @@
       "streams": [
         {
           "ok": true,
-          "videoId": "JpU8Z415rLA",
-          "title": "الحكاية|زلزال عسكري يهز الحوثي..لأول مرة عميد سمير راغب يكشف تدخل مصر الرد الحاسم!سر الخلطة المتفجرة"
+          "videoId": "50Gs3K455C8",
+          "title": "نشرة السادسة صباحاً | 2026-10-19"
         }
       ],
       "reason": null
