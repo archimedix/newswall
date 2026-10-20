@@ -2,5 +2,8 @@
 node_modules/
 *.log
 
-# residuo dell'import dinamico in harvest
+# leftover from the dynamic import in harvest
 __pycache__/
+
+# Claude memory is kept locally for this project, never committed
+memory/

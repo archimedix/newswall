@@ -1,285 +1,282 @@
-# Newswall Globe — piano
+# Newswall Globe — plan
 
-> Stato: **approvato il 18/10/2026**. Fasi 0 e 1 fatte; restano la 2 e la 3. Quando una
-> fase è fatta, va raccontata nel README e qui ne resta solo una nota.
+> Status: **approved on 2026-10-18**. Phases 0 and 1 done; 2 and 3 remain. When a phase is
+> done, it gets described in the README and only a note stays here.
 
 ## 1. Vision
 
-Newswall diventa due esperienze sopra lo stesso catalogo:
+Newswall becomes two experiences on top of the same catalog:
 
-- **Il muro** (`index.html`) — quello di oggi. Si proietta, si guarda per ore. Resta
-  tecnico, minimale, leggero: fino a 12 schermi in griglia, un audio alla volta. Non carica
-  mai niente di 3D.
-- **Il globo** (`globe.html`) — la modalità esplorazione. Entri in un mondo 3D: la Terra
-  ruota sotto di te, con il giorno e la notte veri, e sopra ogni paese galleggiano gli schermi
-  dei suoi canali. Giri il globo, ti avvicini, scegli. Si guida con mouse, tastiera, gamepad,
-  e (fase 3) con lo smartphone come telecomando, agganciato inquadrando un QR.
+- **The wall** (`index.html`) — today's page. You project it, you watch it for hours. It stays
+  technical, minimal, light: up to 12 screens in a grid, one audio at a time. It never loads
+  anything 3D.
+- **The globe** (`globe.html`) — the exploration mode. You enter a 3D world: the Earth turns
+  beneath you, with real day and night, and above each country float the screens of its
+  channels. You spin the globe, move closer, choose. It is driven by mouse, keyboard, gamepad,
+  and (phase 3) by a smartphone as a remote, paired by scanning a QR code.
 
-Le due pagine sono collegate dall'URL: dal globo raccogli i canali e li **mandi al muro**
-(`index.html#c=<mode>&s=a,b,c`); dal muro un pulsante porta al globo.
+The two pages are linked through the URL: on the globe you collect channels and **send them to
+the wall** (`index.html#c=<mode>&s=a,b,c`); on the wall a button leads to the globe.
 
-Il principio del progetto non cambia: **nessuna richiesta a terze parti per renderizzare**,
-nessun account, nessun dato raccolto. L'unica eccezione, opzionale e isolata, è il relay del
-telecomando (§7).
+The project's principle does not change: **no third-party requests to render**, no accounts, no
+data collected. The only exception, optional and isolated, is the remote's relay (§7).
 
-## 2. Decisioni prese
+## 2. Decisions taken
 
-| Decisione | Perché |
+| Decision | Why |
 |---|---|
-| Globo come **pagina separata** | Il muro resta leggero: three.js (~600 KB) lo carica solo il globo. |
-| **Niente YouTube nel globo** | Un iframe YouTube non può diventare texture WebGL: servirebbe un secondo renderer (CSS3D) sovrapposto. Senza, tutti gli schermi sono texture vere, toccate da luci e giorno/notte. Costo: 13 canali news su 108 non compaiono nel globo (dati del 18/10/2026: 95 news con HLS funzionante). Nel muro YouTube resta. |
-| **Live solo 4–6 schermi** alla volta | Decodificare decine di stream è impossibile; gli altri mostrano logo o ultimo fotogramma. |
-| **Niente build, niente Astro** | Astro è per siti di contenuto; qui è quasi tutto JS in tempo reale. Quello che serve è la **modularità**, e la danno i moduli ES nativi + `importmap`. Il codice in moduli ES passa a Vite quasi senza modifiche il giorno che servisse (TypeScript, molte dipendenze, shader complessi): scelta reversibile a basso costo. Il contrario no. |
-| Dipendenze **vendorizzate** in `assets/vendor/` | Come hls.js: versione esatta, nessun CDN. |
+| Globe as a **separate page** | The wall stays light: only the globe loads three.js (~600 KB). |
+| **No YouTube on the globe** | A YouTube iframe cannot become a WebGL texture: it would need a second renderer (CSS3D) on top. Without it, every screen is a real texture, touched by lights and day/night. Cost: 13 news channels out of 108 don't appear on the globe (data of 2026-10-18: 95 news channels with a working HLS stream). YouTube stays on the wall. |
+| **Only 4–6 live screens** at a time | Decoding dozens of streams is impossible; the others show a logo or their last frame. |
+| **No build, no Astro** | Astro is for content sites; here it's almost all real-time JS. What's needed is **modularity**, and native ES modules + `importmap` provide it. ES module code moves to Vite almost unchanged the day it's needed (TypeScript, many dependencies, complex shaders): a cheap, reversible choice. The opposite is not. |
+| Dependencies **vendored** in `assets/vendor/` | Like hls.js: exact version, no CDN. |
 
-## 3. Architettura dei file
+## 3. File architecture
 
 ```
-index.html            muro (type="module")
-globe.html            globo (type="module", importmap per three)
-remote.html           telecomando da smartphone (fase 3)
+index.html            wall (type="module")
+globe.html            globe (type="module", importmap for three)
+remote.html           smartphone remote (phase 3)
 js/
   core/
-    data.js           carica sources.json + live.json, byId, inMode, MODES,
+    data.js           loads sources.json + live.json, byId, inMode, MODES,
                       flag, countryName, langName, originText, firstStream
-    hls-player.js     crea/distrugge un <video> HLS con fallback sugli stream,
-                      watchdog, cap di qualità — senza sapere niente di griglia o globo
-    url.js            lettura/scrittura di #c= e #s=, localStorage
+    hls-player.js     creates/destroys an HLS <video> with stream fallback,
+                      watchdog, quality cap — knowing nothing about grid or globe
+    url.js            reads/writes #c= and #s=, localStorage
   wall/
-    wall.js           boot del muro, griglia, tile, audio, focus
-    youtube.js        iframe + postMessage (solo muro)
-    panel.js          catalogo e ricerca rapida
+    wall.js           wall boot, grid, tiles, audio, focus
+    youtube.js        iframe + postMessage (wall only)
+    panel.js          catalog and quick search
   globe/
-    globe.js          boot, scena, loop di render
-    earth.js          sfera, shader giorno/notte, atmosfera, confini
-    sun.js            posizione del sole dall'ora UTC
-    screens.js        schermi sospesi, cluster, etichette
-    livepool.js       chi è live, isteresi, avvio/stop dei player
-    controls.js       mouse, touch, tastiera, gamepad → comandi astratti
-    hud.js            barra, scheda canale, cestino "manda al muro"
-    geo.js            ISO2 → [lat, lon] (capitale / centro mediatico)
-  remote/             (fase 3)
+    globe.js          boot, scene, render loop
+    earth.js          sphere, day/night shader, atmosphere, borders
+    sun.js            sun position from UTC time
+    screens.js        floating screens, clusters, labels
+    livepool.js       who is live, hysteresis, starting/stopping players
+    controls.js       mouse, touch, keyboard, gamepad → abstract commands
+    hud.js            bar, channel card, "send to wall" basket
+    geo.js            ISO2 → [lat, lon] (capital / media hub)
+  remote/             (phase 3)
 assets/
-  vendor/             hls.min.js, three.module.min.js, qrcode.js (fase 3)
-  earth/              texture e confini (pubblico dominio)
-  logos/              loghi dei canali, scaricati una volta da uno script
-relay/                (fase 3) Cloudflare Worker + Durable Object
+  vendor/             hls.min.js, three.module.min.js, qrcode.js (phase 3)
+  earth/              textures and borders (public domain)
+  logos/              channel logos, downloaded once by a script
+relay/                (phase 3) Cloudflare Worker + Durable Object
 ```
 
-Il punto chiave è `hls-player.js` (fatto in fase 0): un'API che il globo può usare con un
-`<video>` fuori dal DOM:
+The key piece is `hls-player.js` (done in phase 0): an API the globe can use with a `<video>`
+outside the DOM:
 
 ```js
 const p = createHlsPlayer(url, { cap: 360, onReady, onFail });
-p.video        // <video> da usare come texture
-p.setCap(null) // piena qualità quando lo schermo viene selezionato
+p.video        // <video> to use as a texture
+p.setCap(null) // full quality when the screen gets selected
 p.destroy()
 ```
 
-Il player gestisce **uno** stream: il passaggio allo stream successivo della sorgente
-(saltando quelli YouTube) lo fa chi lo usa, nel globo `livepool.js`.
+The player handles **one** stream: moving on to the source's next stream (skipping YouTube
+ones) is up to the caller, on the globe `livepool.js`.
 
-## 4. Fasi
+## 4. Phases
 
-### Fase 0 — Fondamenta ✅ (18/10/2026)
+### Phase 0 — Foundations ✅ (2026-10-18)
 
-Fatta: moduli `js/core/*` e `js/wall/*`, `createHlsPlayer()`, `GB` al posto di `UK`. Descritta
-nel README ("How it's built") e in CLAUDE.md.
+Done: `js/core/*` and `js/wall/*` modules, `createHlsPlayer()`, `GB` instead of `UK`. Described
+in the README ("How it's built") and in CLAUDE.md.
 
-### Fase 1 — Il globo ✅ (18/10/2026)
+### Phase 1 — The globe ✅ (2026-10-18)
 
-Fatta: `globe.html` e `js/globe/*`, descritti nel README ("The globe") e in CLAUDE.md. Scelte
-prese durante la realizzazione:
+Done: `globe.html` and `js/globe/*`, described in the README ("The globe") and in CLAUDE.md.
+Choices made along the way:
 
-- **Terre piene**, non a punti: la Blue Marble virata a grafite nello shader, con gli oceani
-  quasi neri. La griglia di punti resta un'idea per la fase 2, se il pieno stanca.
-- Gli schermi di paesi vicini **si respingono** (rilassamento sulla sfera con molla verso
-  il paese) e il filo torna sempre al punto vero: l'Europa resta comunque affollata finché
-  non arrivano i cluster.
-- Hysteresis come da §6, quindi fino a K+2 player insieme (6 su desktop, 5 su touch).
-- Il cestino vive solo nella pagina (non in localStorage): apre il muro via URL.
-- **Niente schermata d'ingresso**, né nel globo né nel muro: si parte muti (l'autoplay muto
-  non richiede gesti) e il primo clic su un canale dà l'audio.
-- Aggiunti su richiesta: **primo piano** (il canale vola dal globo a tutta finestra e torna
-  al suo posto), schermi in vetro con ombra e alone, HUD in vetro con mirino e telemetria.
-- `scripts/serve.py` al posto di `http.server`: senza `no-cache` il browser tiene i moduli
-  vecchi anche al reload.
+- **Solid land**, not dots: the Blue Marble turned graphite in the shader, with near-black
+  oceans. The dot grid remains an idea for phase 2, if the solid look gets tiring.
+- Screens of neighbouring countries **repel each other** (relaxation on the sphere with a spring
+  towards the country) and the wire always goes back to the true point: Europe stays crowded
+  until clusters arrive.
+- Hysteresis as in §6, so up to K+2 players at once (6 on desktop, 5 on touch).
+- The basket lives only in the page (not in localStorage): it opens the wall via URL.
+- **No start screen**, neither on the globe nor on the wall: everything starts muted (muted
+  autoplay needs no gesture) and the first click on a channel turns its audio on.
+- Added on request: **front row** (the channel flies from the globe to full window and back to
+  its place), glass screens with shadow and glow, glass HUD with reticle and telemetry.
+- `scripts/serve.py` instead of `http.server`: without `no-cache` the browser keeps stale
+  modules even on reload.
 
-### Fase 2 — Rifinitura
+### Phase 2 — Polish
 
-- **Cluster**: paesi con molti canali (US 21, IN 11, FR 9) da lontano sono uno schermo con
-  contatore `×21`; avvicinandosi si aprono a ventaglio.
-- **Ultimo fotogramma**: quando uno schermo smette di essere live, si cattura un frame
-  e diventa la sua immagine ferma (desaturata, con l'ora "visto alle 14:32").
-- Transizioni di camera curate, `prefers-reduced-motion` rispettato.
-- Taratura mobile (meno live, pixel ratio più basso).
-- Script stdlib `scripts/fetch-logos.py` per scaricare e ridimensionare i loghi.
+- **Clusters**: countries with many channels (US 21, IN 11, FR 9) are one screen with a `×21`
+  counter from afar; moving closer fans them out.
+- **Last frame**: when a screen stops being live, a frame is captured and becomes its still
+  image (desaturated, with the time "seen at 14:32").
+- Careful camera transitions, `prefers-reduced-motion` respected.
+- Mobile tuning (fewer live screens, lower pixel ratio).
+- Stdlib script `scripts/fetch-logos.py` to download and resize logos.
 
-### Fase 3 — Telecomando da smartphone
+### Phase 3 — Smartphone remote
 
-Vedi §7.
+See §7.
 
-## 5. Idea grafica
+## 5. Visual idea
 
-**Tono**: la stessa "control room" del muro, ma vista dallo spazio. Notturno, preciso,
-silenzioso. Niente effetti da videogioco cartoon: più centro di controllo missione.
+**Tone**: the wall's same "control room", but seen from space. Nocturnal, precise, quiet. No
+cartoon video-game effects: more mission control centre.
 
-**La Terra**
-- Oceano quasi nero, blu-grafite. Terre in grigio scuro opaco, oppure a **griglia di
-  punti** (più "strumento", meno fotografia) — da decidere guardando un prototipo.
-- **Confini** sottili, appena più chiari; il paese dello schermo selezionato si accende.
-- **Giorno e notte reali**: la posizione del sole si calcola dall'ora UTC (declinazione +
-  equazione del tempo, formula breve). Lo shader sfuma tra il lato in luce e quello in
-  ombra con una fascia di crepuscolo morbida.
-- **Luci delle città** (NASA Black Marble) che compaiono solo sul lato notturno: rende
-  visibile a colpo d'occhio dove è notte e i telegiornali sono in replica.
-- **Atmosfera**: alone sottile sul bordo (effetto Fresnel), freddo di giorno, quasi assente
-  di notte.
-- Stelle rade sullo sfondo, molto discrete.
+**The Earth**
+- Near-black, blue-graphite ocean. Land in dark matte grey, or as a **dot grid** (more
+  "instrument", less photograph) — to be decided on a prototype.
+- Thin **borders**, just a little lighter; the country of the selected screen lights up.
+- **Real day and night**: the sun position is computed from UTC time (declination + equation
+  of time, a short formula). The shader blends between the lit and the dark side with a soft
+  twilight band.
+- **City lights** (NASA Black Marble) that only appear on the night side: it shows at a glance
+  where it is night and the newscasts are reruns.
+- **Atmosphere**: a thin halo on the rim (Fresnel effect), cold by day, nearly absent by night.
+- Sparse stars in the background, very discreet.
 
-Risorse, tutte di pubblico dominio: NASA Blue Marble / Black Marble (2K, ~1–2 MB in tutto),
-Natural Earth 1:110m per i confini (~100 KB).
+Assets, all public domain: NASA Blue Marble / Black Marble (2K, ~1–2 MB total), Natural Earth
+1:110m for borders (~100 KB).
 
-**Gli schermi sospesi**
-- Pannelli 16:9 a una certa altezza sopra il paese, rivolti verso l'esterno e leggermente
-  verso la camera, così restano leggibili anche vicino al bordo del globo.
-- Un **filo sottile** collega lo schermo al punto sul terreno, dove pulsa un piccolo
-  marcatore.
-- Cornice sottile tipo monitor; sotto, etichetta in Spline Sans Mono: bandiera, nome,
-  ora locale (dal `tz` della sorgente).
-- **Stati**:
-  - *live*: colori pieni, cornice chiara;
-  - *fermo*: logo o ultimo fotogramma, desaturato e più scuro;
-  - *selezionato*: più grande, piena qualità;
-  - *in onda* (ha l'audio): **rosso**, la stessa regola del muro: il rosso è solo per chi
-    parla;
-  - *ritrasmissione* (`origin.kind = rebroadcast`): dettaglio arancione, come nel muro.
-- Il lato notturno tocca anche gli schermi: quelli nel buio hanno la cornice più fioca.
+**The floating screens**
+- 16:9 panels at some height above the country, facing outwards and slightly towards the
+  camera, so they stay readable near the edge of the globe.
+- A **thin wire** links the screen to its point on the ground, where a small marker pulses.
+- Thin monitor-like frame; underneath, a Spline Sans Mono label: flag, name, local time (from
+  the source's `tz`).
+- **States**:
+  - *live*: full colours, light frame;
+  - *still*: logo or last frame, desaturated and darker;
+  - *selected*: larger, full quality;
+  - *on air* (has the audio): **red**, the same rule as the wall: red is only for the one
+    talking;
+  - *rebroadcast* (`origin.kind = rebroadcast`): orange detail, as on the wall.
+- The night side touches the screens too: those in the dark have a dimmer frame.
 
-**HUD** (vetro smerigliato, solo su superfici una alla volta come da regole del muro)
-- In alto: logo, modi, conteggio live, ora UTC, cestino `3/12 → Apri nel muro`.
-- Al centro: un **mirino** discreto: lo schermo più vicino al mirino è il candidato alla
-  selezione (essenziale per il gamepad).
-- In basso: scheda del canale selezionato — nome, paese, lingua, provenienza dello stream
-  con la stessa regola di onestà del muro.
+**HUD** (frosted glass, only on surfaces seen one at a time, as per the wall's rules)
+- Top: logo, modes, live count, UTC time, basket `3/12 → Open in wall`.
+- Centre: a discreet **reticle**: the screen closest to it is the selection candidate
+  (essential for the gamepad).
+- Bottom: the selected channel's card — name, country, language, stream origin with the same
+  honesty rule as the wall.
 
-## 6. Comportamento
+## 6. Behaviour
 
-**Chi è live (`livepool.js`)**
-- Punteggio = distanza angolare dello schermo dal centro dell'inquadratura; contano solo
-  quelli sull'emisfero visibile.
-- Sono live i primi K (default 4, max 6; 3 su mobile).
-- **Isteresi**: uno schermo live resta live finché non esce dai primi K+2 o dall'emisfero
-  visibile. Uno stream impiega 2–5 s a partire: senza isteresi, ruotando si vedrebbero solo
-  caricamenti.
-- **Attesa**: nuovi player partono solo quando la camera è quasi ferma da ~400 ms, al
-  massimo 2 avvii in parallelo.
-- Qualità: 360p per gli schermi live, piena per quello selezionato.
-- Safari: forzare hls.js (MediaSource) anche dove esiste l'HLS nativo, altrimenti il video
-  non è utilizzabile come texture.
-- Le texture si aggiornano solo a fotogramma nuovo (`requestVideoFrameCallback`); il render
-  si ferma con la scheda nascosta.
+**Who is live (`livepool.js`)**
+- Score = angular distance of the screen from the centre of the view; only those on the
+  visible hemisphere count.
+- The top K are live (default 4, max 6; 3 on mobile).
+- **Hysteresis**: a live screen stays live until it leaves the top K+2 or the visible
+  hemisphere. A stream takes 2–5 s to start: without hysteresis, rotating would show only
+  loading screens.
+- **Waiting**: new players start only when the camera has been almost still for ~400 ms, at
+  most 2 starts in parallel.
+- Quality: 360p for live screens, full for the selected one.
+- Safari: force hls.js (MediaSource) even where native HLS exists, otherwise the video can't
+  be used as a texture.
+- Textures update only on a new frame (`requestVideoFrameCallback`); rendering stops when the
+  tab is hidden.
 
-**Controlli** — tutti tradotti in comandi astratti (`rotate`, `zoom`, `next`, `select`,
-`audio`, `basket`, `mode`, `back`), così telecomando e gamepad usano lo stesso canale.
+**Controls** — all translated into abstract commands (`rotate`, `zoom`, `next`, `select`,
+`audio`, `basket`, `mode`, `back`), so the remote and the gamepad use the same channel.
 
-| Azione | Mouse / touch | Tastiera | Gamepad |
+| Action | Mouse / touch | Keyboard | Gamepad |
 |---|---|---|---|
-| ruota | trascina (con inerzia) | frecce / WASD | stick sinistro |
-| zoom | rotella / pinch | `+` `-` | grilletti |
-| schermo vicino | — | `Tab` / `Shift-Tab` | stick destro / croce |
-| seleziona | click | `Invio` | A |
-| audio | click sullo selezionato | `Spazio` | X |
-| nel cestino | pulsante | `B` | Y |
-| cambia modo | barra | `1`–`4` | dorsali |
-| indietro | `Esc` | `Esc` | B |
-| apri nel muro | pulsante | `Shift-Invio` | Start |
+| rotate | drag (with inertia) | arrows / WASD | left stick |
+| zoom | wheel / pinch | `+` `-` | triggers |
+| nearby screen | — | `Tab` / `Shift-Tab` | right stick / d-pad |
+| select | click | `Enter` | A |
+| audio | click on the selected one | `Space` | X |
+| to basket | button | `B` | Y |
+| change mode | bar | `1`–`4` | shoulder buttons |
+| back | `Esc` | `Esc` | B |
+| open in wall | button | `Shift-Enter` | Start |
 
-## 7. Il telecomando (fase 3)
+## 7. The remote (phase 3)
 
-**Esperienza.** Nel globo, il pulsante "Telecomando" mostra un QR. Lo inquadri con il
-telefono, si apre `remote.html` già agganciato. Sul telefono:
+**Experience.** On the globe, the "Remote" button shows a QR code. You scan it with your
+phone, and `remote.html` opens already paired. On the phone:
 
-- in alto, la scheda del canale selezionato (nome, paese, live/fermo);
-- al centro un **trackpad**: trascini per ruotare, pizzichi per lo zoom;
-- sotto, la lista dei **canali vicini** al mirino: tocchi e selezioni;
-- pulsanti grandi: Audio · Nel cestino · Apri nel muro · modi;
-- vibrazione al cambio di selezione (Android);
-- opzionale: **modalità giroscopio**, inclini il telefono e il globo ruota.
+- at the top, the selected channel's card (name, country, live/still);
+- in the middle a **trackpad**: drag to rotate, pinch to zoom;
+- below, the list of **channels near** the reticle: tap to select;
+- large buttons: Audio · To basket · Open in wall · modes;
+- vibration when the selection changes (Android);
+- optional: **gyroscope mode**, tilt the phone and the globe turns.
 
-Più avanti lo stesso telecomando può pilotare **il muro** (chi ha l'audio, schermo
-intero): è proprio l'uso "proiettato" dove non hai la tastiera a portata.
+Later the same remote can drive **the wall** (who has the audio, full screen): exactly the
+"projected" use where no keyboard is at hand.
 
-**Perché serve un relay.** Telefono e schermo devono trovarsi, e una pagina statica non
-può farlo da sola. Opzioni considerate:
+**Why a relay is needed.** Phone and screen have to find each other, and a static page can't
+do that on its own. Options considered:
 
-1. **Relay minimo su Cloudflare (Worker + Durable Object)** — *raccomandato*.
-2. **Deno Deploy** — alternativa valida: gratuito, WebSocket supportati; le istanze sono
-   separate, quindi telefono e globo si parlano via `BroadcastChannel`.
-3. Relay proprio (un container Node/Python sullo swarm già gestito): costo zero e nessun
-   terzo, ma va mantenuto e lega Newswall a quella macchina.
-4. Servizi pubblici (PeerJS cloud) o BaaS (Supabase Realtime, Firebase): un terzo vede chi si
-   collega, account e chiavi nella pagina. Contro lo spirito del progetto.
-5. WebRTC con scambio manuale di due QR: senza server, ma macchinoso.
+1. **Minimal relay on Cloudflare (Worker + Durable Object)** — *recommended*.
+2. **Deno Deploy** — a valid alternative: free, WebSockets supported; instances are separate,
+   so phone and globe talk through `BroadcastChannel`.
+3. A self-hosted relay (a small Node/Python container): zero cost and no third party, but it
+   has to be maintained and ties Newswall to that machine.
+4. Public services (PeerJS cloud) or BaaS (Supabase Realtime, Firebase): a third party sees who
+   connects, accounts and keys in the page. Against the spirit of the project.
+5. WebRTC with a manual exchange of two QR codes: serverless, but clunky.
 
-Esclusi: **Vercel** e **Netlify** (le funzioni vivono una richiesta, niente WebSocket
-persistenti); **Render** free (si addormenta dopo ~15 min, risveglio 30–60 s); **Fly.io** e
-**Railway** (niente più piano gratuito vero).
+Ruled out: **Vercel** and **Netlify** (functions live for one request, no persistent
+WebSockets); **Render** free (sleeps after ~15 min, 30–60 s wake-up); **Fly.io** and
+**Railway** (no real free plan any more).
 
-**Come funziona il relay**
-- Il globo genera un `room` casuale (128 bit) e una chiave `k`. Il QR contiene
-  `https://tv.archimedix.net/remote.html#r=<room>&k=<key>`: tutto nel **frammento**, che
-  il browser non invia mai al server.
-- Entrambi aprono un WebSocket verso il Durable Object della stanza; il relay inoltra i
-  messaggi dall'uno all'altro e non fa altro.
-- **Cifratura end-to-end**: i messaggi sono cifrati con AES-GCM (WebCrypto) usando `k`.
-  Il relay vede solo il `room` e byte cifrati.
-- Niente WebRTC: sono pochi messaggi piccoli, la latenza via edge Cloudflare (20–50 ms) basta
-  per un telecomando, e si evitano NAT, ICE e TURN.
-- Il Durable Object usa la **WebSocket Hibernation API** (`state.acceptWebSocket`), non
-  `accept()`: da fermo non consuma durata. Nessuno storage (classe SQLite, l'unica sul piano
-  Free, ma senza scriverci).
-- La stanza muore quando entrambi si disconnettono, o dopo 2 ore. Nessun log persistente.
-- Un solo telecomando alla volta: il secondo che si aggancia prende il controllo.
-- Se il relay non risponde, il pulsante "Telecomando" non compare: il globo funziona uguale.
+**How the relay works**
+- The globe generates a random `room` (128 bits) and a key `k`. The QR code contains
+  `https://tv.archimedix.net/remote.html#r=<room>&k=<key>`: everything in the **fragment**,
+  which the browser never sends to the server.
+- Both open a WebSocket to the room's Durable Object; the relay forwards messages from one to
+  the other and does nothing else.
+- **End-to-end encryption**: messages are encrypted with AES-GCM (WebCrypto) using `k`. The
+  relay only sees the `room` and encrypted bytes.
+- No WebRTC: these are few small messages, the latency via Cloudflare's edge (20–50 ms) is
+  enough for a remote, and NAT, ICE and TURN are avoided.
+- The Durable Object uses the **WebSocket Hibernation API** (`state.acceptWebSocket`), not
+  `accept()`: when idle it consumes no duration. No storage (SQLite class, the only one on the
+  Free plan, but never written to).
+- The room dies when both disconnect, or after 2 hours. No persistent logs.
+- One remote at a time: the second one to pair takes control.
+- If the relay doesn't answer, the "Remote" button doesn't appear: the globe works the same.
 
-**Protocollo** (JSON, prima della cifratura)
+**Protocol** (JSON, before encryption)
 
 ```
-telefono → globo   {t:"rotate", dx, dy}   (max 30/s)
+phone → globe      {t:"rotate", dx, dy}   (max 30/s)
                    {t:"zoom", d}
                    {t:"select", id} | {t:"next", dir}
                    {t:"audio"} | {t:"basket", id} | {t:"mode", m} | {t:"open-wall"}
-globo → telefono   {t:"state", mode, selected, near:[{id,name,cc,live}], basket:[…]}
+globe → phone      {t:"state", mode, selected, near:[{id,name,cc,live}], basket:[…]}
 ```
 
-**Repo e deploy**: cartella `relay/` con il Worker (`wrangler.toml`), deploy a mano con
-`wrangler` o da una Action separata. Dominio, per esempio `relay.archimedix.net`. QR
-generato nel browser da una libreria vendorizzata (qrcode-generator, MIT, ~20 KB).
+**Repo and deploy**: a `relay/` folder with the Worker (`wrangler.toml`), deployed by hand with
+`wrangler` or by a separate Action. Domain, for example `relay.archimedix.net`. QR code
+generated in the browser by a vendored library (qrcode-generator, MIT, ~20 KB).
 
-## 8. Rischi e domande aperte
+## 8. Risks and open questions
 
-- **Peso**: three.js + texture ≈ 2–3 MB al primo caricamento del globo. Accettabile per una
-  modalità esplorazione, da tenere d'occhio.
-- **Hardware modesto**: 4–6 decoder video + WebGL su un portatile vecchio o un telefono.
-  K e pixel ratio vanno tarati in fase 2.
-- **CORS**: gli stream che hls.js non riesce a caricare per CORS non compaiono nemmeno nel
-  globo (stesso limite del muro, es. IRIB).
-- **Cloudflare** — verificato il 18/10/2026
+- **Weight**: three.js + textures ≈ 2–3 MB on the globe's first load. Acceptable for an
+  exploration mode, to keep an eye on.
+- **Modest hardware**: 4–6 video decoders + WebGL on an old laptop or a phone. K and pixel
+  ratio need tuning in phase 2.
+- **CORS**: streams hls.js can't load because of CORS don't appear on the globe either (same
+  limit as the wall, e.g. IRIB).
+- **Cloudflare** — verified on 2026-10-18
   ([pricing](https://developers.cloudflare.com/durable-objects/platform/pricing/),
-  [limits](https://developers.cloudflare.com/durable-objects/platform/limits/)): i Durable
-  Objects sono nel piano **Free** (solo backend SQLite). Limiti al giorno: 100.000 richieste,
-  13.000 GB-s di durata, reset alle 00:00 UTC; oltre, errore e nessun addebito. Un WebSocket
-  aperto = 1 richiesta, i messaggi in arrivo contano 1 ogni 20, quelli in uscita sono gratis.
-  Caso peggiore, 30 msg/s di trascinamento continuo ≈ 1,5 richieste/s → ~18 ore al giorno:
-  margine ampio. Da ricontrollare solo se le condizioni cambiano.
-- **Terre a punti o piene?** Da decidere su un prototipo della fase 1.
-- **Sorgenti senza paese preciso** (canali internazionali, panarabi): si ancorano alla sede
-  (`country` attuale). Eventuale override `geo` per sorgente solo se serve.
+  [limits](https://developers.cloudflare.com/durable-objects/platform/limits/)): Durable
+  Objects are on the **Free** plan (SQLite backend only). Daily limits: 100,000 requests,
+  13,000 GB-s of duration, reset at 00:00 UTC; beyond that, an error and no charge. An open
+  WebSocket = 1 request, incoming messages count 1 per 20, outgoing ones are free. Worst case,
+  30 msg/s of continuous dragging ≈ 1.5 requests/s → ~18 hours a day: ample margin. To be
+  rechecked only if the terms change.
+- **Dotted or solid land?** To be decided on a phase 1 prototype.
+- **Sources without a precise country** (international, pan-Arab channels): anchored to their
+  headquarters (current `country`). A per-source `geo` override only if needed.
 
-## 9. Cosa approvare prima di iniziare
+## 9. What to approve before starting
 
-1. L'impostazione generale (due pagine, moduli ES, niente build).
-2. L'ordine delle fasi: 0 → 1 → 2 → 3.
-3. Il relay Cloudflare per il telecomando (fattibile e gratuito, vedi §8; si decide prima
-   della fase 3).
+1. The general approach (two pages, ES modules, no build).
+2. The order of the phases: 0 → 1 → 2 → 3.
+3. The Cloudflare relay for the remote (feasible and free, see §8; to be decided before
+   phase 3).
