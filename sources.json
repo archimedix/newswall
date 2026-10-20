@@ -1143,12 +1143,12 @@
         {
           "kind": "hls",
           "origin": {
-            "host": "ncdn.telewebion.ir",
+            "host": "ncdn.telewebion.net",
             "via": "iptv-org",
             "kind": "broadcaster",
             "label": "Telewebion"
           },
-          "url": "https://ncdn.telewebion.ir/irinn2/live/playlist.m3u8"
+          "url": "https://ncdn.telewebion.net/irinn2/live/playlist.m3u8"
         }
       ],
       "categories": [
@@ -3106,9 +3106,9 @@
       "streams": [
         {
           "kind": "hls",
-          "url": "https://ncdn.telewebion.ir/varzesh/live/playlist.m3u8",
+          "url": "https://ncdn.telewebion.net/varzesh/live/playlist.m3u8",
           "origin": {
-            "host": "ncdn.telewebion.ir",
+            "host": "ncdn.telewebion.net",
             "via": "iptv-org",
             "kind": "broadcaster",
             "label": "Telewebion"
@@ -4220,9 +4220,9 @@
       "streams": [
         {
           "kind": "hls",
-          "url": "https://bloomberg.com/media-manifest/streams/asia.m3u8",
+          "url": "https://www.bloomberg.com/media-manifest/streams/asia.m3u8",
           "origin": {
-            "host": "bloomberg.com",
+            "host": "www.bloomberg.com",
             "via": "iptv-org",
             "kind": "broadcaster",
             "label": "bloomberg.com"
@@ -4230,10 +4230,10 @@
         },
         {
           "kind": "hls",
-          "url": "https://bloomberg.com/media-manifest/streams/eu.m3u8",
+          "url": "https://www.bloomberg.com/media-manifest/streams/eu.m3u8",
           "via": "free-tv",
           "origin": {
-            "host": "bloomberg.com",
+            "host": "www.bloomberg.com",
             "via": "free-tv",
             "kind": "broadcaster",
             "label": "bloomberg.com"
@@ -4241,10 +4241,10 @@
         },
         {
           "kind": "hls",
-          "url": "https://bloomberg.com/media-manifest/streams/phoenix-us.m3u8",
+          "url": "https://www.bloomberg.com/media-manifest/streams/phoenix-us.m3u8",
           "via": "free-tv",
           "origin": {
-            "host": "bloomberg.com",
+            "host": "www.bloomberg.com",
             "via": "free-tv",
             "kind": "broadcaster",
             "label": "bloomberg.com"

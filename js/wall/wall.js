@@ -4,7 +4,7 @@
 
 import {
   MODES, byId, catalog, countryName, escapeHtml, firstStream, flag, inMode,
-  isPlayable, langName, loadCatalog, ORIGIN_LABEL, originText,
+  langName, liveState, loadCatalog, ORIGIN_LABEL, originText,
 } from '../core/data.js';
 import { createHlsPlayer } from '../core/hls-player.js';
 import {
@@ -40,11 +40,13 @@ const save = () => {
 };
 
 function renderCount() {
-  const on = state.sources.filter((s) => isPlayable(s.id)).length;
+  const n = (st) => state.sources.filter((s) => liveState(s.id) === st).length;
+  const unverified = n('unverified');
   const when = catalog.generated
     ? new Date(catalog.generated).toLocaleString('en-GB', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' })
     : '—';
-  $('#live-count').textContent = `${on}/${state.sources.length} live · checked ${when}`;
+  $('#live-count').textContent = `${n('ok')}/${state.sources.length} live`
+    + (unverified ? ` · ${unverified} unverified` : '') + ` · updated ${when}`;
 }
 
 /* ---------------------------------------------------------------- modes */
@@ -56,8 +58,9 @@ function wallFor(ids) {
   if (ok.length) return ok.slice(0, MAX_TILES);
   const wall = (MODES[state.mode].wall || []).filter((id) => byId(id));
   if (wall.length) return wall;
-  // One per country first, so that the default already compares something.
-  const live = state.sources.filter((s) => isPlayable(s.id));
+  // One per country first, so that the default already compares something;
+  // only channels the check saw working.
+  const live = state.sources.filter((s) => liveState(s.id) === 'ok');
   const seen = new Set();
   const pick = live.filter((s) => !seen.has(s.country) && seen.add(s.country));
   return [...pick, ...live.filter((s) => !pick.includes(s))].slice(0, DEFAULT_TILES).map((s) => s.id);
@@ -184,7 +187,7 @@ function makeTile(id) {
     </div>
     <div class="wait"><span class="bar"></span>connecting…</div>`;
 
-  if (info.ok === false) markDead(tile, src, info.reason);
+  if (info.state === 'dead') markDead(tile, src, info.reason);
   else attach(tile, src, firstStream(src));
   return tile;
 }
@@ -329,9 +332,11 @@ function addSource(id) {
   state.active.push(id);
   commit();
   const src = byId(id);
-  toast(isPlayable(id)
-    ? `${flag(src.country)} ${src.name} on air`
-    : `${src.name}: the last check did not find it live`);
+  toast({
+    ok: `${flag(src.country)} ${src.name} on air`,
+    unverified: `${flag(src.country)} ${src.name}: the last check could not verify it, trying`,
+    dead: `${src.name}: the last check did not find it live`,
+  }[liveState(id)]);
 }
 
 function removeSource(id) {

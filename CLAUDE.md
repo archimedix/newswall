@@ -41,8 +41,11 @@ Python scripts use the standard library only — keep it that way (they run bare
   comes from the source's top-level `via`, overridden by a stream-level `via` (fallbacks added by
   `--alternatives` carry their own).
 - **`live.json`** — generated, never edit by hand. `refresh-live.py` writes per-source
-  `{ok, use, streams[], reason}`: `use` is the index of the first working stream; stream entries
-  carry the variant `heights`. `.github/workflows/refresh.yml` runs it hourly and commits `live.json` as
+  `{state, use, streams[], reason}`, `state` being `ok` / `unverified` / `dead`: only faults that
+  hit every viewer are `dead` (no CORS, http, 404…); geoblock-like answers (403/451), 5xx and
+  timeouts are `unverified` and the client still tries them. `use` is the first `ok` stream, else
+  the first `unverified`; `ok` entries carry the variant `heights`. The file is rewritten only
+  when an entry changes (`generated` = last change). `.github/workflows/refresh.yml` runs it hourly and commits `live.json` as
   `newswall-bot` — expect frequent bot commits upstream; pull before editing `live.json`-adjacent work.
 - **`origin` honesty rule** (`annotate-origin.py`): never invent a broadcaster label. Only label it
   when the domain makes it obvious, or when the stream has a `page` (the broadcaster's own page
@@ -60,7 +63,7 @@ Native ES modules, loaded as they are (`<script type="module">`). Two layers:
 
 - **`js/core/`** — shared by every view (the wall today, the globe planned in
   `docs/globe-plan.md`). `data.js`: `loadCatalog()` fills `catalog` (`all`, `live`,
-  `generated`); `MODES`, `byId`, `inMode(s, mode)`, `isPlayable`, `firstStream`, `flag`,
+  `generated`); `MODES`, `byId`, `inMode(s, mode)`, `liveState`, `isPlayable` (not dead), `firstStream`, `flag`,
   `countryName`, `langName`, `originText`, `escapeHtml`. `url.js`: URL hash and localStorage.
   `hls-player.js`: `createHlsPlayer(url, {muted, cap, onReady, onFail})` → `{video, hls, play,
   setCap(height|null), destroy}` — one stream, retries + 15 s watchdog, then `onFail`; after

@@ -15,7 +15,7 @@ export const MODES = {
 export const catalog = {
   all: [],              // curated catalog, every mode
   live: {},             // result of the last refresh, by id
-  generated: null,      // when that refresh ran
+  generated: null,      // when the status last changed
 };
 
 export async function loadCatalog() {
@@ -31,9 +31,14 @@ export async function loadCatalog() {
 
 export const byId = (id) => catalog.all.find((s) => s.id === id);
 export const inMode = (s, mode) => (s.categories || ['news']).includes(mode);
-export const isPlayable = (id) => (catalog.live[id] ? catalog.live[id].ok !== false : true);
+/* What the last check said: 'ok', 'dead' (fails for everyone: no CORS, gone…)
+   or 'unverified' (geoblock, timeout: the checker can't tell, the browser tries).
+   A source the check has not seen yet is unverified too. */
+export const liveState = (id) => catalog.live[id]?.state || 'unverified';
+export const isPlayable = (id) => liveState(id) !== 'dead';
 
-/* Which stream to try first: the one the last check found working. */
+/* Which stream to try first: the first one the last check found working,
+   else the first it could not verify. */
 export function firstStream(src) {
   const use = catalog.live[src.id]?.use;
   return Number.isInteger(use) ? use : 0;

@@ -1,12 +1,12 @@
 {
-  "generated": "2026-10-20T21:38:25+00:00",
+  "generated": "2026-10-20T22:16:18+00:00",
   "entries": {
     "aljazeera-en": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             240,
             360,
@@ -19,11 +19,11 @@
       "reason": null
     },
     "aljazeera-ar": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             240,
             360,
@@ -34,18 +34,18 @@
           ]
         },
         {
-          "ok": true,
+          "state": "ok",
           "heights": []
         }
       ],
       "reason": null
     },
     "france24-en": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             360,
             480,
@@ -57,11 +57,11 @@
       "reason": null
     },
     "dw-news": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             270,
             360,
@@ -74,11 +74,11 @@
       "reason": null
     },
     "sky-news": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             144,
             288,
@@ -89,22 +89,22 @@
           ]
         },
         {
-          "ok": false,
+          "state": "dead",
           "reason": "HTTP 404"
         },
         {
-          "ok": false,
+          "state": "unverified",
           "reason": "HTTP 403"
         }
       ],
       "reason": null
     },
     "euronews-en": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             240,
             360,
@@ -114,18 +114,18 @@
           ]
         },
         {
-          "ok": true,
+          "state": "ok",
           "heights": []
         }
       ],
       "reason": null
     },
     "cgtn": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             180,
             360,
@@ -134,7 +134,7 @@
           ]
         },
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             360,
             540,
@@ -146,26 +146,26 @@
       "reason": null
     },
     "wion": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": []
         },
         {
-          "ok": true,
+          "state": "ok",
           "heights": []
         }
       ],
       "reason": null
     },
     "times-now": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             216,
             360,
@@ -175,27 +175,22 @@
           ]
         },
         {
-          "ok": true,
-          "heights": [
-            240,
-            360,
-            480,
-            720
-          ]
+          "state": "dead",
+          "reason": "variant: HTTP 404"
         }
       ],
       "reason": null
     },
     "india-today": {
-      "ok": true,
+      "state": "ok",
       "use": 1,
       "streams": [
         {
-          "ok": false,
+          "state": "dead",
           "reason": "HTTP 404"
         },
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             180,
             234,
@@ -208,11 +203,11 @@
       "reason": null
     },
     "abc-au": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             288,
             360,
@@ -224,15 +219,15 @@
       "reason": null
     },
     "nbc-news": {
-      "ok": true,
+      "state": "ok",
       "use": 1,
       "streams": [
         {
-          "ok": false,
+          "state": "dead",
           "reason": "HTTP 400"
         },
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             240,
             360,
@@ -245,22 +240,22 @@
       "reason": null
     },
     "abc-us": {
-      "ok": false,
+      "state": "dead",
       "use": null,
       "streams": [
         {
-          "ok": false,
+          "state": "dead",
           "reason": "HTTP 404"
         }
       ],
       "reason": "HTTP 404"
     },
     "cbs-news": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             180,
             360,
@@ -269,7 +264,7 @@
           ]
         },
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             180,
             360,
@@ -281,11 +276,11 @@
       "reason": null
     },
     "trt-world": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             360,
             480,
@@ -295,18 +290,18 @@
           ]
         },
         {
-          "ok": true,
+          "state": "ok",
           "heights": []
         }
       ],
       "reason": null
     },
     "rainews24": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             408,
             540,
@@ -318,11 +313,11 @@
       "reason": null
     },
     "euronews-it": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             240,
             360,
@@ -332,7 +327,7 @@
           ]
         },
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             240,
             360,
@@ -342,18 +337,18 @@
           ]
         },
         {
-          "ok": true,
-          "heights": []
+          "state": "dead",
+          "reason": "no CORS: redirect 302 without CORS"
         }
       ],
       "reason": null
     },
     "nhk-world": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             234,
             432,
@@ -362,14 +357,14 @@
           ]
         },
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             720,
             1080
           ]
         },
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             180,
             360,
@@ -380,11 +375,11 @@
       "reason": null
     },
     "cna": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             270,
             360,
@@ -397,11 +392,11 @@
       "reason": null
     },
     "alarabiya-en": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             1080
           ]
@@ -410,11 +405,11 @@
       "reason": null
     },
     "africanews-en": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             240,
             360,
@@ -424,7 +419,7 @@
           ]
         },
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             240,
             360,
@@ -437,11 +432,11 @@
       "reason": null
     },
     "trt-arabi": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             360,
             480,
@@ -454,11 +449,11 @@
       "reason": null
     },
     "trt-haber": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             360,
             480,
@@ -471,11 +466,11 @@
       "reason": null
     },
     "dw": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             270,
             360,
@@ -485,7 +480,7 @@
           ]
         },
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             240,
             360,
@@ -495,7 +490,7 @@
           ]
         },
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             270,
             360,
@@ -508,35 +503,32 @@
       "reason": null
     },
     "ktv": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             1080
           ]
         },
         {
-          "ok": true,
+          "state": "ok",
           "heights": []
         },
         {
-          "ok": true,
-          "heights": [
-            720,
-            1080
-          ]
+          "state": "unverified",
+          "reason": "variant: HTTP 403"
         }
       ],
       "reason": null
     },
     "bfm2": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             360,
             540,
@@ -548,22 +540,22 @@
       "reason": null
     },
     "inews": {
-      "ok": true,
+      "state": "ok",
       "use": 1,
       "streams": [
         {
-          "ok": false,
+          "state": "unverified",
           "reason": "HTTP 451"
         },
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             288,
             396
           ]
         },
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             360
           ]
@@ -572,11 +564,11 @@
       "reason": null
     },
     "newsy": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             216,
             360,
@@ -589,11 +581,11 @@
       "reason": null
     },
     "rt-de": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             360,
             540,
@@ -602,7 +594,7 @@
           ]
         },
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             360,
             540,
@@ -614,11 +606,11 @@
       "reason": null
     },
     "visir": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             360,
             720,
@@ -629,11 +621,11 @@
       "reason": null
     },
     "aaj-tak": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             180,
             234,
@@ -644,7 +636,7 @@
           ]
         },
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             180,
             234,
@@ -655,7 +647,7 @@
           ]
         },
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             180,
             234,
@@ -668,11 +660,11 @@
       "reason": null
     },
     "cnbc-uk": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             360,
             540,
@@ -681,7 +673,7 @@
           ]
         },
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             360,
             540,
@@ -693,11 +685,11 @@
       "reason": null
     },
     "dd-news": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             216,
             360,
@@ -707,7 +699,7 @@
           ]
         },
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             360
           ]
@@ -716,27 +708,22 @@
       "reason": null
     },
     "irinn-2": {
-      "ok": true,
-      "use": 0,
+      "state": "dead",
+      "use": null,
       "streams": [
         {
-          "ok": true,
-          "heights": [
-            240,
-            480,
-            720,
-            1080
-          ]
+          "state": "dead",
+          "reason": "variant: no CORS for this site: would need a proxy"
         }
       ],
-      "reason": null
+      "reason": "variant: no CORS for this site: would need a proxy"
     },
     "3catinfo": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             480,
             720,
@@ -747,45 +734,51 @@
       "reason": null
     },
     "al-manar": {
-      "ok": false,
-      "use": null,
-      "streams": [
-        {
-          "ok": false,
-          "reason": "unreachable (URLError)"
-        }
-      ],
-      "reason": "unreachable (URLError)"
-    },
-    "canal-26": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
+          "heights": [
+            144,
+            240,
+            360,
+            576,
+            1080
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "canal-26": {
+      "state": "ok",
+      "use": 0,
+      "streams": [
+        {
+          "state": "ok",
           "heights": [
             1080
           ]
         },
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             1080
           ]
         },
         {
-          "ok": true,
+          "state": "ok",
           "heights": []
         }
       ],
       "reason": null
     },
     "ert-news": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             360,
             576,
@@ -797,11 +790,11 @@
       "reason": null
     },
     "makan-33": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             360,
             540,
@@ -813,11 +806,11 @@
       "reason": null
     },
     "syria-tv": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             240,
             360,
@@ -827,7 +820,7 @@
           ]
         },
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             240,
             360,
@@ -837,7 +830,7 @@
           ]
         },
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             240,
             360,
@@ -850,11 +843,11 @@
       "reason": null
     },
     "welat-tv": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             1080
           ]
@@ -863,11 +856,11 @@
       "reason": null
     },
     "360-news": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             576,
             720,
@@ -878,11 +871,11 @@
       "reason": null
     },
     "alarabiya": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             240,
             360,
@@ -894,11 +887,11 @@
       "reason": null
     },
     "al-hadath": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             240,
             360,
@@ -910,11 +903,11 @@
       "reason": null
     },
     "channel-9": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             1080
           ]
@@ -923,11 +916,11 @@
       "reason": null
     },
     "crtv-news": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             1080
           ]
@@ -936,11 +929,11 @@
       "reason": null
     },
     "mrtv-news": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             404,
             720,
@@ -951,11 +944,11 @@
       "reason": null
     },
     "rt-arabic": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             360,
             540,
@@ -967,11 +960,11 @@
       "reason": null
     },
     "rt-france": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             360,
             540,
@@ -980,7 +973,7 @@
           ]
         },
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             360,
             540,
@@ -992,11 +985,11 @@
       "reason": null
     },
     "rt-india": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             360,
             576,
@@ -1005,7 +998,7 @@
           ]
         },
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             1080
           ]
@@ -1014,11 +1007,11 @@
       "reason": null
     },
     "sabc-news": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             240,
             360,
@@ -1027,18 +1020,18 @@
           ]
         },
         {
-          "ok": true,
+          "state": "ok",
           "heights": []
         }
       ],
       "reason": null
     },
     "al-masirah": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             160,
             240,
@@ -1052,11 +1045,11 @@
       "reason": null
     },
     "arirang-un": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             360,
             540,
@@ -1068,11 +1061,11 @@
       "reason": null
     },
     "belarus-24": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             360,
             720,
@@ -1080,7 +1073,7 @@
           ]
         },
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             240,
             360,
@@ -1088,7 +1081,7 @@
           ]
         },
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             360,
             720,
@@ -1099,11 +1092,11 @@
       "reason": null
     },
     "channel-24": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             360,
             720,
@@ -1114,11 +1107,11 @@
       "reason": null
     },
     "protv-news": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             360,
             432,
@@ -1131,11 +1124,11 @@
       "reason": null
     },
     "al-araby-tv": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             240,
             360,
@@ -1148,11 +1141,11 @@
       "reason": null
     },
     "asharq-news": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             240,
             480,
@@ -1161,7 +1154,7 @@
           ]
         },
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             240,
             480,
@@ -1173,11 +1166,11 @@
       "reason": null
     },
     "expressen-tv": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             240,
             360,
@@ -1190,11 +1183,11 @@
       "reason": null
     },
     "medi1tv-arabic": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             240,
             360,
@@ -1206,11 +1199,11 @@
       "reason": null
     },
     "medi1tv-afrique": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             240,
             360,
@@ -1222,11 +1215,11 @@
       "reason": null
     },
     "naftemporiki-tv": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             576,
             720,
@@ -1237,11 +1230,11 @@
       "reason": null
     },
     "newsmax-balkans": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             270,
             576,
@@ -1253,11 +1246,11 @@
       "reason": null
     },
     "oman-tv-mubashir": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             240,
             480,
@@ -1269,11 +1262,11 @@
       "reason": null
     },
     "prensa-latina-tv": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             1080
           ]
@@ -1282,29 +1275,29 @@
       "reason": null
     },
     "first-channel-news": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             360,
             1080
           ]
         },
         {
-          "ok": true,
+          "state": "ok",
           "heights": []
         }
       ],
       "reason": null
     },
     "iran-international": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             576,
             720,
@@ -1312,7 +1305,7 @@
           ]
         },
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             240,
             360,
@@ -1320,7 +1313,7 @@
           ]
         },
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             240,
             360,
@@ -1331,11 +1324,11 @@
       "reason": null
     },
     "latina-noticias-24-7": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             240,
             480,
@@ -1344,7 +1337,7 @@
           ]
         },
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             240,
             480,
@@ -1356,11 +1349,11 @@
       "reason": null
     },
     "noticiero-90-minutos": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             480,
             720,
@@ -1371,11 +1364,11 @@
       "reason": null
     },
     "perviy-informationniy": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             360,
             720,
@@ -1386,11 +1379,11 @@
       "reason": null
     },
     "bilyonaryo-news-channel": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             360,
             480,
@@ -1402,17 +1395,17 @@
       "reason": null
     },
     "ntv": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             720
           ]
         },
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             360,
             480,
@@ -1421,7 +1414,7 @@
           ]
         },
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             360,
             720,
@@ -1432,11 +1425,11 @@
       "reason": null
     },
     "ici-rdi": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             234,
             270,
@@ -1449,11 +1442,11 @@
       "reason": null
     },
     "24-kanal": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             360,
             720
@@ -1463,11 +1456,11 @@
       "reason": null
     },
     "ma-an-tv": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             720
           ]
@@ -1476,11 +1469,11 @@
       "reason": null
     },
     "metro-tv": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             160,
             240,
@@ -1490,13 +1483,13 @@
           ]
         },
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             1080
           ]
         },
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             1080
           ]
@@ -1505,11 +1498,11 @@
       "reason": null
     },
     "news-one": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             270,
             480,
@@ -1520,11 +1513,11 @@
       "reason": null
     },
     "tolonews": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             720
           ]
@@ -1533,11 +1526,11 @@
       "reason": null
     },
     "guatevision": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             144,
             240,
@@ -1550,31 +1543,26 @@
       "reason": null
     },
     "mtv-uutiset": {
-      "ok": true,
-      "use": 1,
-      "streams": [
-        {
-          "ok": false,
-          "reason": "HTTP 503"
-        },
-        {
-          "ok": true,
-          "heights": [
-            216,
-            432,
-            576,
-            720
-          ]
-        }
-      ],
-      "reason": null
-    },
-    "13-siam-thai": {
-      "ok": true,
+      "state": "unverified",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "unverified",
+          "reason": "HTTP 503"
+        },
+        {
+          "state": "dead",
+          "reason": "no CORS for this site: would need a proxy"
+        }
+      ],
+      "reason": "HTTP 503"
+    },
+    "13-siam-thai": {
+      "state": "ok",
+      "use": 0,
+      "streams": [
+        {
+          "state": "ok",
           "heights": [
             240,
             480,
@@ -1585,11 +1573,11 @@
       "reason": null
     },
     "news-central": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             480,
             720
@@ -1599,11 +1587,11 @@
       "reason": null
     },
     "cctv-1": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             240,
             360,
@@ -1611,18 +1599,18 @@
           ]
         },
         {
-          "ok": true,
+          "state": "ok",
           "heights": []
         }
       ],
       "reason": null
     },
     "cctv-2": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             240,
             360,
@@ -1633,11 +1621,11 @@
       "reason": null
     },
     "nation-tv": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             576
           ]
@@ -1646,23 +1634,23 @@
       "reason": null
     },
     "telesur": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             360
           ]
         },
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             1080
           ]
         },
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             1080
           ]
@@ -1671,11 +1659,11 @@
       "reason": null
     },
     "cna-international": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             360
           ]
@@ -1684,74 +1672,74 @@
       "reason": null
     },
     "tvp-world": {
-      "ok": true,
+      "state": "ok",
       "use": 2,
       "streams": [
         {
-          "ok": false,
+          "state": "dead",
           "reason": "HTTP 404"
         },
         {
-          "ok": false,
+          "state": "dead",
           "reason": "HTTP 404"
         },
         {
-          "ok": true,
+          "state": "ok",
           "heights": []
         }
       ],
       "reason": null
     },
     "24kz": {
-      "ok": false,
-      "use": null,
+      "state": "unverified",
+      "use": 0,
       "streams": [
         {
-          "ok": false,
+          "state": "unverified",
           "reason": "HTTP 403"
         }
       ],
       "reason": "HTTP 403"
     },
     "dvb-tv": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": []
         }
       ],
       "reason": null
     },
     "al24-news": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": []
         }
       ],
       "reason": null
     },
     "al-ghad-tv": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": []
         }
       ],
       "reason": null
     },
     "current-time": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             240,
             360,
@@ -1761,7 +1749,7 @@
           ]
         },
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             240,
             360,
@@ -1774,11 +1762,11 @@
       "reason": null
     },
     "dw-espanol": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             270,
             360,
@@ -1788,29 +1776,29 @@
           ]
         },
         {
-          "ok": true,
+          "state": "ok",
           "heights": []
         }
       ],
       "reason": null
     },
     "livenow-fox": {
-      "ok": false,
+      "state": "dead",
       "use": null,
       "streams": [
         {
-          "ok": false,
-          "reason": "no CORS: would need a proxy"
+          "state": "dead",
+          "reason": "no CORS for this site: would need a proxy"
         }
       ],
-      "reason": "no CORS: would need a proxy"
+      "reason": "no CORS for this site: would need a proxy"
     },
     "reuters": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             240,
             360,
@@ -1824,11 +1812,11 @@
       "reason": null
     },
     "tvr-sport": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             240,
             480,
@@ -1841,57 +1829,44 @@
       "reason": null
     },
     "san-marino-rtv-sport": {
-      "ok": true,
-      "use": 0,
+      "state": "dead",
+      "use": null,
       "streams": [
         {
-          "ok": true,
-          "heights": [
-            1280
-          ]
+          "state": "dead",
+          "reason": "variant: HTTP 404"
         }
       ],
-      "reason": null
+      "reason": "variant: HTTP 404"
     },
     "varzesh-tv": {
-      "ok": true,
-      "use": 0,
+      "state": "dead",
+      "use": null,
       "streams": [
         {
-          "ok": true,
-          "heights": [
-            240,
-            480,
-            720,
-            1080,
-            1082
-          ]
+          "state": "dead",
+          "reason": "variant: no CORS for this site: would need a proxy"
         }
       ],
-      "reason": null
+      "reason": "variant: no CORS for this site: would need a proxy"
     },
     "a-spor": {
-      "ok": true,
+      "state": "unverified",
       "use": 0,
       "streams": [
         {
-          "ok": true,
-          "heights": [
-            360,
-            480,
-            720,
-            1080
-          ]
+          "state": "unverified",
+          "reason": "variant: unreachable (TimeoutError)"
         }
       ],
-      "reason": null
+      "reason": "variant: unreachable (TimeoutError)"
     },
     "esport3": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             480,
             720,
@@ -1902,11 +1877,11 @@
       "reason": null
     },
     "ge-fast": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             240,
             360,
@@ -1919,11 +1894,11 @@
       "reason": null
     },
     "inter-tv": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             408,
             540,
@@ -1935,11 +1910,11 @@
       "reason": null
     },
     "qazsport": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             360,
             540,
@@ -1951,19 +1926,15 @@
       "reason": null
     },
     "belarus-5": {
-      "ok": true,
-      "use": 0,
+      "state": "ok",
+      "use": 1,
       "streams": [
         {
-          "ok": true,
-          "heights": [
-            360,
-            720,
-            1080
-          ]
+          "state": "unverified",
+          "reason": "variant: HTTP 504"
         },
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             360,
             720,
@@ -1974,11 +1945,11 @@
       "reason": null
     },
     "ktv-sport": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             240,
             360,
@@ -1990,11 +1961,11 @@
       "reason": null
     },
     "talksport": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             360,
             540,
@@ -2006,11 +1977,11 @@
       "reason": null
     },
     "tyc-sports": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             360,
             480,
@@ -2022,11 +1993,11 @@
       "reason": null
     },
     "mrtv-sports": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             404,
             720,
@@ -2037,11 +2008,11 @@
       "reason": null
     },
     "red-bull-tv": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             216,
             360,
@@ -2054,11 +2025,11 @@
       "reason": null
     },
     "sportitalia": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             480,
             720,
@@ -2066,7 +2037,7 @@
           ]
         },
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             360,
             480,
@@ -2078,11 +2049,11 @@
       "reason": null
     },
     "supertennis": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             480,
             720,
@@ -2093,11 +2064,11 @@
       "reason": null
     },
     "el-heddaf-tv": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             1080
           ]
@@ -2106,11 +2077,11 @@
       "reason": null
     },
     "nbc-sports-now": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             240,
             360,
@@ -2123,11 +2094,11 @@
       "reason": null
     },
     "oman-sports-tv": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             240,
             480,
@@ -2139,11 +2110,11 @@
       "reason": null
     },
     "africa-24-sport": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             1080
           ]
@@ -2152,11 +2123,11 @@
       "reason": null
     },
     "world-of-freesports": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             240,
             360,
@@ -2169,11 +2140,11 @@
       "reason": null
     },
     "cbs-sports-golazo-network": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             270,
             360,
@@ -2187,11 +2158,11 @@
       "reason": null
     },
     "mutv": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             270,
             360,
@@ -2203,11 +2174,11 @@
       "reason": null
     },
     "fifa-women": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             360,
             540,
@@ -2218,11 +2189,11 @@
       "reason": null
     },
     "teledeporte": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             360,
             576,
@@ -2233,11 +2204,11 @@
       "reason": null
     },
     "bahrain-sports-1": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             360,
             720
@@ -2247,11 +2218,11 @@
       "reason": null
     },
     "azteca-deportes-network": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             360,
             480,
@@ -2263,66 +2234,66 @@
       "reason": null
     },
     "mnb-sport": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": []
         }
       ],
       "reason": null
     },
     "jordan-sport": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": []
         }
       ],
       "reason": null
     },
     "willow-sports": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": []
         }
       ],
       "reason": null
     },
     "al-iraqia-sport": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": []
         }
       ],
       "reason": null
     },
     "fox-sports-news": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": []
         }
       ],
       "reason": null
     },
     "cnbc-e": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             360,
             480,
@@ -2334,11 +2305,11 @@
       "reason": null
     },
     "kanaal-z": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             144,
             240,
@@ -2352,11 +2323,11 @@
       "reason": null
     },
     "cnbc-tv18": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             180,
             360,
@@ -2369,11 +2340,11 @@
       "reason": null
     },
     "class-cnbc": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             240,
             360,
@@ -2386,11 +2357,11 @@
       "reason": null
     },
     "ndtv-profit": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             144,
             240,
@@ -2404,11 +2375,11 @@
       "reason": null
     },
     "cnbc-arabiya": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             480,
             720,
@@ -2419,11 +2390,11 @@
       "reason": null
     },
     "schwab-network": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             144,
             234,
@@ -2437,11 +2408,11 @@
       "reason": null
     },
     "yahoo-finance": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             240,
             360,
@@ -2454,11 +2425,11 @@
       "reason": null
     },
     "cgtn-global-biz": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             360,
             504,
@@ -2470,11 +2441,11 @@
       "reason": null
     },
     "al-arabiya-business": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             240,
             360,
@@ -2486,11 +2457,11 @@
       "reason": null
     },
     "telewizja-biznesowa": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             360,
             540,
@@ -2502,11 +2473,11 @@
       "reason": null
     },
     "ausbiz-tv": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             360,
             432,
@@ -2518,11 +2489,11 @@
       "reason": null
     },
     "bloomberg-tv": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             272,
             360,
@@ -2531,7 +2502,7 @@
           ]
         },
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             272,
             360,
@@ -2540,7 +2511,7 @@
           ]
         },
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             272,
             360,
@@ -2552,11 +2523,11 @@
       "reason": null
     },
     "aleph-business": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             360,
             720
@@ -2566,11 +2537,11 @@
       "reason": null
     },
     "nw-economie": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             144,
             240,
@@ -2582,11 +2553,11 @@
       "reason": null
     },
     "bfm-business": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             270,
             360,
@@ -2597,22 +2568,22 @@
       "reason": null
     },
     "negocios-tv": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": []
         }
       ],
       "reason": null
     },
     "accuweather-now": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             240,
             360,
@@ -2625,11 +2596,11 @@
       "reason": null
     },
     "3cat-cameres-del-temps": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             480,
             720,
@@ -2640,11 +2611,11 @@
       "reason": null
     },
     "weatherspy-us": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             216,
             360,
@@ -2656,11 +2627,11 @@
       "reason": null
     },
     "fox-weather": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             288,
             360,
@@ -2673,11 +2644,11 @@
       "reason": null
     },
     "weathernews": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             216,
             360,
@@ -2689,11 +2660,11 @@
       "reason": null
     },
     "weathernation": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             216,
             288,
@@ -2706,11 +2677,11 @@
       "reason": null
     },
     "sky-news-weather": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             160,
             240,
@@ -2723,33 +2694,33 @@
       "reason": null
     },
     "the-weather-channel": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": []
         }
       ],
       "reason": null
     },
     "sky-news-weather-channel": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": []
         }
       ],
       "reason": null
     },
     "nhl-network": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             240,
             360,
@@ -2762,22 +2733,22 @@
       "reason": null
     },
     "bein-sports-xtra": {
-      "ok": false,
+      "state": "dead",
       "use": null,
       "streams": [
         {
-          "ok": false,
-          "reason": "no CORS: would need a proxy"
+          "state": "dead",
+          "reason": "no CORS for this site: would need a proxy"
         }
       ],
-      "reason": "no CORS: would need a proxy"
+      "reason": "no CORS for this site: would need a proxy"
     },
     "real-madrid-tv": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             180,
             360,
@@ -2788,11 +2759,11 @@
       "reason": null
     },
     "qbc": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             240,
             480,
@@ -2803,11 +2774,11 @@
       "reason": null
     },
     "rbk-tv": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": [
             270,
             360,
@@ -2819,11 +2790,11 @@
       "reason": null
     },
     "press-tv": {
-      "ok": true,
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "ok": true,
+          "state": "ok",
           "heights": []
         }
       ],

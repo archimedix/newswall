@@ -20,7 +20,7 @@ export function hlsOrder(src) {
   const out = [];
   for (let k = 0; k < n; k++) {
     const i = (from + k) % n;
-    if (info[i]?.ok !== false) out.push(i);
+    if (info[i]?.state !== 'dead') out.push(i);
   }
   return out;
 }

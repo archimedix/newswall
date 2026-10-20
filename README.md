@@ -227,9 +227,23 @@ python3 scripts/refresh-live.py
 ```
 
 For every stream it checks HTTPS, reachability, CORS and that the answer is a real HLS
-manifest. Standard library only, no API key.
+manifest, the way the browser would: CORS must allow `*` or the page's own origin, on every
+redirect and on the first variant playlist too (some CDNs open the master playlist to
+everyone and keep the variants for their own site). Standard library only, no API key.
 
-`.github/workflows/refresh.yml` runs it every hour and commits `live.json` when something
+The verdict has three states, because the checker sees the streams from one place only:
+
+| state | when | the page |
+| --- | --- | --- |
+| `ok` | a real manifest, with CORS | plays it first |
+| `unverified` | 401/403/451 (often a geoblock), 429, 5xx, timeouts, refused connections | tries it anyway |
+| `dead` | plain http, no CORS, not a manifest, 400/404/405/410, unknown host, bad certificate | hides it |
+
+The bot advises, the browser decides: an unverified channel that does not play from where
+the viewer is falls back to its next stream and then shows as off air, as any other failure.
+
+`.github/workflows/refresh.yml` runs it every hour. `live.json` is rewritten only when a
+state changes, so a quiet catalog makes no commit, and `generated` is when the status last
 changed. That is why the project needs no server.
 
 ## The catalog

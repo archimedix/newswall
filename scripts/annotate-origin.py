@@ -40,6 +40,7 @@ KNOWN = {
     "intoday.in": "India Today", "3catdirectes.cat": "3Cat",
     "beltelecom.by": "Beltelecom", "cctvplus.com": "CCTV+",
     "ktv.go.kr": "KTV Korea", "visir.is": "Vísir", "telewebion.ir": "Telewebion",
+    "telewebion.net": "Telewebion",  # where telewebion.ir redirects
     "broadpeak-aas.com": "ERT",
 }
 
