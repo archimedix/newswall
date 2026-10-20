@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-20T19:14:21+00:00",
+  "generated": "2026-10-20T22:18:13+00:00",
   "entries": {
     "aljazeera-en": {
       "ok": true,
@@ -17,8 +17,8 @@
         },
         {
           "ok": true,
-          "videoId": "BAaAQI59WRY",
-          "title": "Security expert explains school safety concerns after deadly Oregon shooting"
+          "videoId": "m38ZTl4brq4",
+          "title": "Mike Rogers, Abdul El-Sayed answer questions about the economy"
         }
       ],
       "reason": null
@@ -40,8 +40,8 @@
         },
         {
           "ok": true,
-          "videoId": "5KNPkfN9BUs",
-          "title": "Trump WH in Turmoil, Record-Low Approval, Zacharia & Guilfoyle Out, Golf Course Clash: A Closer Look"
+          "videoId": "-CKJ5L4Ztio",
+          "title": "بين حسابات ترمب ورغبة نتنياهو.. أين تتجه الحرب مع إيران؟ - نقاش الساعة"
         },
         {
           "ok": true,
@@ -65,8 +65,8 @@
         },
         {
           "ok": true,
-          "videoId": "csC_v1NpH8A",
-          "title": "Putin’s ‘stuck in a dangerous place’ as Ukraine scorches Russian economy | Bill Browder"
+          "videoId": "36J1tL9ulGA",
+          "title": "The Real Reason Hitler Never Invaded Switzerland"
         }
       ],
       "reason": null
@@ -87,8 +87,8 @@
         },
         {
           "ok": true,
-          "videoId": "c5RIR2Fs3zg",
-          "title": "UK sends warplanes as Saudi Arabia seeks more help against Houthis | DW News"
+          "videoId": "GNaDcDMa7QQ",
+          "title": "Rogers, El-Sayed clash on economy ahead of final Michigan Senate debate"
         }
       ],
       "reason": null
@@ -114,7 +114,7 @@
         },
         {
           "ok": true,
-          "videoId": "EXYxr-cNMTM",
+          "videoId": "kGBJ0dxB7nI",
           "title": ""
         },
         {
@@ -140,8 +140,8 @@
         },
         {
           "ok": true,
-          "videoId": "SChm4DyivOU",
-          "title": "Can Pro Bikers Beat this IMPOSSIBLE Obstacle Course?"
+          "videoId": "l7kbNFj3Lzk",
+          "title": "Trump suggests replacing Zelenskyy in peace negotiations | World News Tonight"
         },
         {
           "ok": true,
@@ -165,8 +165,8 @@
         },
         {
           "ok": true,
-          "videoId": "PXzhpYaKgGs",
-          "title": "Why The USA Cannot Stop China | Keyu Jin | Wealth Office"
+          "videoId": "G1KN1wJ5nIw",
+          "title": "The \"Little People\" of the Congo Rainforest: A Life Few Have Seen (Documentary, 2023)"
         },
         {
           "ok": true,
@@ -190,8 +190,8 @@
         },
         {
           "ok": true,
-          "videoId": "M5yjl-HCbpg",
-          "title": "Why Trump Is Making Deals With Putin"
+          "videoId": "3zVpaHS6YD8",
+          "title": "Trump’s Plan to Deport Congresswoman Omar Is Legally Absurd"
         },
         {
           "ok": true,
@@ -216,8 +216,8 @@
         },
         {
           "ok": true,
-          "videoId": "WfK7SI8WZaE",
-          "title": "BBC Seeks Jack Smith's Testimony Against Trump in $10 Billion Lawsuit!"
+          "videoId": "GNaDcDMa7QQ",
+          "title": "Rogers, El-Sayed clash on economy ahead of final Michigan Senate debate"
         },
         {
           "ok": true,
@@ -241,8 +241,8 @@
         },
         {
           "ok": true,
-          "videoId": "arLqryrHyTI",
-          "title": "LIVE: PM Narendra Modi attends 'Vijayadashami Celebrations' in Delhi || Nationalist Hub"
+          "videoId": "3zVpaHS6YD8",
+          "title": "Trump’s Plan to Deport Congresswoman Omar Is Legally Absurd"
         },
         {
           "ok": true,
@@ -272,8 +272,8 @@
         },
         {
           "ok": true,
-          "videoId": "xaxU3ML14Pc",
-          "title": "ABC World News Tonight with David Muir Full Broadcast - Oct. 19, 2026"
+          "videoId": "BQ4dZSqXvgM",
+          "title": "Jurors visit the Paddington house | Ep #09 | The Case Of…"
         }
       ],
       "reason": null
@@ -288,8 +288,8 @@
         },
         {
           "ok": true,
-          "videoId": "Wmej7JktkPM",
-          "title": "The 11th Hour With Stephanie Ruhle 10/19/26 | 🅼🆂🅽🅱️🅲 Breaking News Today October 19, 2026"
+          "videoId": "3zVpaHS6YD8",
+          "title": "Trump’s Plan to Deport Congresswoman Omar Is Legally Absurd"
         },
         {
           "ok": true,
@@ -335,7 +335,7 @@
         },
         {
           "ok": true,
-          "videoId": "DT-meBfnJyI",
+          "videoId": "gdHP9qQ1oAQ",
           "title": ""
         },
         {
@@ -382,8 +382,8 @@
         },
         {
           "ok": true,
-          "videoId": "eXYrdeJYvxY",
-          "title": "Before the F-117s Reached Baghdad, Two Radar Sites on the Border Had to Go Silent"
+          "videoId": "UcEAAuTZ6Ec",
+          "title": "Top U.S. & World Headlines — October 20, 2026"
         }
       ],
       "reason": null
@@ -895,15 +895,20 @@
       "reason": null
     },
     "makan-33": {
-      "ok": false,
-      "use": null,
+      "ok": true,
+      "use": 0,
       "streams": [
         {
-          "ok": false,
-          "reason": "HTTP 403"
+          "ok": true,
+          "heights": [
+            360,
+            540,
+            720,
+            1080
+          ]
         }
       ],
-      "reason": "HTTP 403"
+      "reason": null
     },
     "syria-tv": {
       "ok": true,
@@ -1014,8 +1019,7 @@
         },
         {
           "ok": false,
-          "videoId": "7epyyf9TKt8",
-          "reason": "no live stream right now"
+          "reason": "no video found on the channel"
         }
       ],
       "reason": null
@@ -1683,18 +1687,15 @@
       "reason": null
     },
     "news-central": {
-      "ok": true,
-      "use": 0,
+      "ok": false,
+      "use": null,
       "streams": [
         {
-          "ok": true,
-          "heights": [
-            480,
-            720
-          ]
+          "ok": false,
+          "reason": "HTTP 404"
         }
       ],
-      "reason": null
+      "reason": "HTTP 404"
     },
     "cctv-1": {
       "ok": true,
@@ -1780,8 +1781,8 @@
         },
         {
           "ok": true,
-          "videoId": "r9PeYPHdpNo",
-          "title": "Our Planet | Coastal Seas | FULL EPISODE | Netflix"
+          "videoId": "1MsLWFqaJmk",
+          "title": "Flydubai captain on the cockpit battle to save his plane"
         }
       ],
       "reason": null
@@ -1792,8 +1793,8 @@
       "streams": [
         {
           "ok": true,
-          "videoId": "csC_v1NpH8A",
-          "title": "Putin’s ‘stuck in a dangerous place’ as Ukraine scorches Russian economy | Bill Browder"
+          "videoId": "Msiyy5p3Nfc",
+          "title": "EXPOSED: Putin's 50k losses in one month with tiny territory gains | Battle Plans"
         },
         {
           "ok": false,
@@ -1860,8 +1861,8 @@
       "streams": [
         {
           "ok": true,
-          "videoId": "7-cD-1Wa5t0",
-          "title": "GUARDIANS vs. RAYS: ALCS Full Game 6 Highlights (October 19) | 2026 MLB Postseason"
+          "videoId": "JjI3TM__A5o",
+          "title": "Paris Protests Erupt Over High Fuel Costs & Trump Cuts Diesel Deal with Russia | The Daily Show"
         }
       ],
       "reason": null
@@ -1872,8 +1873,8 @@
       "streams": [
         {
           "ok": true,
-          "videoId": "9PNuDD5VHtI",
-          "title": "Inside Man: How Chinese Spies Used Lies, Romance And Betrayal To Target The Federal Reserve"
+          "videoId": "UcEAAuTZ6Ec",
+          "title": "Top U.S. & World Headlines — October 20, 2026"
         }
       ],
       "reason": null
@@ -1894,8 +1895,8 @@
         },
         {
           "ok": true,
-          "videoId": "GJ_EN3Gsjk0",
-          "title": "ПУТИН И ТРАМП: ВМЕСТЕ И ДО КОНЦА. БЕСЕДА С ВИТАЛИЕМ ПОРТНИКОВЫМ @portnikov.argumenty"
+          "videoId": "BiKjPqhCKkc",
+          "title": "Венедиктов* у Макаревича* — о гениальности Beatles, Путине и разочаровании в старых друзьях"
         },
         {
           "ok": true,
@@ -1916,8 +1917,8 @@
       "streams": [
         {
           "ok": true,
-          "videoId": "od3iWRa9_6w",
-          "title": "Indian-Origin Woman Confronts JD Vance: “You Sold Us the American Dream, Now You Stop Us?”"
+          "videoId": "JGokfRfLPXo",
+          "title": "The Fifth Element"
         }
       ],
       "reason": null
@@ -1938,8 +1939,8 @@
         },
         {
           "ok": true,
-          "videoId": "YZTJN6CZfG0",
-          "title": "Man Turns WWII-Era Stone Ruin Into Dream Home In Just One Year | Start To Finish @luxonbushcraft"
+          "videoId": "brseY11pEcs",
+          "title": "EURONEWS HOY | Las noticias del 20 de octubre de 2026: La DANA Adam se cobra varias vidas en España"
         },
         {
           "ok": true,
@@ -1966,8 +1967,8 @@
       "streams": [
         {
           "ok": true,
-          "videoId": "gTArwSTxf_8",
-          "title": "Nobel Peace Laureate Navi Pillay on ICC, Gaza, Rape as War Crime, Her South African Roots & Mandela"
+          "videoId": "3zVpaHS6YD8",
+          "title": "Trump’s Plan to Deport Congresswoman Omar Is Legally Absurd"
         }
       ],
       "reason": null
@@ -1978,8 +1979,8 @@
       "streams": [
         {
           "ok": true,
-          "videoId": "H5dqm3jOGds",
-          "title": "Farage | Tuesday 20th October"
+          "videoId": "jFDJ7SRJIx0",
+          "title": "🇺🇸 Secretary of State Marco Rubio Takes Questions from Reporters in Mumbai, India"
         }
       ],
       "reason": null
@@ -1990,8 +1991,8 @@
       "streams": [
         {
           "ok": true,
-          "videoId": "ojne_jCYEZ8",
-          "title": "LIVE NEWS: Trump-Vance announcement, Rubio in India, Trump rallies in NC, France protests & more"
+          "videoId": "csC_v1NpH8A",
+          "title": "Putin’s ‘stuck in a dangerous place’ as Ukraine scorches Russian economy | Bill Browder"
         },
         {
           "ok": false,
@@ -2006,8 +2007,8 @@
       "streams": [
         {
           "ok": true,
-          "videoId": "gTArwSTxf_8",
-          "title": "Nobel Peace Laureate Navi Pillay on ICC, Gaza, Rape as War Crime, Her South African Roots & Mandela"
+          "videoId": "uGwz_lRdRng",
+          "title": "Freedom 250 Reception: Remarks by EAM Dr. S. Jaishankar and US Secretary of State Marco Rubio."
         }
       ],
       "reason": null
@@ -2018,8 +2019,8 @@
       "streams": [
         {
           "ok": true,
-          "videoId": "5n7SR4OnRQ0",
-          "title": "BREAKING: DOJ investigating DA Larry Krasner's office"
+          "videoId": "GNaDcDMa7QQ",
+          "title": "Rogers, El-Sayed clash on economy ahead of final Michigan Senate debate"
         }
       ],
       "reason": null
@@ -2030,20 +2031,20 @@
       "streams": [
         {
           "ok": true,
-          "videoId": "55kRJeXSJpY",
-          "title": "LIVE: France on the Brink? Curfew Imposed After Weekend Riots | The Palki Sharma Show | IGR"
+          "videoId": "1MsLWFqaJmk",
+          "title": "Flydubai captain on the cockpit battle to save his plane"
         }
       ],
       "reason": null
     },
     "reuters": {
       "ok": true,
-      "use": 0,
+      "use": 1,
       "streams": [
         {
-          "ok": true,
-          "videoId": "CBCzzPV1bho",
-          "title": "Closing Panel: Reflections and Pathways Forward - Remodeling Congress: Inside and out (Day 2)"
+          "ok": false,
+          "videoId": "-Ry5iiSvDak",
+          "reason": "no live stream right now"
         },
         {
           "ok": true,
@@ -2060,16 +2061,16 @@
       "reason": null
     },
     "sky-news-arabia": {
-      "ok": false,
-      "use": null,
+      "ok": true,
+      "use": 0,
       "streams": [
         {
-          "ok": false,
-          "videoId": "k7dpJrLNiaY",
-          "reason": "embedding not allowed by the broadcaster"
+          "ok": true,
+          "videoId": "GNaDcDMa7QQ",
+          "title": "Rogers, El-Sayed clash on economy ahead of final Michigan Senate debate"
         }
       ],
-      "reason": "embedding not allowed by the broadcaster"
+      "reason": null
     },
     "tvr-sport": {
       "ok": true,
@@ -2188,7 +2189,12 @@
       "streams": [
         {
           "ok": true,
-          "heights": []
+          "heights": [
+            360,
+            540,
+            720,
+            1080
+          ]
         }
       ],
       "reason": null
@@ -2584,21 +2590,15 @@
       "reason": "HTTP 403"
     },
     "cnbc-tv18": {
-      "ok": true,
-      "use": 0,
+      "ok": false,
+      "use": null,
       "streams": [
         {
-          "ok": true,
-          "heights": [
-            180,
-            360,
-            540,
-            720,
-            1080
-          ]
+          "ok": false,
+          "reason": "unreachable (IncompleteRead)"
         }
       ],
-      "reason": null
+      "reason": "unreachable (IncompleteRead)"
     },
     "class-cnbc": {
       "ok": true,
@@ -2989,22 +2989,15 @@
       "reason": null
     },
     "bein-sports-xtra": {
-      "ok": true,
-      "use": 0,
+      "ok": false,
+      "use": null,
       "streams": [
         {
-          "ok": true,
-          "heights": [
-            240,
-            360,
-            480,
-            576,
-            720,
-            1080
-          ]
+          "ok": false,
+          "reason": "no CORS: would need a proxy"
         }
       ],
-      "reason": null
+      "reason": "no CORS: would need a proxy"
     },
     "real-madrid-tv": {
       "ok": true,
@@ -3022,19 +3015,15 @@
       "reason": null
     },
     "qbc": {
-      "ok": true,
-      "use": 0,
+      "ok": false,
+      "use": null,
       "streams": [
         {
-          "ok": true,
-          "heights": [
-            240,
-            480,
-            1080
-          ]
+          "ok": false,
+          "reason": "unreachable (IncompleteRead)"
         }
       ],
-      "reason": null
+      "reason": "unreachable (IncompleteRead)"
     },
     "rbk-tv": {
       "ok": true,
