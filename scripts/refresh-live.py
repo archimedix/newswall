@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """
 Checks every HLS stream of every source and writes live.json:
-HTTPS, reachability, CORS for our origin (redirects and the first variant
-included) and a real manifest.
+HTTPS, reachability, CORS for our origin (redirects included) and a real
+manifest, down to a first media segment and a playlist that moves: what the
+browser would load in its first seconds.
 
 Each stream gets one of three states. "dead" is only for faults the browser
 would hit too, wherever it is: plain http, no CORS, not a manifest, a URL
@@ -21,7 +22,7 @@ the next): it is the one seen at the last change.
 No API key, no external dependencies: standard library only.
 Meant to run in a GitHub Action and commit live.json.
 """
-import gzip, json, re, socket, ssl, sys, urllib.error, urllib.parse, urllib.request, zlib
+import gzip, json, re, socket, ssl, sys, time, urllib.error, urllib.parse, urllib.request, zlib
 from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
@@ -31,6 +32,12 @@ UA = ("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 "
       "(KHTML, like Gecko) Chrome/120.0 Safari/537.36")
 CTX = ssl.create_default_context()
 TIMEOUT = 15
+# A segment is read only this far: enough to know it is there.
+PEEK = 4096
+# The playlist is read again after one target duration (capped at this),
+# up to MOVES times: some servers are late, some add segments in bursts.
+MAX_WAIT = 20
+MOVES = 3
 # HTTP codes that mean the URL itself is wrong or gone, for everyone. The
 # others (401/403/451, 429, 5xx) depend on who asks and when.
 GONE = {400, 404, 405, 410}
@@ -60,9 +67,11 @@ class CorsRedirects(urllib.request.HTTPRedirectHandler):
 OPENER = urllib.request.build_opener(CorsRedirects, urllib.request.HTTPSHandler(context=CTX))
 
 
-def fetch(url, headers, timeout=TIMEOUT):
+def fetch(url, headers, timeout=TIMEOUT, limit=None):
     req = urllib.request.Request(url, headers=headers)
     with OPENER.open(req, timeout=timeout) as r:
+        if limit:
+            return r.url, r.headers, r.read(limit)
         raw = r.read()
         # Some CDNs (NHK, for one) compress the manifest even when not asked
         # to: without this step they would look like broken streams.
@@ -82,11 +91,11 @@ def unverified(reason):
     return {"state": "unverified", "reason": reason}
 
 
-def load(url):
-    """One manifest as the page would load it: (verdict, None) on failure,
+def get(url, limit=None):
+    """One request as the page would make it: (verdict, None) on failure,
     else (None, (final url, body))."""
     try:
-        final, headers, body = fetch(url, headers={"User-Agent": UA, "Origin": ORIGIN})
+        final, headers, body = fetch(url, headers={"User-Agent": UA, "Origin": ORIGIN}, limit=limit)
     except NoCors as e:
         return dead(f"no CORS: {e}"), None
     except urllib.error.HTTPError as e:
@@ -101,25 +110,46 @@ def load(url):
 
     if not allows(headers):
         return dead("no CORS for this site: would need a proxy"), None
-    if "#EXTM3U" not in body[:200]:
-        return dead("response is not an HLS manifest"), None
     return None, (final, body)
 
 
-def first_variant(final, body):
-    """The first variant playlist of a master manifest, or None for a media one."""
-    lines = [l.strip() for l in body.splitlines()]
-    tag = next((i for i, l in enumerate(lines) if l.startswith("#EXT-X-STREAM-INF")), None)
-    if tag is None:
-        return None
-    uri = next((l for l in lines[tag + 1:] if l and not l.startswith("#")), None)
-    return uri and urllib.parse.urljoin(final, uri)
+def load(url):
+    """A playlist: like get(), and it must be one."""
+    fail, got = get(url)
+    if not fail and "#EXTM3U" not in got[1][:200]:
+        fail = dead("response is not an HLS manifest")
+    return fail, got
+
+
+def uris(body):
+    """The URIs of a playlist, in order: the first plain line after each
+    variant or segment tag (as hls.js reads them, so a malformed tag line
+    elsewhere is not taken for one)."""
+    out, want = [], False
+    for l in (l.strip() for l in body.splitlines()):
+        if l.startswith(("#EXT-X-STREAM-INF", "#EXTINF")):
+            want = True
+        elif want and l and not l.startswith("#"):
+            out.append(l)
+            want = False
+    return out
+
+
+def position(body):
+    """Where a live playlist is: its media sequence and its last segment."""
+    seq = re.search(r"#EXT-X-MEDIA-SEQUENCE:\s*(\d+)", body)
+    return (seq and seq.group(1), (uris(body) or [None])[-1])
+
+
+def labelled(fail, what):
+    return {**fail, "reason": f"{what}: {fail['reason']}"}
 
 
 def check_hls(stream):
     """HTTPS + reachable + CORS: the three conditions for living in a static page.
-    The first variant is loaded too: some CDNs open the master to everyone and
-    keep the variants for their own site."""
+    Checked all the way down, because some CDNs open the master playlist to
+    everyone and keep the variants or the segments for their own site, and a
+    stream can answer while standing still."""
     url = stream["url"]
     if url.startswith("http://"):
         # The URL itself says so: no reason to wait for HOLD.
@@ -127,15 +157,46 @@ def check_hls(stream):
     fail, got = load(url)
     if fail:
         return fail
-    final, body = got
-    variant = first_variant(final, body)
-    if variant:
-        fail, _ = load(variant)
+    final, master = got
+
+    # A master playlist points to variants; a media playlist is its own.
+    media_url, media = final, master
+    if "#EXT-X-STREAM-INF" in master:
+        variant = (uris(master) or [None])[0]
+        if not variant:
+            return dead("master playlist without variants")
+        fail, got = load(urllib.parse.urljoin(final, variant))
         if fail:
-            return {**fail, "reason": f"variant: {fail['reason']}"}
+            return labelled(fail, "variant")
+        media_url, media = got
+
+    # The segment hls.js starts from: three before the live edge. The first
+    # may have expired already, the last may not be on the CDN yet.
+    segments = uris(media)
+    if not segments:
+        return dead("playlist without segments")
+    segment = segments[max(0, len(segments) - 3)]
+    fail, _ = get(urllib.parse.urljoin(media_url, segment), limit=PEEK)
+    if fail:
+        return labelled(fail, "segment")
+
+    # A live playlist moves on every target duration; a finished one
+    # (ENDLIST) is a recording and stands still by design.
+    if "#EXT-X-ENDLIST" not in media:
+        td = re.search(r"#EXT-X-TARGETDURATION:\s*(\d+)", media)
+        wait = min(int(td.group(1)) + 1 if td else 7, MAX_WAIT)
+        for _ in range(MOVES):
+            time.sleep(wait)
+            fail, got = load(media_url)
+            if fail:
+                return labelled(fail, "variant")
+            if position(got[1]) != position(media):
+                break
+        else:
+            return dead("playlist not moving: the stream is stuck")
 
     # Variant heights let the app lower the quality of secondary tiles.
-    heights = sorted({int(h) for h in re.findall(r"RESOLUTION=\d+x(\d+)", body)})
+    heights = sorted({int(h) for h in re.findall(r"RESOLUTION=\d+x(\d+)", master)})
     return {"state": "ok", "heights": heights}
 
 
@@ -176,7 +237,8 @@ def main():
     sources = json.loads((ROOT / "sources.json").read_text())["sources"]
     jobs = [(s["id"], i, st) for s in sources for i, st in enumerate(s["streams"])]
 
-    with ThreadPoolExecutor(16) as ex:
+    # Most of a check is waiting for the playlist to move: many at once.
+    with ThreadPoolExecutor(48) as ex:
         checked = list(ex.map(check, jobs))
 
     # Each source reports the state of all its streams: the app starts from

@@ -227,9 +227,17 @@ python3 scripts/refresh-live.py
 ```
 
 For every stream it checks HTTPS, reachability, CORS and that the answer is a real HLS
-manifest, the way the browser would: CORS must allow `*` or the page's own origin, on every
-redirect and on the first variant playlist too (some CDNs open the master playlist to
-everyone and keep the variants for their own site). Standard library only, no API key.
+manifest, the way the browser would in its first seconds:
+
+- CORS must allow `*` or the page's own origin, on every redirect too;
+- the first variant playlist must load (some CDNs open the master playlist to everyone and
+  keep the variants for their own site);
+- the segment hls.js starts from, three before the live edge, must load;
+- the playlist must move: it is read again after one target duration, up to three times
+  (some servers add segments in bursts). A stuck playlist answers but plays nothing.
+
+A check takes about a minute, most of it waiting for playlists to move. Standard library
+only, no API key.
 
 The verdict has three states, because the checker sees the streams from one place only:
 
@@ -237,7 +245,7 @@ The verdict has three states, because the checker sees the streams from one plac
 | --- | --- | --- |
 | `ok` | a real manifest, with CORS | plays it first |
 | `unverified` | 401/403/451 (often a geoblock), 429, 5xx, timeouts, refused connections | tries it anyway |
-| `dead` | plain http, no CORS, not a manifest, 400/404/405/410, unknown host, bad certificate | hides it |
+| `dead` | plain http, no CORS, not a manifest, 400/404/405/410 (segments included), unknown host, bad certificate, stuck playlist | hides it |
 
 A fault turns a stream `dead` only after it has lasted 24 hours (plain http excepted: the
 URL says so already). Until then the stream is `unverified`, with `failing_since`, so a CDN

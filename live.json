@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-20T22:37:59+00:00",
+  "generated": "2026-10-20T23:29:07+00:00",
   "entries": {
     "aljazeera-en": {
       "state": "ok",
@@ -270,13 +270,9 @@
           ]
         },
         {
-          "state": "ok",
-          "heights": [
-            180,
-            360,
-            540,
-            720
-          ]
+          "state": "unverified",
+          "reason": "segment: HTTP 404",
+          "failing_since": "2026-10-20T23:18:36+00:00"
         }
       ],
       "reason": null
@@ -524,11 +520,9 @@
           "heights": []
         },
         {
-          "state": "ok",
-          "heights": [
-            720,
-            1080
-          ]
+          "state": "unverified",
+          "reason": "segment: HTTP 403",
+          "failing_since": "2026-10-20T23:27:50+00:00"
         }
       ],
       "reason": null
@@ -1593,7 +1587,7 @@
         {
           "state": "unverified",
           "reason": "HTTP 404",
-          "failing_since": "2026-10-20T22:37:59+00:00"
+          "failing_since": "2026-10-20T23:29:07+00:00"
         }
       ],
       "reason": "HTTP 404"
@@ -1739,15 +1733,16 @@
       "reason": null
     },
     "al-ghad-tv": {
-      "state": "ok",
+      "state": "unverified",
       "use": 0,
       "streams": [
         {
-          "state": "ok",
-          "heights": []
+          "state": "unverified",
+          "reason": "playlist not moving: the stream is stuck",
+          "failing_since": "2026-10-20T23:18:36+00:00"
         }
       ],
-      "reason": null
+      "reason": "playlist not moving: the stream is stuck"
     },
     "current-time": {
       "state": "ok",
@@ -1885,19 +1880,16 @@
       "reason": null
     },
     "esport3": {
-      "state": "ok",
+      "state": "unverified",
       "use": 0,
       "streams": [
         {
-          "state": "ok",
-          "heights": [
-            480,
-            720,
-            1080
-          ]
+          "state": "unverified",
+          "reason": "segment: HTTP 403",
+          "failing_since": "2026-10-20T23:18:36+00:00"
         }
       ],
-      "reason": null
+      "reason": "segment: HTTP 403"
     },
     "ge-fast": {
       "state": "ok",
@@ -2164,22 +2156,16 @@
       "reason": null
     },
     "cbs-sports-golazo-network": {
-      "state": "ok",
+      "state": "unverified",
       "use": 0,
       "streams": [
         {
-          "state": "ok",
-          "heights": [
-            270,
-            360,
-            432,
-            540,
-            720,
-            1080
-          ]
+          "state": "unverified",
+          "reason": "segment: HTTP 403",
+          "failing_since": "2026-10-20T23:18:36+00:00"
         }
       ],
-      "reason": null
+      "reason": "segment: HTTP 403"
     },
     "mutv": {
       "state": "ok",
@@ -2213,19 +2199,16 @@
       "reason": null
     },
     "teledeporte": {
-      "state": "ok",
+      "state": "unverified",
       "use": 0,
       "streams": [
         {
-          "state": "ok",
-          "heights": [
-            360,
-            576,
-            720
-          ]
+          "state": "unverified",
+          "reason": "segment: HTTP 403",
+          "failing_since": "2026-10-20T23:18:36+00:00"
         }
       ],
-      "reason": null
+      "reason": "segment: HTTP 403"
     },
     "bahrain-sports-1": {
       "state": "ok",
@@ -2280,15 +2263,16 @@
       "reason": null
     },
     "willow-sports": {
-      "state": "ok",
+      "state": "unverified",
       "use": 0,
       "streams": [
         {
-          "state": "ok",
-          "heights": []
+          "state": "unverified",
+          "reason": "segment: HTTP 403",
+          "failing_since": "2026-10-20T23:18:36+00:00"
         }
       ],
-      "reason": null
+      "reason": "segment: HTTP 403"
     },
     "al-iraqia-sport": {
       "state": "ok",
@@ -2799,20 +2783,16 @@
       "reason": null
     },
     "rbk-tv": {
-      "state": "ok",
+      "state": "unverified",
       "use": 0,
       "streams": [
         {
-          "state": "ok",
-          "heights": [
-            270,
-            360,
-            404,
-            576
-          ]
+          "state": "unverified",
+          "reason": "playlist not moving: the stream is stuck",
+          "failing_since": "2026-10-20T23:18:36+00:00"
         }
       ],
-      "reason": null
+      "reason": "playlist not moving: the stream is stuck"
     },
     "press-tv": {
       "state": "ok",
