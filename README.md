@@ -364,8 +364,9 @@ CORS, against all expectations, is not the problem: 1 in 70.
 - **Load.** Every tile is a real video. Quality adapts to the tile size, but beyond 6-8
   tiles you will hear the fans.
 - **Geoblocking.** Some broadcasters serve the manifest to anyone but the segments only in
-  their own country: the automatic check passes them and then the video does not start.
-  The tile notices on its own after a few seconds and says so, instead of staying black.
+  their own country. The check sees the 403, but cannot tell a geoblock from a refusal, so
+  the channel stays `unverified` and is tried: from outside the country the tile notices
+  on its own after a few seconds and says so, instead of staying black.
 - **Autoplay.** Browsers allow automatic playback only without sound: the wall and the
   globe open straight away, muted, and the first click on a channel brings its audio.
 - **Sources come and go.** Daily breakages are normal: the Action detects them, and the
@@ -395,9 +396,12 @@ Ideas collected along the way, not yet done. The globe's own next steps are in
 - **A parliaments wall.** iptv-org's `legislative` category has ~100 usable channels from
   24 countries (Camera dei Deputati, Congreso, Tweede Kamer, Sansad TV…): one more
   `scripts/curated/legislative.txt` and an entry in `MODES`.
-- **IRIB streams in the browser.** IRINN and Varzesh (`ncdn.telewebion.ir`) pass the hourly
-  check but stay on "connecting…" in the browser, where the request is blocked by CORS:
-  find out why the check and the browser disagree, and look for alternative streams.
+- **Where a channel can be watched.** A per-source `geo` (e.g. `["ES"]` for Teledeporte)
+  would let the wall say "only in Spain" instead of a generic failure, and let the check
+  treat a 403 from elsewhere as expected. Today ESport3, Teledeporte, CBS Sports Golazo
+  and Willow answer 403 on their segments, both to the check and to a browser.
+- **Alternative streams for IRINN 2 and Varzesh.** Telewebion opens the master playlist to
+  everyone but allows the variants only to `telewebion.net`: the check now marks them dead.
 - **More official URLs.** Scraping the broadcasters' live pages found usable URLs for Sky News,
   ABC Australia, DW, Current Time, TRT, RT DE, Asharq and Press TV. The rest do not yield one
   to a plain HTTP request: the player is behind a consent wall that blocks it until cookies

@@ -50,7 +50,8 @@ Python scripts use the standard library only — keep it that way (they run bare
   immediate); before that it is `unverified`. One success clears it. `use` is the first `ok` stream, else
   the first `unverified`; `ok` entries carry the variant `heights`. The file is rewritten only
   when a verdict changes, not for a new reason alone (`generated` = last change). `.github/workflows/refresh.yml` runs it hourly and commits `live.json` as
-  `newswall-bot` — expect frequent bot commits upstream; pull before editing `live.json`-adjacent work.
+  `newswall-bot` whenever a verdict changed — pull before editing `live.json`-adjacent work, and on a
+  `live.json` conflict keep either side and rerun the script.
 - **`origin` honesty rule** (`annotate-origin.py`): never invent a broadcaster label. Only label it
   when the domain makes it obvious, or when the stream has a `page` (the broadcaster's own page
   that publishes the URL: the label is that page's domain); otherwise `cdn` / `unknown`. Relays/personal hosts
