@@ -26,7 +26,7 @@ data collected. The only exception, optional and isolated, is the remote's relay
 | Decision | Why |
 |---|---|
 | Globe as a **separate page** | The wall stays light: only the globe loads three.js (~600 KB). |
-| **No YouTube on the globe** | A YouTube iframe cannot become a WebGL texture: it would need a second renderer (CSS3D) on top. Without it, every screen is a real texture, touched by lights and day/night. Cost: 13 news channels out of 108 don't appear on the globe (data of 2026-10-18: 95 news channels with a working HLS stream). YouTube stays on the wall. |
+| **No YouTube on the globe** | A YouTube iframe cannot become a WebGL texture: it would need a second renderer (CSS3D) on top. Without it, every screen is a real texture, touched by lights and day/night. In October 2026 YouTube was then dropped from the wall too: the whole catalog is HLS. |
 | **Only 4–6 live screens** at a time | Decoding dozens of streams is impossible; the others show a logo or their last frame. |
 | **No build, no Astro** | Astro is for content sites; here it's almost all real-time JS. What's needed is **modularity**, and native ES modules + `importmap` provide it. ES module code moves to Vite almost unchanged the day it's needed (TypeScript, many dependencies, complex shaders): a cheap, reversible choice. The opposite is not. |
 | Dependencies **vendored** in `assets/vendor/` | Like hls.js: exact version, no CDN. |
@@ -46,7 +46,6 @@ js/
     url.js            reads/writes #c= and #s=, localStorage
   wall/
     wall.js           wall boot, grid, tiles, audio, focus
-    youtube.js        iframe + postMessage (wall only)
     panel.js          catalog and quick search
   globe/
     globe.js          boot, scene, render loop
@@ -75,8 +74,8 @@ p.setCap(null) // full quality when the screen gets selected
 p.destroy()
 ```
 
-The player handles **one** stream: moving on to the source's next stream (skipping YouTube
-ones) is up to the caller, on the globe `livepool.js`.
+The player handles **one** stream: moving on to the source's next stream is up to the
+caller, on the globe `livepool.js`.
 
 ## 4. Phases
 

@@ -64,7 +64,7 @@ medi1tv-arabic     # Morocco
 medi1tv-afrique    # Morocco, in French
 
 # --- Europe ---
-dw                 # Germany, via HLS: better than the YouTube embed
+dw                 # Germany
 bfm2               # France
 ert-news           # Greece
 naftemporiki-tv    # Greece

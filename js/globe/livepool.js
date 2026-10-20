@@ -12,7 +12,7 @@ const SETTLE_MS = 400;
 const PARALLEL = 2;
 export const LIVE_CAP = 360;          // height for live screens; the selected one gets full quality
 
-/* The source's HLS streams in the order to try them: from the one the last
+/* The source's streams in the order to try them: from the one the last
    check found working, skipping the ones it found dead. */
 export function hlsOrder(src) {
   const n = src.streams.length, from = firstStream(src);
@@ -20,7 +20,7 @@ export function hlsOrder(src) {
   const out = [];
   for (let k = 0; k < n; k++) {
     const i = (from + k) % n;
-    if (src.streams[i].kind === 'hls' && info[i]?.ok !== false) out.push(i);
+    if (info[i]?.ok !== false) out.push(i);
   }
   return out;
 }

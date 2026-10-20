@@ -11,8 +11,8 @@ Beside the wall there is **the globe** (`globe.html`): the same channels as scre
 over their countries, on an Earth with the real day and night. It is for exploring; the
 wall is for watching.
 
-A static page: no backend, no account, no cookies, no data collected. Streams go straight
-from the broadcasters to your browser.
+A static page: no backend, no account, no cookies, no data collected. Every channel is an
+HLS stream that goes straight from the broadcaster to your browser.
 
 ## Try it locally
 
@@ -20,8 +20,8 @@ from the broadcasters to your browser.
 ./start.sh
 ```
 
-Opens <http://localhost:8080>. A real HTTP server is needed: from `file://` YouTube embeds
-get a `null` origin and are refused. `start.sh` runs `scripts/serve.py`, a plain static
+Opens <http://localhost:8080>. A real HTTP server is needed: from `file://` the browser
+refuses ES modules and the JSON catalogs. `start.sh` runs `scripts/serve.py`, a plain static
 server that adds `Cache-Control: no-cache`: without it the browser keeps old JS modules
 after an edit, even on reload.
 
@@ -58,7 +58,7 @@ Three ways, depending on what you already know:
 
 Adding or removing a channel **does not stop the others**: the grid reconciles itself with
 what is already there, and visual order is set by the CSS grid's `order`, not the DOM
-(moving a node would reload the YouTube iframes).
+(moving a `<video>` node would restart it).
 
 The wall's layout ends up in the URL: **the link is the configuration**, shareable as is
 (`#c=sports&s=…`; no `c` means news, so older links still work). Each wall remembers its
@@ -102,9 +102,8 @@ regions push their screens apart, but the thread always goes back to the real pl
   the camera flying in from far out.
 - **The basket** collects up to 12 channels; *Open in the wall* (`⇧Enter`) opens them as a
   wall, through the same URL a shared link uses.
-- **No YouTube.** A YouTube iframe cannot become a WebGL texture, so channels that only
-  live on YouTube stay on the wall. For the same reason the globe always uses hls.js,
-  never Safari's native HLS.
+- **Always hls.js.** A video becomes a WebGL texture only through MediaSource, so the
+  globe always uses hls.js, never Safari's native HLS.
 
 | | mouse / touch | keyboard | gamepad |
 |---|---|---|---|
@@ -153,8 +152,7 @@ them as they are):
   localStorage), `hls-player.js` (one HLS stream in a `<video>`, with retries, watchdog and
   quality cap, knowing nothing about tiles).
 - `js/wall/` — the wall: `wall.js` (entry point: grid, tiles, audio, focus, keys),
-  `panel.js` (catalog and quick search), `youtube.js` (iframes driven by postMessage),
-  `state.js` (what they share).
+  `panel.js` (catalog and quick search), `state.js` (what they share).
 - `js/globe/` — the globe, loaded by `globe.html` with an import map for three:
   `globe.js` (entry point: scene, camera, selection, audio, basket), `earth.js` (shaders,
   atmosphere, outlines, stars), `sun.js` (subsolar point), `geo.js` (where each country's
@@ -162,21 +160,22 @@ them as they are):
   `controls.js` (mouse, touch, keyboard, gamepad → commands), `hud.js` (the HTML on top),
   `frontrow.js` (the front row and its flight in and out).
 
-Two kinds of stream, and they are not equivalent:
+Every stream is **HLS** (`kind: "hls"`), played in a native `<video>`. The app decides the
+quality, so small tiles download a small variant (`capLevelToPlayerSize`) and only the
+enlarged one goes to full resolution; nothing from a third party sits on top of the video,
+and the wall and the globe show the same channels.
 
-- **HLS** (`kind: "hls"`) — a native `<video>`. The preferred route: the app decides the
-  quality, so small tiles download a small variant (`capLevelToPlayerSize`) and only the
-  enlarged one goes to full resolution. No third-party overlays on top of the video.
-- **YouTube** (`kind: "youtube"`) — an iframe, for channels that only live there. It works,
-  but the player ignores every quality request (six tiles stay at full resolution) and
-  puts its own controls on top.
+YouTube was supported until October 2026 and then dropped: an iframe ignores quality
+requests, swallows mouse events, needs its own postMessage protocol, cannot be a texture
+on the globe, and its live `videoId`s change all the time, so the catalog was never stable.
+It cost 11 channels, none of them the only voice of its country.
 
 ### Several sources per channel
 
 Each source lists **one or more streams in order of preference**. If the first one does
 not start — dead CDN, geoblocking, stream ended — the app falls back to the next one on its
-own, without the tile going dark. There are currently **231 streams for 171 channels**:
-thirty-eight have at least one fallback.
+own, without the tile going dark. There are currently **217 streams for 160 channels**:
+forty-one have at least one fallback.
 
 ```json
 { "id": "aljazeera-en", "name": "Al Jazeera English", ...,
@@ -184,7 +183,7 @@ thirty-eight have at least one fallback.
     { "kind": "hls", "url": "https://live-hls-apps-aje-fa.getaj.net/AJE/index.m3u8",
       "origin": { "host": "live-hls-apps-aje-fa.getaj.net", "kind": "broadcaster",
                   "label": "Al Jazeera", "via": "curated" } },
-    { "kind": "youtube", "channelId": "UCNye-wNBqNL5ZzHSJj3l8Bg", "origin": { ... } }
+    { "kind": "hls", "url": "https://...", "via": "iptv-org", "origin": { ... } }
   ] }
 ```
 
@@ -199,7 +198,6 @@ someone else rebroadcasting it:
 | `broadcaster` | the domain belongs to the broadcaster itself, or the broadcaster's own page publishes the URL |
 | `cdn` | technical delivery (Akamai, CloudFront, Amagi…): it tells how it arrives, not who publishes it |
 | `rebroadcast` | a third party putting someone else's feed back on air — highlighted in orange |
-| `youtube` | the broadcaster's official YouTube channel |
 | `unknown` | a host that fits none of the cases above |
 
 Labels are never made up: host and the way the stream was found are hard facts and are
@@ -217,37 +215,33 @@ python3 scripts/annotate-origin.py --write
 ```
 
 That is how it turned out that TVP World was coming from a private individual's GitHub
-Pages: the official YouTube channel now comes first, and that one stays as a fallback.
+Pages: it stays in the catalog, but its tile says so in orange.
 
 ### The catalog maintains itself
 
-`sources.json` is the curated catalog: the URL for HLS, **only the channelId** for YouTube.
-Live videoIds change all the time, so they don't belong there.
-
-`scripts/refresh-live.py` resolves the current state and writes `live.json`:
+`sources.json` is the curated catalog. `scripts/refresh-live.py` checks every stream and
+writes `live.json`:
 
 ```bash
 python3 scripts/refresh-live.py
 ```
 
-For every YouTube channel it finds the current live stream, checks that it is **really
-live** (a channel that is off air returns its latest upload) and that embedding is
-allowed, by asking oEmbed. For every HLS stream it checks HTTPS, reachability and CORS.
-Standard library only, no API key.
+For every stream it checks HTTPS, reachability, CORS and that the answer is a real HLS
+manifest. Standard library only, no API key.
 
-`.github/workflows/refresh.yml` runs it every hour and commits `live.json`. That is why the
-project needs no server.
+`.github/workflows/refresh.yml` runs it every hour and commits `live.json` when something
+changed. That is why the project needs no server.
 
 ## The catalog
 
-**171 sources from 68 countries**, 135 of them fished out of
+**160 sources from 67 countries**, 135 of them fished out of
 [iptv-org](https://github.com/iptv-org/iptv) and hand-picked:
 
 | wall | channels | countries |
 |---|---|---|
-| News | 108 | 56 |
+| News | 97 | 56 |
 | Sport | 35 | 25 |
-| Markets | 22 | 17 |
+| Markets | 21 | 17 |
 | Weather | 9 | 5 |
 
 The criterion is the point of the project — comparing national narratives — so national
@@ -310,8 +304,8 @@ iptv-org's channel ids, so most entries borrow iptv-org's categories, language a
 and keep the same source id: the same `scripts/curated/<category>.txt` works for both catalogs.
 Channels iptv-org does not know take language and time zone from their country, and get a
 category only from Free-TV's own "News" / "Business" / "Weather" groups; otherwise they are in
-only if curated. Geo-blocked (`Ⓖ`), VOD, Twitch and Dailymotion entries are skipped; YouTube
-entries are resolved to their `channelId`. What it adds carries `via: "free-tv"`.
+only if curated. Geo-blocked (`Ⓖ`), VOD, YouTube, Twitch and Dailymotion entries are
+skipped. What it adds carries `via: "free-tv"`.
 
 ## Adding a source by hand
 
@@ -322,7 +316,7 @@ One entry in `sources.json`, then a PR:
   "tz": "Area/City", "tags": ["world"], "categories": ["news"],
   "streams": [
     { "kind": "hls", "url": "https://.../playlist.m3u8", "page": "https://broadcaster/live" },
-    { "kind": "youtube", "channelId": "UC..." }
+    { "kind": "hls", "url": "https://.../fallback.m3u8" }
   ] }
 ```
 
@@ -340,10 +334,8 @@ CORS, against all expectations, is not the problem: 1 in 70.
 
 ## Known limitations
 
-- **Load.** Every tile is a real video. HLS quality adapts to the tile size, YouTube
-  iframes don't. Beyond 6-8 tiles you will hear the fans.
-- **Reordering over iframes.** Dragging starts from anywhere on an HLS tile, but events do
-  not reach us over a YouTube iframe: there, use the `⠿` grip among the controls.
+- **Load.** Every tile is a real video. Quality adapts to the tile size, but beyond 6-8
+  tiles you will hear the fans.
 - **Geoblocking.** Some broadcasters serve the manifest to anyone but the segments only in
   their own country: the automatic check passes them and then the video does not start.
   The tile notices on its own after a few seconds and says so, instead of staying black.
@@ -385,8 +377,7 @@ Ideas collected along the way, not yet done. The globe's own next steps are in
   are accepted (GB News, France 24, Euronews, CNA, Africanews), the URL is signed with a token
   that expires within minutes (Euronews `hdnea`, Rai's relinker), or the page refuses
   scripts (WION, NDTV, TOLOnews, Kan: 403). Tokenised URLs could only work through a
-  resolver at refresh time, like YouTube's `videoId`, and expire well before the next
-  refresh: not worth it.
+  resolver at refresh time, and expire well before the next refresh: not worth it.
 - **Free-TV in the hourly Action.** `--source free-tv --alternatives` could join the
   "stream URLs that update themselves" step above: Free-TV fixes broken URLs by hand,
   often sooner than iptv-org.

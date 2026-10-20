@@ -75,8 +75,7 @@ async function boot() {
   requestAnimationFrame(frame);
 }
 
-/* What the globe can show: HLS streams the last check did not find dead.
-   A YouTube iframe cannot become a WebGL texture, so those stay on the wall. */
+/* What the globe can show: streams the last check did not find dead. */
 const onGlobe = (s, mode) => inMode(s, mode) && isPlayable(s.id) && hlsOrder(s).length > 0;
 
 function setMode(m, first = false) {

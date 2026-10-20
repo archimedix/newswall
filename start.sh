@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Newswall — local static server.
-# A real HTTP server is needed: from file:// YouTube embeds get a "null" origin
-# and are refused.
+# A real HTTP server is needed: from file:// the browser refuses to load ES
+# modules and fetch the JSON catalogs.
 set -euo pipefail
 PORT="${1:-8080}"
 cd "$(dirname "$0")"

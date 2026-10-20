@@ -34,8 +34,8 @@ export function createHlsPlayer(url, { muted = true, cap = null, native = true, 
   };
 
   if (window.Hls && Hls.isSupported()) {
-    // capLevelToPlayerSize is the real advantage over the YouTube iframe: small
-    // players download a small variant, and bandwidth stays reasonable.
+    // capLevelToPlayerSize: small players download a small variant, and
+    // bandwidth stays reasonable.
     hls = new Hls({
       capLevelToPlayerSize: true,
       lowLatencyMode: true,

@@ -68,9 +68,6 @@ def norm(s):
 def classify(stream, name, via):
     src = {"name": name}
     via = stream.get("via", via)      # a fallback added later may come from elsewhere
-    if stream["kind"] == "youtube":
-        return {"host": "youtube.com", "kind": "youtube", "label": "YouTube", "via": via}
-
     host = host_of(stream["url"])
     dom = registrable(host)
     out = {"host": host, "via": via}

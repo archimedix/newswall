@@ -65,7 +65,6 @@ export const ORIGIN_LABEL = {
   broadcaster: 'from the broadcaster',
   cdn: 'via CDN',
   rebroadcast: 'rebroadcast by a third party',
-  youtube: 'via YouTube',
   unknown: 'unidentified origin',
 };
 

@@ -8,7 +8,7 @@ export const state = {
   mode: 'news',
   sources: [],          // the catalog of the current mode
   active: [],           // ids on the wall, in order
-  players: new Map(),   // id -> { kind, el, player }
+  players: new Map(),   // id -> createHlsPlayer() handle
   audioOn: null,        // one audio at a time: house rule
   focused: null,
   drag: null,           // id of the tile being dragged

@@ -1,6 +1,5 @@
 {
-  "$schema": "./schema/sources.schema.json",
-  "note": "Each source lists one or more streams in order of preference: if the first one does not start, the app moves on to the next. The origin field says where each one really comes from. For youtube streams the videoId is resolved by scripts/refresh-live.py, which writes live.json.",
+  "note": "Each source lists one or more HLS streams in order of preference: if the first one does not start, the app moves on to the next. The origin field says where each one really comes from. scripts/refresh-live.py checks them and writes live.json.",
   "sources": [
     {
       "id": "aljazeera-en",
@@ -22,16 +21,6 @@
             "kind": "broadcaster",
             "label": "Al Jazeera"
           }
-        },
-        {
-          "kind": "youtube",
-          "origin": {
-            "host": "youtube.com",
-            "kind": "youtube",
-            "label": "YouTube",
-            "via": "curated"
-          },
-          "channelId": "UCNye-wNBqNL5ZzHSJj3l8Bg"
         }
       ],
       "categories": [
@@ -58,16 +47,6 @@
             "kind": "broadcaster",
             "label": "Al Jazeera"
           }
-        },
-        {
-          "kind": "youtube",
-          "origin": {
-            "host": "youtube.com",
-            "kind": "youtube",
-            "label": "YouTube",
-            "via": "curated"
-          },
-          "channelId": "UCfiwzLy-8yKzIbsmZTzxDgw"
         },
         {
           "kind": "hls",
@@ -104,16 +83,6 @@
             "kind": "broadcaster",
             "label": "amagi.tv"
           }
-        },
-        {
-          "kind": "youtube",
-          "origin": {
-            "host": "youtube.com",
-            "kind": "youtube",
-            "label": "YouTube",
-            "via": "curated"
-          },
-          "channelId": "UCQfwfsi5VrQ8yKZ-UWmAEFg"
         }
       ],
       "categories": [
@@ -142,16 +111,6 @@
             "kind": "broadcaster",
             "label": "dw.com"
           }
-        },
-        {
-          "kind": "youtube",
-          "origin": {
-            "host": "youtube.com",
-            "kind": "youtube",
-            "label": "YouTube",
-            "via": "curated"
-          },
-          "channelId": "UCknLrEdhRCp1aegoMqRaCZg"
         }
       ],
       "categories": [
@@ -192,16 +151,6 @@
           }
         },
         {
-          "kind": "youtube",
-          "origin": {
-            "host": "youtube.com",
-            "kind": "youtube",
-            "label": "YouTube",
-            "via": "curated"
-          },
-          "channelId": "UCoMdktPbSTixAyNGwb-UYkQ"
-        },
-        {
           "kind": "hls",
           "url": "https://xemzi.short.gy/1000018",
           "origin": {
@@ -235,16 +184,6 @@
             "kind": "broadcaster",
             "label": "akamaized.net"
           }
-        },
-        {
-          "kind": "youtube",
-          "origin": {
-            "host": "youtube.com",
-            "kind": "youtube",
-            "label": "YouTube",
-            "via": "curated"
-          },
-          "channelId": "UCSrZ3UV4jOidv8ppoVuvW9Q"
         },
         {
           "kind": "hls",
@@ -283,16 +222,6 @@
           }
         },
         {
-          "kind": "youtube",
-          "origin": {
-            "host": "youtube.com",
-            "kind": "youtube",
-            "label": "YouTube",
-            "via": "curated"
-          },
-          "channelId": "UCgrNz-aDmcr2uuto8_DL2jg"
-        },
-        {
           "kind": "hls",
           "url": "https://amg00405-rakutentv-cgtn-rakuten-i9tar.amagi.tv/master.m3u8",
           "origin": {
@@ -327,16 +256,6 @@
             "kind": "cdn",
             "label": "cloudfront.net"
           }
-        },
-        {
-          "kind": "youtube",
-          "origin": {
-            "host": "youtube.com",
-            "kind": "youtube",
-            "label": "YouTube",
-            "via": "curated"
-          },
-          "channelId": "UC_gUM8rL-Lrg6O3adPW9K1g"
         },
         {
           "kind": "hls",
@@ -374,16 +293,6 @@
           }
         },
         {
-          "kind": "youtube",
-          "origin": {
-            "host": "youtube.com",
-            "kind": "youtube",
-            "label": "YouTube",
-            "via": "curated"
-          },
-          "channelId": "UC6RJ7-PaXg6TIH2BzZfTV7w"
-        },
-        {
           "kind": "hls",
           "url": "https://pubads.g.doubleclick.net/ssai/event/1mR1QUQ3Tg-VuKfiyjwNuA/master.m3u8",
           "origin": {
@@ -417,16 +326,6 @@
             "kind": "broadcaster",
             "label": "akamaized.net"
           }
-        },
-        {
-          "kind": "youtube",
-          "origin": {
-            "host": "youtube.com",
-            "kind": "youtube",
-            "label": "YouTube",
-            "via": "curated"
-          },
-          "channelId": "UCYPvAwZP8pZhSMW8qs7cVCw"
         },
         {
           "kind": "hls",
@@ -465,16 +364,6 @@
             "kind": "broadcaster",
             "label": "abc.net.au"
           }
-        },
-        {
-          "kind": "youtube",
-          "origin": {
-            "host": "youtube.com",
-            "kind": "youtube",
-            "label": "YouTube",
-            "via": "curated"
-          },
-          "channelId": "UCVgO39Bk5sMo66-6o6Spn6Q"
         }
       ],
       "categories": [
@@ -500,16 +389,6 @@
             "kind": "cdn",
             "label": "cloudfront.net"
           }
-        },
-        {
-          "kind": "youtube",
-          "origin": {
-            "host": "youtube.com",
-            "kind": "youtube",
-            "label": "YouTube",
-            "via": "curated"
-          },
-          "channelId": "UCeY0bbntWzzVIaj2z3QigXg"
         },
         {
           "kind": "hls",
@@ -545,16 +424,6 @@
             "kind": "unknown",
             "label": "tubi.video"
           }
-        },
-        {
-          "kind": "youtube",
-          "origin": {
-            "host": "youtube.com",
-            "kind": "youtube",
-            "label": "YouTube",
-            "via": "curated"
-          },
-          "channelId": "UCBi2mrWuNuyYy4gbM6fU18Q"
         }
       ],
       "categories": [
@@ -582,16 +451,6 @@
           }
         },
         {
-          "kind": "youtube",
-          "origin": {
-            "host": "youtube.com",
-            "kind": "youtube",
-            "label": "YouTube",
-            "via": "curated"
-          },
-          "channelId": "UC8p1vwvWtl6T73JiExfWs1g"
-        },
-        {
           "kind": "hls",
           "url": "https://cbsnews.akamaized.net/hls/live/2020607/cbsnlineup_8/master.m3u8",
           "via": "free-tv",
@@ -601,32 +460,6 @@
             "kind": "broadcaster",
             "label": "akamaized.net"
           }
-        }
-      ],
-      "categories": [
-        "news"
-      ]
-    },
-    {
-      "id": "democracy-now",
-      "name": "Democracy Now!",
-      "lang": "en",
-      "country": "US",
-      "tz": "America/New_York",
-      "tags": [
-        "us",
-        "indie"
-      ],
-      "streams": [
-        {
-          "kind": "youtube",
-          "origin": {
-            "host": "youtube.com",
-            "kind": "youtube",
-            "label": "YouTube",
-            "via": "curated"
-          },
-          "channelId": "UCzuqE7-t13O4NIDYJfakrhw"
         }
       ],
       "categories": [
@@ -664,17 +497,6 @@
             "label": "Antik Telecom"
           },
           "url": "https://dash2.antik.sk/live/test_trt_world_atktv/playlist.m3u8"
-        },
-        {
-          "kind": "youtube",
-          "channelId": "UC7fWeaHhqgM4Ry-RMpM2YYw",
-          "via": "free-tv",
-          "origin": {
-            "host": "youtube.com",
-            "kind": "youtube",
-            "label": "YouTube",
-            "via": "free-tv"
-          }
         }
       ],
       "categories": [
@@ -1301,17 +1123,6 @@
             "kind": "rebroadcast",
             "label": "tangotv.in"
           }
-        },
-        {
-          "kind": "youtube",
-          "channelId": "UCKwucPzHZ7zCUIf7If-Wo1g",
-          "via": "free-tv",
-          "origin": {
-            "host": "youtube.com",
-            "kind": "youtube",
-            "label": "YouTube",
-            "via": "free-tv"
-          }
         }
       ],
       "categories": [
@@ -1664,17 +1475,6 @@
             "label": "gostreaming.tv"
           },
           "url": "https://contact.gostreaming.tv/Con-11/index.m3u8"
-        },
-        {
-          "kind": "youtube",
-          "channelId": "UCixtbfonx_QIjS1DB96zcFg",
-          "via": "free-tv",
-          "origin": {
-            "host": "youtube.com",
-            "kind": "youtube",
-            "label": "YouTube",
-            "via": "free-tv"
-          }
         }
       ],
       "categories": [
@@ -2953,17 +2753,6 @@
             "label": "tangotv.in"
           },
           "url": "https://mumt05.tangotv.in/87NeALx2CNA/index.m3u8"
-        },
-        {
-          "kind": "youtube",
-          "channelId": "UC83jt4dlz1Gjl58fzQrrKZg",
-          "via": "free-tv",
-          "origin": {
-            "host": "youtube.com",
-            "kind": "youtube",
-            "label": "YouTube",
-            "via": "free-tv"
-          }
         }
       ],
       "categories": [
@@ -2981,16 +2770,6 @@
       ],
       "via": "iptv-org",
       "streams": [
-        {
-          "kind": "youtube",
-          "channelId": "UCBjUPsHj7bXt24SUWNoZ0zA",
-          "origin": {
-            "host": "youtube.com",
-            "kind": "youtube",
-            "label": "YouTube",
-            "via": "iptv-org"
-          }
-        },
         {
           "kind": "hls",
           "origin": {
@@ -3131,57 +2910,6 @@
       ]
     },
     {
-      "id": "cbc-news",
-      "name": "CBC News",
-      "lang": "en",
-      "country": "CA",
-      "tz": "America/Toronto",
-      "tags": [
-        "us"
-      ],
-      "streams": [
-        {
-          "kind": "youtube",
-          "channelId": "UCuFFtHWoLl5fauMMD5Ww2jA",
-          "origin": {
-            "host": "youtube.com",
-            "kind": "youtube",
-            "label": "YouTube",
-            "via": "curated"
-          }
-        }
-      ],
-      "categories": [
-        "news"
-      ]
-    },
-    {
-      "id": "cnbc",
-      "name": "CNBC",
-      "lang": "en",
-      "country": "US",
-      "tz": "America/New_York",
-      "tags": [
-        "us"
-      ],
-      "streams": [
-        {
-          "kind": "youtube",
-          "channelId": "UCvJJ_dzjViJCoLf5uKUTwoA",
-          "origin": {
-            "host": "youtube.com",
-            "kind": "youtube",
-            "label": "YouTube",
-            "via": "curated"
-          }
-        }
-      ],
-      "categories": [
-        "news",
-        "business"
-      ]
-    },
-    {
       "id": "current-time",
       "name": "Current Time",
       "lang": "ru",
@@ -3204,16 +2932,6 @@
           }
         },
         {
-          "kind": "youtube",
-          "channelId": "UCBG57608Hukev3d0d-gvLhQ",
-          "origin": {
-            "host": "youtube.com",
-            "kind": "youtube",
-            "label": "YouTube",
-            "via": "curated"
-          }
-        },
-        {
           "kind": "hls",
           "url": "https://rferl-ingest.akamaized.net/hls/live/2121657-b/tvmc05/playlist.m3u8",
           "page": "https://www.currenttime.tv/live/video",
@@ -3223,31 +2941,6 @@
             "via": "curated",
             "kind": "broadcaster",
             "label": "currenttime.tv"
-          }
-        }
-      ],
-      "categories": [
-        "news"
-      ]
-    },
-    {
-      "id": "dd-india",
-      "name": "DD India",
-      "lang": "en",
-      "country": "IN",
-      "tz": "Asia/Kolkata",
-      "tags": [
-        "asia"
-      ],
-      "streams": [
-        {
-          "kind": "youtube",
-          "channelId": "UCGDQNvybfDDeGTf4GtigXaw",
-          "origin": {
-            "host": "youtube.com",
-            "kind": "youtube",
-            "label": "YouTube",
-            "via": "curated"
           }
         }
       ],
@@ -3278,16 +2971,6 @@
           }
         },
         {
-          "kind": "youtube",
-          "channelId": "UCT4Jg8h03dD0iN3Pb5L0PMA",
-          "origin": {
-            "host": "youtube.com",
-            "kind": "youtube",
-            "label": "YouTube",
-            "via": "curated"
-          }
-        },
-        {
           "kind": "hls",
           "url": "https://dwamdstream104.akamaized.net/hls/live/2015530/dwstream104/stream04/streamPlaylist.m3u8",
           "via": "free-tv",
@@ -3296,81 +2979,6 @@
             "via": "free-tv",
             "kind": "cdn",
             "label": "akamaized.net"
-          }
-        }
-      ],
-      "categories": [
-        "news"
-      ]
-    },
-    {
-      "id": "euronews-fr",
-      "name": "Euronews Français",
-      "lang": "fr",
-      "country": "FR",
-      "tz": "Europe/Paris",
-      "tags": [
-        "europe"
-      ],
-      "streams": [
-        {
-          "kind": "youtube",
-          "channelId": "UCW2QcKZiU8aUGg4yxCIditg",
-          "origin": {
-            "host": "youtube.com",
-            "kind": "youtube",
-            "label": "YouTube",
-            "via": "curated"
-          }
-        }
-      ],
-      "categories": [
-        "news"
-      ]
-    },
-    {
-      "id": "firstpost",
-      "name": "Firstpost",
-      "lang": "en",
-      "country": "IN",
-      "tz": "Asia/Kolkata",
-      "tags": [
-        "asia"
-      ],
-      "streams": [
-        {
-          "kind": "youtube",
-          "channelId": "UCz8QaiQxApLq8sLNcszYyJw",
-          "origin": {
-            "host": "youtube.com",
-            "kind": "youtube",
-            "label": "YouTube",
-            "via": "curated"
-          }
-        }
-      ],
-      "categories": [
-        "news"
-      ]
-    },
-    {
-      "id": "gb-news",
-      "name": "GB News",
-      "lang": "en",
-      "country": "GB",
-      "tz": "Europe/London",
-      "tags": [
-        "europe"
-      ],
-      "streams": [
-        {
-          "kind": "youtube",
-          "channelId": "UC0vn8ISa4LKMunLbzaXLnOQ",
-          "origin": {
-            "host": "youtube.com",
-            "kind": "youtube",
-            "label": "YouTube",
-            "via": "curated"
           }
         }
       ],
@@ -3389,16 +2997,6 @@
       ],
       "streams": [
         {
-          "kind": "youtube",
-          "channelId": "UCJg9wBPyKMNA5sRDnvzmkdg",
-          "origin": {
-            "host": "youtube.com",
-            "kind": "youtube",
-            "label": "YouTube",
-            "via": "curated"
-          }
-        },
-        {
           "kind": "hls",
           "url": "https://fox-foxnewsnow-vizio.amagi.tv/playlist.m3u8",
           "via": "free-tv",
@@ -3407,81 +3005,6 @@
             "via": "free-tv",
             "kind": "cdn",
             "label": "amagi.tv"
-          }
-        }
-      ],
-      "categories": [
-        "news"
-      ]
-    },
-    {
-      "id": "ndtv",
-      "name": "NDTV 24x7",
-      "lang": "en",
-      "country": "IN",
-      "tz": "Asia/Kolkata",
-      "tags": [
-        "asia"
-      ],
-      "streams": [
-        {
-          "kind": "youtube",
-          "channelId": "UCZFMm1mMw0F81Z37aaEzTUA",
-          "origin": {
-            "host": "youtube.com",
-            "kind": "youtube",
-            "label": "YouTube",
-            "via": "curated"
-          }
-        }
-      ],
-      "categories": [
-        "news"
-      ]
-    },
-    {
-      "id": "newsmax",
-      "name": "Newsmax",
-      "lang": "en",
-      "country": "US",
-      "tz": "America/New_York",
-      "tags": [
-        "us"
-      ],
-      "streams": [
-        {
-          "kind": "youtube",
-          "channelId": "UCx6h-dWzJ5NpAlja1YsApdg",
-          "origin": {
-            "host": "youtube.com",
-            "kind": "youtube",
-            "label": "YouTube",
-            "via": "curated"
-          }
-        }
-      ],
-      "categories": [
-        "news"
-      ]
-    },
-    {
-      "id": "republic-world",
-      "name": "Republic World",
-      "lang": "en",
-      "country": "IN",
-      "tz": "Asia/Kolkata",
-      "tags": [
-        "asia"
-      ],
-      "streams": [
-        {
-          "kind": "youtube",
-          "channelId": "UCwqusr8YDwM-3mEYTDeJHzw",
-          "origin": {
-            "host": "youtube.com",
-            "kind": "youtube",
-            "label": "YouTube",
-            "via": "curated"
           }
         }
       ],
@@ -3500,16 +3023,6 @@
       ],
       "streams": [
         {
-          "kind": "youtube",
-          "channelId": "UChqUTb7kYRX8-EiaN3XFrSQ",
-          "origin": {
-            "host": "youtube.com",
-            "kind": "youtube",
-            "label": "YouTube",
-            "via": "curated"
-          }
-        },
-        {
           "kind": "hls",
           "url": "https://amg00453-reuters-amg00453c1-rakuten-uk-2110.playouts.now.amagi.tv/playlist/amg00453-reuters-reuters-rakutenuk/playlist.m3u8",
           "via": "free-tv",
@@ -3518,31 +3031,6 @@
             "via": "free-tv",
             "kind": "broadcaster",
             "label": "amagi.tv"
-          }
-        }
-      ],
-      "categories": [
-        "news"
-      ]
-    },
-    {
-      "id": "sky-news-arabia",
-      "name": "Sky News Arabia",
-      "lang": "ar",
-      "country": "AE",
-      "tz": "Asia/Dubai",
-      "tags": [
-        "mideast"
-      ],
-      "streams": [
-        {
-          "kind": "youtube",
-          "channelId": "UCIJXOvggjKtCagMfxvcCzAA",
-          "origin": {
-            "host": "youtube.com",
-            "kind": "youtube",
-            "label": "YouTube",
-            "via": "curated"
           }
         }
       ],

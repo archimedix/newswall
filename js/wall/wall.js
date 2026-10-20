@@ -15,7 +15,6 @@ import {
   resetFilters, togglePanel,
 } from './panel.js';
 import { $, DEFAULT_TILES, grid, LOW_QUALITY_CAP, MAX_TILES, state, tileEl, toast } from './state.js';
-import { createYoutubeFrame, yt, ytAudio, ytHello } from './youtube.js';
 
 /* ---------------------------------------------------------------- boot */
 
@@ -123,7 +122,6 @@ function layout() {
 const ICON = {
   sound: '<svg viewBox="0 0 16 16" width="13" height="13" aria-hidden="true"><path fill="currentColor" d="M8.4 2.3 5 5.1H2.4v5.8H5l3.4 2.8z"/><path d="M10.7 5.4a3.5 3.5 0 0 1 0 5.2m2-7.4a6.4 6.4 0 0 1 0 9.6" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>',
   grow: '<svg viewBox="0 0 16 16" width="13" height="13" aria-hidden="true"><path d="M6 2.2H2.2V6M10 2.2h3.8V6M6 13.8H2.2V10M10 13.8h3.8V10" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>',
-  grip: '<svg viewBox="0 0 16 16" width="13" height="13" aria-hidden="true"><g fill="currentColor"><circle cx="6" cy="3.6" r="1.15"/><circle cx="10" cy="3.6" r="1.15"/><circle cx="6" cy="8" r="1.15"/><circle cx="10" cy="8" r="1.15"/><circle cx="6" cy="12.4" r="1.15"/><circle cx="10" cy="12.4" r="1.15"/></g></svg>',
   kill: '<svg viewBox="0 0 16 16" width="13" height="13" aria-hidden="true"><path d="M4.2 4.2l7.6 7.6M11.8 4.2l-7.6 7.6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>',
 };
 
@@ -145,8 +143,8 @@ function syncGrid() {
   tickClocks();
 }
 
-/* Visual order is set by the CSS grid, not the DOM: moving a node would
-   reload the YouTube iframe and stop the video. */
+/* Visual order is set by the CSS grid, not the DOM: moving a <video> node
+   restarts its playback. */
 function orderTiles() {
   state.active.forEach((id, i) => {
     const t = tileEl(id);
@@ -175,7 +173,6 @@ function makeTile(id) {
       <span class="clock" data-tz="${escapeHtml(src.tz || 'UTC')}"></span>
     </div>
     <div class="ops">
-      <button class="grip" draggable="true" title="Drag to reorder">${ICON.grip}</button>
       <button class="alt" data-op="alt" hidden></button>
       <button class="sound" data-op="sound" title="Audio to this channel">${ICON.sound}</button>
       <button data-op="grow" title="Enlarge (double click)">${ICON.grow}</button>
@@ -245,7 +242,7 @@ function attach(tile, src, idx) {
   const o = stream.origin || {};
   const origin = tile.querySelector('.origin');
   origin.className = `origin ${o.kind || ''}`;
-  origin.innerHTML = `${stream.kind === 'hls' ? 'HLS' : 'YT'} · <b>${escapeHtml(o.label || o.host || '?')}</b> ${escapeHtml(ORIGIN_LABEL[o.kind] || '')}`;
+  origin.innerHTML = `<b>${escapeHtml(o.label || o.host || '?')}</b> ${escapeHtml(ORIGIN_LABEL[o.kind] || '')}`;
   origin.title = originText(stream);
 
   // The source switcher only shows up where there really is an alternative source.
@@ -254,51 +251,26 @@ function attach(tile, src, idx) {
   alt.textContent = `${idx + 1}/${src.streams.length}`;
   alt.title = 'Switch source';
 
-  if (stream.kind === 'hls') {
-    const player = createHlsPlayer(stream.url, {
-      muted: state.audioOn !== src.id,
-      onReady: () => tile.classList.remove('waiting'),
-      onFail: next,
-    });
-    tile.appendChild(player.video);
-    state.players.set(src.id, { kind: 'hls', el: player.video, player });
-  } else {
-    const info = catalog.live[src.id]?.streams?.[idx] || {};
-    if (!info.videoId) return next();
-    const frame = createYoutubeFrame(info.videoId);
-    // From outside there is no way to tell when a YouTube iframe actually has a
-    // picture: allow one second after load, then lift the curtain.
-    frame.addEventListener('load', () => {
-      ytHello(src.id);
-      setTimeout(() => { if (alive()) tile.classList.remove('waiting'); }, 1000);
-    });
-    tile.appendChild(frame);
-    // The YouTube iframe is cross-origin: clicks inside it never bubble up to
-    // us, so the tile never lit up (and double click did not enlarge it). A
-    // transparent veil over the player gives the tile its gestures back; it
-    // sits below the label, footer and controls (z-index 3), which stay
-    // clickable. Nothing is needed from the YT player UI: play, mute and
-    // volume already go through postMessage.
-    const veil = document.createElement('div');
-    veil.className = 'veil';
-    tile.appendChild(veil);
-    state.players.set(src.id, { kind: 'yt', el: frame });
-  }
+  const player = createHlsPlayer(stream.url, {
+    muted: state.audioOn !== src.id,
+    onReady: () => tile.classList.remove('waiting'),
+    onFail: next,
+  });
+  tile.appendChild(player.video);
+  state.players.set(src.id, player);
 
   // Muted autoplay needs no gesture; the first click on a tile brings the sound.
-  play(state.players.get(src.id));
+  player.play();
 }
 
 function stopPlayer(id) {
-  const p = state.players.get(id);
-  if (p?.hello) clearInterval(p.hello);
-  p?.player?.destroy();
+  state.players.get(id)?.destroy();
   state.players.delete(id);
 }
 
 function detach(tile, id) {
   stopPlayer(id);
-  tile.querySelectorAll('video, iframe, .veil').forEach((x) => x.remove());
+  tile.querySelector('video')?.remove();
 }
 
 /* Manually switch to the next source: useful when the CDN is up but stutters. */
@@ -312,12 +284,6 @@ function cycleStream(id) {
   toast(`${src.name}: source ${idx + 1} of ${src.streams.length} — ${o.label || o.host || '?'}`);
 }
 
-const play = (p) => {
-  if (!p) return;
-  if (p.kind === 'hls') p.player.play();
-  else yt(p.el, 'playVideo');
-};
-
 /* --------------------------------------------------------------- audio */
 
 /* Only one channel talks. Clicking the same one again mutes it. */
@@ -329,13 +295,9 @@ function setOnAir(id) {
   state.audioOn = id;
   for (const [sid, p] of state.players) {
     const on = sid === state.audioOn;
-    const tile = tileEl(sid);
-    tile?.classList.toggle('audio-on', on);
-    if (p.kind === 'yt') ytAudio(p.el, on);
-    else {
-      p.el.muted = !on;
-      if (on) p.player.play();
-    }
+    tileEl(sid)?.classList.toggle('audio-on', on);
+    p.video.muted = !on;
+    if (on) p.play();
   }
   const box = $('#onair');
   box.hidden = !id;
@@ -353,7 +315,7 @@ function setFocus(id) {
   });
   // The enlarged tile can afford full quality.
   for (const [sid, p] of state.players) {
-    p.player?.setCap(sid === state.focused ? null : LOW_QUALITY_CAP);
+    p.setCap(sid === state.focused ? null : LOW_QUALITY_CAP);
   }
   layout();
   if (state.focused && state.audioOn !== state.focused) setAudio(state.focused);
@@ -425,8 +387,7 @@ grid.addEventListener('dblclick', (e) => {
   if (t && !e.target.closest('.ops') && !t.classList.contains('dead')) setFocus(t.dataset.id);
 });
 
-/* Reordering: drag the tile (or the grip, which also works over YouTube
-   iframes, which would otherwise swallow the events). */
+/* Reordering: drag the tile. */
 grid.addEventListener('dragstart', (e) => {
   const t = e.target.closest('.tile');
   if (!t) return;

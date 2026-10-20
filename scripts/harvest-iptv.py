@@ -28,7 +28,6 @@ ROOT = Path(__file__).resolve().parent.parent
 CURATED = ROOT / "scripts" / "curated"      # one <category>.txt per wall mode
 API = "https://iptv-org.github.io/api"
 FREETV = "https://raw.githubusercontent.com/Free-TV/IPTV/master/playlist.m3u8"
-YT_HEADERS = {"Cookie": "CONSENT=YES+cb.20210328-17-p0.en+FX+410", "Accept-Language": "en-US,en;q=0.9"}
 UA = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36"
 CTX = ssl.create_default_context()
 
@@ -159,21 +158,16 @@ def meta(ch, feed_of, e):
 
 
 def entries_freetv(text, channels, feed_of, countries, tz_of):
-    """Free-TV entries in the same shape. YouTube ones keep their channel page URL:
-    the channelId is resolved only for the entries that get probed."""
+    """Free-TV entries in the same shape (HLS only)."""
     out = []
     for attrs, title, url in parse_m3u(text):
         group = attrs.get("group-title", "")
         if group.startswith("VOD") or "Ⓖ" in title:
             continue      # recordings, and channels that only work inside one country
-        if "youtube.com/" in url:
-            kind = "youtube"
-        elif re.search(r"twitch\.tv|dailymotion\.com", url):
-            continue      # no player for these
-        else:
-            kind = "hls"
+        if re.search(r"youtube\.com|twitch\.tv|dailymotion\.com", url):
+            continue      # not HLS: no player for these
         name = MARKS.sub("", title).strip()
-        e = {"kind": kind, "url": url, "via": "free-tv"}
+        e = {"kind": "hls", "url": url, "via": "free-tv"}
         ch = channels.get(attrs.get("tvg-id", "").split("@")[0])
         if ch and not ch.get("closed") and not ch.get("is_nsfw"):
             e = meta(ch, feed_of, {**e, "key": ch["id"]})
@@ -212,11 +206,8 @@ def slug(name):
     return re.sub(r"-+", "-", s) or "channel"
 
 
-def probe(url, kind="hls"):
-    """The three conditions for living in a static page, plus a sane manifest.
-    For a YouTube channel page: its channelId (refresh-live.py checks the live)."""
-    if kind == "youtube":
-        return probe_youtube(url)
+def probe(url):
+    """The three conditions for living in a static page, plus a sane manifest."""
     if not url.startswith("https://"):
         return None
     try:
@@ -231,26 +222,6 @@ def probe(url, kind="hls"):
     return {"heights": heights}
 
 
-def probe_youtube(url):
-    page = re.sub(r"/(live|streams|videos)/?$", "", url.split("?")[0])
-    m = re.search(r"/channel/(UC[\w-]{22})", page)
-    if m:
-        return {"channelId": m.group(1), "heights": []}
-    try:
-        _, html = fetch(page, timeout=10, headers=YT_HEADERS, limit=2 * 1024 * 1024)
-    except Exception:
-        return None
-    m = re.search(r'"externalId":"(UC[\w-]{22})"', html) or \
-        re.search(r'rel="canonical" href="https://www\.youtube\.com/channel/(UC[\w-]{22})"', html)
-    return {"channelId": m.group(1), "heights": []} if m else None
-
-
-def stream_of(e, r):
-    if e["kind"] == "youtube":
-        return {"kind": "youtube", "channelId": r["channelId"]}
-    return {"kind": "hls", "url": e["url"]}
-
-
 def add_alternatives(current, entries, probe_pool=40):
     """For channels already in the catalog, look for other streams from the same broadcaster.
     More sources per channel means a dead CDN does not take the tile down."""
@@ -259,17 +230,17 @@ def add_alternatives(current, entries, probe_pool=40):
         for n in e["names"]:
             by_name.setdefault(slug(n), []).append(e)
 
-    have = {st.get("url") or st.get("channelId") for s in current["sources"] for st in s["streams"]}
+    have = {st["url"] for s in current["sources"] for st in s["streams"]}
     jobs = []
     for src in current["sources"]:
         for e in by_name.get(slug(src["name"]), ()):
-            if e["url"] not in have and (e["kind"] == "youtube" or e["url"].startswith("https://")):
+            if e["url"] not in have and e["url"].startswith("https://"):
                 jobs.append((src["id"], e))
                 have.add(e["url"])
 
     print(f"possible alternative sources to try: {len(jobs)}", file=sys.stderr)
     with ThreadPoolExecutor(probe_pool) as ex:
-        checked = list(ex.map(lambda j: (j[0], j[1], probe(j[1]["url"], j[1]["kind"])), jobs))
+        checked = list(ex.map(lambda j: (j[0], j[1], probe(j[1]["url"])), jobs))
 
     index = {s["id"]: s for s in current["sources"]}
     added = 0
@@ -277,13 +248,9 @@ def add_alternatives(current, entries, probe_pool=40):
         if not r:
             continue
         src = index[sid]
-        st = stream_of(e, r)
         if len(src["streams"]) >= 3:      # three sources are enough: beyond that is dead weight
             continue
-        if st.get("channelId") and st["channelId"] in have:
-            continue      # a handle URL resolving to a channel already listed
-        have.add(st.get("channelId"))
-        src["streams"].append({**st, "via": e["via"]})
+        src["streams"].append({"kind": "hls", "url": e["url"], "via": e["via"]})
         added += 1
     return added
 
@@ -350,8 +317,6 @@ def main():
     taken_urls = {st.get("url") for s in current["sources"] for st in s["streams"]}
     taken_names = {slug(s["name"]) for s in current["sources"]}
 
-    taken_yt = {st.get("channelId") for s in current["sources"] for st in s["streams"]} - {None}
-
     def ids_of(e):
         return {slug(e["id_name"]), f"{slug(e['id_name'])}-{e['country'].lower()}"}
 
@@ -366,7 +331,7 @@ def main():
             continue
         if e["url"] in taken_urls:
             continue
-        if e["kind"] == "youtube" or e["url"].startswith("https://"):
+        if e["url"].startswith("https://"):
             candidates.setdefault(e["key"], []).append(e)
 
     print(f"{cat} candidates from {args.source}: {len(candidates)}", file=sys.stderr)
@@ -376,7 +341,7 @@ def main():
     def first_working(item):
         key, lst = item
         for e in lst:
-            r = probe(e["url"], e["kind"])
+            r = probe(e["url"])
             if r:
                 return key, e, r
         return key, None, None
@@ -399,8 +364,8 @@ def main():
         if not listed and (len(added) >= args.max or per_country.get(country, 0) >= args.per_country):
             continue
         sid = slug(e["id_name"])
-        if any(slug(n) in taken_names for n in e["names"]) or r.get("channelId") in taken_yt:
-            continue          # already in the catalog, maybe under another name or via YouTube
+        if any(slug(n) in taken_names for n in e["names"]):
+            continue          # already in the catalog, maybe under another name
         if sid in taken_ids:
             sid = f"{sid}-{country.lower()}"
         if sid in taken_ids:
@@ -410,7 +375,7 @@ def main():
         added.append({
             "id": sid, "name": e["name"], "lang": lang, "country": country, "tz": tz,
             "tags": [AREA.get(country, "world")], "categories": [cat], "via": e["via"],
-            "streams": [stream_of(e, r)],
+            "streams": [{"kind": "hls", "url": e["url"]}],
         })
         if listed:
             picked.append(added[-1])
