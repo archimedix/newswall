@@ -43,7 +43,9 @@ Python scripts use the standard library only — keep it that way (they run bare
 - **`live.json`** — generated, never edit by hand. `refresh-live.py` writes per-source
   `{state, use, streams[], reason}`, `state` being `ok` / `unverified` / `dead`: only faults that
   hit every viewer are `dead` (no CORS, http, 404…); geoblock-like answers (403/451), 5xx and
-  timeouts are `unverified` and the client still tries them. `use` is the first `ok` stream, else
+  timeouts are `unverified` and the client still tries them. Hysteresis: a `dead` fault counts
+  only after 24 h of failing (`failing_since`, kept by stream position; plain http is
+  immediate); before that it is `unverified`. One success clears it. `use` is the first `ok` stream, else
   the first `unverified`; `ok` entries carry the variant `heights`. The file is rewritten only
   when an entry changes (`generated` = last change). `.github/workflows/refresh.yml` runs it hourly and commits `live.json` as
   `newswall-bot` — expect frequent bot commits upstream; pull before editing `live.json`-adjacent work.

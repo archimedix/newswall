@@ -239,12 +239,17 @@ The verdict has three states, because the checker sees the streams from one plac
 | `unverified` | 401/403/451 (often a geoblock), 429, 5xx, timeouts, refused connections | tries it anyway |
 | `dead` | plain http, no CORS, not a manifest, 400/404/405/410, unknown host, bad certificate | hides it |
 
+A fault turns a stream `dead` only after it has lasted 24 hours (plain http excepted: the
+URL says so already). Until then the stream is `unverified`, with `failing_since`, so a CDN
+that answers 404 for ten minutes does not take a channel off the wall. One working check
+makes it `ok` again.
+
 The bot advises, the browser decides: an unverified channel that does not play from where
 the viewer is falls back to its next stream and then shows as off air, as any other failure.
 
 `.github/workflows/refresh.yml` runs it every hour. `live.json` is rewritten only when a
 state changes, so a quiet catalog makes no commit, and `generated` is when the status last
-changed. That is why the project needs no server.
+changed. A new reason for the same failure (a timeout, then a 503) is not a change. That is why the project needs no server.
 
 ## The catalog
 

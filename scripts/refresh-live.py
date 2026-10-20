@@ -10,15 +10,20 @@ that is gone. "unverified" is for answers that say nothing about the viewer:
 the checker runs in one region (403/451 are often a geoblock) and a timeout
 or a 5xx can be momentary. The page hides dead streams and tries the others.
 
+A fault is dead only once it has lasted a day: until then the stream stays
+unverified, with `failing_since`. One working check makes it ok again.
+
 live.json is rewritten only when a state changes, so an unchanged catalog
-makes no commit: `generated` is when the status last changed.
+makes no commit: `generated` is when the status last changed. The reason
+alone does not count (a failing stream can time out one hour and answer 503
+the next): it is the one seen at the last change.
 
 No API key, no external dependencies: standard library only.
 Meant to run in a GitHub Action and commit live.json.
 """
 import gzip, json, re, socket, ssl, sys, urllib.error, urllib.parse, urllib.request, zlib
 from concurrent.futures import ThreadPoolExecutor
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -29,6 +34,8 @@ TIMEOUT = 15
 # HTTP codes that mean the URL itself is wrong or gone, for everyone. The
 # others (401/403/451, 429, 5xx) depend on who asks and when.
 GONE = {400, 404, 405, 410}
+# CDNs have bad moments too: a stream fails for this long before it is dead.
+HOLD = timedelta(hours=24)
 # CORS is checked for the page's own origin: some CDNs allow only listed sites.
 ORIGIN = "https://tv.archimedix.net"
 
@@ -115,7 +122,8 @@ def check_hls(stream):
     keep the variants for their own site."""
     url = stream["url"]
     if url.startswith("http://"):
-        return dead("plain http: blocked as mixed content")
+        # The URL itself says so: no reason to wait for HOLD.
+        return {**dead("plain http: blocked as mixed content"), "final": True}
     fail, got = load(url)
     if fail:
         return fail
@@ -129,6 +137,18 @@ def check_hls(stream):
     # Variant heights let the app lower the quality of secondary tiles.
     heights = sorted({int(h) for h in re.findall(r"RESOLUTION=\d+x(\d+)", body)})
     return {"state": "ok", "heights": heights}
+
+
+def settle(r, prev, now):
+    """This run's verdict, weighed against the stream's previous one."""
+    if r["state"] == "ok":
+        return r
+    final = r.pop("final", False)
+    since = (prev or {}).get("failing_since") or now.isoformat(timespec="seconds")
+    r["failing_since"] = since
+    if r["state"] == "dead" and not final and now - datetime.fromisoformat(since) < HOLD:
+        r["state"] = "unverified"
+    return r
 
 
 def summarize(states):
@@ -146,6 +166,12 @@ def check(job):
     return sid, idx, check_hls(stream)
 
 
+def verdicts(entries):
+    """What a commit is worth: everything but the reasons."""
+    strip = lambda r: {k: v for k, v in r.items() if k != "reason"}
+    return {sid: {**strip(e), "streams": [strip(r) for r in e["streams"]]} for sid, e in entries.items()}
+
+
 def main():
     sources = json.loads((ROOT / "sources.json").read_text())["sources"]
     jobs = [(s["id"], i, st) for s in sources for i, st in enumerate(s["streams"])]
@@ -159,14 +185,22 @@ def main():
     for sid, idx, r in checked:
         per_source.setdefault(sid, {})[idx] = r
 
-    entries = {s["id"]: summarize([per_source[s["id"]][i] for i in range(len(s["streams"]))])
-               for s in sources}
-
     path = ROOT / "live.json"
     try:
-        before = json.loads(path.read_text())
+        before = json.loads(path.read_text()).get("entries", {})
     except (OSError, ValueError):
         before = {}
+
+    # The history is kept by position: after reordering a source's streams in
+    # sources.json, a failing stream may inherit another one's failing_since.
+    now = datetime.now(timezone.utc)
+    entries = {}
+    for s in sources:
+        prev = before.get(s["id"], {}).get("streams", [])
+        states = [settle(per_source[s["id"]][i], prev[i] if i < len(prev) else None, now)
+                  for i in range(len(s["streams"]))]
+        entries[s["id"]] = summarize(states)
+
     count = {k: sum(r["state"] == k for r in entries.values()) for k in ("ok", "unverified", "dead")}
     print(f"{count['ok']} live, {count['unverified']} unverified, {count['dead']} dead "
           f"of {len(entries)} sources ({len(checked)} streams checked)")
@@ -174,10 +208,10 @@ def main():
         if r["state"] != "ok":
             print(f"  {'?' if r['state'] == 'unverified' else '✗'} {i}: {r['reason']}")
 
-    if before.get("entries") == entries:
+    if verdicts(before) == verdicts(entries):
         print("live.json unchanged")
     else:
-        out = {"generated": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+        out = {"generated": now.isoformat(timespec="seconds"),
                "entries": entries}
         path.write_text(json.dumps(out, indent=2, ensure_ascii=False) + "\n")
         print("live.json updated")
