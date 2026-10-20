@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-20T22:24:41+00:00",
+  "generated": "2026-10-20T22:37:59+00:00",
   "entries": {
     "aljazeera-en": {
       "state": "ok",
@@ -1085,9 +1085,12 @@
           ]
         },
         {
-          "state": "unverified",
-          "reason": "variant: unreachable (gaierror)",
-          "failing_since": "2026-10-20T22:24:41+00:00"
+          "state": "ok",
+          "heights": [
+            240,
+            360,
+            576
+          ]
         },
         {
           "state": "ok",
@@ -1584,18 +1587,16 @@
       "reason": null
     },
     "news-central": {
-      "state": "ok",
+      "state": "unverified",
       "use": 0,
       "streams": [
         {
-          "state": "ok",
-          "heights": [
-            480,
-            720
-          ]
+          "state": "unverified",
+          "reason": "HTTP 404",
+          "failing_since": "2026-10-20T22:37:59+00:00"
         }
       ],
-      "reason": null
+      "reason": "HTTP 404"
     },
     "cctv-1": {
       "state": "ok",
