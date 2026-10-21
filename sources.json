@@ -5640,6 +5640,370 @@
           }
         }
       ]
+    },
+    {
+      "id": "moldova-1",
+      "name": "Moldova 1",
+      "lang": "ro",
+      "country": "MD",
+      "tz": "Europe/Chisinau",
+      "tags": [
+        "europe"
+      ],
+      "categories": [
+        "news"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://v0.trm.md/static/streaming-playlists/hls/9b79338b-1870-4cd7-91d4-0f6ce5cac7ca/master.m3u8",
+          "origin": {
+            "host": "v0.trm.md",
+            "via": "iptv-org",
+            "kind": "unknown",
+            "label": "trm.md"
+          }
+        }
+      ]
+    },
+    {
+      "id": "canal-once",
+      "name": "Canal Once",
+      "lang": "es",
+      "country": "MX",
+      "tz": "America/Mexico_City",
+      "tags": [
+        "americas"
+      ],
+      "categories": [
+        "news"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://vivo.canaloncelive.tv/securepkgr3/oncemexico/playlist.m3u8",
+          "origin": {
+            "host": "vivo.canaloncelive.tv",
+            "via": "iptv-org",
+            "kind": "broadcaster",
+            "label": "canaloncelive.tv"
+          }
+        }
+      ]
+    },
+    {
+      "id": "lrt-lituanica",
+      "name": "LRT Lituanica",
+      "lang": "lt",
+      "country": "LT",
+      "tz": "Europe/Vilnius",
+      "tags": [
+        "europe"
+      ],
+      "categories": [
+        "news"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://stream-live.lrt.lt/lituanica/master.m3u8",
+          "origin": {
+            "host": "stream-live.lrt.lt",
+            "via": "iptv-org",
+            "kind": "unknown",
+            "label": "lrt.lt"
+          }
+        }
+      ]
+    },
+    {
+      "id": "orf-1",
+      "name": "ORF 1",
+      "lang": "de",
+      "country": "AT",
+      "tz": "Europe/Vienna",
+      "tags": [
+        "europe"
+      ],
+      "categories": [
+        "news"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://test02.mdn.ors.at/orf/orf1/qxa/manifest.m3u8",
+          "origin": {
+            "host": "test02.mdn.ors.at",
+            "via": "iptv-org",
+            "kind": "unknown",
+            "label": "ors.at"
+          }
+        }
+      ]
+    },
+    {
+      "id": "tv-brasil",
+      "name": "TV Brasil",
+      "lang": "pt",
+      "country": "BR",
+      "tz": "America/Sao_Paulo",
+      "tags": [
+        "americas"
+      ],
+      "categories": [
+        "news"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://tvbrasil-stream.ebc.com.br/index.m3u8",
+          "origin": {
+            "host": "tvbrasil-stream.ebc.com.br",
+            "via": "iptv-org",
+            "kind": "broadcaster",
+            "label": "ebc.com.br"
+          }
+        }
+      ]
+    },
+    {
+      "id": "tvc-benin",
+      "name": "TVC Benin",
+      "lang": "fr",
+      "country": "BJ",
+      "tz": "Africa/Porto-Novo",
+      "tags": [
+        "africa"
+      ],
+      "categories": [
+        "news"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://live.tvcbenin.com/direct/729c37a1d3319ee21991227b1f84c687.sdp/playlist.m3u8",
+          "origin": {
+            "host": "live.tvcbenin.com",
+            "via": "iptv-org",
+            "kind": "broadcaster",
+            "label": "tvcbenin.com"
+          }
+        }
+      ]
+    },
+    {
+      "id": "haiti-news-channel",
+      "name": "Haiti News Channel",
+      "lang": "fr",
+      "country": "HT",
+      "tz": "America/Port-au-Prince",
+      "tags": [
+        "world"
+      ],
+      "categories": [
+        "news"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://cdn.haititivi.com/website/haitinews/index.m3u8",
+          "origin": {
+            "host": "cdn.haititivi.com",
+            "via": "iptv-org",
+            "kind": "broadcaster",
+            "label": "haititivi.com"
+          }
+        }
+      ]
+    },
+    {
+      "id": "hiru-tv",
+      "name": "Hiru TV",
+      "lang": "sin",
+      "country": "LK",
+      "tz": "Asia/Colombo",
+      "tags": [
+        "asia"
+      ],
+      "categories": [
+        "news"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://tv.hiruhost.com:1936/8012/8012/playlist.m3u8",
+          "origin": {
+            "host": "tv.hiruhost.com",
+            "via": "iptv-org",
+            "kind": "broadcaster",
+            "label": "hiruhost.com"
+          }
+        }
+      ]
+    },
+    {
+      "id": "etv",
+      "name": "ETV",
+      "lang": "et",
+      "country": "EE",
+      "tz": "Europe/Tallinn",
+      "tags": [
+        "europe"
+      ],
+      "categories": [
+        "news"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://sb.err.ee/live/etv.m3u8",
+          "origin": {
+            "host": "sb.err.ee",
+            "via": "iptv-org",
+            "kind": "unknown",
+            "label": "err.ee"
+          }
+        }
+      ]
+    },
+    {
+      "id": "mnb",
+      "name": "MNB",
+      "lang": "mn",
+      "country": "MN",
+      "tz": "Asia/Ulaanbaatar",
+      "tags": [
+        "asia"
+      ],
+      "categories": [
+        "news"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://live.mnb.mn/hls/mnb.stream.m3u8",
+          "origin": {
+            "host": "live.mnb.mn",
+            "via": "iptv-org",
+            "kind": "unknown",
+            "label": "mnb.mn"
+          }
+        }
+      ]
+    },
+    {
+      "id": "jordan-tv",
+      "name": "Jordan TV",
+      "lang": "ar",
+      "country": "JO",
+      "tz": "Asia/Amman",
+      "tags": [
+        "mideast"
+      ],
+      "categories": [
+        "news"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://jrtv-live.ercdn.net/jordanhd/jordanhd.m3u8",
+          "origin": {
+            "host": "jrtv-live.ercdn.net",
+            "via": "iptv-org",
+            "kind": "unknown",
+            "label": "ercdn.net"
+          }
+        }
+      ]
+    },
+    {
+      "id": "sahara-24",
+      "name": "Sahara 24",
+      "lang": "ar",
+      "country": "MR",
+      "tz": "Africa/Nouakchott",
+      "tags": [
+        "africa"
+      ],
+      "categories": [
+        "news"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://live.saharamedias.net:3317/live/shara24live.m3u8",
+          "origin": {
+            "host": "live.saharamedias.net",
+            "via": "iptv-org",
+            "kind": "broadcaster",
+            "label": "saharamedias.net"
+          }
+        }
+      ]
+    },
+    {
+      "id": "savane-tv",
+      "name": "Savane TV",
+      "lang": "fr",
+      "country": "BF",
+      "tz": "Africa/Ouagadougou",
+      "tags": [
+        "africa"
+      ],
+      "categories": [
+        "news"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://savane24.tv:5443/LiveApp/streams/Y4fyif69Q0ll6MeH2190896734859843.m3u8",
+          "origin": {
+            "host": "savane24.tv",
+            "via": "iptv-org",
+            "kind": "broadcaster",
+            "label": "savane24.tv"
+          }
+        }
+      ]
+    },
+    {
+      "id": "senal-colombia",
+      "name": "Senal Colombia",
+      "lang": "es",
+      "country": "CO",
+      "tz": "America/Bogota",
+      "tags": [
+        "americas"
+      ],
+      "categories": [
+        "news"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://streaming.rtvc.gov.co/TV_Senal_Colombia_live/smil:live.smil/playlist.m3u8",
+          "origin": {
+            "host": "streaming.rtvc.gov.co",
+            "via": "iptv-org",
+            "kind": "unknown",
+            "label": "rtvc.gov.co"
+          }
+        }
+      ]
     }
   ]
 }

@@ -23,6 +23,7 @@ oman-tv-mubashir   # Oman
 al-ghad-tv         # Egypt
 trt-haber          # Turkey
 trt-arabi          # Turkey, in Arabic
+jordan-tv          # Jordan, state broadcaster, next to Jordan Sport
 
 # --- Russia, Eastern Europe, former USSR ---
 rt-arabic
@@ -53,6 +54,7 @@ russia-24          # Russia, VGTRK's 24-hour news channel, on state platform Smo
 # VOA sits in the US and Iran International in GB: a channel goes where it is
 # made, whoever it speaks to.
 24kz               # Kazakhstan
+moldova-1          # Moldova, the national broadcaster (Teleradio-Moldova)
 
 # --- Asia ---
 cctv-1             # China
@@ -80,6 +82,8 @@ qpvn               # Vietnam, state TV (VTV itself is geo/token-locked)
 eac-news-tv        # Cambodia, national news (TVK only exists as a rebroadcast)
 arirang-un         # South Korea
 ktv                # South Korea, state TV
+hiru-tv            # Sri Lanka, the national broadcaster, in Sinhala
+mnb                # Mongolia, the national broadcaster, beside MNB Sport
 
 # --- South Asia: the subcontinent, and India against Pakistan on the same wall ---
 # Geo News, Dawn News, Express News and PTV Home have no HTTPS stream at all in
@@ -148,6 +152,10 @@ sudan-tv           # Sudan, state TV
 tele-sahel         # Niger, national public TV
 eri-tv-1           # Eritrea, state TV
 rtnc               # DR Congo, national public TV
+savane-tv          # Burkina Faso, national broadcaster
+tvc-benin          # Benin, TVC on its own domain
+haiti-news-channel # Haiti, national news
+sahara-24          # Mauritania, national broadcaster
 
 # --- Europe ---
 dw                 # Germany
@@ -162,6 +170,14 @@ protv-news         # Romania
 tvp-world          # Poland
 newsmax-balkans    # Bosnia
 ntv                # Albania
+# Public service where the wall had none: Austria had only Red Bull TV, and
+# these four countries had nothing at all. Each verified live on the
+# broadcaster's own host, playlist moving, twice in a row (2026-10-21).
+# lrt-lituanica: LRT's Lithuanian-language channel. Its main service
+# (LRT Televizija) has no browser-usable stream in either catalog.
+orf-1              # Austria, ORF, public broadcaster
+etv                # Estonia, Eesti Televisioon (ETV+, the Russian service, is out: one voice per broadcaster)
+lrt-lituanica      # Lithuania, LRT, the national broadcaster
 
 # --- Americas ---
 telesur            # Venezuela
@@ -173,3 +189,8 @@ guatevision        # Guatemala
 ici-rdi            # Canada, in French
 newsy              # United States
 cnbc-uk            # United Kingdom, business
+# Brazil had only ge Fast, Mexico only Azteca Deportes: both on their own
+# public-service channel instead.
+tv-brasil          # Brazil, the federal public broadcaster (EBC)
+senal-colombia     # Colombia, RTVC's national channel, on the state's own host
+canal-once         # Mexico, public service (Once TV, IPN)
