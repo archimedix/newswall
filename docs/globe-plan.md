@@ -1,6 +1,6 @@
 # Newswall Globe — plan
 
-> Status: **approved on 2026-10-18**. Phases 0 and 1 done; 2 and 3 remain. When a phase is
+> Status: **approved on 2026-10-18**. Phases 0, 1 and 2 done; 3 remains. When a phase is
 > done, it gets described in the README and only a note stays here.
 
 ## 1. Vision
@@ -16,7 +16,8 @@ Newswall becomes two experiences on top of the same catalog:
   and (phase 3) by a smartphone as a remote, paired by scanning a QR code.
 
 The two pages are linked through the URL: on the globe you collect channels and **send them to
-the wall** (`index.html#c=<mode>&s=a,b,c`); on the wall a button leads to the globe.
+the wall** (`index.html#c=<mode>&s=a,b,c`); a *Wall / Globe* switch in both bars says which
+view you are in and leads to the other.
 
 The project's principle does not change: **no third-party requests to render**, no accounts, no
 data collected. The only exception, optional and isolated, is the remote's relay (§7).
@@ -98,7 +99,7 @@ Choices made along the way:
 - The basket lives only in the page (not in localStorage): it opens the wall via URL.
 - **No start screen**, neither on the globe nor on the wall: everything starts muted (muted
   autoplay needs no gesture) and the first click on a channel turns its audio on.
-- Added on request: **front row** (the channel flies from the globe to full window and back to
+- Added on request: **full screen** (first called "front row": the channel flies from the globe to full window and back to
   its place), glass screens with shadow and glow, glass HUD with reticle and telemetry.
 - `scripts/serve.py` instead of `http.server`: without `no-cache` the browser keeps stale
   modules even on reload.
@@ -145,8 +146,8 @@ cartoon video-game effects: more mission control centre.
 - **Atmosphere**: a thin halo on the rim (Fresnel effect), cold by day, nearly absent by night.
 - Sparse stars in the background, very discreet.
 
-Assets, all public domain: NASA Blue Marble / Black Marble (2K, ~1–2 MB total), Natural Earth
-1:110m for borders (~100 KB).
+Assets, all public domain: NASA Blue Marble, GEBCO elevation and Black Marble packed in one
+8K map (5 MB; 4K, 1.5 MB, on phones) behind a loading screen; Natural Earth 1:50m borders.
 
 **The floating screens**
 - 16:9 panels at some height above the country, facing outwards and slightly towards the
@@ -266,8 +267,9 @@ generated in the browser by a vendored library (qrcode-generator, MIT, ~20 KB).
 
 ## 8. Risks and open questions
 
-- **Weight**: three.js + textures ≈ 2–3 MB on the globe's first load. Acceptable for an
-  exploration mode, to keep an eye on.
+- **Weight**: three.js + the 8K ground + borders ≈ 7 MB on the globe's first load on a
+  desktop (≈ 3 MB on phones), behind a loading screen. Acceptable for an exploration mode,
+  to keep an eye on.
 - **Modest hardware**: 4–6 video decoders + WebGL on an old laptop or a phone. K and pixel
   ratio need tuning in phase 2.
 - **CORS**: streams hls.js can't load because of CORS don't appear on the globe either (same

@@ -1,4 +1,4 @@
-/* Front row: one channel, as large as the window allows, over the blurred
+/* Full screen: one channel, as large as the window allows, over the blurred
    globe. It flies in from the screen's place on the globe and flies back
    there on close (a FLIP animation: the stage is laid out at its final size,
    and a transform makes it start from the screen's rectangle). The video
@@ -75,6 +75,7 @@ export function createFrontRow({ rectOf, onClose }) {
       closing = null;
       current = s;
       root.hidden = false;
+      root.classList.remove('closing');
       document.body.classList.add('front');
       const t = place();
       fill(s);
@@ -141,12 +142,13 @@ export function createFrontRow({ rectOf, onClose }) {
         current = null;
         root.hidden = true;
         empty();
-        root.classList.remove('air', 'live');
+        root.classList.remove('air', 'live', 'closing');
         document.body.classList.remove('front');
         onClose?.(s);
       };
       bar.classList.remove('in');
       bar.classList.add('out');
+      root.classList.add('closing');
       if (reduceMotion) return done();
       const t = target();
       const r = rectOf(s);

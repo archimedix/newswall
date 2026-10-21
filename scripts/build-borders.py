@@ -1,23 +1,18 @@
 #!/usr/bin/env python3
-"""Country outlines for the globe, from Natural Earth 1:110m (public domain).
+"""Country outlines for the globe, from Natural Earth 1:50m (public domain).
 
 Writes assets/earth/borders.json: {"GB": [[lon, lat, lon, lat, ...], ...], ...},
 one flat ring per polygon, coordinates rounded to 0.01°. Run it again only to
 move to a newer Natural Earth release.
 
-The two textures next to it come from NASA (public domain) and were resized
-once to 2048x1024 with `sips -z 1024 2048`:
-  day.jpg    Blue Marble Next Generation, December 2004, no bathymetry
-             https://eoimages.gsfc.nasa.gov/images/imagerecords/74000/74218/world.200412.3x5400x2700.jpg
-  night.jpg  Black Marble 2016, 0.1°
-             https://eoimages.gsfc.nasa.gov/images/imagerecords/144000/144898/BlackMarble_2016_01deg.jpg
+The ground texture next to it is built by scripts/build-earth.py.
 """
 import json
 import pathlib
 import urllib.request
 
 SRC = ("https://raw.githubusercontent.com/nvkelso/natural-earth-vector/"
-       "v5.1.2/geojson/ne_110m_admin_0_countries.geojson")
+       "v5.1.2/geojson/ne_50m_admin_0_countries.geojson")
 OUT = pathlib.Path(__file__).resolve().parent.parent / "assets" / "earth" / "borders.json"
 
 

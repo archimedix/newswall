@@ -1,6 +1,6 @@
 /* The globe: the same control room, seen from orbit. styles.css gives the
    fonts, tokens, bar, shortcuts and toasts; this file adds the viewfinder,
-   the glass panes floating over the Earth and the front row.
+   the glass panes floating over the Earth and the full screen view.
 
    Glass here is layered: a cold tint, a light edge on top, a dark edge below,
    a faint grain (glass is never perfectly smooth) and a deep two-step shadow
@@ -63,6 +63,47 @@ body.globe{background:radial-gradient(90% 70% at 50% 40%,#0b121c 0%,var(--ink) 7
 @keyframes drop{from{opacity:0;transform:translateY(-16px)}to{opacity:1;transform:none}}
 @keyframes bump{40%{transform:scale(1.45)}}
 
+/* ───────────────────────────────────────────────────────── loading */
+/* Mission control coming online: a ring that fills with the ground's bytes,
+   a wire globe turning inside it, a log that ticks off what is ready. */
+#boot{
+  position:fixed;inset:0;z-index:100;display:grid;place-items:center;
+  background:radial-gradient(60% 50% at 50% 46%,#0c1520 0%,var(--ink) 75%);
+  transition:opacity .8s var(--ease),filter .8s var(--ease);
+}
+#boot.out{opacity:0;filter:blur(6px);pointer-events:none}
+#boot.out .boot-core{transform:scale(1.06);transition:transform .9s var(--ease)}
+.boot-core{display:flex;flex-direction:column;align-items:center;gap:14px;animation:fade .6s var(--ease) both}
+.boot-ring{width:132px;height:132px;overflow:visible}
+.boot-ring circle,.boot-ring ellipse,.boot-ring path{fill:none;stroke:currentColor}
+.boot-ring .track{color:rgba(255,255,255,.07);stroke-width:1.5}
+.boot-ring .arc{
+  color:var(--ice);stroke-width:1.5;stroke-linecap:round;
+  stroke-dasharray:1;stroke-dashoffset:1;transform:rotate(-90deg);transform-origin:60px 60px;
+  filter:drop-shadow(0 0 6px rgba(160,200,255,.6));transition:stroke-dashoffset .25s linear;
+}
+.boot-globe{color:rgba(190,210,235,.45);stroke-width:.9}
+.boot-globe ellipse{transform-origin:60px 60px;animation:spin-m 3.2s linear infinite}
+.boot-globe .m2{animation-delay:-1.6s}
+@keyframes spin-m{0%{transform:scaleX(1)}50%{transform:scaleX(-1)}100%{transform:scaleX(1)}}
+.boot-title{font-size:11px;font-weight:700;letter-spacing:.32em;color:var(--ice)}
+.boot-title span{color:var(--dim);font-weight:500}
+.boot-log{
+  list-style:none;margin:0;padding:0;display:grid;grid-template-columns:auto auto 1fr;gap:4px 12px;
+  font:11px/1.5 var(--mono);color:var(--dim);min-width:280px;
+}
+.boot-log li{display:contents}
+.boot-log span{text-transform:uppercase;letter-spacing:.16em;font-size:9.5px;align-self:center}
+.boot-log b{font-weight:500;color:var(--mute)}
+.boot-log li:not([data-k="ground"]) span{grid-column:span 2}
+.boot-log i{font-style:normal;text-align:right;font-variant-numeric:tabular-nums;color:var(--mute)}
+.boot-log li.ok i{color:#bfe9d4}
+.boot-log li.ok i::after{content:' ✓';color:var(--ok)}
+.boot-note{margin:0;max-width:320px;text-align:center;font-size:12.5px;color:var(--warn)}
+.boot-note:empty{display:none}
+#boot.failed .boot-ring .arc{color:var(--warn)}
+#boot.failed .boot-globe ellipse{animation-play-state:paused}
+
 /* ─────────────────────────────────────────────────────── viewfinder */
 .hud-corner{
   position:fixed;width:26px;height:26px;pointer-events:none;z-index:4;opacity:.32;
@@ -91,7 +132,7 @@ body.selected #reticle{opacity:0}
 /* ───────────────────────────────────────────────────── channel card */
 #card{
   position:fixed;left:22px;bottom:22px;z-index:20;
-  width:min(380px,calc(100vw - 44px));padding:14px 14px 12px;border-radius:20px;
+  width:min(400px,calc(100vw - 44px));padding:14px 14px 12px;border-radius:20px;
   display:flex;flex-direction:column;gap:10px;
   animation:card-in .5s var(--spring) both;
 }
@@ -105,6 +146,13 @@ body.selected #reticle{opacity:0}
   background:linear-gradient(160deg,rgba(255,255,255,.14),rgba(255,255,255,.03));
   box-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 8px 16px -8px rgba(0,0,0,.8);
 }
+.clogo{
+  flex:none;width:92px;height:52px;border-radius:13px;display:grid;place-items:center;padding:8px 10px;
+  background:linear-gradient(160deg,#f4f7fa,#d9e0e8);
+  box-shadow:inset 0 1px 0 #fff,0 0 0 1px rgba(255,255,255,.2),0 10px 22px -10px rgba(0,0,0,.9);
+}
+.clogo.dark{background:linear-gradient(160deg,#25303c,#141b23);box-shadow:inset 0 1px 0 rgba(255,255,255,.14),0 0 0 1px rgba(255,255,255,.1),0 10px 22px -10px rgba(0,0,0,.9)}
+.clogo img{max-width:100%;max-height:100%;object-fit:contain;display:block}
 .ctitle{display:flex;flex-direction:column;min-width:0;flex:1}
 .cname{font-size:16.5px;font-weight:700;letter-spacing:-.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .cplace{color:var(--mute);font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -120,13 +168,24 @@ body.selected #reticle{opacity:0}
 .cstate.air i{background:var(--tally);animation:tally 2.2s infinite}
 .cstate.pile{color:var(--ice);letter-spacing:.06em}
 .cstate.pile i{display:none}
-.cmeta{display:flex;gap:6px;flex-wrap:wrap;min-width:0}
-.chip{
-  font:11px/1.6 var(--mono);color:#aeb9c6;padding:1px 8px;border-radius:7px;
-  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.06);
-  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%;
+/* What the catalog knows, as an instrument readout: label on the left, value on the right. */
+.cfacts{
+  margin:2px 0 0;padding:10px 2px 2px;display:grid;grid-template-columns:auto 1fr;gap:5px 16px;
+  border-top:1px solid rgba(255,255,255,.07);
 }
-.chip.rebroadcast{color:var(--warn);border-color:rgba(224,164,92,.3)}
+.cfacts div{display:contents}
+.cfacts dt{font:500 9.5px/1.9 var(--mono);text-transform:uppercase;letter-spacing:.16em;color:var(--dim)}
+.cfacts dd{
+  margin:0;font:12px/1.6 var(--mono);color:#c9d3de;min-width:0;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.cfacts dd.rebroadcast{color:var(--warn)}
+#card:not(.target) .cfacts > div > *{animation:fact-in .45s var(--spring) both}
+#card:not(.target) .cfacts > div:nth-child(2) > *{animation-delay:.04s}
+#card:not(.target) .cfacts > div:nth-child(3) > *{animation-delay:.08s}
+#card:not(.target) .cfacts > div:nth-child(4) > *{animation-delay:.12s}
+#card:not(.target) .cfacts > div:nth-child(5) > *{animation-delay:.16s}
+@keyframes fact-in{from{opacity:0;transform:translateX(-6px)}to{opacity:1;transform:none}}
 .card-ops{display:flex;gap:6px}
 .card-ops button{
   display:flex;align-items:center;justify-content:center;gap:7px;
@@ -150,7 +209,7 @@ body.selected #reticle{opacity:0}
 /* In the crosshair, not selected yet: compact, no actions. */
 #card.target{width:auto;max-width:min(380px,calc(100vw - 44px));padding:10px 14px 10px 10px;gap:6px}
 #card.target .cflag{width:36px;height:36px;font-size:21px;border-radius:11px}
-#card.target .cmeta,#card.target .card-ops{display:none}
+#card.target .cfacts,#card.target .card-ops{display:none}
 #card.target .chint{display:block;padding-left:48px;margin-top:-4px}
 
 /* ────────────────────────────────────────────────────────── telemetry */
@@ -186,7 +245,7 @@ body.selected #reticle{opacity:0}
 #basket-open kbd{background:transparent;border-color:rgba(0,0,0,.15);color:var(--ink)}
 .ghost-btn{border:1px solid var(--edge);color:var(--mute)}
 
-/* ─────────────────────────────────────────────────────────── front row */
+/* ─────────────────────────────────────────────────────────── full screen */
 #front{position:fixed;inset:0;z-index:60}
 .front-veil{
   position:absolute;inset:0;cursor:zoom-out;
@@ -195,6 +254,27 @@ body.selected #reticle{opacity:0}
     rgba(5,7,10,.35);
   -webkit-backdrop-filter:blur(14px) saturate(1.2);backdrop-filter:blur(14px) saturate(1.2);
 }
+/* The way out: a large X in the corner, where every full screen keeps it. */
+.front-close{
+  position:absolute;top:16px;right:16px;z-index:2;
+  display:flex;align-items:center;gap:10px;padding:0;
+  animation:close-in .5s .3s var(--spring) both;
+}
+.front-close .x{
+  width:48px;height:48px;border-radius:50%;display:grid;place-items:center;color:var(--ice);
+  background:linear-gradient(160deg,rgba(255,255,255,.16),rgba(255,255,255,.05)),rgba(9,13,19,.55);
+  border:1px solid rgba(255,255,255,.16);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.22),0 14px 30px -12px rgba(0,0,0,.9);
+  -webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);
+  transition:transform .3s var(--spring),background .2s var(--ease);
+}
+.front-close:hover .x{transform:rotate(90deg) scale(1.06);background:rgba(233,238,244,.92);color:var(--ink)}
+.front-close:active .x{transform:rotate(90deg) scale(.96)}
+.front-close kbd{opacity:.75;background:rgba(5,7,10,.5)}
+#front.closing .front-close{animation:close-out .2s var(--ease) both}
+@keyframes close-in{from{opacity:0;transform:scale(.6) rotate(-90deg)}to{opacity:1;transform:none}}
+@keyframes close-out{to{opacity:0;transform:scale(.7)}}
+
 .front-stage{
   position:absolute;margin:0;transform-origin:0 0;border-radius:18px;overflow:hidden;
   background:#000;
@@ -254,7 +334,7 @@ body.selected #reticle{opacity:0}
 .front-bar button.on{background:var(--tally);border-color:var(--tally);color:#fff}
 .front-bar button.in{background:rgba(95,190,148,.16);border-color:rgba(95,190,148,.4);color:#bfe9d4}
 
-/* While the front row is open, the HUD steps back. */
+/* While full screen is open, the HUD steps back. */
 body.front #card,body.front #telemetry,body.front #reticle,body.front .hud-corner{opacity:0;transition:opacity .25s}
 
 @media (max-width:820px){
@@ -263,16 +343,22 @@ body.front #card,body.front #telemetry,body.front #reticle,body.front .hud-corne
   #card{left:10px;right:10px;bottom:10px;width:auto}
   #card.target{right:auto}
   .front-bar{gap:6px;padding:6px}
-  .front-bar [data-fop="back"] span,.front-bar .fsep{display:none}
+  .front-bar .fsep{display:none}
+  .front-close{top:10px;right:10px}
+  .front-close kbd{display:none}
   .fname,.fsub{max-width:40vw}
 }
 /* A touch screen has no keys to explain. */
-@media (pointer:coarse){#card.target .chint{display:none}}
+@media (pointer:coarse){#card.target .chint,.front-close kbd{display:none}}
 /* On a phone: no keyboard to explain, and the on-air chip lives on the card. */
 @media (max-width:520px){
   .globe #bar{gap:6px;padding:0 6px;left:6px;right:6px;top:6px}
-  .globe #onair,.globe #controls [data-act="keys"]{display:none}
+  /* The logo only led to the wall: the view switch does that now. */
+  .globe #onair,.globe #controls [data-act="keys"],.globe #logo{display:none}
   .globe #modes button{padding:4px 6px;font-size:11.5px}
   .globe #controls a,.globe #controls button{padding:6px 7px}
   .front-bar [data-fop="basket"]{display:none}
+  .clogo{width:72px;height:42px;padding:6px 8px}
+  .cfacts{gap:3px 12px}
+  .cfacts > div:nth-child(5){display:none}
 }

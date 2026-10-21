@@ -7,17 +7,17 @@ import * as THREE from 'three';
 import { MODES, byId, catalog, inMode, isPlayable, loadCatalog } from '../core/data.js';
 import { readModeFromStorage, readModeFromUrl, wallHash } from '../core/url.js';
 import { createControls } from './controls.js';
-import { createEarth } from './earth.js';
+import { createEarth, loadEarth } from './earth.js';
 import { createFrontRow } from './frontrow.js';
 import { toLatLon, toVec } from './geo.js';
 import * as hud from './hud.js';
-import { $ } from './hud.js';
+import { $, latLon } from './hud.js';
 import { createLivePool, hlsOrder, LIVE_CAP } from './livepool.js';
 import { createScreens, FAN, H, W } from './screens.js';
 import { subsolar } from './sun.js';
 
 const MAX_BASKET = 12;
-const DIST = { min: 1.3, max: 5.5, home: 2.9, select: 1.8 };
+const DIST = { min: 1.32, max: 5.5, home: 2.9, select: 1.8 };
 const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const coarse = matchMedia('(pointer: coarse)').matches;
 /* A phone, or a small or modest device: fewer screens play at once. */
@@ -63,17 +63,36 @@ addEventListener('resize', resize);
 
 async function boot() {
   resize();
-  const [, earth, logos] = await Promise.all([loadCatalog(), createEarth(),
-    fetch('assets/logos/logos.json').then((r) => (r.ok ? r.json() : {})).catch(() => ({})), document.fonts.ready]);
-  g.logos = logos;
-  g.earth = earth;
-  scene.add(earth.group);
-  updateSun();
+  // The 8K ground needs a GPU that takes it and memory to spare: phones get 4K.
+  const hi = !coarse && renderer.capabilities.maxTextureSize >= 8192;
+  const loading = hud.boot(hi ? '8192×4096' : '4096×2048');
+  try {
+    const [, assets, logos] = await Promise.all([
+      loadCatalog().then((c) => loading.step('catalog', `${c.all.length} channels`)),
+      loadEarth({ hi, anisotropy: renderer.capabilities.getMaxAnisotropy(), progress: loading.bytes })
+        .then((a) => { loading.step('ground'); return a; }),
+      fetch('assets/logos/logos.json').then((r) => (r.ok ? r.json() : {})).catch(() => ({})),
+      document.fonts.ready]);
+    g.logos = logos;
+    g.earth = createEarth(assets);
+    scene.add(g.earth.group);
+    updateSun();
+    loading.step('sun', `overhead at ${latLon(...g.sun)}`);
 
-  const m = readModeFromUrl() || readModeFromStorage();
-  setMode(MODES[m] ? m : 'news', true);
-  hud.renderBasket([], MAX_BASKET);
-  hud.tickUtc();
+    const m = readModeFromUrl() || readModeFromStorage();
+    setMode(MODES[m] ? m : 'news', true);
+    hud.renderBasket([], MAX_BASKET);
+    hud.tickUtc();
+
+    // The ground goes to the GPU now, behind the loading screen, not on the
+    // first frame of the flight.
+    renderer.initTexture(assets.ground);
+    renderer.compile(scene, camera);
+  } catch (err) {
+    console.error(err);
+    return loading.fail(err);
+  }
+  await loading.done();
 
   // No welcome screen: muted video needs no gesture, and the first click on a
   // screen brings the sound.
@@ -231,6 +250,7 @@ function renderCard() {
     pile: pileOf(s),
     onAir: !!s && s.id === g.audioOn,
     inBasket: !!s && g.basket.includes(s.id),
+    logo: s ? g.logos[s.id] : null,
   });
 }
 
@@ -275,7 +295,7 @@ function updateHover() {
 }
 
 /* Where a screen is on the page right now: the box of its four projected
-   corners. The front row flies in from there and back to it. */
+   corners. The full screen view flies in from there and back to it. */
 function rectOf(s) {
   const xs = [], ys = [];
   const v = new THREE.Vector3();
@@ -320,7 +340,7 @@ function back() {
   }
 }
 
-/* ---------------------------------------------------------- front row */
+/* ---------------------------------------------------------- full screen */
 
 const front = createFrontRow({ rectOf });
 front.flags = (s) => ({ onAir: s.id === g.audioOn, inBasket: g.basket.includes(s.id) });
@@ -404,7 +424,7 @@ function screenAt(x, y) {
 const pickable = () => g.screens.meshes.filter((m) => m.parent.visible && !m.userData.screen.hidden);
 
 /* A click on the selected screen toggles its audio, but a double click means
-   "front row": the audio waits a moment to see whether a second click comes. */
+   "full screen": the audio waits a moment to see whether a second click comes. */
 let pendingAudio = 0;
 
 const controls = createControls(canvas, {
@@ -439,7 +459,7 @@ const controls = createControls(canvas, {
     if (front.open) return;
     if (pileOf(g.candidate)) openPile(g.candidate.pile);
     else if (g.candidate) select(g.candidate);
-    else if (g.selected) openFront(g.selected);     // A again: front row
+    else if (g.selected) openFront(g.selected);     // A again: full screen
   },
   audio() { const s = g.selected || g.candidate; if (s && !pileOf(s)) setAudio(s.id); },
   basket() { const s = g.selected || g.candidate; if (s && !pileOf(s)) toggleBasket(s.id); },
@@ -453,7 +473,7 @@ const controls = createControls(canvas, {
   openWall,
 });
 
-/* In the front row the keyboard speaks to it first: arrows change channel
+/* In full screen the keyboard speaks to it first: arrows change channel
    instead of turning a globe that is out of sight. */
 addEventListener('keydown', (e) => {
   if (!front.open || e.metaKey || e.ctrlKey || e.altKey) return;

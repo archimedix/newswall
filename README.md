@@ -74,9 +74,14 @@ It is also kept in `localStorage` for convenience.
 
 ## The globe
 
-`globe.html` is the exploration view. The Earth is graphite by day and dark at night, with
-the city lights (NASA's Black Marble) showing only on the night side: at a glance you see
-where it is night and the news is on reruns. The terminator is computed from the UTC time.
+`globe.html` is the exploration view; a *Wall / Globe* switch next to the logo, on both
+pages, says which view you are in and leads to the other. The Earth is graphite by day,
+its mountains shaded by the real sun, with a faint glint where the sun meets the sea, and
+dark at night, with the city lights (NASA's Black Marble) showing only on the night side:
+at a glance you see where it is night and the news is on reruns. The terminator is
+computed from the UTC time. The ground is one 8192×4096 map (4096×2048 on phones and small
+GPUs), sharp up close, so the page opens on a short loading screen that shows what is
+ready.
 
 Every channel of the current mode is a screen hanging over its country, with a thread down
 to the place it broadcasts from (the capital, or the city its newsrooms work in). Crowded
@@ -100,11 +105,14 @@ regions push their screens apart, but the thread always goes back to the real pl
   camera jumps instead, and nothing breathes or pulses.
 - **Selecting** a screen (click, or `Enter` on the one in the crosshair) flies to it,
   enlarges it, gives it full quality and the audio: its frame turns red, the only red on
-  the globe, as on the wall. Its country lights up.
-- **Front row** (`F`, a double click, or the card's button) brings the channel to the
+  the globe, as on the wall. Its country lights up, and its card shows what the catalog
+  knows: the broadcaster's logo, the language (also in itself), the local time and its
+  UTC offset, the best picture the last check saw, where the stream comes from, the walls
+  it belongs to; then *Full screen*, *Audio* and *+ Basket*.
+- **Full screen** (`F`, a double click, or the card's button) brings the channel to the
   front, as large as the window allows: it flies in from its place on the globe, which
-  stays blurred behind it, and flies back there with one click, `Esc` or *Back to the
-  globe*. `←` `→` change channel without leaving it. It is the same `<video>` that paints
+  stays blurred behind it, and flies back there with the X in the corner, `Esc`, or a
+  click outside it. `←` `→` change channel without leaving it. It is the same `<video>` that paints
   the screen on the globe: no second player, no second download.
 - **The look**: screens in glass bezels with a soft shadow, a glow on the one targeted
   (red and breathing on the one talking), frosted-glass panes with a faint grain, a
@@ -124,7 +132,7 @@ regions push their screens apart, but the thread always goes back to the real pl
 | zoom | wheel / pinch | `+` `-` | triggers |
 | next screen | — | `Tab` / `⇧Tab` | right stick / pad |
 | select, and listen (or open a pile) | click | `Enter` | A |
-| front row, and back | double click / *Front row* | `F` | A again / B |
+| full screen, and back | double click / *Full screen*, X | `F` | A again / B |
 | audio on / off | click the selected one | `Space` | X |
 | basket | *+ Basket* | `B` | Y |
 | mode | top bar | `1`–`4` | LB / RB |
@@ -155,8 +163,10 @@ Mono** for clocks, codes and origins. They live in the repo, not on a CDN: the p
 Vanilla JS, no build step. Runtime dependencies are vendored in `assets/vendor/`:
 [hls.js](https://github.com/video-dev/hls.js), and [three.js](https://threejs.org) 0.170.0
 for the globe only (the wall never loads it). The globe's Earth is in `assets/earth/`: NASA
-Blue Marble and Black Marble (public domain), resized to 2048×1024, and Natural Earth
-1:110m outlines (public domain) turned into a compact JSON by `scripts/build-borders.py`.
+Blue Marble, GEBCO elevation and Black Marble (public domain) packed by
+`scripts/build-earth.py` into one JPEG per size, a map per colour channel (8192×4096 and
+4096×2048), and Natural Earth 1:50m outlines (public domain) turned into a compact JSON by
+`scripts/build-borders.py`.
 Channel logos are in `assets/logos/`, fetched from iptv-org by `scripts/fetch-logos.py` (they
 are the broadcasters' trademarks, there only to tell the channels apart).
 `index.html`, `styles.css`, and native ES modules in `js/` (no bundler: the browser loads
@@ -169,11 +179,11 @@ them as they are):
 - `js/wall/` — the wall: `wall.js` (entry point: grid, tiles, audio, focus, keys),
   `panel.js` (catalog and quick search), `state.js` (what they share).
 - `js/globe/` — the globe, loaded by `globe.html` with an import map for three:
-  `globe.js` (entry point: scene, camera, selection, audio, basket), `earth.js` (shaders,
-  atmosphere, outlines, stars), `sun.js` (subsolar point), `geo.js` (where each country's
+  `globe.js` (entry point: loading, scene, camera, selection, audio, basket), `earth.js`
+  (ground texture, shaders, atmosphere, outlines, stars), `sun.js` (subsolar point), `geo.js` (where each country's
   screens hang), `screens.js` (screens, threads, markers), `livepool.js` (who is live),
   `controls.js` (mouse, touch, keyboard, gamepad → commands), `hud.js` (the HTML on top),
-  `frontrow.js` (the front row and its flight in and out).
+  `frontrow.js` (full screen and its flight in and out).
 
 Every stream is **HLS** (`kind: "hls"`), played in a native `<video>`. The app decides the
 quality, so small tiles download a small variant (`capLevelToPlayerSize`) and only the
@@ -442,6 +452,9 @@ Ideas collected along the way, not yet done. The globe's own next steps are in
 - **Free-TV in the hourly Action.** `--source free-tv --alternatives` could join the
   "stream URLs that update themselves" step above: Free-TV fixes broken URLs by hand,
   often sooner than iptv-org.
+- **Browser full screen on the globe.** The globe's *Full screen* fills the window, not the
+  display: it could also ask for the Fullscreen API, as the wall's button does, with the
+  first `Esc` leaving both at once.
 - **Older fallbacks without their real `via`.** Fallbacks added before `via` was recorded
   per stream show up as `curated` even when they came from iptv-org.
 
