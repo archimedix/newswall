@@ -238,6 +238,11 @@ def add_alternatives(current, entries, probe_pool=40):
     jobs = []
     for src in current["sources"]:
         for e in by_name.get(slug(src["name"]), ()):
+            # Names collide across borders: iptv-org gives Nepal's Kantipur TV
+            # the alt name "KTV", which is also a Korean channel. A stream is
+            # only an alternative of a channel if it speaks of the same country.
+            if e["country"] != src["country"]:
+                continue
             if e["url"] not in have and e["url"].startswith("https://"):
                 jobs.append((src["id"], e))
                 have.add(e["url"])
