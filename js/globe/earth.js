@@ -1,5 +1,5 @@
-/* The Earth: a near-black graphite globe lit by the real sun, its relief
-   shaded by it, city lights on the night side, a thin atmosphere on the rim,
+/* The Earth: its true colours where the real sun shines, the relief shaded
+   by it, city lights on the night side, a thin atmosphere on the rim,
    country outlines, discreet stars. */
 
 import * as THREE from 'three';
@@ -17,12 +17,14 @@ const EARTH_VERT = /* glsl */`
     gl_Position = projectionMatrix * viewMatrix * world;
   }`;
 
-/* One texture, three maps (scripts/build-earth.py): R = the land's brightness
-   (0 on water), G = elevation, B = city lights. Day: graphite land, its
-   relief shaded by the real sun, near-black seas with a faint glint where
-   the sun reflects. Night: warm city lights. A soft twilight band between. */
+/* Two textures (scripts/build-earth.py): `day`, the Blue Marble's colours,
+   and `map`, three maps in one: R = the land's brightness (0 on water),
+   G = elevation, B = city lights. Day: true colours, the relief shaded by the
+   real sun, a glint on the seas where it reflects. Night: dark ground and
+   warm city lights. A soft twilight band between. */
 const EARTH_FRAG = /* glsl */`
   uniform sampler2D map;
+  uniform sampler2D day;
   uniform vec2 texel;
   uniform vec3 sunDir;
   varying vec2 vUv;
@@ -32,7 +34,6 @@ const EARTH_FRAG = /* glsl */`
     vec3 n = normalize(vNormal);
     vec3 tex = texture2D(map, vUv).rgb;
     float landness = smoothstep(0.05, 0.11, tex.r);
-    float lum = clamp((tex.r - 0.063) / 0.937, 0.0, 1.0);
 
     // Relief: the elevation's slope tilts the normal east/west and north/south.
     // Mountains are exaggerated: at true scale they would not show at all.
@@ -47,25 +48,27 @@ const EARTH_FRAG = /* glsl */`
     vec3 nr = normalize(n - (east * slope.x + north * slope.y) * landness);
 
     float sd = dot(n, sunDir);
-    float day = smoothstep(-0.12, 0.18, sd);
+    float sunUp = smoothstep(-0.12, 0.18, sd);
     float lit = clamp(dot(nr, sunDir), 0.0, 1.0);
 
-    vec3 land = mix(vec3(0.045, 0.055, 0.07), vec3(0.22, 0.24, 0.27), smoothstep(0.03, 0.62, lum));
-    land *= 0.42 + 0.95 * lit;
-    vec3 ocean = vec3(0.012, 0.022, 0.04) * (0.5 + 0.8 * clamp(sd, 0.0, 1.0));
-    float glint = pow(max(dot(reflect(-sunDir, n), vView), 0.0), 70.0) * (1.0 - landness);
-    ocean += vec3(0.32, 0.42, 0.55) * glint * 0.55;
+    // The Blue Marble is dark and muted: lifted, and a little more saturated.
+    vec3 ground = texture2D(day, vUv).rgb;
+    ground = mix(vec3(dot(ground, vec3(0.3, 0.59, 0.11))), ground, 1.25);
+    vec3 land = pow(max(ground, 0.0), vec3(0.85)) * 1.25 * (0.3 + 1.0 * lit);
+    vec3 ocean = (ground * 1.3 + vec3(0.0, 0.01, 0.03)) * (0.45 + 0.75 * clamp(sd, 0.0, 1.0));
+    float glint = pow(max(dot(reflect(-sunDir, n), vView), 0.0), 90.0) * (1.0 - landness);
+    ocean += vec3(0.45, 0.55, 0.65) * glint * 0.6;
     vec3 dayCol = mix(ocean, land, landness);
 
     float city = smoothstep(0.04, 0.75, tex.b);
     vec3 nightCol = mix(vec3(0.007, 0.012, 0.022), vec3(0.028, 0.032, 0.042), landness)
                   + city * vec3(1.0, 0.7, 0.4) * (0.35 + 0.65 * city);
 
-    vec3 col = mix(nightCol, dayCol, day);
+    vec3 col = mix(nightCol, dayCol, sunUp);
     col += vec3(0.20, 0.09, 0.04) * (1.0 - abs(sd) * 6.0) * step(abs(sd), 0.16) * 0.35;
 
     float rim = pow(1.0 - max(dot(n, vView), 0.0), 3.0);
-    col += vec3(0.25, 0.42, 0.65) * rim * (0.1 + 0.35 * day);
+    col += vec3(0.25, 0.42, 0.65) * rim * (0.1 + 0.35 * sunUp);
     gl_FragColor = vec4(col, 1.0);
   }`;
 
@@ -86,20 +89,33 @@ const ATMO_FRAG = /* glsl */`
 
 export const RADIUS = 1;
 
-/* The assets, with progress: the ground is the heavy one (8K on desktops,
-   4K on phones and small GPUs). `progress(done, total)` counts its bytes. */
+/* The assets, with progress: the two ground textures are the heavy ones (8K
+   on desktops, 4K on phones and small GPUs). `progress(done, total)` counts
+   their bytes together. */
 export async function loadEarth({ hi, anisotropy, progress }) {
-  const file = `assets/earth/earth-${hi ? 8 : 4}k.jpg`;
-  const [blob, borders] = await Promise.all([
-    fetchWithProgress(file, progress),
+  const size = hi ? '8k' : '4k';
+  const files = [`assets/earth/earth-${size}.jpg`, `assets/earth/day-${size}.jpg`];
+  const done = files.map(() => 0), total = files.map(() => 0);
+  const each = (i) => (d, t) => {
+    done[i] = d; total[i] = t;
+    if (total.every(Boolean)) progress?.(done[0] + done[1], total[0] + total[1]);
+  };
+  const [ground, day, borders] = await Promise.all([
+    ...files.map((f, i) => fetchWithProgress(f, each(i)).then((b) => texture(b, anisotropy))),
     fetch('assets/earth/borders.json').then((r) => r.json()),
   ]);
+  return { ground, day, borders };
+}
+
+async function texture(blob, anisotropy) {
   const url = URL.createObjectURL(blob);
-  const ground = await new THREE.TextureLoader().loadAsync(url);
+  const t = await new THREE.TextureLoader().loadAsync(url);
   URL.revokeObjectURL(url);
-  ground.colorSpace = THREE.NoColorSpace;   // three maps, not a picture: the shader reads the numbers
-  ground.anisotropy = anisotropy;
-  return { ground, borders };
+  // No conversion: the shader reads the numbers as they are (the maps are
+  // data, and the colours are written out unconverted like everything else).
+  t.colorSpace = THREE.NoColorSpace;
+  t.anisotropy = anisotropy;
+  return t;
 }
 
 async function fetchWithProgress(url, progress) {
@@ -121,8 +137,8 @@ async function fetchWithProgress(url, progress) {
 }
 
 
-/* `ground` is the texture from loadEarth(); `borders` the outlines by country. */
-export function createEarth({ ground, borders }) {
+/* `ground` and `day` are the textures from loadEarth(); `borders` the outlines by country. */
+export function createEarth({ ground, day, borders }) {
   const sunDir = new THREE.Vector3(1, 0, 0);
   const group = new THREE.Group();
 
@@ -131,6 +147,7 @@ export function createEarth({ ground, borders }) {
     new THREE.ShaderMaterial({
       uniforms: {
         map: { value: ground },
+        day: { value: day },
         texel: { value: new THREE.Vector2(1 / ground.image.width, 1 / ground.image.height) },
         sunDir: { value: sunDir },
       },

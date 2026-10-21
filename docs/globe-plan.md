@@ -90,8 +90,8 @@ in the README ("How it's built") and in CLAUDE.md.
 Done: `globe.html` and `js/globe/*`, described in the README ("The globe") and in CLAUDE.md.
 Choices made along the way:
 
-- **Solid land**, not dots: the Blue Marble turned graphite in the shader, with near-black
-  oceans. The dot grid remains an idea for phase 2, if the solid look gets tiring.
+- **Solid land**, not dots: the Blue Marble in its own colours by day (graphite at first,
+  changed because day and night looked too much alike), dark at night.
 - Screens of neighbouring countries **repel each other** (relaxation on the sphere with a spring
   towards the country) and the wire always goes back to the true point: Europe stays crowded
   until clusters arrive.
@@ -146,8 +146,8 @@ cartoon video-game effects: more mission control centre.
 - **Atmosphere**: a thin halo on the rim (Fresnel effect), cold by day, nearly absent by night.
 - Sparse stars in the background, very discreet.
 
-Assets, all public domain: NASA Blue Marble, GEBCO elevation and Black Marble packed in one
-8K map (5 MB; 4K, 1.5 MB, on phones) behind a loading screen; Natural Earth 1:50m borders.
+Assets, all public domain: NASA Blue Marble, GEBCO elevation and Black Marble in two
+8K maps, day colours plus a packed one (8 MB; 4K, 2.3 MB, on phones) behind a loading screen; Natural Earth 1:50m borders.
 
 **The floating screens**
 - 16:9 panels at some height above the country, facing outwards and slightly towards the
@@ -267,8 +267,8 @@ generated in the browser by a vendored library (qrcode-generator, MIT, ~20 KB).
 
 ## 8. Risks and open questions
 
-- **Weight**: three.js + the 8K ground + borders ≈ 7 MB on the globe's first load on a
-  desktop (≈ 3 MB on phones), behind a loading screen. Acceptable for an exploration mode,
+- **Weight**: three.js + the 8K ground + borders ≈ 10 MB on the globe's first load on a
+  desktop (≈ 4 MB on phones), behind a loading screen. Acceptable for an exploration mode,
   to keep an eye on.
 - **Modest hardware**: 4–6 video decoders + WebGL on an old laptop or a phone. K and pixel
   ratio need tuning in phase 2.

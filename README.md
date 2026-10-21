@@ -75,11 +75,11 @@ It is also kept in `localStorage` for convenience.
 ## The globe
 
 `globe.html` is the exploration view; a *Wall / Globe* switch next to the logo, on both
-pages, says which view you are in and leads to the other. The Earth is graphite by day,
+pages, says which view you are in and leads to the other. The Earth has its true colours by day,
 its mountains shaded by the real sun, with a faint glint where the sun meets the sea, and
 dark at night, with the city lights (NASA's Black Marble) showing only on the night side:
 at a glance you see where it is night and the news is on reruns. The terminator is
-computed from the UTC time. The ground is one 8192×4096 map (4096×2048 on phones and small
+computed from the UTC time. The ground is in 8192×4096 maps (4096×2048 on phones and small
 GPUs), sharp up close, so the page opens on a short loading screen that shows what is
 ready.
 
@@ -164,8 +164,8 @@ Vanilla JS, no build step. Runtime dependencies are vendored in `assets/vendor/`
 [hls.js](https://github.com/video-dev/hls.js), and [three.js](https://threejs.org) 0.170.0
 for the globe only (the wall never loads it). The globe's Earth is in `assets/earth/`: NASA
 Blue Marble, GEBCO elevation and Black Marble (public domain) packed by
-`scripts/build-earth.py` into one JPEG per size, a map per colour channel (8192×4096 and
-4096×2048), and Natural Earth 1:50m outlines (public domain) turned into a compact JSON by
+`scripts/build-earth.py` into two JPEGs per size (8192×4096 and 4096×2048): the
+day colours, and the three maps packed one per colour channel; and Natural Earth 1:50m outlines (public domain) turned into a compact JSON by
 `scripts/build-borders.py`.
 Channel logos are in `assets/logos/`, fetched from iptv-org by `scripts/fetch-logos.py` (they
 are the broadcasters' trademarks, there only to tell the channels apart).

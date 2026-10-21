@@ -87,6 +87,7 @@ async function boot() {
     // The ground goes to the GPU now, behind the loading screen, not on the
     // first frame of the flight.
     renderer.initTexture(assets.ground);
+    renderer.initTexture(assets.day);
     renderer.compile(scene, camera);
   } catch (err) {
     console.error(err);

@@ -20,7 +20,7 @@ CDN links). The README is the design document — read it before non-trivial cha
 ./start.sh [port]                                   # scripts/serve.py on 127.0.0.1:8080 (file:// breaks ES modules;
                                                     # serve.py adds Cache-Control: no-cache, or stale ES modules survive reloads)
 python3 scripts/build-borders.py                    # Natural Earth 1:50m outlines -> assets/earth/borders.json (rarely needed)
-python3 scripts/build-earth.py DIR                  # NASA maps in DIR -> assets/earth/earth-{8k,4k}.jpg (one-off;
+python3 scripts/build-earth.py DIR                  # NASA maps in DIR -> assets/earth/{earth,day}-{8k,4k}.jpg (one-off;
                                                     # the one script that needs Pillow + numpy, never run by the Action)
 python3 scripts/fetch-logos.py [--write] [--refresh]  # iptv-org logos -> assets/logos/ + logos.json (no resizing: picks a small variant)
 python3 scripts/refresh-live.py                     # check every stream, rewrite live.json
@@ -132,11 +132,11 @@ Wall behaviour:
   Players use `createHlsPlayer(…, {native: false})` — Safari's native HLS can't be a texture.
 - Controls only emit commands (`rotate, zoom, pick, hover, front, next, select, audio, basket,
   mode, back, openWall`): the phase 3 phone remote is meant to send the same ones.
-- **Ground**: `earth-8k.jpg` (desktops) / `earth-4k.jpg` (touch, or `maxTextureSize` < 8192),
-  one texture with R = land brightness (0 = water), G = elevation, B = city lights, 4:4:4
+- **Ground**: `*-8k.jpg` (desktops) / `*-4k.jpg` (touch, or `maxTextureSize` < 8192).
+  `day-*` = the Blue Marble's colours, used on the lit side; `earth-*` = R = land brightness (0 = water), G = elevation, B = city lights, 4:4:4
   chroma so channels don't bleed. The shader tilts the normal by the elevation's slope for
-  relief lit by `sunDir`. `boot()` loads it behind `#boot` (`hud.boot()`: progress by bytes,
-  a log line per asset) and uploads it with `renderer.initTexture` before the first flight.
+  relief lit by `sunDir`. `boot()` loads both behind `#boot` (`hud.boot()`: progress by bytes,
+  a log line per asset) and uploads them with `renderer.initTexture` before the first flight.
 - **Card** (`hud.renderCard`): compact in the crosshair (`.target`); selected, it shows the
   logo plate (`g.logos`, dark plate when `s.logoLight`) and `.cfacts` (language + its own
   name, local time + UTC offset, best `heights` from live.json, origin, walls).

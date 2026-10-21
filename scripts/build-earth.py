@@ -2,8 +2,9 @@
 """The globe's ground, packed into one JPEG per size (public domain sources).
 
 Writes assets/earth/earth-8k.jpg (8192x4096, desktops) and earth-4k.jpg
-(4096x2048, phones and small GPUs). One texture instead of three: the shader
-needs one number per map, so each map is a colour channel.
+(4096x2048, phones and small GPUs): three maps, one per colour channel, since
+the shader needs one number from each. Next to them day-8k.jpg and day-4k.jpg,
+the Blue Marble's own colours for the lit side.
 
   R  ground tone: 0 on water, 16..255 = brightness of the land
      Blue Marble Next Generation, December 2004, no bathymetry
@@ -30,7 +31,7 @@ from PIL import Image, ImageFilter
 
 Image.MAX_IMAGE_PIXELS = None
 OUT = pathlib.Path(__file__).resolve().parent.parent / "assets" / "earth"
-SIZES = {"earth-8k.jpg": 8192, "earth-4k.jpg": 4096}
+SIZES = {"8k": 8192, "4k": 4096}
 
 
 def load(path, w, mode, blur=0):
@@ -42,8 +43,12 @@ def load(path, w, mode, blur=0):
 
 def main(src):
     src = pathlib.Path(src)
-    for name, w in SIZES.items():
+    for size, w in SIZES.items():
         day = load(src / "world.200412.3x21600x10800.jpg", w, "RGB")
+        # The colours as they are: a picture, so ordinary 4:2:0 chroma will do.
+        out = OUT / f"day-{size}.jpg"
+        Image.fromarray((day * 255).round().astype(np.uint8), "RGB").save(out, quality=84, optimize=True, progressive=True)
+        print(f"{out.name}: {w}x{w // 2}, {out.stat().st_size / 1e6:.1f} MB")
         r, g, b = day[..., 0], day[..., 1], day[..., 2]
         lum = 0.3 * r + 0.59 * g + 0.11 * b
         # Blue Marble oceans are blue and dark: water is where blue wins.
@@ -54,9 +59,9 @@ def main(src):
         # The dark sea is not black in the Black Marble: its floor goes.
         lights = np.clip(load(src / "BlackMarble_2016_3km.jpg", w, "L") - 0.04, 0, 1) / 0.96 * 255
         packed = np.stack([land, elev, lights], axis=-1).round().clip(0, 255).astype(np.uint8)
-        out = OUT / name
+        out = OUT / f"earth-{size}.jpg"
         Image.fromarray(packed, "RGB").save(out, quality=86, subsampling=0, optimize=True, progressive=True)
-        print(f"{name}: {w}x{w // 2}, {out.stat().st_size / 1e6:.1f} MB")
+        print(f"{out.name}: {w}x{w // 2}, {out.stat().st_size / 1e6:.1f} MB")
 
 
 if __name__ == "__main__":
