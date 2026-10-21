@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-21T20:03:34+00:00",
+  "generated": "2026-10-21T20:22:54+00:00",
   "entries": {
     "aljazeera-en": {
       "state": "ok",
@@ -520,9 +520,11 @@
           "heights": []
         },
         {
-          "state": "unverified",
-          "reason": "segment: HTTP 403",
-          "failing_since": "2026-10-21T18:37:35+00:00"
+          "state": "ok",
+          "heights": [
+            720,
+            1080
+          ]
         }
       ],
       "reason": null
@@ -844,17 +846,16 @@
       "reason": null
     },
     "welat-tv": {
-      "state": "ok",
+      "state": "unverified",
       "use": 0,
       "streams": [
         {
-          "state": "ok",
-          "heights": [
-            1080
-          ]
+          "state": "unverified",
+          "reason": "segment: unreachable (TimeoutError)",
+          "failing_since": "2026-10-21T20:21:04+00:00"
         }
       ],
-      "reason": null
+      "reason": "segment: unreachable (TimeoutError)"
     },
     "360-news": {
       "state": "ok",
@@ -1513,6 +1514,46 @@
       ],
       "reason": null
     },
+    "24-news-hd": {
+      "state": "ok",
+      "use": 0,
+      "streams": [
+        {
+          "state": "ok",
+          "heights": []
+        }
+      ],
+      "reason": null
+    },
+    "samaa-tv": {
+      "state": "ok",
+      "use": 0,
+      "streams": [
+        {
+          "state": "ok",
+          "heights": [
+            360,
+            720
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "dunya-news": {
+      "state": "ok",
+      "use": 0,
+      "streams": [
+        {
+          "state": "ok",
+          "heights": [
+            160,
+            360,
+            720
+          ]
+        }
+      ],
+      "reason": null
+    },
     "tolonews": {
       "state": "ok",
       "use": 0,
@@ -1576,16 +1617,18 @@
       "reason": null
     },
     "news-central": {
-      "state": "unverified",
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "state": "unverified",
-          "reason": "HTTP 404",
-          "failing_since": "2026-10-21T20:03:34+00:00"
+          "state": "ok",
+          "heights": [
+            480,
+            720
+          ]
         }
       ],
-      "reason": "HTTP 404"
+      "reason": null
     },
     "cctv-1": {
       "state": "ok",
@@ -1594,7 +1637,7 @@
         {
           "state": "unverified",
           "reason": "segment: HTTP 404",
-          "failing_since": "2026-10-21T18:37:35+00:00"
+          "failing_since": "2026-10-21T20:22:54+00:00"
         },
         {
           "state": "ok",
@@ -1610,7 +1653,7 @@
         {
           "state": "unverified",
           "reason": "segment: HTTP 404",
-          "failing_since": "2026-10-21T20:03:34+00:00"
+          "failing_since": "2026-10-21T20:21:04+00:00"
         }
       ],
       "reason": "segment: HTTP 404"
@@ -2007,6 +2050,21 @@
       ],
       "reason": null
     },
+    "myanmar-international-tv": {
+      "state": "ok",
+      "use": 0,
+      "streams": [
+        {
+          "state": "ok",
+          "heights": [
+            404,
+            720,
+            1080
+          ]
+        }
+      ],
+      "reason": null
+    },
     "red-bull-tv": {
       "state": "ok",
       "use": 0,
@@ -2259,15 +2317,16 @@
       "reason": "segment: HTTP 403"
     },
     "al-iraqia-sport": {
-      "state": "ok",
+      "state": "unverified",
       "use": 0,
       "streams": [
         {
-          "state": "ok",
-          "heights": []
+          "state": "unverified",
+          "reason": "playlist not moving: the stream is stuck",
+          "failing_since": "2026-10-21T20:22:54+00:00"
         }
       ],
-      "reason": null
+      "reason": "playlist not moving: the stream is stuck"
     },
     "fox-sports-news": {
       "state": "ok",
@@ -2359,6 +2418,109 @@
             240,
             360,
             480,
+            720,
+            1080
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "india-tv": {
+      "state": "ok",
+      "use": 0,
+      "streams": [
+        {
+          "state": "ok",
+          "heights": [
+            270,
+            720
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "abp-news": {
+      "state": "ok",
+      "use": 0,
+      "streams": [
+        {
+          "state": "ok",
+          "heights": [
+            180,
+            234,
+            1080
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "zee-news": {
+      "state": "ok",
+      "use": 0,
+      "streams": [
+        {
+          "state": "ok",
+          "heights": [
+            216,
+            360,
+            504,
+            720,
+            1080
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "republic-tv": {
+      "state": "ok",
+      "use": 0,
+      "streams": [
+        {
+          "state": "ok",
+          "heights": [
+            240,
+            360,
+            480,
+            720,
+            1080
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "ndtv-24x7": {
+      "state": "ok",
+      "use": 0,
+      "streams": [
+        {
+          "state": "ok",
+          "heights": [
+            360,
+            480,
+            720
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "capital-tv-hd": {
+      "state": "ok",
+      "use": 0,
+      "streams": [
+        {
+          "state": "ok",
+          "heights": []
+        }
+      ],
+      "reason": null
+    },
+    "kantipur-tv": {
+      "state": "ok",
+      "use": 0,
+      "streams": [
+        {
+          "state": "ok",
+          "heights": [
             720,
             1080
           ]
@@ -2767,16 +2929,20 @@
       "reason": null
     },
     "rbk-tv": {
-      "state": "unverified",
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "state": "unverified",
-          "reason": "playlist not moving: the stream is stuck",
-          "failing_since": "2026-10-20T23:18:36+00:00"
+          "state": "ok",
+          "heights": [
+            270,
+            360,
+            404,
+            576
+          ]
         }
       ],
-      "reason": "playlist not moving: the stream is stuck"
+      "reason": null
     },
     "press-tv": {
       "state": "ok",

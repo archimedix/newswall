@@ -1524,7 +1524,7 @@
             "host": "mrtvott.com",
             "via": "iptv-org",
             "kind": "broadcaster",
-            "label": "mrtvott.com"
+            "label": "MRTV, Myanmar state TV"
           },
           "url": "https://mrtvott.com/cache/MRTV-NEWS-HD/master.m3u8"
         }
@@ -2448,10 +2448,88 @@
           "origin": {
             "host": "vodzong.mjunoon.tv",
             "via": "iptv-org",
-            "kind": "unknown",
-            "label": "mjunoon.tv"
+            "kind": "rebroadcast",
+            "label": "Mjunoon"
           },
           "url": "https://vodzong.mjunoon.tv:8087/streamtest/NEWS1-128/playlist.m3u8"
+        }
+      ],
+      "categories": [
+        "news"
+      ]
+    },
+    {
+      "id": "24-news-hd",
+      "name": "24 News HD",
+      "lang": "ur",
+      "country": "PK",
+      "tz": "Asia/Karachi",
+      "tags": [
+        "asia"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://cdn4.mjunoon.tv:8087/streamtest/146M/chunks.m3u8",
+          "origin": {
+            "host": "cdn4.mjunoon.tv",
+            "via": "iptv-org",
+            "kind": "rebroadcast",
+            "label": "Mjunoon"
+          }
+        }
+      ],
+      "categories": [
+        "news"
+      ]
+    },
+    {
+      "id": "samaa-tv",
+      "name": "Samaa TV",
+      "lang": "ur",
+      "country": "PK",
+      "tz": "Asia/Karachi",
+      "tags": [
+        "asia"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://vodzong.mjunoon.tv:8087/streamtest/SAMAA-173/playlist.m3u8",
+          "origin": {
+            "host": "vodzong.mjunoon.tv",
+            "via": "iptv-org",
+            "kind": "rebroadcast",
+            "label": "Mjunoon"
+          }
+        }
+      ],
+      "categories": [
+        "news"
+      ]
+    },
+    {
+      "id": "dunya-news",
+      "name": "Dunya News",
+      "lang": "ur",
+      "country": "PK",
+      "tz": "Asia/Karachi",
+      "tags": [
+        "asia"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://intl.dunyanews.tv/livehd/ngrp:dunyalivehd_2_all/playlist.m3u8",
+          "origin": {
+            "host": "intl.dunyanews.tv",
+            "via": "iptv-org",
+            "kind": "broadcaster",
+            "label": "dunyanews.tv"
+          }
         }
       ],
       "categories": [
@@ -3382,9 +3460,35 @@
             "host": "mrtvott.com",
             "via": "iptv-org",
             "kind": "broadcaster",
-            "label": "mrtvott.com"
+            "label": "MRTV, Myanmar state TV"
           }
         }
+      ]
+    },
+    {
+      "id": "myanmar-international-tv",
+      "name": "Myanmar International TV",
+      "lang": "my",
+      "country": "MM",
+      "tz": "Asia/Yangon",
+      "tags": [
+        "asia"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://mrtvott.com/cache/MITV/master.m3u8",
+          "origin": {
+            "host": "mrtvott.com",
+            "via": "iptv-org",
+            "kind": "broadcaster",
+            "label": "MRTV, Myanmar state TV"
+          }
+        }
+      ],
+      "categories": [
+        "news"
       ]
     },
     {
@@ -4020,6 +4124,188 @@
             "label": "akamaized.net"
           }
         }
+      ]
+    },
+    {
+      "id": "india-tv",
+      "name": "India TV",
+      "lang": "hi",
+      "country": "IN",
+      "tz": "Asia/Kolkata",
+      "tags": [
+        "asia"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://pl-indiatvnews.akamaized.net/out/v1/db79179b608641ceaa5a4d0dd0dca8da/index.m3u8",
+          "origin": {
+            "host": "pl-indiatvnews.akamaized.net",
+            "via": "iptv-org",
+            "kind": "broadcaster",
+            "label": "akamaized.net"
+          }
+        }
+      ],
+      "categories": [
+        "news"
+      ]
+    },
+    {
+      "id": "abp-news",
+      "name": "ABP News",
+      "lang": "hi",
+      "country": "IN",
+      "tz": "Asia/Kolkata",
+      "tags": [
+        "asia"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://d2l4ar6y3mrs4k.cloudfront.net/live-streaming/abpnews-livetv/master.m3u8",
+          "origin": {
+            "host": "d2l4ar6y3mrs4k.cloudfront.net",
+            "via": "iptv-org",
+            "kind": "cdn",
+            "label": "cloudfront.net"
+          }
+        }
+      ],
+      "categories": [
+        "news"
+      ]
+    },
+    {
+      "id": "zee-news",
+      "name": "Zee News",
+      "lang": "hi",
+      "country": "IN",
+      "tz": "Asia/Kolkata",
+      "tags": [
+        "asia"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://dt3lrqnyx3dks.cloudfront.net/index.m3u8",
+          "origin": {
+            "host": "dt3lrqnyx3dks.cloudfront.net",
+            "via": "iptv-org",
+            "kind": "cdn",
+            "label": "cloudfront.net"
+          }
+        }
+      ],
+      "categories": [
+        "news"
+      ]
+    },
+    {
+      "id": "republic-tv",
+      "name": "Republic TV",
+      "lang": "en",
+      "country": "IN",
+      "tz": "Asia/Kolkata",
+      "tags": [
+        "asia"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://samsung-republictv.amagi.tv/ts-ap-s1-n1/playlist/samsungin-republictv-samsungindia/playlist.m3u8",
+          "origin": {
+            "host": "samsung-republictv.amagi.tv",
+            "via": "iptv-org",
+            "kind": "broadcaster",
+            "label": "amagi.tv"
+          }
+        }
+      ],
+      "categories": [
+        "news"
+      ]
+    },
+    {
+      "id": "ndtv-24x7",
+      "name": "NDTV 24x7",
+      "lang": "en",
+      "country": "IN",
+      "tz": "Asia/Kolkata",
+      "tags": [
+        "asia"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://ndtv24x7elemarchana.akamaized.net/hls/live/2003678/ndtv24x7/master.m3u8",
+          "origin": {
+            "host": "ndtv24x7elemarchana.akamaized.net",
+            "via": "iptv-org",
+            "kind": "broadcaster",
+            "label": "akamaized.net"
+          }
+        }
+      ],
+      "categories": [
+        "news"
+      ]
+    },
+    {
+      "id": "capital-tv-hd",
+      "name": "Capital TV HD",
+      "lang": "ne",
+      "country": "NP",
+      "tz": "Asia/Kathmandu",
+      "tags": [
+        "asia"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://streaming.tvnepal.com:19360/capitaltv/720p.m3u8",
+          "origin": {
+            "host": "streaming.tvnepal.com",
+            "via": "iptv-org",
+            "kind": "unknown",
+            "label": "tvnepal.com"
+          }
+        }
+      ],
+      "categories": [
+        "news"
+      ]
+    },
+    {
+      "id": "kantipur-tv",
+      "name": "Kantipur TV",
+      "lang": "ne",
+      "country": "NP",
+      "tz": "Asia/Kathmandu",
+      "tags": [
+        "asia"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://ktvhdsg.ekantipur.com:8443/high_quality_85840165/hd/playlist.m3u8",
+          "origin": {
+            "host": "ktvhdsg.ekantipur.com",
+            "via": "iptv-org",
+            "kind": "broadcaster",
+            "label": "ekantipur.com"
+          }
+        }
+      ],
+      "categories": [
+        "news"
       ]
     },
     {

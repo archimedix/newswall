@@ -64,6 +64,22 @@ eac-news-tv        # Cambodia, national news (TVK only exists as a rebroadcast)
 arirang-un         # South Korea
 ktv                # South Korea, state TV
 
+# --- South Asia: the subcontinent, and India against Pakistan on the same wall ---
+# Geo News, Dawn News, Express News and PTV Home have no HTTPS stream at all in
+# either catalog (iptv-org lists them with zero streams), and Khyber News answers
+# without CORS: Pakistan stops at what is verifiably reachable.
+ndtv-24x7              # India, English, the big network least aligned with the government
+republic-tv            # India, English, the government's loudest supporter (Amagi playout)
+zee-news               # India, Hindi, Zee group's flagship
+abp-news               # India, Hindi
+india-tv               # India, Hindi
+dunya-news             # Pakistan, on its own domain
+samaa-tv               # Pakistan, the most watched, via Mjunoon
+24-news-hd             # Pakistan, via Mjunoon
+kantipur-tv            # Nepal, on its own domain (Kantipur group)
+capital-tv-hd          # Nepal, via tvnepal.com
+myanmar-international-tv  # Myanmar, the state's channel for abroad (MRTV's own OTT)
+
 # --- Africa ---
 sabc-news          # South Africa
 news-central       # Nigeria
