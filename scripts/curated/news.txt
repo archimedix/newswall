@@ -80,6 +80,23 @@ kantipur-tv            # Nepal, on its own domain (Kantipur group)
 capital-tv-hd          # Nepal, via tvnepal.com
 myanmar-international-tv  # Myanmar, the state's channel for abroad (MRTV's own OTT)
 
+# --- East Asia: China and its own foreign service, Japan in Japanese, the two Korees ---
+# arirang-tv: the harvest takes the first working stream, and here that is a
+# relay (freem3u.xyz, then Antik). The URL in sources.json is Arirang's own
+# Akamai edge instead: same channel, real provenance.
+voa-tv-china           # Voice of America in Chinese, broadcast at China from the US
+arirang-tv             # South Korea, its international channel, in English
+korean-central-television  # North Korea, via Intchoson: Pyongyang streams nothing itself
+# Japan's own news channels are in by hand, with latin ids: Nippon TV News24,
+# FNN Prime Online and MBS News, all carried free on Rakuten TV Japan (Amagi
+# playout, which is why their origin reads cdn). FNN answers 403 on a third of
+# the checks, so its tile grey itself: the gate is on the CDN's side, not here.
+# NHK World was on the wall already; the terrestrial networks (NTV, TBS, Fuji,
+# TV Asahi) are listed only through mov3.co proxies, which all fail.
+# China stops at CGTN's foreign languages (the same newsroom in another tongue)
+# and at CCTV-4, which exists only on wcetv.com and on Antik. TV BRICS Chinese
+# is a Russian aggregator's feed, not a Chinese broadcaster.
+
 # --- Africa ---
 sabc-news          # South Africa
 news-central       # Nigeria

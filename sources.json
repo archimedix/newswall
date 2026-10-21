@@ -47,16 +47,6 @@
             "kind": "broadcaster",
             "label": "Al Jazeera"
           }
-        },
-        {
-          "kind": "hls",
-          "url": "https://d3vzwoqcbpfm8p.cloudfront.net/index_4.m3u8",
-          "origin": {
-            "host": "d3vzwoqcbpfm8p.cloudfront.net",
-            "via": "curated",
-            "kind": "cdn",
-            "label": "cloudfront.net"
-          }
         }
       ],
       "categories": [
@@ -138,16 +128,6 @@
             "via": "curated",
             "kind": "broadcaster",
             "label": "sky.com"
-          }
-        },
-        {
-          "kind": "hls",
-          "url": "https://lbgo.bozztv.com/ssh101/ssh101/skynews/playlist.m3u8",
-          "origin": {
-            "host": "lbgo.bozztv.com",
-            "via": "curated",
-            "kind": "rebroadcast",
-            "label": "bozztv.com"
           }
         },
         {
@@ -823,26 +803,6 @@
             "label": "KTV Korea"
           },
           "url": "https://hlive.ktv.go.kr/live/klive_h.stream/playlist.m3u8"
-        },
-        {
-          "kind": "hls",
-          "url": "https://ktvhdsg.ekantipur.com:8443/high_quality_85840165/hd/kantipurtv/hd_1080/chunks.m3u8",
-          "origin": {
-            "host": "ktvhdsg.ekantipur.com",
-            "via": "iptv-org",
-            "kind": "unknown",
-            "label": "ekantipur.com"
-          }
-        },
-        {
-          "kind": "hls",
-          "url": "https://ktvhdsg.ekantipur.com:8443/high_quality_85840165/hd/playlist.m3u8",
-          "origin": {
-            "host": "ktvhdsg.ekantipur.com",
-            "via": "iptv-org",
-            "kind": "unknown",
-            "label": "ekantipur.com"
-          }
         }
       ],
       "categories": [
@@ -895,26 +855,6 @@
             "label": "workers.dev"
           },
           "url": "https://mncmedia.malingtv.workers.dev/inews.m3u8"
-        },
-        {
-          "kind": "hls",
-          "url": "https://yuppnimresmum.akamaized.net/28072023/smil:inews.smil/playlist.m3u8?hdnts=st=1735898689~exp=1835898688~acl=*~hmac=f5fe24724fe05481e3841f9eb5ab8efdee0a3dd83645ae9dcf45703f525bab7b",
-          "origin": {
-            "host": "yuppnimresmum.akamaized.net",
-            "via": "iptv-org",
-            "kind": "cdn",
-            "label": "akamaized.net"
-          }
-        },
-        {
-          "kind": "hls",
-          "url": "https://mumt03.tangotv.in/Dsly5z3HINEWS/index.m3u8",
-          "origin": {
-            "host": "mumt03.tangotv.in",
-            "via": "iptv-org",
-            "kind": "rebroadcast",
-            "label": "tangotv.in"
-          }
         }
       ],
       "categories": [
@@ -1227,26 +1167,6 @@
             "label": "telecentro.net.ar"
           },
           "url": "https://stream-gtlc.telecentro.net.ar/hls/canal26hls/main.m3u8"
-        },
-        {
-          "kind": "hls",
-          "url": "https://live.obslivestream.com/makaomux/index.m3u8",
-          "origin": {
-            "host": "live.obslivestream.com",
-            "via": "iptv-org",
-            "kind": "unknown",
-            "label": "obslivestream.com"
-          }
-        },
-        {
-          "kind": "hls",
-          "url": "https://live.obslivestream.com/makaomux/tracks-v2a1/playlist.m3u8",
-          "origin": {
-            "host": "live.obslivestream.com",
-            "via": "iptv-org",
-            "kind": "unknown",
-            "label": "obslivestream.com"
-          }
         }
       ],
       "categories": [
@@ -2282,26 +2202,6 @@
             "label": "protokolldns.xyz"
           },
           "url": "https://protokolldns.xyz/ntv.l.i.v.e5547892023/index.m3u8"
-        },
-        {
-          "kind": "hls",
-          "url": "https://media.slactech.com:1936/NTvDirect/ngrp:NTvDirect_all/playlist.m3u8",
-          "origin": {
-            "host": "media.slactech.com",
-            "via": "iptv-org",
-            "kind": "unknown",
-            "label": "slactech.com"
-          }
-        },
-        {
-          "kind": "hls",
-          "url": "https://strhlslb01.streamakaci.tv/str_ntv_ntv/str_ntv_ntv_multi/playlist.m3u8",
-          "origin": {
-            "host": "strhlslb01.streamakaci.tv",
-            "via": "iptv-org",
-            "kind": "unknown",
-            "label": "streamakaci.tv"
-          }
         }
       ],
       "categories": [
@@ -2406,26 +2306,6 @@
             "label": "medcom.id"
           },
           "url": "https://edge.medcom.id/live-edge/smil:metro.smil/playlist.m3u8"
-        },
-        {
-          "kind": "hls",
-          "url": "https://s.emisoras.tv:8081/metrotv/index.m3u8",
-          "origin": {
-            "host": "s.emisoras.tv",
-            "via": "iptv-org",
-            "kind": "unknown",
-            "label": "emisoras.tv"
-          }
-        },
-        {
-          "kind": "hls",
-          "url": "https://mercury.streambridge.link:8042/telugu/metrotv/index.m3u8",
-          "origin": {
-            "host": "mercury.streambridge.link",
-            "via": "iptv-org",
-            "kind": "unknown",
-            "label": "streambridge.link"
-          }
         }
       ],
       "categories": [
@@ -4773,6 +4653,84 @@
       ]
     },
     {
+      "id": "ntv-news24",
+      "name": "日テレNEWS",
+      "lang": "ja",
+      "country": "JP",
+      "tz": "Asia/Tokyo",
+      "tags": [
+        "asia"
+      ],
+      "categories": [
+        "news"
+      ],
+      "via": "free-tv",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://cdn-apne1.tsv2.amagi.tv/linear/amg01287-rakutentvjapan-news1hlscmaf-rakutenjp/playlist.m3u8",
+          "origin": {
+            "host": "cdn-apne1.tsv2.amagi.tv",
+            "via": "free-tv",
+            "kind": "cdn",
+            "label": "amagi.tv"
+          }
+        }
+      ]
+    },
+    {
+      "id": "fnn-prime-online",
+      "name": "FNNプライムオンライン",
+      "lang": "ja",
+      "country": "JP",
+      "tz": "Asia/Tokyo",
+      "tags": [
+        "asia"
+      ],
+      "categories": [
+        "news"
+      ],
+      "via": "free-tv",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://cdn-uw2-prod.tsv2.amagi.tv/linear/amg01287-rakutentvjapan-news4-cmaf-rakutenjp/playlist.m3u8",
+          "origin": {
+            "host": "cdn-uw2-prod.tsv2.amagi.tv",
+            "via": "free-tv",
+            "kind": "cdn",
+            "label": "amagi.tv"
+          }
+        }
+      ]
+    },
+    {
+      "id": "mbs-news",
+      "name": "MBSニュース",
+      "lang": "ja",
+      "country": "JP",
+      "tz": "Asia/Tokyo",
+      "tags": [
+        "asia"
+      ],
+      "categories": [
+        "news"
+      ],
+      "via": "free-tv",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://cdn-uw2-prod.tsv2.amagi.tv/linear/amg01287-rakutentvjapan-news5-cmaf-rakutenjp/playlist.m3u8",
+          "origin": {
+            "host": "cdn-uw2-prod.tsv2.amagi.tv",
+            "via": "free-tv",
+            "kind": "cdn",
+            "label": "amagi.tv"
+          }
+        }
+      ]
+    },
+    {
       "id": "weathernation",
       "name": "WeatherNation",
       "lang": "en",
@@ -5471,6 +5429,84 @@
             "via": "iptv-org",
             "kind": "broadcaster",
             "label": "eac-news.com"
+          }
+        }
+      ]
+    },
+    {
+      "id": "arirang-tv",
+      "name": "Arirang TV",
+      "lang": "en",
+      "country": "KR",
+      "tz": "Asia/Seoul",
+      "tags": [
+        "asia"
+      ],
+      "categories": [
+        "news"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://amdlive-ch01-ctnd-com.akamaized.net/arirang_1ch/smil:arirang_1ch.smil/playlist.m3u8",
+          "origin": {
+            "host": "amdlive-ch01-ctnd-com.akamaized.net",
+            "via": "iptv-org",
+            "kind": "cdn",
+            "label": "akamaized.net"
+          }
+        }
+      ]
+    },
+    {
+      "id": "voa-tv-china",
+      "name": "VoA TV China",
+      "lang": "zh",
+      "country": "CN",
+      "tz": "Asia/Shanghai",
+      "tags": [
+        "asia"
+      ],
+      "categories": [
+        "news"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://voa-ingest.akamaized.net/hls/live/2033878/tvmc08/playlist.m3u8",
+          "origin": {
+            "host": "voa-ingest.akamaized.net",
+            "via": "iptv-org",
+            "kind": "broadcaster",
+            "label": "Voice of America"
+          }
+        }
+      ]
+    },
+    {
+      "id": "korean-central-television",
+      "name": "Korean Central Television",
+      "lang": "ko",
+      "country": "KP",
+      "tz": "Asia/Pyongyang",
+      "tags": [
+        "asia"
+      ],
+      "categories": [
+        "news"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://stream.intchoson.com/kctv/index.m3u8",
+          "origin": {
+            "host": "stream.intchoson.com",
+            "via": "iptv-org",
+            "kind": "rebroadcast",
+            "label": "Intchoson, Japanese KCTV mirror"
           }
         }
       ]

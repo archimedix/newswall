@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-21T20:22:54+00:00",
+  "generated": "2026-10-21T20:58:58+00:00",
   "entries": {
     "aljazeera-en": {
       "state": "ok",
@@ -32,10 +32,6 @@
             720,
             1080
           ]
-        },
-        {
-          "state": "ok",
-          "heights": []
         }
       ],
       "reason": null
@@ -87,11 +83,6 @@
             720,
             1080
           ]
-        },
-        {
-          "state": "unverified",
-          "reason": "HTTP 404",
-          "failing_since": "2026-10-20T22:17:49+00:00"
         },
         {
           "state": "unverified",
@@ -514,17 +505,6 @@
           "heights": [
             1080
           ]
-        },
-        {
-          "state": "ok",
-          "heights": []
-        },
-        {
-          "state": "ok",
-          "heights": [
-            720,
-            1080
-          ]
         }
       ],
       "reason": null
@@ -546,29 +526,16 @@
       "reason": null
     },
     "inews": {
-      "state": "ok",
-      "use": 1,
+      "state": "unverified",
+      "use": 0,
       "streams": [
         {
           "state": "unverified",
           "reason": "HTTP 451",
           "failing_since": "2026-10-20T22:17:49+00:00"
-        },
-        {
-          "state": "ok",
-          "heights": [
-            288,
-            396
-          ]
-        },
-        {
-          "state": "ok",
-          "heights": [
-            360
-          ]
         }
       ],
-      "reason": null
+      "reason": "HTTP 451"
     },
     "newsy": {
       "state": "ok",
@@ -742,16 +709,21 @@
       "reason": null
     },
     "al-manar": {
-      "state": "unverified",
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "state": "unverified",
-          "reason": "unreachable (SSLCertVerificationError)",
-          "failing_since": "2026-10-21T20:03:34+00:00"
+          "state": "ok",
+          "heights": [
+            144,
+            240,
+            360,
+            576,
+            1080
+          ]
         }
       ],
-      "reason": "unreachable (SSLCertVerificationError)"
+      "reason": null
     },
     "canal-26": {
       "state": "ok",
@@ -762,16 +734,6 @@
           "heights": [
             1080
           ]
-        },
-        {
-          "state": "ok",
-          "heights": [
-            1080
-          ]
-        },
-        {
-          "state": "ok",
-          "heights": []
         }
       ],
       "reason": null
@@ -846,16 +808,17 @@
       "reason": null
     },
     "welat-tv": {
-      "state": "unverified",
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "state": "unverified",
-          "reason": "segment: unreachable (TimeoutError)",
-          "failing_since": "2026-10-21T20:21:04+00:00"
+          "state": "ok",
+          "heights": [
+            1080
+          ]
         }
       ],
-      "reason": "segment: unreachable (TimeoutError)"
+      "reason": null
     },
     "360-news": {
       "state": "ok",
@@ -1405,23 +1368,6 @@
           "heights": [
             720
           ]
-        },
-        {
-          "state": "ok",
-          "heights": [
-            360,
-            480,
-            720,
-            1080
-          ]
-        },
-        {
-          "state": "ok",
-          "heights": [
-            360,
-            720,
-            1080
-          ]
         }
       ],
       "reason": null
@@ -1482,18 +1428,6 @@
             360,
             480,
             720
-          ]
-        },
-        {
-          "state": "ok",
-          "heights": [
-            1080
-          ]
-        },
-        {
-          "state": "ok",
-          "heights": [
-            1080
           ]
         }
       ],
@@ -1632,12 +1566,15 @@
     },
     "cctv-1": {
       "state": "ok",
-      "use": 1,
+      "use": 0,
       "streams": [
         {
-          "state": "unverified",
-          "reason": "segment: HTTP 404",
-          "failing_since": "2026-10-21T20:22:54+00:00"
+          "state": "ok",
+          "heights": [
+            240,
+            360,
+            600
+          ]
         },
         {
           "state": "ok",
@@ -1896,20 +1833,16 @@
       "reason": "variant: no CORS for this site: would need a proxy"
     },
     "a-spor": {
-      "state": "ok",
+      "state": "unverified",
       "use": 0,
       "streams": [
         {
-          "state": "ok",
-          "heights": [
-            360,
-            480,
-            720,
-            1080
-          ]
+          "state": "unverified",
+          "reason": "variant: unreachable (TimeoutError)",
+          "failing_since": "2026-10-21T20:58:58+00:00"
         }
       ],
-      "reason": null
+      "reason": "variant: unreachable (TimeoutError)"
     },
     "esport3": {
       "state": "unverified",
@@ -2317,16 +2250,15 @@
       "reason": "segment: HTTP 403"
     },
     "al-iraqia-sport": {
-      "state": "unverified",
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "state": "unverified",
-          "reason": "playlist not moving: the stream is stuck",
-          "failing_since": "2026-10-21T20:22:54+00:00"
+          "state": "ok",
+          "heights": []
         }
       ],
-      "reason": "playlist not moving: the stream is stuck"
+      "reason": null
     },
     "fox-sports-news": {
       "state": "ok",
@@ -2515,18 +2447,16 @@
       "reason": null
     },
     "kantipur-tv": {
-      "state": "ok",
+      "state": "unverified",
       "use": 0,
       "streams": [
         {
-          "state": "ok",
-          "heights": [
-            720,
-            1080
-          ]
+          "state": "unverified",
+          "reason": "variant: HTTP 403",
+          "failing_since": "2026-10-21T20:57:13+00:00"
         }
       ],
-      "reason": null
+      "reason": "variant: HTTP 403"
     },
     "cnbc-arabiya": {
       "state": "ok",
@@ -2808,6 +2738,52 @@
             360,
             540,
             720
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "ntv-news24": {
+      "state": "ok",
+      "use": 0,
+      "streams": [
+        {
+          "state": "ok",
+          "heights": [
+            216,
+            360,
+            540,
+            720,
+            1080
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "fnn-prime-online": {
+      "state": "unverified",
+      "use": 0,
+      "streams": [
+        {
+          "state": "unverified",
+          "reason": "HTTP 403",
+          "failing_since": "2026-10-21T20:57:13+00:00"
+        }
+      ],
+      "reason": "HTTP 403"
+    },
+    "mbs-news": {
+      "state": "ok",
+      "use": 0,
+      "streams": [
+        {
+          "state": "ok",
+          "heights": [
+            216,
+            360,
+            540,
+            720,
+            1080
           ]
         }
       ],
@@ -3180,6 +3156,52 @@
         {
           "state": "ok",
           "heights": []
+        }
+      ],
+      "reason": null
+    },
+    "arirang-tv": {
+      "state": "ok",
+      "use": 0,
+      "streams": [
+        {
+          "state": "ok",
+          "heights": [
+            360,
+            540,
+            720,
+            1080
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "voa-tv-china": {
+      "state": "ok",
+      "use": 0,
+      "streams": [
+        {
+          "state": "ok",
+          "heights": [
+            240,
+            360,
+            480,
+            720,
+            1080
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "korean-central-television": {
+      "state": "ok",
+      "use": 0,
+      "streams": [
+        {
+          "state": "ok",
+          "heights": [
+            1080
+          ]
         }
       ],
       "reason": null
