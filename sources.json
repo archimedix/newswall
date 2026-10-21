@@ -4746,6 +4746,240 @@
           "page": "https://www.presstv.ir/Live"
         }
       ]
+    },
+    {
+      "id": "2m-monde",
+      "name": "2M Monde",
+      "lang": "ar",
+      "country": "MA",
+      "tz": "Africa/Casablanca",
+      "tags": [
+        "africa"
+      ],
+      "categories": [
+        "news"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://d2qh3gh0k5vp3v.cloudfront.net/v1/master/3722c60a815c199d9c0ef36c5b73da68a62b09d1/cc-n6pess5lwbghr/2M_ES.m3u8",
+          "origin": {
+            "host": "d2qh3gh0k5vp3v.cloudfront.net",
+            "via": "iptv-org",
+            "kind": "cdn",
+            "label": "cloudfront.net"
+          }
+        }
+      ]
+    },
+    {
+      "id": "tele-sahel",
+      "name": "Tele Sahel",
+      "lang": "fr",
+      "country": "NE",
+      "tz": "Africa/Niamey",
+      "tags": [
+        "africa"
+      ],
+      "categories": [
+        "news"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://mediaserver1.castpin.com/hls/telesahel/index.m3u8",
+          "origin": {
+            "host": "mediaserver1.castpin.com",
+            "via": "iptv-org",
+            "kind": "unknown",
+            "label": "castpin.com"
+          }
+        }
+      ]
+    },
+    {
+      "id": "el-watania-2",
+      "name": "El Watania 2",
+      "lang": "ar",
+      "country": "TN",
+      "tz": "Africa/Tunis",
+      "tags": [
+        "africa"
+      ],
+      "categories": [
+        "news"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://sw1.tanitweb.net/TunisiaTV/_definst_/watania2/playlist.m3u8?DVR",
+          "origin": {
+            "host": "sw1.tanitweb.net",
+            "via": "iptv-org",
+            "kind": "unknown",
+            "label": "tanitweb.net"
+          }
+        }
+      ]
+    },
+    {
+      "id": "el-watania-1",
+      "name": "El Watania 1",
+      "lang": "ar",
+      "country": "TN",
+      "tz": "Africa/Tunis",
+      "tags": [
+        "africa"
+      ],
+      "categories": [
+        "news"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://sw1.tanitweb.net/TunisiaTV/_definst_/watania1/chunklist.m3u8",
+          "origin": {
+            "host": "sw1.tanitweb.net",
+            "via": "iptv-org",
+            "kind": "unknown",
+            "label": "tanitweb.net"
+          }
+        }
+      ]
+    },
+    {
+      "id": "tvm",
+      "name": "TVM",
+      "lang": "pt",
+      "country": "MZ",
+      "tz": "Africa/Maputo",
+      "tags": [
+        "africa"
+      ],
+      "categories": [
+        "news"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://stream.tvm.co.mz/hls/tvm/playlist.m3u8",
+          "origin": {
+            "host": "stream.tvm.co.mz",
+            "via": "iptv-org",
+            "kind": "unknown",
+            "label": "tvm.co.mz"
+          }
+        }
+      ]
+    },
+    {
+      "id": "rtnc",
+      "name": "RTNC",
+      "lang": "fr",
+      "country": "CD",
+      "tz": "Africa/Kinshasa",
+      "tags": [
+        "africa"
+      ],
+      "categories": [
+        "news"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://kali.vdopanel.com:3850/live/masterlive.m3u8",
+          "origin": {
+            "host": "kali.vdopanel.com",
+            "via": "iptv-org",
+            "kind": "unknown",
+            "label": "vdopanel.com"
+          }
+        }
+      ]
+    },
+    {
+      "id": "eri-tv-1",
+      "name": "ERi-TV 1",
+      "lang": "tir",
+      "country": "ER",
+      "tz": "Africa/Nairobi",
+      "tags": [
+        "africa"
+      ],
+      "categories": [
+        "news"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://jmc-live.ercdn.net/eritreatv/eritreatv.m3u8",
+          "origin": {
+            "host": "jmc-live.ercdn.net",
+            "via": "iptv-org",
+            "kind": "unknown",
+            "label": "ercdn.net"
+          }
+        }
+      ]
+    },
+    {
+      "id": "sudan-tv",
+      "name": "Sudan TV",
+      "lang": "ar",
+      "country": "SD",
+      "tz": "Africa/Khartoum",
+      "tags": [
+        "africa"
+      ],
+      "categories": [
+        "news"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://cdn-globecast.akamaized.net/live/eds/sudan_tv/hls_roku/index.m3u8",
+          "origin": {
+            "host": "cdn-globecast.akamaized.net",
+            "via": "iptv-org",
+            "kind": "cdn",
+            "label": "akamaized.net"
+          }
+        }
+      ]
+    },
+    {
+      "id": "libya-al-wataniya",
+      "name": "Libya Al Wataniya",
+      "lang": "ar",
+      "country": "LY",
+      "tz": "Europe/Athens",
+      "tags": [
+        "africa"
+      ],
+      "categories": [
+        "news"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://cdn-globecast.akamaized.net/live/eds/libya_al_watanya/hls_roku/index.m3u8",
+          "origin": {
+            "host": "cdn-globecast.akamaized.net",
+            "via": "iptv-org",
+            "kind": "cdn",
+            "label": "akamaized.net"
+          }
+        }
+      ]
     }
   ]
 }

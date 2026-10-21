@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-21T18:37:35+00:00",
+  "generated": "2026-10-21T19:12:00+00:00",
   "entries": {
     "aljazeera-en": {
       "state": "ok",
@@ -340,7 +340,7 @@
         },
         {
           "state": "unverified",
-          "reason": "no CORS: redirect 302 without CORS",
+          "reason": "unreachable (TimeoutError)",
           "failing_since": "2026-10-20T22:17:49+00:00"
         }
       ],
@@ -516,12 +516,13 @@
           ]
         },
         {
-          "state": "ok",
-          "heights": []
+          "state": "unverified",
+          "reason": "segment: HTTP 403",
+          "failing_since": "2026-10-21T19:12:00+00:00"
         },
         {
           "state": "unverified",
-          "reason": "segment: HTTP 403",
+          "reason": "variant: HTTP 403",
           "failing_since": "2026-10-21T18:37:35+00:00"
         }
       ],
@@ -796,16 +797,20 @@
       "reason": null
     },
     "makan-33": {
-      "state": "unverified",
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "state": "unverified",
-          "reason": "HTTP 403",
-          "failing_since": "2026-10-21T18:37:35+00:00"
+          "state": "ok",
+          "heights": [
+            360,
+            540,
+            720,
+            1080
+          ]
         }
       ],
-      "reason": "HTTP 403"
+      "reason": null
     },
     "syria-tv": {
       "state": "ok",
@@ -931,16 +936,19 @@
       "reason": null
     },
     "mrtv-news": {
-      "state": "unverified",
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "state": "unverified",
-          "reason": "unreachable (TimeoutError)",
-          "failing_since": "2026-10-21T13:46:41+00:00"
+          "state": "ok",
+          "heights": [
+            404,
+            720,
+            1080
+          ]
         }
       ],
-      "reason": "unreachable (TimeoutError)"
+      "reason": null
     },
     "rt-arabic": {
       "state": "ok",
@@ -1395,13 +1403,12 @@
     },
     "ntv": {
       "state": "ok",
-      "use": 0,
+      "use": 1,
       "streams": [
         {
-          "state": "ok",
-          "heights": [
-            720
-          ]
+          "state": "unverified",
+          "reason": "unreachable (TimeoutError)",
+          "failing_since": "2026-10-21T19:12:00+00:00"
         },
         {
           "state": "ok",
@@ -1604,16 +1611,19 @@
       "reason": null
     },
     "cctv-2": {
-      "state": "unverified",
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "state": "unverified",
-          "reason": "segment: HTTP 404",
-          "failing_since": "2026-10-21T18:37:35+00:00"
+          "state": "ok",
+          "heights": [
+            240,
+            360,
+            600
+          ]
         }
       ],
-      "reason": "segment: HTTP 404"
+      "reason": null
     },
     "nation-tv": {
       "state": "ok",
@@ -1993,16 +2003,19 @@
       "reason": null
     },
     "mrtv-sports": {
-      "state": "unverified",
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "state": "unverified",
-          "reason": "unreachable (TimeoutError)",
-          "failing_since": "2026-10-21T13:46:41+00:00"
+          "state": "ok",
+          "heights": [
+            404,
+            720,
+            1080
+          ]
         }
       ],
-      "reason": "unreachable (TimeoutError)"
+      "reason": null
     },
     "red-bull-tv": {
       "state": "ok",
@@ -2046,16 +2059,19 @@
       "reason": null
     },
     "supertennis": {
-      "state": "unverified",
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "state": "unverified",
-          "reason": "HTTP 403",
-          "failing_since": "2026-10-21T01:34:34+00:00"
+          "state": "ok",
+          "heights": [
+            480,
+            720,
+            1080
+          ]
         }
       ],
-      "reason": "HTTP 403"
+      "reason": null
     },
     "el-heddaf-tv": {
       "state": "ok",
@@ -2134,22 +2150,16 @@
       "reason": null
     },
     "cbs-sports-golazo-network": {
-      "state": "ok",
+      "state": "unverified",
       "use": 0,
       "streams": [
         {
-          "state": "ok",
-          "heights": [
-            270,
-            360,
-            432,
-            540,
-            720,
-            1080
-          ]
+          "state": "unverified",
+          "reason": "segment: HTTP 403",
+          "failing_since": "2026-10-21T19:12:00+00:00"
         }
       ],
-      "reason": null
+      "reason": "segment: HTTP 403"
     },
     "mutv": {
       "state": "ok",
@@ -2247,26 +2257,28 @@
       "reason": null
     },
     "willow-sports": {
-      "state": "ok",
+      "state": "unverified",
       "use": 0,
       "streams": [
         {
-          "state": "ok",
-          "heights": []
+          "state": "unverified",
+          "reason": "segment: HTTP 403",
+          "failing_since": "2026-10-21T19:12:00+00:00"
         }
       ],
-      "reason": null
+      "reason": "segment: HTTP 403"
     },
     "al-iraqia-sport": {
-      "state": "ok",
+      "state": "unverified",
       "use": 0,
       "streams": [
         {
-          "state": "ok",
-          "heights": []
+          "state": "unverified",
+          "reason": "HTTP 404",
+          "failing_since": "2026-10-21T19:12:00+00:00"
         }
       ],
-      "reason": null
+      "reason": "HTTP 404"
     },
     "fox-sports-news": {
       "state": "ok",
@@ -2296,16 +2308,22 @@
       "reason": null
     },
     "kanaal-z": {
-      "state": "unverified",
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "state": "unverified",
-          "reason": "HTTP 403",
-          "failing_since": "2026-10-21T01:34:34+00:00"
+          "state": "ok",
+          "heights": [
+            144,
+            240,
+            360,
+            480,
+            720,
+            1080
+          ]
         }
       ],
-      "reason": "HTTP 403"
+      "reason": null
     },
     "cnbc-tv18": {
       "state": "ok",
@@ -2522,16 +2540,20 @@
       "reason": null
     },
     "nw-economie": {
-      "state": "unverified",
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "state": "unverified",
-          "reason": "HTTP 403",
-          "failing_since": "2026-10-21T01:34:34+00:00"
+          "state": "ok",
+          "heights": [
+            144,
+            240,
+            360,
+            576
+          ]
         }
       ],
-      "reason": "HTTP 403"
+      "reason": null
     },
     "bfm-business": {
       "state": "ok",
@@ -2774,6 +2796,121 @@
         {
           "state": "ok",
           "heights": []
+        }
+      ],
+      "reason": null
+    },
+    "2m-monde": {
+      "state": "ok",
+      "use": 0,
+      "streams": [
+        {
+          "state": "ok",
+          "heights": [
+            360,
+            540,
+            720,
+            1080
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "tele-sahel": {
+      "state": "ok",
+      "use": 0,
+      "streams": [
+        {
+          "state": "ok",
+          "heights": [
+            1080
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "el-watania-2": {
+      "state": "ok",
+      "use": 0,
+      "streams": [
+        {
+          "state": "ok",
+          "heights": [
+            1080
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "el-watania-1": {
+      "state": "ok",
+      "use": 0,
+      "streams": [
+        {
+          "state": "ok",
+          "heights": [
+            720
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "tvm": {
+      "state": "ok",
+      "use": 0,
+      "streams": [
+        {
+          "state": "ok",
+          "heights": []
+        }
+      ],
+      "reason": null
+    },
+    "rtnc": {
+      "state": "ok",
+      "use": 0,
+      "streams": [
+        {
+          "state": "ok",
+          "heights": []
+        }
+      ],
+      "reason": null
+    },
+    "eri-tv-1": {
+      "state": "ok",
+      "use": 0,
+      "streams": [
+        {
+          "state": "ok",
+          "heights": []
+        }
+      ],
+      "reason": null
+    },
+    "sudan-tv": {
+      "state": "ok",
+      "use": 0,
+      "streams": [
+        {
+          "state": "ok",
+          "heights": [
+            256,
+            384
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "libya-al-wataniya": {
+      "state": "ok",
+      "use": 0,
+      "streams": [
+        {
+          "state": "ok",
+          "heights": [
+            192
+          ]
         }
       ],
       "reason": null

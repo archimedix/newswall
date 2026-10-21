@@ -62,6 +62,17 @@ crtv-news          # Cameroon
 al24-news          # Algeria
 medi1tv-arabic     # Morocco
 medi1tv-afrique    # Morocco, in French
+# National public free-to-air broadcasters, added to fill the sparse areas on
+# the globe (each verified live over HTTPS with browser-usable CORS, 2026-10-21).
+el-watania-1       # Tunisia, national public TV
+el-watania-2       # Tunisia, second national channel
+2m-monde           # Morocco, national public (2M, international feed)
+libya-al-wataniya  # Libya, national public TV
+tvm                # Mozambique, national public TV (own domain)
+sudan-tv           # Sudan, state TV
+tele-sahel         # Niger, national public TV
+eri-tv-1           # Eritrea, state TV
+rtnc               # DR Congo, national public TV
 
 # --- Europe ---
 dw                 # Germany

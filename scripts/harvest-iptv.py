@@ -37,7 +37,7 @@ AREA = {
     **{c: 'europe' for c in "AL AT BA BE BG BY CH CY CZ DE DK EE ES FI FR GB GR HR HU IE IS LT LU LV MD ME MK MT NL NO PL PT RO RS SE SI SK UA VA".split()},
     **{c: 'mideast' for c in "AE BH EG IL IQ IR JO KW LB OM PS QA SA SY TR YE".split()},
     **{c: 'asia' for c in "AF AZ BD BT CN GE HK ID IN JP KG KH KP KR KZ LA LK MM MN MY NP PH PK SG TH TJ TM TW UZ VN".split()},
-    **{c: 'africa' for c in "AO BF BI BJ BW CD CF CG CI CM CV DJ DZ ET GA GH GM GN GQ KE LR LY MA MG ML MR MU MW MZ NA NE NG RW SD SN SO SS SZ TD TG TN TZ UG ZA ZM ZW".split()},
+    **{c: 'africa' for c in "AO BF BI BJ BW CD CF CG CI CM CV DJ DZ EH ER ET GA GH GM GN GQ KE LR LY MA MG ML MR MU MW MZ NA NE NG RW SD SN SO SS SZ TD TG TN TZ UG ZA ZM ZW".split()},
     **{c: 'europe' for c in "RU XK".split()},
     **{c: 'asia' for c in "AM HK TW".split()},
     'US': 'us', 'CA': 'us',
@@ -201,8 +201,12 @@ def zones_by_country(timezones):
 
 
 def slug(name):
-    s = unicodedata.normalize("NFKD", name).encode("ascii", "ignore").decode()
-    s = re.sub(r"[^a-zA-Z0-9]+", "-", s).strip("-").lower()
+    # Keep non-latin letters (Arabic, Cyrillic…) distinct: dropping to ASCII
+    # collapses them to the empty slug, and every such channel then shares the
+    # "channel" sentinel and dedups against each other. Only combining marks go.
+    s = unicodedata.normalize("NFKD", name)
+    s = "".join(ch for ch in s if not unicodedata.combining(ch))
+    s = re.sub(r"[^\w-]+", "-", s, flags=re.UNICODE).strip("-").lower()
     return re.sub(r"-+", "-", s) or "channel"
 
 
