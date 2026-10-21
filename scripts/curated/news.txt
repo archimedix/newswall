@@ -48,10 +48,15 @@ dvb-tv             # Myanmar, in exile
 mrtv-news          # Myanmar, state TV
 nation-tv          # Thailand
 13-siam-thai       # Thailand
+thairath-tv        # Thailand, national free-to-air news
+tnn16              # Thailand, national news
+top-news           # Thailand, national news, own domain
 metro-tv           # Indonesia
 inews              # Indonesia
+tvri-world         # Indonesia, public state TV, international feed
 cna-international  # Singapore
 bilyonaryo-news-channel  # Philippines
+abante-tv          # Philippines, national news network
 arirang-un         # South Korea
 ktv                # South Korea, state TV
 
