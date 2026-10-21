@@ -43,11 +43,14 @@ KNOWN = {
     "ktv.go.kr": "KTV Korea", "visir.is": "Vísir", "telewebion.ir": "Telewebion",
     "telewebion.net": "Telewebion",  # where telewebion.ir redirects
     "broadpeak-aas.com": "ERT",
+    "mrtvott.com": "MRTV, Myanmar state TV",
 }
 
 # Operators that rebroadcast other channels but whose name we do know:
 # Antik is a Slovak ISP, not the broadcaster of Euronews or TRT World.
-RELAY_KNOWN = {"antik.sk": "Antik Telecom"}
+# Mjunoon is a Pakistani streaming service that carries Pakistani channels,
+# the same way thaimomo carries Thai ones: the feed is not the broadcaster's.
+RELAY_KNOWN = {"antik.sk": "Antik Telecom", "mjunoon.tv": "Mjunoon"}
 
 
 def host_of(url):
