@@ -198,8 +198,10 @@ export function createScreens(sources, logos = {}) {
         const glow = s.onAir ? 0.55 + (calm ? 0.1 : 0.25 * Math.sin(time * 3.2)) : s.selected ? 0.4 : s.candidate || s.hover ? 0.3 : 0;
         s.glow.material.opacity += (glow - s.glow.material.opacity) * 0.15;
         s.glow.material.color.copy(s.onAir ? COLOR.onAir : COLOR.candidate);
-        s.glow.visible = s.glow.material.opacity > 0.01;
+        s.glow.visible = !s.lifted && s.glow.material.opacity > 0.01;
         s.shadow.material.opacity = 0.3 + 0.25 * night;
+        // Lifted: the HTML card stands in its place (globe.js dockCard); the thread stays.
+        s.face.visible = s.frame.visible = s.label.visible = s.shadow.visible = !s.lifted;
 
         // The thread: from the ground to the bottom edge of the screen.
         if (s.group.visible || lead) {
@@ -315,7 +317,7 @@ function makeScreen(src, anchor, logoFile) {
     idleCanvas, idleTex, labelCanvas, labelTex, videoTex: null, still: null, stillAt: null,
     logo: null, logoFile: null, logoLight: false, logoCrop: null,
     scale: 1, facing: 0, live: false, dead: false, hidden: false, asPile: false,
-    selected: false, candidate: false, onAir: false, hover: false,
+    selected: false, candidate: false, onAir: false, hover: false, lifted: false,
   };
   face.userData.screen = frame.userData.screen = s;
   s.logoFile = logoFile;

@@ -1,11 +1,11 @@
 /* Newswall Globe — the exploration view. The Earth turns under the camera
    with the real day and night; over each country hang its channels' screens.
-   Turn it, come closer, pick one and listen; collect channels in the basket
-   and send them to the wall, which opens them from its URL. */
+   Turn it, come closer, pick one and listen; star your favourites (shared
+   with the wall) and open them as a wall, which reads them from its URL. */
 
 import * as THREE from 'three';
 import { MODES, byId, catalog, inMode, isPlayable, loadCatalog } from '../core/data.js';
-import { readModeFromStorage, readModeFromUrl, wallHash } from '../core/url.js';
+import { readFavs, readModeFromStorage, readModeFromUrl, saveFavs, wallHash } from '../core/url.js';
 import { createControls } from './controls.js';
 import { createEarth, loadEarth } from './earth.js';
 import { createFrontRow } from './frontrow.js';
@@ -16,7 +16,7 @@ import { createLivePool, hlsOrder, LIVE_CAP } from './livepool.js';
 import { createScreens, FAN, H, W } from './screens.js';
 import { subsolar } from './sun.js';
 
-const MAX_BASKET = 12;
+const MAX_WALL = 12;   // the wall's MAX_TILES: how many favourites open as a wall
 const DIST = { min: 1.32, max: 5.5, home: 2.9, select: 1.8 };
 const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const coarse = matchMedia('(pointer: coarse)').matches;
@@ -46,7 +46,7 @@ const g = {
   selected: null,
   candidate: null,
   audioOn: null,      // id of the screen that talks: one at a time, as on the wall
-  basket: [],
+  favs: readFavs(),    // ids, saved in the browser and shared with the wall
   hover: null,
   sun: [0, 0],
   logos: {},          // source id -> file in assets/logos/, from scripts/fetch-logos.py
@@ -81,7 +81,7 @@ async function boot() {
 
     const m = readModeFromUrl() || readModeFromStorage();
     setMode(MODES[m] ? m : 'news', true);
-    hud.renderBasket([], MAX_BASKET);
+    renderFavs();
     hud.tickUtc();
 
     // The ground goes to the GPU now, behind the loading screen, not on the
@@ -151,6 +151,7 @@ function frame(now) {
   g.screens.update(camera, g.earth.sunDir, now / 1000);
   if (g.screens.folded !== folded) { folded = g.screens.folded; renderCard(); }
   updateCandidate();
+  dockCard();
   updateHover();
   const pinned = [g.selected, g.screens.list.find((s) => s.id === g.audioOn)].filter(Boolean);
   g.pool.update(g.screens.list, pinned, moving, now);
@@ -250,9 +251,94 @@ function renderCard() {
     target: !g.selected,
     pile: pileOf(s),
     onAir: !!s && s.id === g.audioOn,
-    inBasket: !!s && g.basket.includes(s.id),
+    isFav: !!s && g.favs.includes(s.id),
     logo: s ? g.logos[s.id] : null,
   });
+}
+
+/* On a large screen the selected channel leaves the globe: its screen comes
+   off, straightens and grows into the card, which takes the video along
+   (the same <video> element: no second player) and follows the screen's
+   place as the globe turns, upright. Elsewhere the card stays in the corner
+   and the video on the globe. */
+const roomy = matchMedia('(min-width: 900px) and (min-height: 600px) and (pointer: fine)');
+let docked = null;
+function dockCard() {
+  const s = g.selected && roomy.matches ? g.selected : null;
+  const card = $('#card');
+  if (s !== docked) {
+    const from = s && !reduceMotion ? rectOf(s) : null;
+    if (docked) { docked.lifted = false; releaseMedia(); }
+    card.classList.remove('docked');
+    if (!s) card.style.width = card.style.translate = '';
+    docked = s;
+    if (s) {
+      s.lifted = true;
+      void card.offsetWidth;          // off and on again: the next one unfolds afresh
+      card.classList.add('docked');
+      fillMedia(s);
+      placeCard(s);
+      if (from) liftOff(card, from);
+    }
+  }
+  if (s) placeCard(s);
+}
+
+/* As large as the window allows, its video centred where the screen is. */
+function placeCard(s) {
+  const card = $('#card');
+  const r = rectOf(s);
+  const media = card.querySelector('.cmedia');
+  const pad = card.offsetWidth - media.offsetWidth;              // the frame around the video
+  const h0 = card.offsetHeight - media.offsetHeight;             // and the rest of the card
+  const w = Math.round(THREE.MathUtils.clamp(
+    Math.min(innerWidth * 0.34, (innerHeight - 96 - h0) * 16 / 9 + pad), 380, 640));
+  const vh = (w - pad) * 9 / 16, h = vh + h0;
+  const x = THREE.MathUtils.clamp(r.x + r.w / 2 - w / 2, 16, innerWidth - w - 16);
+  const y = THREE.MathUtils.clamp(r.y + r.h / 2 - vh / 2 - 8, 68, Math.max(68, innerHeight - h - 16));
+  card.style.width = `${w}px`;
+  card.style.translate = `${Math.round(x)}px ${Math.round(y)}px`;
+}
+
+/* The take-off: from the screen's own rectangle on the globe to the card's
+   video, then what it knows unfolds underneath (CSS, .docked). */
+function liftOff(card, r) {
+  const m = card.querySelector('.cmedia').getBoundingClientRect();
+  const k = Math.max(0.1, r.w / m.width);
+  const ox = m.left + m.width / 2 - card.getBoundingClientRect().left;
+  const oy = m.top + m.height / 2 - card.getBoundingClientRect().top;
+  card.animate([
+    { transformOrigin: `${ox}px ${oy}px`, transform: `translate(${r.x + r.w / 2 - (m.left + m.width / 2)}px, ${r.y + r.h / 2 - (m.top + m.height / 2)}px) scale(${k})`, opacity: 0.85 },
+    { transformOrigin: `${ox}px ${oy}px`, transform: 'none', opacity: 1 },
+  ], { duration: 640, easing: 'cubic-bezier(.2,.9,.12,1)' });
+}
+
+/* The video moves into the card; a still while there is none. A video taken
+   out of the document is paused by the browser once the task is over, so
+   the one leaving is restarted just after: it goes back to the globe. */
+function fillMedia(s) {
+  const media = $('#card .cmedia');
+  const video = s.live && s.player?.video;
+  if (video && front.screen === s) return;          // full screen has it for now
+  releaseMedia();
+  if (video) {
+    media.appendChild(video);
+    video.play?.().catch(() => {});
+  } else {
+    const c = document.createElement('canvas');
+    c.width = s.idleCanvas.width; c.height = s.idleCanvas.height;
+    c.getContext('2d').drawImage(s.idleCanvas, 0, 0);
+    media.appendChild(c);
+  }
+  media.classList.toggle('live', !!video);
+}
+
+function releaseMedia() {
+  const media = $('#card .cmedia');
+  const old = media.querySelector('video');
+  media.querySelectorAll('video, canvas').forEach((el) => el.remove());
+  media.classList.remove('live');
+  if (old) setTimeout(() => { if (!old.isConnected && old.src) old.play().catch(() => {}); }, 30);
 }
 
 /* A folded pile in the crosshair (or under the pointer) is a country, not a channel. */
@@ -333,7 +419,7 @@ function select(s) {
 function back() {
   if (front.open) return front.close();
   if (!$('#keys').hidden) return hud.toggle('#keys', false);
-  if (!$('#basket').hidden) return hud.toggle('#basket', false);
+  if (!$('#favs').hidden) return hud.toggle('#favs', false);
   if (g.selected) {
     const s = g.selected;
     select(null);
@@ -343,8 +429,13 @@ function back() {
 
 /* ---------------------------------------------------------- full screen */
 
-const front = createFrontRow({ rectOf });
-front.flags = (s) => ({ onAir: s.id === g.audioOn, inBasket: g.basket.includes(s.id) });
+// Full screen flies from the card's video when the channel is lifted off the
+// globe, else from its screen; on close the video goes back to the card.
+const front = createFrontRow({
+  rectOf: (s) => (docked === s ? $('#card .cmedia').getBoundingClientRect() : rectOf(s)),
+  onClose: (s) => { if (docked === s) fillMedia(s); },
+});
+front.flags = (s) => ({ onAir: s.id === g.audioOn, isFav: g.favs.includes(s.id) });
 
 /* One channel to the front: it is selected, it talks, and it fills the window. */
 function openFront(s) {
@@ -377,12 +468,14 @@ function onLive(s) {
   s.player.video.muted = s.id !== g.audioOn;
   if (s.selected) s.player.setCap(null);
   if (s === g.selected || s === g.candidate) renderCard();
+  if (s === docked) fillMedia(s);
   front.refresh(s);
 }
 
 function onIdle(s) {
   g.screens.capture(s);
   g.screens.setVideo(s, null);
+  if (s === docked) fillMedia(s);            // its last frame, in the card too
   if (s.id === g.audioOn) setAudio(s.id);    // its voice goes with it
 }
 
@@ -392,23 +485,35 @@ function onDead(s) {
   if (s === g.selected || s === g.candidate) renderCard();
 }
 
-/* ------------------------------------------------------------- basket */
+/* --------------------------------------------------------- favourites */
 
-function toggleBasket(id) {
-  const i = g.basket.indexOf(id);
-  if (i >= 0) g.basket.splice(i, 1);
-  else if (g.basket.length >= MAX_BASKET) return hud.toast(`The basket is full: the wall holds ${MAX_BASKET}`);
-  else {
-    g.basket.push(id);
-    hud.toast(`${byId(id).name} in the basket · ${g.basket.length}/${MAX_BASKET}`);
-  }
-  hud.renderBasket(g.basket.map(byId), MAX_BASKET, i < 0);
+function toggleFav(id) {
+  const i = g.favs.indexOf(id);
+  if (i >= 0) g.favs.splice(i, 1);
+  else g.favs.push(id);
+  saveFavs(g.favs);
+  hud.toast(i >= 0 ? `${byId(id).name}: no longer a favourite` : `★ ${byId(id).name} · ${g.favs.length} favourites`);
+  renderFavs(i < 0);
+}
+
+function renderFavs(bump = false) {
+  hud.renderFavs(g.favs.map(byId).filter(Boolean), bump);
   renderCard();
   if (front.screen) front.render(front.screen);
 }
 
+/* The wall changed them in another tab: the same list here. */
+addEventListener('storage', (e) => {
+  if (e.key !== 'newswall:favs') return;
+  g.favs = readFavs();
+  renderFavs();
+});
+
+/* The favourites as a wall: those of this mode first, as many as it holds. */
 function openWall() {
-  location.href = `index.html${wallHash(g.mode, g.basket)}`;
+  const here = g.favs.filter((id) => byId(id) && inMode(byId(id), g.mode));
+  const ids = [...here, ...g.favs.filter((id) => byId(id) && !here.includes(id))].slice(0, MAX_WALL);
+  location.href = `index.html${wallHash(g.mode, ids)}`;
 }
 
 /* ---------------------------------------------------------- controls */
@@ -463,7 +568,7 @@ const controls = createControls(canvas, {
     else if (g.selected) openFront(g.selected);     // A again: full screen
   },
   audio() { const s = g.selected || g.candidate; if (s && !pileOf(s)) setAudio(s.id); },
-  basket() { const s = g.selected || g.candidate; if (s && !pileOf(s)) toggleBasket(s.id); },
+  fav() { const s = g.selected || g.candidate; if (s && !pileOf(s)) toggleFav(s.id); },
   mode(n, relative = false) {
     if (front.open) return;
     const keys = Object.keys(MODES);
@@ -481,7 +586,7 @@ addEventListener('keydown', (e) => {
   const act = {
     Escape: back, f: back, F: back,
     ArrowRight: () => next(1), ArrowLeft: () => next(-1), Tab: () => next(e.shiftKey ? -1 : 1),
-    ' ': () => setAudio(front.screen.id), b: () => toggleBasket(front.screen.id), B: () => toggleBasket(front.screen.id),
+    ' ': () => setAudio(front.screen.id), b: () => toggleFav(front.screen.id), B: () => toggleFav(front.screen.id),
   }[e.key];
   if (!act) return;
   e.preventDefault();
@@ -501,8 +606,9 @@ $('#card').addEventListener('click', (e) => {
   if (!s) return;
   if (op === 'front') openFront(s);
   if (op === 'audio') setAudio(s.id);
-  if (op === 'basket') toggleBasket(s.id);
+  if (op === 'fav') toggleFav(s.id);
 });
+$('#card .cmedia').addEventListener('dblclick', () => { if (g.selected) openFront(g.selected); });
 $('#front').addEventListener('click', (e) => {
   if (e.target.classList.contains('front-veil')) return front.close();
   const op = e.target.closest('[data-fop]')?.dataset.fop;
@@ -512,19 +618,19 @@ $('#front').addEventListener('click', (e) => {
   if (op === 'prev') next(-1);
   if (op === 'next') next(1);
   if (op === 'audio') setAudio(s.id);
-  if (op === 'basket') toggleBasket(s.id);
+  if (op === 'fav') toggleFav(s.id);
 });
-$('#basket-btn').onclick = () => hud.toggle('#basket');
-$('#basket-list').addEventListener('click', (e) => {
+$('#favs-btn').onclick = () => hud.toggle('#favs');
+$('#favs-list').addEventListener('click', (e) => {
   const li = e.target.closest('li[data-id]');
-  if (li) toggleBasket(li.dataset.id);
+  if (li) toggleFav(li.dataset.id);
 });
-$('#basket-clear').onclick = () => {
-  g.basket.length = 0;
-  hud.renderBasket([], MAX_BASKET);
-  renderCard();
+$('#favs-clear').onclick = () => {
+  g.favs.length = 0;
+  saveFavs(g.favs);
+  renderFavs();
 };
-$('#basket-open').onclick = openWall;
+$('#favs-open').onclick = openWall;
 $('[data-act="keys"]').onclick = () => hud.toggle('#keys');
 $('#keys-close').onclick = () => hud.toggle('#keys', false);
 $('#keys').addEventListener('mousedown', (e) => { if (e.target.id === 'keys') hud.toggle('#keys', false); });

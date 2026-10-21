@@ -39,3 +39,16 @@ export function saveWall(mode, ids) {
 export function saveMode(mode) {
   try { localStorage.setItem('newswall:mode', mode); } catch { /* private mode */ }
 }
+
+/* Favourites (★): channel ids, kept in the browser and shared by the wall and
+   the globe. The globe opens them as a wall. */
+export function readFavs() {
+  try {
+    const v = JSON.parse(localStorage.getItem('newswall:favs') || '[]');
+    return Array.isArray(v) ? v.filter((x) => typeof x === 'string') : [];
+  } catch { return []; }
+}
+
+export function saveFavs(ids) {
+  try { localStorage.setItem('newswall:favs', JSON.stringify(ids)); } catch { /* private mode */ }
+}

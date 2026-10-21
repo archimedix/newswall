@@ -1,4 +1,4 @@
-/* The HTML over the globe: bar, channel card, basket, on-air chip, toasts.
+/* The HTML over the globe: bar, channel card, favourites, on-air chip, toasts.
    Frosted glass only on surfaces seen one at a time, as on the wall. */
 
 import { MODES, catalog, countryName, escapeHtml, flag, langName, originText } from '../core/data.js';
@@ -46,7 +46,7 @@ export function renderModes(current, count) {
 
 /* The selected channel, or — compact, without actions — the one in the crosshair. */
 let shown = null;
-export function renderCard(s, { target = false, onAir = false, inBasket = false, pile = null, logo = null } = {}) {
+export function renderCard(s, { target = false, onAir = false, isFav = false, pile = null, logo = null } = {}) {
   const card = $('#card');
   card.hidden = !s;
   $('#reticle').classList.toggle('lock', !!s && target);
@@ -66,6 +66,7 @@ export function renderCard(s, { target = false, onAir = false, inBasket = false,
   const src = s.src;
   const stream = src.streams[s.stream ?? 0];
   card.classList.toggle('target', target);
+  card.classList.toggle('air', onAir && !target);
 
   // Selected, with a logo: the broadcaster's logo on its plate, the flag moves next to the country.
   const plate = card.querySelector('.clogo');
@@ -87,9 +88,10 @@ export function renderCard(s, { target = false, onAir = false, inBasket = false,
   state.querySelector('b').textContent = onAir ? 'on air' : s.dead ? 'off air' : s.live ? 'live' : 'still';
   if (!target) renderFacts(card, s, src, stream);
   card.querySelector('[data-op="audio"]').classList.toggle('on', onAir);
-  const b = card.querySelector('[data-op="basket"]');
-  b.classList.toggle('in', inBasket);
-  b.querySelector('span').textContent = inBasket ? '✓ Basket' : '+ Basket';
+  const fav = card.querySelector('[data-op="fav"]');
+  fav.classList.toggle('in', isFav);
+  fav.setAttribute('aria-pressed', isFav);
+  fav.title = isFav ? 'Favourite: remove (B)' : 'Add to favourites (B)';
 }
 
 /* What the catalog and the last check know: language (also in itself), the
@@ -132,6 +134,7 @@ const nativeLang = (l) => {
 /* A folded pile in the crosshair: the country and how many channels it holds. */
 function renderPile(card, pile) {
   card.classList.add('target');
+  card.classList.remove('air');
   card.querySelector('.clogo').hidden = true;
   card.querySelector('.cflag').hidden = false;
   card.querySelector('.cflag').textContent = flag(pile.country);
@@ -155,20 +158,20 @@ export function renderTelemetry(view, sun, live, total) {
   $('#t-live').textContent = `${live} / ${total}`;
 }
 
-export function renderBasket(sources, max, bump = false) {
-  $('#basket-n').textContent = `${sources.length}/${max}`;
+export function renderFavs(sources, bump = false) {
+  $('#favs-n').textContent = sources.length;
+  const btn = $('#favs-btn');
+  btn.classList.toggle('has', sources.length > 0);
   if (bump) {
-    const btn = $('#basket-btn');
     btn.classList.remove('bump');
     void btn.offsetWidth;
     btn.classList.add('bump');
   }
-  $('#basket-btn').classList.toggle('full', sources.length >= max);
-  $('#basket-count').textContent = `${sources.length}/${max}`;
-  $('#basket-list').innerHTML = sources.length
-    ? sources.map((s) => `<li data-id="${s.id}" title="Remove"><span>${flag(s.country)}</span>
+  $('#favs-count').textContent = sources.length ? `${sources.length} · the first 12 open as a wall` : '';
+  $('#favs-list').innerHTML = sources.length
+    ? sources.map((s) => `<li data-id="${s.id}" title="No longer a favourite"><span>${flag(s.country)}</span>
         <span>${escapeHtml(s.name)}</span><span class="x">✕</span></li>`).join('')
-    : '<li class="empty">Select a screen and press B (or + Basket) to collect channels for the wall.</li>';
+    : '<li class="empty">Select a screen and press ★ (or B) to keep it here. The wall shares them.</li>';
 }
 
 export function renderOnAir(src) {

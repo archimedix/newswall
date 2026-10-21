@@ -130,7 +130,7 @@ Wall behaviour:
   until they leave the top K+2, starts new ones only after 400 ms of still camera, 2 at a
   time; `hlsOrder(src)` = streams from `live.use`, skipping those `live.json` marks dead.
   Players use `createHlsPlayer(…, {native: false})` — Safari's native HLS can't be a texture.
-- Controls only emit commands (`rotate, zoom, pick, hover, front, next, select, audio, basket,
+- Controls only emit commands (`rotate, zoom, pick, hover, front, next, select, audio, fav,
   mode, back, openWall`): the phase 3 phone remote is meant to send the same ones.
 - **Ground**: `*-8k.jpg` (desktops) / `*-4k.jpg` (touch, or `maxTextureSize` < 8192).
   `day-*` = the Blue Marble's colours, used on the lit side; `earth-*` = R = land brightness (0 = water), G = elevation, B = city lights, 4:4:4
@@ -139,7 +139,17 @@ Wall behaviour:
   a log line per asset) and uploads them with `renderer.initTexture` before the first flight.
 - **Card** (`hud.renderCard`): compact in the crosshair (`.target`); selected, it shows the
   logo plate (`g.logos`, dark plate when `s.logoLight`) and `.cfacts` (language + its own
-  name, local time + UTC offset, best `heights` from live.json, origin, walls).
+  name, local time + UTC offset, best `heights` from live.json, origin, walls); icon-only
+  actions. On a large screen (`roomy` media query) `dockCard()` in `globe.js` makes it the
+  screen itself: `s.lifted` hides the 3D face, frame, label (not the thread), the card
+  takes the screen's `<video>` into `.cmedia` (`fillMedia`/`releaseMedia`, the same
+  restart-after-removal trick as full screen) and every frame `placeCard()` centres the
+  video on the screen's projected place, upright (`translate`). `liftOff()` flies it in
+  from `rectOf()`. Full screen flies from `.cmedia` and gives the video back on close.
+- **Favourites** (★, `g.favs`): `readFavs`/`saveFavs` in `core/url.js`, localStorage
+  `newswall:favs`, shared with the wall (`panel.js` stars, favourites listed first) and
+  synced across tabs by the `storage` event. `openWall()` opens them as a wall. Gold
+  (`--star`) is theirs only, like red for on air.
 - `frontrow.js` (user-facing name: **Full screen**; closed by the `.front-close` X, Esc or the veil): FLIP animation (stage laid out at its final rect, a transform starts it from
   `rectOf(screen)` = the projected face corners). It borrows the screen's own `<video>`; a
   video removed from the document gets paused by the browser after the task, so `empty()`

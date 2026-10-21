@@ -55,7 +55,7 @@ js/
     screens.js        floating screens, clusters, labels
     livepool.js       who is live, hysteresis, starting/stopping players
     controls.js       mouse, touch, keyboard, gamepad → abstract commands
-    hud.js            bar, channel card, "send to wall" basket
+    hud.js            bar, channel card, favourites (★)
     geo.js            ISO2 → [lat, lon] (capital / media hub)
   remote/             (phase 3)
 assets/
@@ -96,7 +96,8 @@ Choices made along the way:
   towards the country) and the wire always goes back to the true point: Europe stays crowded
   until clusters arrive.
 - Hysteresis as in §6, so up to K+2 players at once (6 on desktop, 5 on touch).
-- The basket lives only in the page (not in localStorage): it opens the wall via URL.
+- The basket became **favourites (★)**, kept in localStorage and shared with the wall
+  (its Sources panel stars them too); they still open the wall via URL.
 - **No start screen**, neither on the globe nor on the wall: everything starts muted (muted
   autoplay needs no gesture) and the first click on a channel turns its audio on.
 - Added on request: **full screen** (first called "front row": the channel flies from the globe to full window and back to
@@ -165,7 +166,7 @@ Assets, all public domain: NASA Blue Marble, GEBCO elevation and Black Marble in
 - The night side touches the screens too: those in the dark have a dimmer frame.
 
 **HUD** (frosted glass, only on surfaces seen one at a time, as per the wall's rules)
-- Top: logo, modes, live count, UTC time, basket `3/12 → Open in wall`.
+- Top: logo, modes, live count, UTC time, favourites `★ 3 → Open in wall`.
 - Centre: a discreet **reticle**: the screen closest to it is the selection candidate
   (essential for the gamepad).
 - Bottom: the selected channel's card — name, country, language, stream origin with the same
@@ -189,7 +190,7 @@ Assets, all public domain: NASA Blue Marble, GEBCO elevation and Black Marble in
   tab is hidden.
 
 **Controls** — all translated into abstract commands (`rotate`, `zoom`, `next`, `select`,
-`audio`, `basket`, `mode`, `back`), so the remote and the gamepad use the same channel.
+`audio`, `fav`, `mode`, `back`), so the remote and the gamepad use the same channel.
 
 | Action | Mouse / touch | Keyboard | Gamepad |
 |---|---|---|---|
@@ -198,7 +199,7 @@ Assets, all public domain: NASA Blue Marble, GEBCO elevation and Black Marble in
 | nearby screen | — | `Tab` / `Shift-Tab` | right stick / d-pad |
 | select | click | `Enter` | A |
 | audio | click on the selected one | `Space` | X |
-| to basket | button | `B` | Y |
+| favourite ★ | button | `B` | Y |
 | change mode | bar | `1`–`4` | shoulder buttons |
 | back | `Esc` | `Esc` | B |
 | open in wall | button | `Shift-Enter` | Start |
@@ -211,7 +212,7 @@ phone, and `remote.html` opens already paired. On the phone:
 - at the top, the selected channel's card (name, country, live/still);
 - in the middle a **trackpad**: drag to rotate, pinch to zoom;
 - below, the list of **channels near** the reticle: tap to select;
-- large buttons: Audio · To basket · Open in wall · modes;
+- large buttons: Audio · Favourite ★ · Open in wall · modes;
 - vibration when the selection changes (Android);
 - optional: **gyroscope mode**, tilt the phone and the globe turns.
 
@@ -257,8 +258,8 @@ WebSockets); **Render** free (sleeps after ~15 min, 30–60 s wake-up); **Fly.io
 phone → globe      {t:"rotate", dx, dy}   (max 30/s)
                    {t:"zoom", d}
                    {t:"select", id} | {t:"next", dir}
-                   {t:"audio"} | {t:"basket", id} | {t:"mode", m} | {t:"open-wall"}
-globe → phone      {t:"state", mode, selected, near:[{id,name,cc,live}], basket:[…]}
+                   {t:"audio"} | {t:"fav", id} | {t:"mode", m} | {t:"open-wall"}
+globe → phone      {t:"state", mode, selected, near:[{id,name,cc,live}], favs:[…]}
 ```
 
 **Repo and deploy**: a `relay/` folder with the Worker (`wrangler.toml`), deployed by hand with

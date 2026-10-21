@@ -1,5 +1,5 @@
 /* Mouse, touch, keyboard and gamepad, all turned into the same abstract
-   commands: rotate, zoom, next, select, pick, hover, front, audio, basket,
+   commands: rotate, zoom, next, select, pick, hover, front, audio, fav,
    mode, back, openWall. The phone remote (phase 3) will speak the same language.
 
    `cmd` is an object with one method per command; `update(dt)` runs every
@@ -82,7 +82,7 @@ export function createControls(el, cmd) {
     if (k === 'Tab') { e.preventDefault(); return cmd.next(e.shiftKey ? -1 : 1); }
     if (k === 'Enter') { e.preventDefault(); return e.shiftKey ? cmd.openWall() : cmd.select(); }
     if (k === ' ') { e.preventDefault(); return cmd.audio(); }
-    if (k === 'b' || k === 'B') return cmd.basket();
+    if (k === 'b' || k === 'B') return cmd.fav();
     if (k === 'f' || k === 'F') return cmd.front();
     if (k === 'Escape') return cmd.back();
     if (k >= '1' && k <= '9') return cmd.mode(Number(k) - 1);
@@ -115,7 +115,7 @@ export function createControls(el, cmd) {
     if (hit(0)) cmd.select();
     if (hit(1)) cmd.back();
     if (hit(2)) cmd.audio();
-    if (hit(3)) cmd.basket();
+    if (hit(3)) cmd.fav();
     if (hit(4)) cmd.mode(-1, true);
     if (hit(5)) cmd.mode(1, true);
     if (hit(9)) cmd.openWall();

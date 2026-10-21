@@ -108,7 +108,11 @@ regions push their screens apart, but the thread always goes back to the real pl
   the globe, as on the wall. Its country lights up, and its card shows what the catalog
   knows: the broadcaster's logo, the language (also in itself), the local time and its
   UTC offset, the best picture the last check saw, where the stream comes from, the walls
-  it belongs to; then *Full screen*, *Audio* and *+ Basket*.
+  it belongs to; then three icons: full screen, audio, favourite (★). On a large screen
+  the selected screen comes off the globe, straightens and grows into the card, video
+  and all: an upright monitor with its facts underneath, which follows the channel's
+  place as the globe turns (the thread to the ground stays). On phones and small windows
+  the card stays in the corner and the video on the globe.
 - **Full screen** (`F`, a double click, or the card's button) brings the channel to the
   front, as large as the window allows: it flies in from its place on the globe, which
   stays blurred behind it, and flies back there with the X in the corner, `Esc`, or a
@@ -119,8 +123,10 @@ regions push their screens apart, but the thread always goes back to the real pl
   viewfinder whose crosshair locks onto the screen in the middle, and a telemetry pane
   (view, altitude, where the sun is overhead, how many are live). The page opens with
   the camera flying in from far out.
-- **The basket** collects up to 12 channels; *Open in the wall* (`⇧Enter`) opens them as a
-  wall, through the same URL a shared link uses.
+- **Favourites (★)** are kept in the browser and shared with the wall, whose Sources
+  panel has the same star and lists them first. *Open in the wall* (`⇧Enter`) opens them
+  as a wall (those of the current mode first, up to 12), through the same URL a shared
+  link uses.
 - **Always hls.js.** A video becomes a WebGL texture only through MediaSource, so the
   globe always uses hls.js, never Safari's native HLS.
 - **On a slow device** the globe lowers its own resolution: when the frame rate stays under
@@ -134,10 +140,10 @@ regions push their screens apart, but the thread always goes back to the real pl
 | select, and listen (or open a pile) | click | `Enter` | A |
 | full screen, and back | double click / *Full screen*, X | `F` | A again / B |
 | audio on / off | click the selected one | `Space` | X |
-| basket | *+ Basket* | `B` | Y |
+| favourite | ★ | `B` | Y |
 | mode | top bar | `1`–`4` | LB / RB |
 | back | — | `Esc` | B |
-| open the basket in the wall | *Open in the wall* | `⇧Enter` | Start |
+| open the favourites as a wall | *Open in the wall* | `⇧Enter` | Start |
 
 The plan for what comes next (a phone as a remote) is in
 [`docs/globe-plan.md`](docs/globe-plan.md).
@@ -179,7 +185,7 @@ them as they are):
 - `js/wall/` — the wall: `wall.js` (entry point: grid, tiles, audio, focus, keys),
   `panel.js` (catalog and quick search), `state.js` (what they share).
 - `js/globe/` — the globe, loaded by `globe.html` with an import map for three:
-  `globe.js` (entry point: loading, scene, camera, selection, audio, basket), `earth.js`
+  `globe.js` (entry point: loading, scene, camera, selection, audio, favourites), `earth.js`
   (ground texture, shaders, atmosphere, outlines, stars), `sun.js` (subsolar point), `geo.js` (where each country's
   screens hang), `screens.js` (screens, threads, markers), `livepool.js` (who is live),
   `controls.js` (mouse, touch, keyboard, gamepad → commands), `hud.js` (the HTML on top),

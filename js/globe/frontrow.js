@@ -112,7 +112,7 @@ export function createFrontRow({ rectOf, onClose }) {
       this.render(s);
     },
 
-    render(s, { onAir = false, inBasket = false } = this.flags?.(s) || {}) {
+    render(s, { onAir = false, isFav = false } = this.flags?.(s) || {}) {
       if (s !== current) return;
       const src = s.src;
       const stream = src.streams[s.stream ?? 0];
@@ -128,9 +128,10 @@ export function createFrontRow({ rectOf, onClose }) {
       sub.appendChild(o);
       root.classList.toggle('air', onAir);
       bar.querySelector('[data-fop="audio"]').classList.toggle('on', onAir);
-      const b = bar.querySelector('[data-fop="basket"]');
-      b.classList.toggle('in', inBasket);
-      b.textContent = inBasket ? '✓ Basket' : '+ Basket';
+      const b = bar.querySelector('[data-fop="fav"]');
+      b.classList.toggle('in', isFav);
+      b.setAttribute('aria-pressed', isFav);
+      b.title = isFav ? 'Favourite: remove (B)' : 'Add to favourites (B)';
     },
 
     /* Back to the globe: the stage shrinks onto the screen it came from. */
