@@ -46,6 +46,10 @@ KNOWN = {
     "mrtvott.com": "MRTV, Myanmar state TV",
     "voa-ingest.akamaized.net": "Voice of America",
     "smotrim.ru": "VGTRK's own streaming platform",
+    # Public broadcasters on their own domains.
+    "err.ee": "ERR", "lrt.lt": "LRT", "trm.md": "Teleradio-Moldova",
+    "mnb.mn": "MNB", "rtvc.gov.co": "RTVC",
+    "ors.at": "ORS, ORF's transmission company",
 }
 
 # Operators that rebroadcast other channels but whose name we do know:

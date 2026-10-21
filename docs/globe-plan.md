@@ -124,7 +124,7 @@ Done, described in the README ("The globe") and in CLAUDE.md. Choices made along
 - **Logos** are not resized (the standard library cannot): `fetch-logos.py` picks the variant
   that is already small from the sizes in iptv-org's `logos.json`. The page crops their
   transparent margins and picks a light or dark plate from their brightness. Fetched only
-  when their screen first comes into view. 168 of 199 sources have one.
+  when their screen first comes into view. 179 of 213 sources have one.
 
 ### Phase 3 — Smartphone remote
 

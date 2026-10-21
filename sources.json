@@ -3766,8 +3766,8 @@
           "origin": {
             "host": "live.mnb.mn",
             "via": "iptv-org",
-            "kind": "unknown",
-            "label": "mnb.mn"
+            "kind": "broadcaster",
+            "label": "MNB"
           }
         }
       ]
@@ -5661,8 +5661,8 @@
           "origin": {
             "host": "v0.trm.md",
             "via": "iptv-org",
-            "kind": "unknown",
-            "label": "trm.md"
+            "kind": "broadcaster",
+            "label": "Teleradio-Moldova"
           }
         }
       ]
@@ -5713,8 +5713,8 @@
           "origin": {
             "host": "stream-live.lrt.lt",
             "via": "iptv-org",
-            "kind": "unknown",
-            "label": "lrt.lt"
+            "kind": "broadcaster",
+            "label": "LRT"
           }
         }
       ]
@@ -5739,8 +5739,8 @@
           "origin": {
             "host": "test02.mdn.ors.at",
             "via": "iptv-org",
-            "kind": "unknown",
-            "label": "ors.at"
+            "kind": "broadcaster",
+            "label": "ORS, ORF's transmission company"
           }
         }
       ]
@@ -5804,7 +5804,7 @@
       "country": "HT",
       "tz": "America/Port-au-Prince",
       "tags": [
-        "world"
+        "americas"
       ],
       "categories": [
         "news"
@@ -5826,7 +5826,7 @@
     {
       "id": "hiru-tv",
       "name": "Hiru TV",
-      "lang": "sin",
+      "lang": "si",
       "country": "LK",
       "tz": "Asia/Colombo",
       "tags": [
@@ -5869,8 +5869,8 @@
           "origin": {
             "host": "sb.err.ee",
             "via": "iptv-org",
-            "kind": "unknown",
-            "label": "err.ee"
+            "kind": "broadcaster",
+            "label": "ERR"
           }
         }
       ]
@@ -5895,8 +5895,8 @@
           "origin": {
             "host": "live.mnb.mn",
             "via": "iptv-org",
-            "kind": "unknown",
-            "label": "mnb.mn"
+            "kind": "broadcaster",
+            "label": "MNB"
           }
         }
       ]
@@ -5999,8 +5999,8 @@
           "origin": {
             "host": "streaming.rtvc.gov.co",
             "via": "iptv-org",
-            "kind": "unknown",
-            "label": "rtvc.gov.co"
+            "kind": "broadcaster",
+            "label": "RTVC"
           }
         }
       ]

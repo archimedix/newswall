@@ -82,7 +82,7 @@ qpvn               # Vietnam, state TV (VTV itself is geo/token-locked)
 eac-news-tv        # Cambodia, national news (TVK only exists as a rebroadcast)
 arirang-un         # South Korea
 ktv                # South Korea, state TV
-hiru-tv            # Sri Lanka, the national broadcaster, in Sinhala
+hiru-tv            # Sri Lanka, private (Asia Broadcasting Corporation), in Sinhala; the state's Rupavahini has no usable stream
 mnb                # Mongolia, the national broadcaster, beside MNB Sport
 
 # --- South Asia: the subcontinent, and India against Pakistan on the same wall ---
@@ -152,10 +152,10 @@ sudan-tv           # Sudan, state TV
 tele-sahel         # Niger, national public TV
 eri-tv-1           # Eritrea, state TV
 rtnc               # DR Congo, national public TV
-savane-tv          # Burkina Faso, national broadcaster
-tvc-benin          # Benin, TVC on its own domain
-haiti-news-channel # Haiti, national news
-sahara-24          # Mauritania, national broadcaster
+savane-tv          # Burkina Faso, private (Savane Médias), not the state's RTB
+tvc-benin          # Benin, private (Entertainment Media), on its own domain, not the state's ORTB
+haiti-news-channel # Haiti, private news channel, owner not on record
+sahara-24          # Mauritania, private (Sahara Medias, the news agency), not the state's TVM
 
 # --- Europe ---
 dw                 # Germany
