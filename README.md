@@ -216,7 +216,7 @@ It cost 11 channels, none of them the only voice of its country.
 
 Each source lists **one or more streams in order of preference**. If the first one does
 not start — dead CDN, geoblocking, stream ended — the app falls back to the next one on its
-own, without the tile going dark. There are currently **234 streams for 177 channels**:
+own, without the tile going dark. There are currently **245 streams for 188 channels**:
 forty-one have at least one fallback.
 
 ```json
@@ -303,12 +303,12 @@ changed. A new reason for the same failure (a timeout, then a 503) is not a chan
 
 ## The catalog
 
-**177 sources from 76 countries**, 152 of them fished out of
+**188 sources from 77 countries**, 163 of them fished out of
 [iptv-org](https://github.com/iptv-org/iptv) and hand-picked:
 
 | category | channels | countries |
 |---|---|---|
-| News | 114 | 65 |
+| News | 125 | 66 |
 | Sport | 35 | 25 |
 | Markets | 21 | 17 |
 | Weather | 9 | 5 |
