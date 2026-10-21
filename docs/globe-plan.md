@@ -103,15 +103,26 @@ Choices made along the way:
 - `scripts/serve.py` instead of `http.server`: without `no-cache` the browser keeps stale
   modules even on reload.
 
-### Phase 2 — Polish
+### Phase 2 — Polish ✅ (2026-10-21)
 
-- **Clusters**: countries with many channels (US 21, IN 11, FR 9) are one screen with a `×21`
-  counter from afar; moving closer fans them out.
-- **Last frame**: when a screen stops being live, a frame is captured and becomes its still
-  image (desaturated, with the time "seen at 14:32").
-- Careful camera transitions, `prefers-reduced-motion` respected.
-- Mobile tuning (fewer live screens, lower pixel ratio).
-- Stdlib script `scripts/fetch-logos.py` to download and resize logos.
+Done, described in the README ("The globe") and in CLAUDE.md. Choices made along the way:
+
+- **Piles per country**, not spatial clusters: a pile is always one country (two channels are
+  enough), so its thread still goes to one capital and its label can say "France ×6". Fanning
+  depends on the camera's distance only (folded beyond 2.65, open within 2.05), so the
+  whole globe changes together. Clicking a folded pile flies in until it opens; the selected
+  or talking channel becomes the pile's face when it folds again.
+- **Last frame** in the viewer's time ("seen at"), not the channel's: it says when *you* saw it.
+- Long flights **climb** on the way and come down at the end; their duration grows with the
+  arc. With `prefers-reduced-motion`, no flights (already so), no breathing glow, no pulsing
+  markers, no easing on the screens' size.
+- **Phones**: 2 live screens (3 on larger touch devices), 240p, pixel ratio that steps down
+  when the frame rate stays under 40 fps; on every device a hidden tab keeps only the
+  channel talking.
+- **Logos** are not resized (the standard library cannot): `fetch-logos.py` picks the variant
+  that is already small from the sizes in iptv-org's `logos.json`. The page crops their
+  transparent margins and picks a light or dark plate from their brightness. Fetched only
+  when their screen first comes into view. 127 of 160 sources have one.
 
 ### Phase 3 — Smartphone remote
 

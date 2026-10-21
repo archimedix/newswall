@@ -13,18 +13,23 @@ export function renderModes(current, count) {
 
 /* The selected channel, or — compact, without actions — the one in the crosshair. */
 let shown = null;
-export function renderCard(s, { target = false, onAir = false, inBasket = false } = {}) {
+export function renderCard(s, { target = false, onAir = false, inBasket = false, pile = null } = {}) {
   const card = $('#card');
   card.hidden = !s;
   $('#reticle').classList.toggle('lock', !!s && target);
   if (!s) { shown = null; return; }
-  if (shown !== s.id) {
+  const key = pile ? `pile:${pile.country}` : s.id;
+  if (shown !== key) {
     // A new channel: replay the small entrance, so the change is felt.
     card.classList.remove('swap');
     void card.offsetWidth;
     card.classList.add('swap');
-    shown = s.id;
+    shown = key;
   }
+  card.querySelector('.chint').innerHTML = pile
+    ? '<kbd>↵</kbd> come closer · <kbd>Tab</kbd> next'
+    : '<kbd>↵</kbd> select · <kbd>Tab</kbd> next';
+  if (pile) return renderPile(card, pile);
   const src = s.src;
   const stream = src.streams[s.stream ?? 0];
   card.classList.toggle('target', target);
@@ -45,6 +50,18 @@ export function renderCard(s, { target = false, onAir = false, inBasket = false 
   const b = card.querySelector('[data-op="basket"]');
   b.classList.toggle('in', inBasket);
   b.querySelector('span').textContent = inBasket ? '✓ Basket' : '+ Basket';
+}
+
+/* A folded pile in the crosshair: the country and how many channels it holds. */
+function renderPile(card, pile) {
+  card.classList.add('target');
+  card.querySelector('.cflag').textContent = flag(pile.country);
+  card.querySelector('.cname').textContent = countryName(pile.country);
+  const langs = [...new Set(pile.members.map((m) => langName(m.src.lang)))];
+  card.querySelector('.cplace').textContent = `${pile.members.length} channels · ${langs.join(', ')}`;
+  const state = card.querySelector('.cstate');
+  state.className = 'cstate pile';
+  state.querySelector('b').textContent = `×${pile.members.length}`;
 }
 
 /* Where the camera looks from, how high, and where the sun is overhead. */

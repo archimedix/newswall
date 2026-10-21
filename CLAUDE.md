@@ -20,6 +20,7 @@ CDN links). The README is the design document — read it before non-trivial cha
 ./start.sh [port]                                   # scripts/serve.py on 127.0.0.1:8080 (file:// breaks ES modules;
                                                     # serve.py adds Cache-Control: no-cache, or stale ES modules survive reloads)
 python3 scripts/build-borders.py                    # Natural Earth outlines -> assets/earth/borders.json (rarely needed)
+python3 scripts/fetch-logos.py [--write] [--refresh]  # iptv-org logos -> assets/logos/ + logos.json (no resizing: picks a small variant)
 python3 scripts/refresh-live.py                     # check every stream, rewrite live.json
 python3 scripts/annotate-origin.py [--write]        # (re)compute each stream's `origin`
 python3 scripts/harvest-iptv.py [--category sports] [--write] [--cache DIR]
@@ -113,7 +114,16 @@ Wall behaviour:
   placed by `relax()` (repulsion + spring to `geo.js` `ANCHOR[country]`); a country missing
   from `ANCHOR` gets no screen. Each frame `update()` sets `facing` (dot with the camera
   direction), orientation, scale, colours; idle cards and labels are canvas textures.
-- `livepool.js`: plays the top K by `facing` plus `pinned` (selected, on air), keeps them
+- **Piles**: a country with ≥2 channels is a `pile` (`members`, `rep`, `dir`). `relax()` runs
+  twice: every screen alone → `s.fan`, one node per pile → `s.packed`; each frame
+  `s.dir` = lerp by `fold` (camera distance, `FAN.near`…`FAN.far`). Non-rep members of a
+  folded pile are `hidden`: not pickable, not candidates, not in the live pool. `rep` =
+  selected › on air › first not dead. `pileOf(s)` in `globe.js` = the pile when it is folded
+  and `s` is not selected: then click/Enter call `openPile()` instead of `select()`.
+- **Stills**: `livepool` calls `onIdle` *before* `destroy()`, so `screens.capture(s)` can draw
+  the video's last frame (MSE video does not taint the canvas). `drawIdle(s)` = still, else
+  title card with `s.logo` (lazy-loaded on first visibility, cropped, plate by brightness).
+- `livepool.js`: plays the top K by `facing` (4; 3 touch; 2 phones) plus `pinned` (selected, on air), keeps them
   until they leave the top K+2, starts new ones only after 400 ms of still camera, 2 at a
   time; `hlsOrder(src)` = streams from `live.use`, skipping those `live.json` marks dead.
   Players use `createHlsPlayer(…, {native: false})` — Safari's native HLS can't be a texture.

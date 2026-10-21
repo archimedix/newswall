@@ -10,7 +10,9 @@ import { createHlsPlayer } from '../core/hls-player.js';
 
 const SETTLE_MS = 400;
 const PARALLEL = 2;
-export const LIVE_CAP = 360;          // height for live screens; the selected one gets full quality
+/* Height for live screens (the selected one gets full quality): on a phone
+   they are a few dozen pixels wide, 240p is plenty. */
+export const LIVE_CAP = matchMedia('(pointer: coarse)').matches ? 240 : 360;
 
 /* The source's streams in the order to try them: from the one the last
    check found working, skipping the ones it found dead. */
@@ -30,12 +32,13 @@ export function createLivePool({ k = 4, onLive, onIdle, onDead }) {
   const playing = new Set();     // starting or live
   let lastMove = 0;
 
+  /* onIdle first, while the video still holds its last frame. */
   function stop(s) {
+    onIdle(s);
     s.player?.destroy();
     s.player = null;
     starting.delete(s);
     playing.delete(s);
-    onIdle(s);
   }
 
   function start(s, order = hlsOrder(s.src), at = 0) {
@@ -70,7 +73,7 @@ export function createLivePool({ k = 4, onLive, onIdle, onDead }) {
     /* Called every frame. `pinned`: screens that stay live wherever they are
        (the selected one, the one talking). `moving`: the camera moved this frame. */
     update(screens, pinned, moving, now) {
-      const visible = screens.filter((s) => !s.dead && s.facing > 0.2)
+      const visible = screens.filter((s) => !s.dead && !s.hidden && s.facing > 0.2)
         .sort((a, b) => b.facing - a.facing);
       const keep = new Set(visible.slice(0, k + 2));
       for (const s of [...playing]) {
@@ -88,6 +91,8 @@ export function createLivePool({ k = 4, onLive, onIdle, onDead }) {
       }
     },
     stopAll() { for (const s of [...playing]) stop(s); },
+    /* Everything but `keep` stops: a hidden tab has nobody watching. */
+    rest(keep = []) { for (const s of [...playing]) if (!keep.includes(s)) stop(s); },
     get liveCount() { return playing.size - starting.size; },
   };
 }

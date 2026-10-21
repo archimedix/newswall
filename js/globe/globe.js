@@ -13,19 +13,22 @@ import { toLatLon, toVec } from './geo.js';
 import * as hud from './hud.js';
 import { $ } from './hud.js';
 import { createLivePool, hlsOrder, LIVE_CAP } from './livepool.js';
-import { createScreens, H, W } from './screens.js';
+import { createScreens, FAN, H, W } from './screens.js';
 import { subsolar } from './sun.js';
 
 const MAX_BASKET = 12;
 const DIST = { min: 1.3, max: 5.5, home: 2.9, select: 1.8 };
 const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const coarse = matchMedia('(pointer: coarse)').matches;
+/* A phone, or a small or modest device: fewer screens play at once. */
+const modest = coarse && (Math.min(screen.width, screen.height) < 500 || (navigator.hardwareConcurrency || 8) <= 4);
 
 /* ------------------------------------------------------------- scene */
 
 const canvas = $('#scene');
 const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
-renderer.setPixelRatio(Math.min(devicePixelRatio, coarse ? 1.5 : 2));
+let pixelRatio = Math.min(devicePixelRatio, coarse ? 1.5 : 2);
+renderer.setPixelRatio(pixelRatio);
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(38, 1, 0.01, 200);
 
@@ -39,13 +42,14 @@ const g = {
   mode: 'news',
   earth: null,
   screens: null,
-  pool: createLivePool({ k: coarse ? 3 : 4, onLive, onIdle, onDead }),
+  pool: createLivePool({ k: modest ? 2 : coarse ? 3 : 4, onLive, onIdle, onDead }),
   selected: null,
   candidate: null,
   audioOn: null,      // id of the screen that talks: one at a time, as on the wall
   basket: [],
   hover: null,
   sun: [0, 0],
+  logos: {},          // source id -> file in assets/logos/, from scripts/fetch-logos.py
 };
 
 function resize() {
@@ -59,7 +63,9 @@ addEventListener('resize', resize);
 
 async function boot() {
   resize();
-  const [, earth] = await Promise.all([loadCatalog(), createEarth(), document.fonts.ready]);
+  const [, earth, logos] = await Promise.all([loadCatalog(), createEarth(),
+    fetch('assets/logos/logos.json').then((r) => (r.ok ? r.json() : {})).catch(() => ({})), document.fonts.ready]);
+  g.logos = logos;
   g.earth = earth;
   scene.add(earth.group);
   updateSun();
@@ -71,7 +77,7 @@ async function boot() {
 
   // No welcome screen: muted video needs no gesture, and the first click on a
   // screen brings the sound.
-  flyTo(HOME, 2600, easeInOut);
+  flyTo(HOME, { dur: 2600, ease: easeInOut, hop: false });
   requestAnimationFrame(frame);
 }
 
@@ -87,7 +93,7 @@ function setMode(m, first = false) {
     g.screens.dispose();
   }
   select(null);
-  g.screens = createScreens(catalog.all.filter((s) => onGlobe(s, m)));
+  g.screens = createScreens(catalog.all.filter((s) => onGlobe(s, m)), g.logos);
   g.earth.group.add(g.screens.group);
   g.candidate = null;
   history.replaceState(null, '', m === 'news' ? location.pathname : `#c=${m}`);
@@ -98,12 +104,14 @@ function setMode(m, first = false) {
 
 /* ---------------------------------------------------------------- loop */
 
-let last = performance.now(), lastSun = 0, lastClock = 0;
+let last = performance.now(), lastSun = 0, lastClock = 0, folded = null;
 const prev = { lat: 0, lon: 0, dist: 0 };
+const perf = { t0: performance.now() + 4000, frames: 0 };
 
 function frame(now) {
   requestAnimationFrame(frame);
   const dt = Math.min(0.05, (now - last) / 1000);
+  adapt(now, (now - last) / 1000);
   last = now;
 
   const steered = controls.update(dt);
@@ -121,6 +129,7 @@ function frame(now) {
   if (now - lastClock > 30000) { g.screens.tickClocks(); hud.tickUtc(); lastClock = now; }
 
   g.screens.update(camera, g.earth.sunDir, now / 1000);
+  if (g.screens.folded !== folded) { folded = g.screens.folded; renderCard(); }
   updateCandidate();
   updateHover();
   const pinned = [g.selected, g.screens.list.find((s) => s.id === g.audioOn)].filter(Boolean);
@@ -134,6 +143,29 @@ function frame(now) {
 }
 let lastHud = 0;
 
+/* A device that cannot keep up gets fewer pixels: below ~40 fps over two
+   seconds, the pixel ratio steps down (never below 1, never back up, so it
+   does not oscillate). The first seconds, busy loading, do not count. */
+function adapt(now, dt) {
+  if (now < perf.t0 || pixelRatio <= 1 || document.hidden || dt > 0.5) return;
+  perf.frames++;
+  if (now - perf.t0 < 2000) return;
+  const fps = perf.frames / ((now - perf.t0) / 1000);
+  perf.t0 = now;
+  perf.frames = 0;
+  if (fps >= 40) return;
+  pixelRatio = Math.max(1, pixelRatio - 0.25);
+  renderer.setPixelRatio(pixelRatio);
+  resize();
+}
+
+/* Nobody watches a hidden tab: only the channel talking keeps playing. The
+   others leave their last frame and start again on return. */
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden) g.pool.rest(g.screens.list.filter((s) => s.id === g.audioOn));
+  else perf.t0 = performance.now() + 1500;
+});
+
 function updateSun() {
   g.sun = subsolar();
   g.earth.setSun(...g.sun);
@@ -144,11 +176,20 @@ function updateSun() {
 const easeOut = (t) => 1 - Math.pow(1 - t, 3);
 const easeInOut = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
 
-/* Fly to {lat, lon, dist}, the short way round. */
-function flyTo({ lat, lon, dist }, dur = 900, ease = easeOut) {
+/* Fly to {lat, lon, dist}, the short way round. The longer the trip over
+   the globe, the longer the flight; a long one also rises on the way and
+   comes down at the end, as a plane does, so the Earth never smears past. */
+const va = new THREE.Vector3(), vb = new THREE.Vector3();
+function flyTo({ lat, lon, dist }, { dur, ease, hop = true } = {}) {
   const to = { lat, lon: view.lon + ((((lon - view.lon) % 360) + 540) % 360 - 180), dist };
   if (reduceMotion) { Object.assign(view, to); fly = null; return; }
-  fly = { from: { ...view }, to, t0: performance.now(), dur, ease };
+  const arc = toVec(view.lat, view.lon, va).angleTo(toVec(lat, lon, vb));
+  const climb = hop && arc > 0.5 ? Math.min(1.3, (arc - 0.35) * 0.85) : 0;
+  fly = {
+    from: { ...view }, to, t0: performance.now(), climb,
+    dur: dur ?? Math.min(2200, 650 + arc * 750 + Math.abs(dist - view.dist) * 180),
+    ease: ease ?? (climb ? easeInOut : easeOut),
+  };
 }
 
 /* Fly to look straight at `dir` from `dist`. */
@@ -161,6 +202,7 @@ function flyStep(now) {
   const t = Math.min(1, (now - fly.t0) / fly.dur);
   const e = fly.ease(t);
   for (const k of ['lat', 'lon', 'dist']) view[k] = fly.from[k] + (fly.to[k] - fly.from[k]) * e;
+  view.dist += fly.climb * Math.sin(Math.PI * e);
   if (t >= 1) fly = null;
 }
 
@@ -172,7 +214,7 @@ function updateCandidate() {
   let best = null;
   if (!g.selected) {
     for (const s of g.screens.list) {
-      if (s.facing > 0.9 && (!best || s.facing > best.facing)) best = s;
+      if (s.facing > 0.9 && !s.hidden && (!best || s.facing > best.facing)) best = s;
     }
   }
   if (best === g.candidate) return;
@@ -186,16 +228,27 @@ function renderCard() {
   const s = g.selected || g.candidate;
   hud.renderCard(s, {
     target: !g.selected,
+    pile: pileOf(s),
     onAir: !!s && s.id === g.audioOn,
     inBasket: !!s && g.basket.includes(s.id),
   });
+}
+
+/* A folded pile in the crosshair (or under the pointer) is a country, not a channel. */
+function pileOf(s) {
+  return s && s !== g.selected && s.pile && g.screens.folded ? s.pile : null;
+}
+
+/* Opening a pile: come close enough over it that it fans out. */
+function openPile(p) {
+  flyToward(p.dir, Math.min(view.dist, FAN.near - 0.15));
 }
 
 /* Tab and the right stick: the next screen to the right (or left) of the
    current one, as seen on screen. */
 function next(dir) {
   const from = g.selected || g.candidate;
-  const seen = g.screens.list.filter((s) => s.facing > 0.35 && !s.dead);
+  const seen = g.screens.list.filter((s) => s.facing > 0.35 && !s.dead && !s.hidden);
   if (!seen.length) return;
   const x = (s) => s.group.position.clone().project(camera).x;
   seen.sort((a, b) => x(a) - x(b));
@@ -212,7 +265,7 @@ function updateHover() {
   let s = null;
   if (g.hover && !front.open) {
     raycaster.setFromCamera(g.hover, camera);
-    s = raycaster.intersectObjects(g.screens.meshes.filter((m) => m.parent.visible), false)[0]?.object.userData.screen || null;
+    s = raycaster.intersectObjects(pickable(), false)[0]?.object.userData.screen || null;
   }
   const old = g.screens.list.find((x) => x.hover);
   if (old === s) return;
@@ -250,7 +303,7 @@ function select(s) {
   if (s) {
     s.selected = true;
     s.player?.setCap(null);       // the selected screen gets full quality
-    flyToward(s.dir, Math.min(view.dist, DIST.select));
+    flyToward(s.fan, Math.min(view.dist, DIST.select));
     if (g.audioOn !== s.id) setAudio(s.id);
   }
   renderCard();
@@ -307,6 +360,7 @@ function onLive(s) {
 }
 
 function onIdle(s) {
+  g.screens.capture(s);
   g.screens.setVideo(s, null);
   if (s.id === g.audioOn) setAudio(s.id);    // its voice goes with it
 }
@@ -344,8 +398,10 @@ const ndc = (x, y) => new THREE.Vector2((x / innerWidth) * 2 - 1, -(y / innerHei
 
 function screenAt(x, y) {
   raycaster.setFromCamera(ndc(x, y), camera);
-  return raycaster.intersectObjects(g.screens.meshes.filter((m) => m.parent.visible), false)[0]?.object.userData.screen;
+  return raycaster.intersectObjects(pickable(), false)[0]?.object.userData.screen;
 }
+
+const pickable = () => g.screens.meshes.filter((m) => m.parent.visible && !m.userData.screen.hidden);
 
 /* A click on the selected screen toggles its audio, but a double click means
    "front row": the audio waits a moment to see whether a second click comes. */
@@ -367,6 +423,7 @@ const controls = createControls(canvas, {
   pick(x, y) {
     const s = screenAt(x, y);
     if (!s) return;
+    if (pileOf(s)) return openPile(s.pile);
     if (s !== g.selected) return select(s);
     clearTimeout(pendingAudio);
     pendingAudio = setTimeout(() => setAudio(s.id), 260);
@@ -380,11 +437,12 @@ const controls = createControls(canvas, {
   next,
   select() {
     if (front.open) return;
-    if (g.candidate) select(g.candidate);
+    if (pileOf(g.candidate)) openPile(g.candidate.pile);
+    else if (g.candidate) select(g.candidate);
     else if (g.selected) openFront(g.selected);     // A again: front row
   },
-  audio() { const s = g.selected || g.candidate; if (s) setAudio(s.id); },
-  basket() { const s = g.selected || g.candidate; if (s) toggleBasket(s.id); },
+  audio() { const s = g.selected || g.candidate; if (s && !pileOf(s)) setAudio(s.id); },
+  basket() { const s = g.selected || g.candidate; if (s && !pileOf(s)) toggleBasket(s.id); },
   mode(n, relative = false) {
     if (front.open) return;
     const keys = Object.keys(MODES);

@@ -82,11 +82,22 @@ Every channel of the current mode is a screen hanging over its country, with a t
 to the place it broadcasts from (the capital, or the city its newsrooms work in). Crowded
 regions push their screens apart, but the thread always goes back to the real place.
 
+- **Piles**: from afar, a country with several channels is a single screen with two cards
+  peeking out behind it and its count on the label (*France ×6*). Coming closer fans the
+  pile out, each screen growing out of it to its own place. Clicking a folded pile (or
+  `Enter` on it) flies in until it opens. The channel selected or talking is the face of
+  its pile when it folds again.
 - **Only the screens in front of you play**: the 4 nearest the centre of the view (3 on
-  touch devices), at 360p. Decoding dozens of streams is impossible; the others show a
-  still title card. A live screen stays live until it drops out of the first 6, so turning
+  touch devices, 2 on phones), at 360p (240p on touch). Decoding dozens of streams is
+  impossible. A live screen stays live until it drops out of the first 6, so turning
   the globe a little does not restart everything, and new streams start only once the
   camera has stopped.
+- **Still screens** show the **last frame** they played, desaturated, with the time it was
+  seen; one that has not played yet shows a title card with the channel's logo. A hidden
+  tab stops every stream except the one talking, and each leaves its last frame behind.
+- **Flights** last as long as the trip: a short hop is quick, a flight across the world
+  climbs on the way and comes down at the end. With *reduce motion* set in the system, the
+  camera jumps instead, and nothing breathes or pulses.
 - **Selecting** a screen (click, or `Enter` on the one in the crosshair) flies to it,
   enlarges it, gives it full quality and the audio: its frame turns red, the only red on
   the globe, as on the wall. Its country lights up.
@@ -104,13 +115,15 @@ regions push their screens apart, but the thread always goes back to the real pl
   wall, through the same URL a shared link uses.
 - **Always hls.js.** A video becomes a WebGL texture only through MediaSource, so the
   globe always uses hls.js, never Safari's native HLS.
+- **On a slow device** the globe lowers its own resolution: when the frame rate stays under
+  40 fps, the pixel ratio steps down (never below 1, never back up).
 
 | | mouse / touch | keyboard | gamepad |
 |---|---|---|---|
 | turn | drag (with inertia) | arrows / WASD | left stick |
 | zoom | wheel / pinch | `+` `-` | triggers |
 | next screen | — | `Tab` / `⇧Tab` | right stick / pad |
-| select, and listen | click | `Enter` | A |
+| select, and listen (or open a pile) | click | `Enter` | A |
 | front row, and back | double click / *Front row* | `F` | A again / B |
 | audio on / off | click the selected one | `Space` | X |
 | basket | *+ Basket* | `B` | Y |
@@ -118,7 +131,7 @@ regions push their screens apart, but the thread always goes back to the real pl
 | back | — | `Esc` | B |
 | open the basket in the wall | *Open in the wall* | `⇧Enter` | Start |
 
-The plan for what comes next (clusters, last frames, a phone as a remote) is in
+The plan for what comes next (a phone as a remote) is in
 [`docs/globe-plan.md`](docs/globe-plan.md).
 
 ## The interface
@@ -144,6 +157,8 @@ Vanilla JS, no build step. Runtime dependencies are vendored in `assets/vendor/`
 for the globe only (the wall never loads it). The globe's Earth is in `assets/earth/`: NASA
 Blue Marble and Black Marble (public domain), resized to 2048×1024, and Natural Earth
 1:110m outlines (public domain) turned into a compact JSON by `scripts/build-borders.py`.
+Channel logos are in `assets/logos/`, fetched from iptv-org by `scripts/fetch-logos.py` (they
+are the broadcasters' trademarks, there only to tell the channels apart).
 `index.html`, `styles.css`, and native ES modules in `js/` (no bundler: the browser loads
 them as they are):
 
@@ -334,6 +349,21 @@ category only from Free-TV's own "News" / "Business" / "Weather" groups; otherwi
 only if curated. Geo-blocked (`Ⓖ`), VOD, YouTube, Twitch and Dailymotion entries are
 skipped. What it adds carries `via: "free-tv"`.
 
+### Logos
+
+```bash
+python3 scripts/fetch-logos.py            # preview
+python3 scripts/fetch-logos.py --write    # download into assets/logos/
+```
+
+The globe's title cards use the channels' logos, taken from iptv-org's `logos.json`. A
+source is matched to an iptv-org channel by country and name (a few by hand, in the
+script's `MANUAL`). Nothing is resized, since the standard library cannot: of the variants
+iptv-org lists, the script takes the smallest that is at least 160 px wide and under
+120 KB, and checks that the file is what it claims to be. `assets/logos/logos.json` maps
+each source to its file; sources without one keep the flag. Run it again after adding
+channels: it only fetches what is missing.
+
 ## Adding a source by hand
 
 One entry in `sources.json`, then a PR:
@@ -371,8 +401,8 @@ CORS, against all expectations, is not the problem: 1 in 70.
   globe open straight away, muted, and the first click on a channel brings its audio.
 - **Sources come and go.** Daily breakages are normal: the Action detects them, and the
   tile says what happened.
-- **A crowded globe.** Europe and the Middle East have dozens of screens close together:
-  until the clusters of phase 2, zoom in to tell them apart.
+- **A crowded globe.** Piles fold each country into one screen, but Europe and the Middle
+  East have many countries close together: from afar their screens still touch.
 
 ## Possible improvements
 

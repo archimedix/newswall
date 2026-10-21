@@ -2,7 +2,12 @@
    with a soft shadow behind it, a glow when it is targeted or talking, a
    label underneath, a thread down to the ground and a pulsing marker there.
    Neighbours push each other apart (Europe is crowded) but the thread always
-   goes back to the true place. */
+   goes back to the true place.
+
+   A country with several channels is a pile from afar: one screen, two
+   cards peeking out behind it and "×6" on its label. Coming closer fans the
+   pile out. Both layouts are computed once, and each frame blends between
+   them by the camera's distance. */
 
 import * as THREE from 'three';
 import { countryName, flag, langName } from '../core/data.js';
@@ -14,6 +19,10 @@ export const W = 0.078, H = W * 9 / 16;
 const ALT = 0.07;             // height of the screens above the ground
 const GAP = 0.092;            // minimum angle between two screens, in radians
 const LABEL_H = W * 0.15;
+const PILE_MIN = 2;           // channels of one country that make a pile
+/* Camera distances: folded beyond `far`, fanned out within `near`. */
+export const FAN = { near: 2.05, far: 2.65 };
+const calm = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 /* The tally red is the only warm colour that means "talking"; the orange
    detail marks a rebroadcast, as on the wall. */
@@ -51,20 +60,53 @@ function shared() {
   g.filter = 'blur(9px)';
   g.fillStyle = '#fff'; round(g, 22, 22, 84, 52, 10); g.fill();
 
-  SHARED = { mask: plain(mask), bezel: plain(bezel), soft: plain(soft) };
+  // The cards behind a pile: dark glass with a lit edge.
+  const ghost = canvas(256, 152);
+  g = ghost.getContext('2d');
+  const edge = g.createLinearGradient(0, 0, 0, 152);
+  edge.addColorStop(0, '#aab6c4');
+  edge.addColorStop(0.1, '#5d6875');
+  edge.addColorStop(1, '#3a434e');
+  g.fillStyle = edge; round(g, 1, 1, 254, 150, 11); g.fill();
+  const glass = g.createLinearGradient(0, 0, 0, 152);
+  glass.addColorStop(0, '#1c2530');
+  glass.addColorStop(1, '#0c1117');
+  g.fillStyle = glass; round(g, 5, 5, 246, 142, 8); g.fill();
+
+  SHARED = { mask: plain(mask), bezel: plain(bezel), soft: plain(soft), ghost: texture(ghost) };
   return SHARED;
 }
 
-export function createScreens(sources) {
+export function createScreens(sources, logos = {}) {
   const group = new THREE.Group();
   const list = [];
 
   for (const src of sources) {
     const at = ANCHOR[src.country];
     if (!at) { console.warn(`globe: no anchor for ${src.country} (${src.id})`); continue; }
-    list.push(makeScreen(src, toVec(at[0], at[1], new THREE.Vector3())));
+    list.push(makeScreen(src, toVec(at[0], at[1], new THREE.Vector3()), logos[src.id]));
   }
+
+  // The piles: one per country with several channels.
+  const byCountry = new Map();
+  for (const s of list) byCountry.set(s.place, [...(byCountry.get(s.place) || []), s]);
+  const piles = [...byCountry.values()].filter((m) => m.length >= PILE_MIN).map((members) => {
+    const p = { country: members[0].place, members, rep: members[0], dir: null, ghosts: makeGhosts() };
+    for (const s of members) s.pile = p;
+    group.add(p.ghosts);
+    return p;
+  });
+
+  // Fanned out: every screen on its own. Folded: one node per pile.
   relax(list);
+  for (const s of list) s.fan = s.dir.clone();
+  const nodes = [
+    ...list.filter((s) => !s.pile).map((s) => ({ place: s.place, anchor: s.anchor, dir: s.anchor.clone(), set: (d) => { s.packed = d; } })),
+    ...piles.map((p) => ({ place: p.country, anchor: p.rep.anchor, dir: p.rep.anchor.clone(), set: (d) => { p.dir = d; for (const s of p.members) s.packed = d; } })),
+  ];
+  relax(nodes);
+  for (const n of nodes) n.set(n.dir);
+
   for (const s of list) group.add(s.group);
 
   // All threads in one geometry, rewritten each frame: one draw call.
@@ -87,25 +129,51 @@ export function createScreens(sources) {
   group.add(markers);
 
   const tmp = new THREE.Vector3(), toCam = new THREE.Vector3(), look = new THREE.Vector3();
+  let fold = 1;
 
   return {
     group,
     list,
+    piles,
     meshes: list.flatMap((s) => [s.face, s.frame]),
     lift: ALT,
+    /* True while the piles are (mostly) closed. */
+    get folded() { return fold > 0.5; },
 
     /* Orientation, size, visibility and colour, every frame. */
     update(camera, sunDir, time) {
       const dist = camera.position.length();
       const zoomScale = THREE.MathUtils.clamp(dist / 2.6, 0.75, 1.5);
+      fold = THREE.MathUtils.smoothstep(dist, FAN.near, FAN.far);
+      const spread = 1 - fold;
+
+      // Who stands for each pile: the selected one, the one talking, or the first that plays.
+      for (const p of piles) {
+        p.rep = p.members.find((s) => s.selected) || p.members.find((s) => s.onAir)
+          || p.members.find((s) => !s.dead) || p.members[0];
+        for (const s of p.members) {
+          const asPile = s === p.rep && fold > 0.5;
+          if (s.asPile !== asPile) {
+            s.asPile = asPile;
+            drawLabel(s.labelCanvas, s.src, asPile ? p : null);
+            s.labelTex.needsUpdate = true;
+          }
+        }
+      }
+
+      toCam.copy(camera.position).normalize();
       for (let i = 0; i < list.length; i++) {
         const s = list[i];
-        toCam.copy(camera.position).normalize();
+        const lead = !s.pile || s === s.pile.rep;
+        s.dir.copy(s.packed).lerp(s.fan, spread).normalize();
+        s.hidden = !lead && spread < 0.5;
         s.facing = s.dir.dot(toCam);
-        s.group.visible = s.facing > -0.1;
+        s.group.visible = s.facing > -0.1 && (lead || spread > 0.02);
+        if (s.logoFile && s.group.visible) loadLogo(s);
 
-        const big = s.selected ? 2 : s.hover ? 1.16 : 1;
-        s.scale += (big * zoomScale - s.scale) * 0.16;
+        // The others in a pile grow out of it as it fans out.
+        const big = (s.selected ? 2 : s.hover ? 1.16 : 1) * (lead ? 1 : spread);
+        s.scale = calm ? big * zoomScale : s.scale + (big * zoomScale - s.scale) * 0.16;
         const lift = s.selected ? ALT * 1.9 : ALT;
         s.group.position.copy(s.dir).multiplyScalar(RADIUS + lift * Math.max(1, s.scale * 0.8));
         s.group.scale.setScalar(s.scale);
@@ -127,18 +195,44 @@ export function createScreens(sources) {
         s.label.material.opacity = 0.35 + 0.65 * night;
 
         // The glow: red and breathing for the one talking, cold for the target.
-        const glow = s.onAir ? 0.55 + 0.25 * Math.sin(time * 3.2) : s.selected ? 0.4 : s.candidate || s.hover ? 0.3 : 0;
+        const glow = s.onAir ? 0.55 + (calm ? 0.1 : 0.25 * Math.sin(time * 3.2)) : s.selected ? 0.4 : s.candidate || s.hover ? 0.3 : 0;
         s.glow.material.opacity += (glow - s.glow.material.opacity) * 0.15;
         s.glow.material.color.copy(s.onAir ? COLOR.onAir : COLOR.candidate);
         s.glow.visible = s.glow.material.opacity > 0.01;
         s.shadow.material.opacity = 0.3 + 0.25 * night;
 
         // The thread: from the ground to the bottom edge of the screen.
-        tmp.set(0, -(H / 2 + 0.004), 0).applyQuaternion(s.group.quaternion).multiplyScalar(s.scale).add(s.group.position);
+        if (s.group.visible || lead) {
+          tmp.set(0, -(H / 2 + 0.004), 0).applyQuaternion(s.group.quaternion).multiplyScalar(s.scale).add(s.group.position);
+        } else tmp.copy(s.anchor);
         threadPos.set([s.anchor.x * 1.002, s.anchor.y * 1.002, s.anchor.z * 1.002, tmp.x, tmp.y, tmp.z], i * 6);
       }
       threads.geometry.attributes.position.needsUpdate = true;
-      markers.material.opacity = 0.45 + 0.35 * Math.sin(time * 2.4);
+      markers.material.opacity = calm ? 0.65 : 0.45 + 0.35 * Math.sin(time * 2.4);
+
+      // The cards behind a pile slide out from behind its screen as it folds.
+      for (const p of piles) {
+        const r = p.rep.group;
+        p.ghosts.visible = r.visible && fold > 0.02;
+        if (!p.ghosts.visible) continue;
+        p.ghosts.position.copy(r.position);
+        p.ghosts.quaternion.copy(r.quaternion);
+        p.ghosts.scale.copy(r.scale);
+        p.ghosts.children.forEach((m, k) => m.position.set((k + 1) * 0.0034 * fold, (k + 1) * 0.0034 * fold, -0.0009 * (k + 1)));
+      }
+    },
+
+    /* The last frame of a screen that stops playing becomes its still image. */
+    capture(s) {
+      const v = s.player?.video;
+      if (!s.live || !v || v.readyState < 2 || !v.videoWidth) return;
+      const c = s.still || (s.still = canvas(512, 288));
+      const k = Math.max(c.width / v.videoWidth, c.height / v.videoHeight);
+      const w = v.videoWidth * k, h = v.videoHeight * k;
+      c.getContext('2d').drawImage(v, (c.width - w) / 2, (c.height - h) / 2, w, h);
+      s.stillAt = new Date();
+      drawIdle(s);
+      s.idleTex.needsUpdate = true;
     },
 
     setVideo(s, video) {
@@ -155,13 +249,14 @@ export function createScreens(sources) {
 
     markDead(s) {
       s.dead = true;
-      drawIdle(s.idleCanvas, s.src, true);
+      drawIdle(s);
       s.idleTex.needsUpdate = true;
     },
 
     /* Local times on the labels: once a minute is enough. */
     tickClocks() {
       for (const s of list) {
+        if (s.asPile) continue;
         drawLabel(s.labelCanvas, s.src);
         s.labelTex.needsUpdate = true;
       }
@@ -174,17 +269,17 @@ export function createScreens(sources) {
         s.idleTex.dispose();
         s.labelTex.dispose();
       }
+      for (const p of piles) for (const m of p.ghosts.children) m.geometry.dispose();
       threads.geometry.dispose();
       markers.geometry.dispose();
     },
   };
 }
 
-function makeScreen(src, anchor) {
+function makeScreen(src, anchor, logoFile) {
   const group = new THREE.Group();
 
   const idleCanvas = canvas(512, 288);
-  drawIdle(idleCanvas, src, false);
   const idleTex = texture(idleCanvas);
   const { mask, bezel, soft } = shared();
   const face = new THREE.Mesh(new THREE.PlaneGeometry(W, H),
@@ -215,12 +310,71 @@ function makeScreen(src, anchor) {
 
   group.add(shadow, glow, face, frame, label);
   const s = {
-    src, id: src.id, anchor, dir: anchor.clone(), group, face, frame, label, shadow, glow,
-    idleCanvas, idleTex, labelCanvas, labelTex, videoTex: null,
-    scale: 1, facing: 0, live: false, dead: false, selected: false, candidate: false, onAir: false, hover: false,
+    src, id: src.id, place: src.country, anchor, dir: anchor.clone(), fan: null, packed: null, pile: null,
+    group, face, frame, label, shadow, glow,
+    idleCanvas, idleTex, labelCanvas, labelTex, videoTex: null, still: null, stillAt: null,
+    logo: null, logoFile: null, logoLight: false, logoCrop: null,
+    scale: 1, facing: 0, live: false, dead: false, hidden: false, asPile: false,
+    selected: false, candidate: false, onAir: false, hover: false,
   };
   face.userData.screen = frame.userData.screen = s;
+  s.logoFile = logoFile;
+  drawIdle(s);
   return s;
+}
+
+/* The logo is fetched the first time its screen comes round to the visible
+   side: a mode holds a hundred, the camera sees a dozen. */
+function loadLogo(s) {
+  const file = s.logoFile;
+  s.logoFile = null;
+  const img = new Image();
+  img.onload = () => {
+    if (!img.naturalWidth || !img.naturalHeight) return;
+    s.logo = img;
+    Object.assign(s, inspect(img));
+    drawIdle(s);
+    s.idleTex.needsUpdate = true;
+  };
+  img.src = `assets/logos/${file}`;
+}
+
+/* Most logos are drawn for a white background, some are white themselves:
+   the average brightness of the opaque pixels picks a light or a dark plate.
+   Many come with wide transparent margins, which are cropped away. */
+function inspect(img) {
+  const k = Math.min(1, 128 / Math.max(img.naturalWidth, img.naturalHeight));
+  const w = Math.max(1, Math.round(img.naturalWidth * k)), h = Math.max(1, Math.round(img.naturalHeight * k));
+  const c = canvas(w, h), g = c.getContext('2d', { willReadFrequently: true });
+  g.drawImage(img, 0, 0, w, h);
+  const d = g.getImageData(0, 0, w, h).data;
+  let sum = 0, n = 0, x0 = w, y0 = h, x1 = -1, y1 = -1;
+  for (let y = 0; y < h; y++) {
+    for (let x = 0; x < w; x++) {
+      const i = (y * w + x) * 4;
+      if (d[i + 3] < 128) continue;
+      sum += 0.2126 * d[i] + 0.7152 * d[i + 1] + 0.0722 * d[i + 2];
+      n++;
+      if (x < x0) x0 = x; if (x > x1) x1 = x;
+      if (y < y0) y0 = y; if (y > y1) y1 = y;
+    }
+  }
+  const crop = x1 < 0 ? [0, 0, img.naturalWidth, img.naturalHeight]
+    : [x0 / k, y0 / k, (x1 - x0 + 1) / k, (y1 - y0 + 1) / k];
+  return { logoCrop: crop, logoLight: n > 0 && sum / n > 200 && n < w * h * 0.9 };
+}
+
+/* Two cards behind a pile's screen, hidden behind it until the pile folds. */
+function makeGhosts() {
+  const g = new THREE.Group();
+  const B = 0.0042;
+  for (let k = 0; k < 2; k++) {
+    const m = new THREE.Mesh(new THREE.PlaneGeometry(W + B, H + B),
+      new THREE.MeshBasicMaterial({ map: shared().ghost, color: new THREE.Color().setScalar(1 - k * 0.3), alphaTest: 0.5 }));
+    g.add(m);
+  }
+  g.visible = false;
+  return g;
 }
 
 /* Spread the screens so that none covers another: a few rounds of pushing
@@ -229,8 +383,8 @@ function makeScreen(src, anchor) {
 function relax(list) {
   const byPlace = new Map();
   for (const s of list) {
-    const k = byPlace.get(s.src.country) || 0;
-    byPlace.set(s.src.country, k + 1);
+    const k = byPlace.get(s.place) || 0;
+    byPlace.set(s.place, k + 1);
     if (!k) continue;
     const t = tangent(s.anchor);
     const a = k * 2.39996, r = 0.05 * Math.sqrt(k);
@@ -289,40 +443,81 @@ function texture(c) {
 const SANS = "'Schibsted Grotesk', ui-sans-serif, sans-serif";
 const MONO = "'Spline Sans Mono', ui-monospace, monospace";
 
-/* The still image of a screen that is not live: flag, name, country. The
-   logos come in phase 2; until then, a clean title card. */
-function drawIdle(c, src, dead) {
+/* The still image of a screen that is not live: its last frame, desaturated,
+   with the time it was seen; before it ever played, a title card with the
+   logo (on a light plate: most logos are drawn for white backgrounds), the
+   name and the country. */
+function drawIdle(s) {
+  const c = s.idleCanvas, src = s.src;
   const g = c.getContext('2d');
-  const grd = g.createLinearGradient(0, 0, 0, c.height);
-  grd.addColorStop(0, '#111925');
-  grd.addColorStop(1, '#070a0f');
-  g.fillStyle = grd;
-  g.fillRect(0, 0, c.width, c.height);
-  g.strokeStyle = 'rgba(255,255,255,.035)';
-  g.lineWidth = 1;
-  for (let x = 32; x < c.width; x += 32) { g.beginPath(); g.moveTo(x, 0); g.lineTo(x, c.height); g.stroke(); }
-  for (let y = 32; y < c.height; y += 32) { g.beginPath(); g.moveTo(0, y); g.lineTo(c.width, y); g.stroke(); }
-
   g.textBaseline = 'middle';
-  g.font = `64px ${SANS}`;
-  g.fillText(flag(src.country), 34, 70);
-  g.fillStyle = '#e9eef4';
-  g.font = `700 42px ${SANS}`;
-  fit(g, src.name, 34, 160, c.width - 68);
-  g.fillStyle = '#8d98a5';
-  g.font = `400 22px ${MONO}`;
-  g.fillText(`${countryName(src.country)} · ${langName(src.lang)}`.toUpperCase(), 34, 214, c.width - 68);
-  if (dead) {
+  let seen = 0;
+  if (s.still) {
+    g.filter = 'grayscale(.9) brightness(.6) contrast(1.08)';
+    g.drawImage(s.still, 0, 0, c.width, c.height);
+    g.filter = 'none';
+    const veil = g.createLinearGradient(0, c.height * 0.55, 0, c.height);
+    veil.addColorStop(0, 'rgba(5,7,10,0)');
+    veil.addColorStop(1, 'rgba(5,7,10,.8)');
+    g.fillStyle = veil;
+    g.fillRect(0, 0, c.width, c.height);
+    const at = s.stillAt.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
+    seen = chip(g, `SEEN AT ${at}`, 26, c.height - 40) + 10;
+  } else {
+    const grd = g.createLinearGradient(0, 0, 0, c.height);
+    grd.addColorStop(0, '#111925');
+    grd.addColorStop(1, '#070a0f');
+    g.fillStyle = grd;
+    g.fillRect(0, 0, c.width, c.height);
+    g.strokeStyle = 'rgba(255,255,255,.035)';
+    g.lineWidth = 1;
+    for (let x = 32; x < c.width; x += 32) { g.beginPath(); g.moveTo(x, 0); g.lineTo(x, c.height); g.stroke(); }
+    for (let y = 32; y < c.height; y += 32) { g.beginPath(); g.moveTo(0, y); g.lineTo(c.width, y); g.stroke(); }
+
+    if (s.logo) {
+      const ph = 92, pad = 12;
+      const [sx, sy, sw, sh] = s.logoCrop;
+      const k = Math.min((ph - pad * 2) / sh, (c.width * 0.6 - pad * 2) / sw);
+      const lw = sw * k, lh = sh * k;
+      g.fillStyle = s.logoLight ? '#1b232d' : '#e9eef4';
+      round(g, 34, 26, lw + pad * 2, ph, 14); g.fill();
+      g.drawImage(s.logo, sx, sy, sw, sh, 34 + pad, 26 + (ph - lh) / 2, lw, lh);
+    } else {
+      g.font = `64px ${SANS}`;
+      g.fillText(flag(src.country), 34, 70);
+    }
+    g.fillStyle = '#e9eef4';
+    g.font = `700 42px ${SANS}`;
+    fit(g, src.name, 34, 166, c.width - 68);
+    g.fillStyle = '#8d98a5';
+    g.font = `400 22px ${MONO}`;
+    const place = `${countryName(src.country)} · ${langName(src.lang)}`.toUpperCase();
+    g.fillText(s.logo ? `${flag(src.country)} ${place}` : place, 34, 218, c.width - 68);
+  }
+  if (s.dead) {
     g.fillStyle = 'rgba(5,7,10,.55)';
     g.fillRect(0, 0, c.width, c.height);
-    g.fillStyle = '#8d98a5';
-    g.font = `500 24px ${MONO}`;
-    g.fillText('OFF AIR', 34, 256);
+    chip(g, 'OFF AIR', 26 + seen, c.height - 40);
   }
 }
 
-/* Under the screen: flag, name, local time. Orange dot for a rebroadcast. */
-function drawLabel(c, src) {
+/* A small mono tag on the picture. */
+function chip(g, text, x, y) {
+  g.font = `500 21px ${MONO}`;
+  const w = g.measureText(text).width + 24;
+  g.fillStyle = 'rgba(5,7,10,.62)';
+  round(g, x, y - 18, w, 36, 9); g.fill();
+  g.strokeStyle = 'rgba(255,255,255,.14)';
+  g.lineWidth = 1.5;
+  g.stroke();
+  g.fillStyle = '#c9d3de';
+  g.fillText(text, x + 12, y + 1);
+  return w;
+}
+
+/* Under the screen: flag, name, local time; orange dot for a rebroadcast.
+   A folded pile says its country and how many channels it holds instead. */
+function drawLabel(c, src, pile = null) {
   const g = c.getContext('2d');
   g.clearRect(0, 0, c.width, c.height);
   const grd = g.createLinearGradient(0, 0, 0, c.height);
@@ -336,17 +531,20 @@ function drawLabel(c, src) {
   g.textBaseline = 'middle';
   const y = c.height / 2 + 2;
 
-  let time = '';
-  try {
-    time = new Date().toLocaleTimeString('en-GB', { timeZone: src.tz || 'UTC', hour: '2-digit', minute: '2-digit' });
-  } catch { /* unknown zone */ }
+  let right = `×${pile?.members.length}`;
+  if (!pile) {
+    right = '';
+    try {
+      right = new Date().toLocaleTimeString('en-GB', { timeZone: src.tz || 'UTC', hour: '2-digit', minute: '2-digit' });
+    } catch { /* unknown zone */ }
+  }
   g.font = `500 28px ${MONO}`;
-  const tw = g.measureText(time).width;
-  g.fillStyle = '#8d98a5';
-  g.fillText(time, c.width - 14 - tw, y);
+  const tw = g.measureText(right).width;
+  g.fillStyle = pile ? '#e9eef4' : '#8d98a5';
+  g.fillText(right, c.width - 14 - tw, y);
 
   let x = 14;
-  if (src.streams[hlsOrder(src)[0]]?.origin?.kind === 'rebroadcast') {
+  if (!pile && src.streams[hlsOrder(src)[0]]?.origin?.kind === 'rebroadcast') {
     g.fillStyle = REBROADCAST;
     g.beginPath(); g.arc(c.width - 30 - tw, y, 6, 0, Math.PI * 2); g.fill();
   }
@@ -355,7 +553,7 @@ function drawLabel(c, src) {
   x += 52;
   g.fillStyle = '#e9eef4';
   g.font = `600 32px ${SANS}`;
-  fit(g, src.name, x, y, c.width - x - tw - 50);
+  fit(g, pile ? countryName(pile.country) : src.name, x, y, c.width - x - tw - 50);
 }
 
 function fit(g, text, x, y, max) {

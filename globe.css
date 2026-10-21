@@ -118,6 +118,8 @@ body.selected #reticle{opacity:0}
 .cstate.live i{background:var(--ok);box-shadow:0 0 8px var(--ok)}
 .cstate.air{color:#ffb3a3;border-color:rgba(255,75,43,.4);background:rgba(255,75,43,.12)}
 .cstate.air i{background:var(--tally);animation:tally 2.2s infinite}
+.cstate.pile{color:var(--ice);letter-spacing:.06em}
+.cstate.pile i{display:none}
 .cmeta{display:flex;gap:6px;flex-wrap:wrap;min-width:0}
 .chip{
   font:11px/1.6 var(--mono);color:#aeb9c6;padding:1px 8px;border-radius:7px;
@@ -264,6 +266,8 @@ body.front #card,body.front #telemetry,body.front #reticle,body.front .hud-corne
   .front-bar [data-fop="back"] span,.front-bar .fsep{display:none}
   .fname,.fsub{max-width:40vw}
 }
+/* A touch screen has no keys to explain. */
+@media (pointer:coarse){#card.target .chint{display:none}}
 /* On a phone: no keyboard to explain, and the on-air chip lives on the card. */
 @media (max-width:520px){
   .globe #bar{gap:6px;padding:0 6px;left:6px;right:6px;top:6px}
