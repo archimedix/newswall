@@ -25,10 +25,11 @@ CDN = re.compile(r"(cloudfront\.net|akamaized\.net|akamaihd\.net|amagi\.tv|media
                  r"cdnbridge|live-tv\.cloud|dai\.google\.com|uplink\.kz|cdn\.cra\.cz)", re.I)
 
 # Third parties rebroadcasting someone else's feed: always flag them.
-# Personal pages and redirect services: there is no broadcaster behind these,
+# Personal pages, redirect services and third-party relays (thaimomo: Thai channels
+# resent from US servers): there is no broadcaster behind these,
 # and viewers have a right to know.
 RELAY = re.compile(r"(workers\.dev|bozztv|jmp2\.uk|short\.gy|onrender\.com|xemzi|"
-                   r"\.xyz|0472\.org|fastpublish|tangotv|malingtv|voidnet|badinan|"
+                   r"\.xyz|0472\.org|fastpublish|tangotv|malingtv|voidnet|badinan|thaimomo|"
                    r"github\.io|githubusercontent|glitch\.me|repl\.co|herokuapp)", re.I)
 
 # Broadcasters recognisable by domain, where the name alone is not enough.

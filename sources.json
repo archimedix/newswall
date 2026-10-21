@@ -2677,7 +2677,7 @@
           "origin": {
             "host": "live-us1.thaimomo.com",
             "via": "iptv-org",
-            "kind": "unknown",
+            "kind": "rebroadcast",
             "label": "thaimomo.com"
           },
           "url": "https://live-us1.thaimomo.com/live-as/chNation-3/playlist.m3u8"
@@ -5079,7 +5079,7 @@
           "origin": {
             "host": "live-us1.thaimomo.com",
             "via": "iptv-org",
-            "kind": "unknown",
+            "kind": "rebroadcast",
             "label": "thaimomo.com"
           }
         }
@@ -5105,7 +5105,7 @@
           "origin": {
             "host": "live-us1.thaimomo.com",
             "via": "iptv-org",
-            "kind": "unknown",
+            "kind": "rebroadcast",
             "label": "thaimomo.com"
           }
         }
