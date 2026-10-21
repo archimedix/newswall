@@ -57,6 +57,8 @@ tvri-world         # Indonesia, public state TV, international feed
 cna-international  # Singapore
 bilyonaryo-news-channel  # Philippines
 abante-tv          # Philippines, national news network
+qpvn               # Vietnam, state TV (VTV itself is geo/token-locked)
+eac-news-tv        # Cambodia, national news (TVK only exists as a rebroadcast)
 arirang-un         # South Korea
 ktv                # South Korea, state TV
 

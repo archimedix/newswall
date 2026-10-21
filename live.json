@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-21T19:59:35+00:00",
+  "generated": "2026-10-21T20:03:34+00:00",
   "entries": {
     "aljazeera-en": {
       "state": "ok",
@@ -516,13 +516,12 @@
           ]
         },
         {
-          "state": "unverified",
-          "reason": "segment: HTTP 403",
-          "failing_since": "2026-10-21T19:12:00+00:00"
+          "state": "ok",
+          "heights": []
         },
         {
           "state": "unverified",
-          "reason": "variant: HTTP 403",
+          "reason": "segment: HTTP 403",
           "failing_since": "2026-10-21T18:37:35+00:00"
         }
       ],
@@ -741,21 +740,16 @@
       "reason": null
     },
     "al-manar": {
-      "state": "ok",
+      "state": "unverified",
       "use": 0,
       "streams": [
         {
-          "state": "ok",
-          "heights": [
-            144,
-            240,
-            360,
-            576,
-            1080
-          ]
+          "state": "unverified",
+          "reason": "unreachable (SSLCertVerificationError)",
+          "failing_since": "2026-10-21T20:03:34+00:00"
         }
       ],
-      "reason": null
+      "reason": "unreachable (SSLCertVerificationError)"
     },
     "canal-26": {
       "state": "ok",
@@ -1582,18 +1576,16 @@
       "reason": null
     },
     "news-central": {
-      "state": "ok",
+      "state": "unverified",
       "use": 0,
       "streams": [
         {
-          "state": "ok",
-          "heights": [
-            480,
-            720
-          ]
+          "state": "unverified",
+          "reason": "HTTP 404",
+          "failing_since": "2026-10-21T20:03:34+00:00"
         }
       ],
-      "reason": null
+      "reason": "HTTP 404"
     },
     "cctv-1": {
       "state": "ok",
@@ -1612,19 +1604,16 @@
       "reason": null
     },
     "cctv-2": {
-      "state": "ok",
+      "state": "unverified",
       "use": 0,
       "streams": [
         {
-          "state": "ok",
-          "heights": [
-            240,
-            360,
-            600
-          ]
+          "state": "unverified",
+          "reason": "segment: HTTP 404",
+          "failing_since": "2026-10-21T20:03:34+00:00"
         }
       ],
-      "reason": null
+      "reason": "segment: HTTP 404"
     },
     "nation-tv": {
       "state": "ok",
@@ -1864,16 +1853,20 @@
       "reason": "variant: no CORS for this site: would need a proxy"
     },
     "a-spor": {
-      "state": "unverified",
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "state": "unverified",
-          "reason": "variant: unreachable (TimeoutError)",
-          "failing_since": "2026-10-21T19:59:35+00:00"
+          "state": "ok",
+          "heights": [
+            360,
+            480,
+            720,
+            1080
+          ]
         }
       ],
-      "reason": "variant: unreachable (TimeoutError)"
+      "reason": null
     },
     "esport3": {
       "state": "unverified",
@@ -2988,6 +2981,33 @@
       "reason": null
     },
     "top-news": {
+      "state": "ok",
+      "use": 0,
+      "streams": [
+        {
+          "state": "ok",
+          "heights": []
+        }
+      ],
+      "reason": null
+    },
+    "qpvn": {
+      "state": "ok",
+      "use": 0,
+      "streams": [
+        {
+          "state": "ok",
+          "heights": [
+            360,
+            480,
+            720,
+            1080
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "eac-news-tv": {
       "state": "ok",
       "use": 0,
       "streams": [

@@ -5136,6 +5136,58 @@
           }
         }
       ]
+    },
+    {
+      "id": "qpvn",
+      "name": "QPVN",
+      "lang": "vi",
+      "country": "VN",
+      "tz": "Asia/Ho_Chi_Minh",
+      "tags": [
+        "asia"
+      ],
+      "categories": [
+        "news"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://qpvn.vn/live/qpvn/master.m3u8",
+          "origin": {
+            "host": "qpvn.vn",
+            "via": "iptv-org",
+            "kind": "broadcaster",
+            "label": "qpvn.vn"
+          }
+        }
+      ]
+    },
+    {
+      "id": "eac-news-tv",
+      "name": "EAC News TV",
+      "lang": "en",
+      "country": "KH",
+      "tz": "Asia/Phnom_Penh",
+      "tags": [
+        "asia"
+      ],
+      "categories": [
+        "news"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://live.eac-news.com/LiveApp/streams/eacnews.m3u8",
+          "origin": {
+            "host": "live.eac-news.com",
+            "via": "iptv-org",
+            "kind": "broadcaster",
+            "label": "eac-news.com"
+          }
+        }
+      ]
     }
   ]
 }
