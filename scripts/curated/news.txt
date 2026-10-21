@@ -53,6 +53,8 @@ tnn16              # Thailand, national news
 top-news           # Thailand, national news, own domain
 metro-tv           # Indonesia
 inews              # Indonesia
+# tvri-nasional: in sources.json by hand, not through the harvest: TVRI's channel
+# carries 33 regional feeds and the first that works is Aceh, not the national one.
 tvri-world         # Indonesia, public state TV, international feed
 cna-international  # Singapore
 bilyonaryo-news-channel  # Philippines
