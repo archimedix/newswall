@@ -4,17 +4,17 @@
 
 import {
   MODES, byId, catalog, countryName, escapeHtml, firstStream, flag, inMode,
-  langName, liveState, loadCatalog, ORIGIN_LABEL, originText,
+  langName, liveState, loadCatalog, ORIGIN_LABEL, originText, wallFor,
 } from '../core/data.js';
 import { createHlsPlayer } from '../core/hls-player.js';
 import {
-  readModeFromStorage, readModeFromUrl, readWallFromStorage, readWallFromUrl, saveMode, saveWall,
+  readModeFromStorage, readModeFromUrl, readWallFromStorage, readWallFromUrl, saveMode, saveWall, wallKey,
 } from '../core/url.js';
 import {
   buildPanel, initPanel, listSources, openPalette, pal, palMove, palPick, palRender,
   resetFilters, togglePanel,
 } from './panel.js';
-import { $, DEFAULT_TILES, grid, LOW_QUALITY_CAP, MAX_TILES, state, tileEl, toast } from './state.js';
+import { $, grid, LOW_QUALITY_CAP, MAX_TILES, state, tileEl, toast } from './state.js';
 
 /* ---------------------------------------------------------------- boot */
 
@@ -23,7 +23,7 @@ async function boot() {
   const mode = readModeFromUrl() || readModeFromStorage();
   state.mode = MODES[mode] ? mode : 'news';
   state.sources = catalog.all.filter((s) => inMode(s, state.mode));
-  state.active = wallFor(readWallFromUrl() || readWallFromStorage(state.mode));
+  state.active = wallFor(state.mode, readWallFromUrl() || readWallFromStorage(state.mode));
 
   initPanel(toggleSource);
   renderModes();
@@ -51,21 +51,6 @@ function renderCount() {
 
 /* ---------------------------------------------------------------- modes */
 
-/* The ids that make up a wall of the current mode: what was asked for, if it
-   belongs here, otherwise the default. */
-function wallFor(ids) {
-  const ok = (ids || []).filter((id) => { const s = byId(id); return s && inMode(s, state.mode); });
-  if (ok.length) return ok.slice(0, MAX_TILES);
-  const wall = (MODES[state.mode].wall || []).filter((id) => byId(id));
-  if (wall.length) return wall;
-  // One per country first, so that the default already compares something;
-  // only channels the check saw working.
-  const live = state.sources.filter((s) => liveState(s.id) === 'ok');
-  const seen = new Set();
-  const pick = live.filter((s) => !seen.has(s.country) && seen.add(s.country));
-  return [...pick, ...live.filter((s) => !pick.includes(s))].slice(0, DEFAULT_TILES).map((s) => s.id);
-}
-
 function renderModes() {
   $('#modes').innerHTML = Object.entries(MODES).map(([m, { label }]) => {
     const n = catalog.all.filter((s) => inMode(s, m)).length;
@@ -80,7 +65,7 @@ function setMode(m) {
   if (!MODES[m] || m === state.mode) return;
   state.mode = m;
   state.sources = catalog.all.filter((s) => inMode(s, m));
-  state.active = wallFor(readWallFromStorage(m));
+  state.active = wallFor(m, readWallFromStorage(m));
   saveMode(m);
 
   resetFilters();
@@ -348,6 +333,14 @@ function removeSource(id) {
 }
 
 const toggleSource = (id) => (state.active.includes(id) ? removeSource(id) : addSource(id));
+
+/* The globe, in another tab, starred or unstarred a channel of this wall:
+   its favourites are these tiles. */
+addEventListener('storage', (e) => {
+  if (e.key !== wallKey(state.mode) || !state.sources.length) return;
+  state.active = wallFor(state.mode, readWallFromStorage(state.mode));
+  commit();
+});
 
 /* The one place where the wall changes: redraw, save, resync everything. */
 function commit() {

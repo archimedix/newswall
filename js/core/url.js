@@ -14,11 +14,18 @@ export function readModeFromStorage() {
   try { return localStorage.getItem('newswall:mode'); } catch { return null; }
 }
 
-/* Each mode remembers its own wall. The news one keeps the historic key. */
-const storageKey = (mode) => (mode === 'news' ? 'newswall' : `newswall:${mode}`);
+/* Each mode remembers its own wall. The news one keeps the historic key.
+   The wall's channels are also the globe's favourites (★): both views read
+   and write this key, and hear each other through the `storage` event. */
+export const wallKey = (mode) => (mode === 'news' ? 'newswall' : `newswall:${mode}`);
 
 export function readWallFromStorage(mode) {
-  try { return JSON.parse(localStorage.getItem(storageKey(mode)) || 'null'); } catch { return null; }
+  try { return JSON.parse(localStorage.getItem(wallKey(mode)) || 'null'); } catch { return null; }
+}
+
+/* The wall into the browser only: the globe keeps its own URL. */
+export function storeWall(mode, ids) {
+  try { localStorage.setItem(wallKey(mode), JSON.stringify(ids)); } catch { /* private mode */ }
 }
 
 /* The hash of a wall: what saveWall writes, and what another page links to. */
@@ -30,25 +37,10 @@ export function wallHash(mode, ids) {
 
 export function saveWall(mode, ids) {
   history.replaceState(null, '', wallHash(mode, ids));
-  try {
-    localStorage.setItem(storageKey(mode), JSON.stringify(ids));
-    localStorage.setItem('newswall:mode', mode);
-  } catch { /* private mode */ }
+  storeWall(mode, ids);
+  saveMode(mode);
 }
 
 export function saveMode(mode) {
   try { localStorage.setItem('newswall:mode', mode); } catch { /* private mode */ }
-}
-
-/* Favourites (★): channel ids, kept in the browser and shared by the wall and
-   the globe. The globe opens them as a wall. */
-export function readFavs() {
-  try {
-    const v = JSON.parse(localStorage.getItem('newswall:favs') || '[]');
-    return Array.isArray(v) ? v.filter((x) => typeof x === 'string') : [];
-  } catch { return []; }
-}
-
-export function saveFavs(ids) {
-  try { localStorage.setItem('newswall:favs', JSON.stringify(ids)); } catch { /* private mode */ }
 }

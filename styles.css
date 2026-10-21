@@ -392,13 +392,11 @@ body.focus .tile:not(.is-focus),body.focus .add-slot{display:none}
 }
 .row:hover{background:var(--hover)}
 .row.on{background:rgba(255,255,255,.09)}
-.row .tick{
-  width:17px;height:17px;flex:none;border-radius:6px;display:grid;place-items:center;
-  border:1.5px solid rgba(255,255,255,.22);font-size:10px;color:var(--ink);
-  transition:all .16s var(--ease);
-}
-.row:hover .tick{border-color:rgba(255,255,255,.45)}
-.row.on .tick{background:var(--ice);border-color:var(--ice)}
+/* On the wall: the star of the globe's favourites, the same list. */
+.row .tick{flex:none;width:17px;height:17px;display:grid;place-items:center;color:rgba(255,255,255,.28);transition:color .16s var(--ease)}
+.row:hover .tick{color:rgba(255,255,255,.6)}
+.row.on .tick{color:var(--star)}
+.row.on .tick .star{fill:currentColor}
 .row .rflag{font-size:16px;line-height:1;flex:none}
 .row .rtext{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
 .row .rname{font-size:13px;font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
@@ -418,21 +416,9 @@ body.focus .tile:not(.is-focus),body.focus .add-slot{display:none}
 }
 .empty{padding:30px 16px;text-align:center;color:var(--dim);font-size:12.5px}
 
-/* Favourites (★), shared with the globe: an outline that fills gold. */
+/* Favourites (★) = the channels on the wall: an outline that fills gold. */
 .star{fill:transparent;transition:fill .2s var(--ease)}
 @keyframes star-pop{0%{transform:scale(.6) rotate(-30deg)}60%{transform:scale(1.25) rotate(8deg)}100%{transform:none}}
-.row .rfav{
-  flex:none;width:26px;height:26px;margin:-4px -3px -4px 0;border-radius:8px;display:grid;place-items:center;
-  color:var(--dim);opacity:.5;transition:opacity .14s,color .14s,background .14s;
-}
-.row:hover .rfav{opacity:1}
-.row .rfav:hover{color:var(--ice);background:var(--hover)}
-.row .rfav.in{color:var(--star);opacity:1}
-.row .rfav.in .star{fill:currentColor}
-.favs-sep{
-  padding:10px 9px 4px;font:500 9.5px var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--dim);
-}
-
 .panel-foot{padding:11px 14px;border-top:1px solid var(--edge);display:flex;flex-direction:column;gap:7px}
 #share{
   background:rgba(255,255,255,.05);border:1px solid var(--edge);border-radius:10px;

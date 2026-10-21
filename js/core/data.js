@@ -12,6 +12,9 @@ export const MODES = {
   weather: { label: 'Weather' },
 };
 
+export const MAX_WALL = 12;     // tiles on a wall: also the most favourites a mode holds
+const DEFAULT_WALL = 6;
+
 export const catalog = {
   all: [],              // curated catalog, every mode
   live: {},             // result of the last refresh, by id
@@ -36,6 +39,21 @@ export const inMode = (s, mode) => (s.categories || ['news']).includes(mode);
    A source the check has not seen yet is unverified too. */
 export const liveState = (id) => catalog.live[id]?.state || 'unverified';
 export const isPlayable = (id) => liveState(id) !== 'dead';
+
+/* The ids that make up a wall of `mode`: what was asked for, if it belongs
+   there, otherwise the default. The globe's favourites are this same list. */
+export function wallFor(mode, ids) {
+  const ok = (ids || []).filter((id) => { const s = byId(id); return s && inMode(s, mode); });
+  if (ok.length) return ok.slice(0, MAX_WALL);
+  const wall = (MODES[mode].wall || []).filter((id) => byId(id));
+  if (wall.length) return wall;
+  // One per country first, so that the default already compares something;
+  // only channels the check saw working.
+  const live = catalog.all.filter((s) => inMode(s, mode) && liveState(s.id) === 'ok');
+  const seen = new Set();
+  const pick = live.filter((s) => !seen.has(s.country) && seen.add(s.country));
+  return [...pick, ...live.filter((s) => !pick.includes(s))].slice(0, DEFAULT_WALL).map((s) => s.id);
+}
 
 /* Which stream to try first: the first one the last check found working,
    else the first it could not verify. */

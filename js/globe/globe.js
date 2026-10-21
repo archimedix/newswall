@@ -1,11 +1,11 @@
 /* Newswall Globe — the exploration view. The Earth turns under the camera
    with the real day and night; over each country hang its channels' screens.
-   Turn it, come closer, pick one and listen; star your favourites (shared
-   with the wall) and open them as a wall, which reads them from its URL. */
+   Turn it, come closer, pick one and listen; star your favourites (they are
+   the wall's channels, the same list) and open them as the wall. */
 
 import * as THREE from 'three';
-import { MODES, byId, catalog, inMode, isPlayable, loadCatalog } from '../core/data.js';
-import { readFavs, readModeFromStorage, readModeFromUrl, saveFavs, wallHash } from '../core/url.js';
+import { MAX_WALL, MODES, byId, catalog, inMode, isPlayable, loadCatalog, wallFor } from '../core/data.js';
+import { readModeFromStorage, readModeFromUrl, readWallFromStorage, storeWall, wallHash, wallKey } from '../core/url.js';
 import { createControls } from './controls.js';
 import { createEarth, loadEarth } from './earth.js';
 import { createFrontRow } from './frontrow.js';
@@ -16,7 +16,6 @@ import { createLivePool, hlsOrder, LIVE_CAP } from './livepool.js';
 import { createScreens, FAN, H, W } from './screens.js';
 import { subsolar } from './sun.js';
 
-const MAX_WALL = 12;   // the wall's MAX_TILES: how many favourites open as a wall
 const DIST = { min: 1.32, max: 5.5, home: 2.9, select: 1.8 };
 const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const coarse = matchMedia('(pointer: coarse)').matches;
@@ -46,7 +45,7 @@ const g = {
   selected: null,
   candidate: null,
   audioOn: null,      // id of the screen that talks: one at a time, as on the wall
-  favs: readFavs(),    // ids, saved in the browser and shared with the wall
+  favs: [],           // ids: the wall of this mode, the same list (core/url.js wallKey)
   hover: null,
   sun: [0, 0],
   logos: {},          // source id -> file in assets/logos/, from scripts/fetch-logos.py
@@ -81,7 +80,6 @@ async function boot() {
 
     const m = readModeFromUrl() || readModeFromStorage();
     setMode(MODES[m] ? m : 'news', true);
-    renderFavs();
     hud.tickUtc();
 
     // The ground goes to the GPU now, behind the loading screen, not on the
@@ -107,6 +105,7 @@ const onGlobe = (s, mode) => inMode(s, mode) && isPlayable(s.id) && hlsOrder(s).
 function setMode(m, first = false) {
   if (!MODES[m] || (m === g.mode && !first)) return;
   g.mode = m;
+  g.favs = wallFor(m, readWallFromStorage(m));
   g.pool.stopAll();
   if (g.screens) {
     g.earth.group.remove(g.screens.group);
@@ -119,6 +118,7 @@ function setMode(m, first = false) {
   history.replaceState(null, '', m === 'news' ? location.pathname : `#c=${m}`);
   $('#to-wall').href = `index.html${m === 'news' ? '' : `#c=${m}`}`;
   hud.renderModes(m, (x) => catalog.all.filter((s) => onGlobe(s, x)).length);
+  renderFavs();
   if (!first) hud.toast(`${MODES[m].label} · ${g.screens.list.length} channels on the globe`);
 }
 
@@ -487,34 +487,34 @@ function onDead(s) {
 
 /* --------------------------------------------------------- favourites */
 
+/* The favourites are the wall of this mode: starring a channel here puts it
+   on the wall, a tile added on the wall is a star here. */
 function toggleFav(id) {
+  const name = byId(id).name;
   const i = g.favs.indexOf(id);
+  if (i < 0 && g.favs.length >= MAX_WALL) return hud.toast(`The wall is full: ${MAX_WALL} channels max`);
   if (i >= 0) g.favs.splice(i, 1);
   else g.favs.push(id);
-  saveFavs(g.favs);
-  hud.toast(i >= 0 ? `${byId(id).name}: no longer a favourite` : `★ ${byId(id).name} · ${g.favs.length} favourites`);
+  storeWall(g.mode, g.favs);
+  hud.toast(i >= 0 ? `${name}: off the ${MODES[g.mode].label} wall`
+    : `★ ${name} · on the ${MODES[g.mode].label} wall (${g.favs.length}/${MAX_WALL})`);
   renderFavs(i < 0);
 }
 
 function renderFavs(bump = false) {
-  hud.renderFavs(g.favs.map(byId).filter(Boolean), bump);
+  hud.renderFavs(g.favs.map(byId).filter(Boolean), MODES[g.mode].label, bump);
   renderCard();
   if (front.screen) front.render(front.screen);
 }
 
-/* The wall changed them in another tab: the same list here. */
+/* The wall changed in another tab: the same stars here. */
 addEventListener('storage', (e) => {
-  if (e.key !== 'newswall:favs') return;
-  g.favs = readFavs();
+  if (e.key !== wallKey(g.mode) || !catalog.all.length) return;
+  g.favs = wallFor(g.mode, readWallFromStorage(g.mode));
   renderFavs();
 });
 
-/* The favourites as a wall: those of this mode first, as many as it holds. */
-function openWall() {
-  const here = g.favs.filter((id) => byId(id) && inMode(byId(id), g.mode));
-  const ids = [...here, ...g.favs.filter((id) => byId(id) && !here.includes(id))].slice(0, MAX_WALL);
-  location.href = `index.html${wallHash(g.mode, ids)}`;
-}
+const openWall = () => { location.href = `index.html${wallHash(g.mode, g.favs)}`; };
 
 /* ---------------------------------------------------------- controls */
 
@@ -625,11 +625,6 @@ $('#favs-list').addEventListener('click', (e) => {
   const li = e.target.closest('li[data-id]');
   if (li) toggleFav(li.dataset.id);
 });
-$('#favs-clear').onclick = () => {
-  g.favs.length = 0;
-  saveFavs(g.favs);
-  renderFavs();
-};
 $('#favs-open').onclick = openWall;
 $('[data-act="keys"]').onclick = () => hud.toggle('#keys');
 $('#keys-close').onclick = () => hud.toggle('#keys', false);

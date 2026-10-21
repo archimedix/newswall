@@ -84,7 +84,7 @@ Native ES modules, loaded as they are (`<script type="module">`). Two layers:
 Wall behaviour:
 
 - **Modes**: `MODES` maps category id → label and optional hand-picked default `wall` (else
-  `wallFor()` picks the first live channels, one per country). `catalog.all` is the whole
+  `wallFor(mode, ids)` in `core/data.js` picks the first live channels, one per country). `catalog.all` is the whole
   catalog, `state.sources` the current mode's subset (panel and search use it); `byId` looks in
   `catalog.all`. URL `#c=<mode>&s=…` (no `c` = news), localStorage `newswall` (news) /
   `newswall:<mode>` per wall, `newswall:mode` for the last mode. `setMode()` swaps the wall
@@ -146,10 +146,12 @@ Wall behaviour:
   restart-after-removal trick as full screen) and every frame `placeCard()` centres the
   video on the screen's projected place, upright (`translate`). `liftOff()` flies it in
   from `rectOf()`. Full screen flies from `.cmedia` and gives the video back on close.
-- **Favourites** (★, `g.favs`): `readFavs`/`saveFavs` in `core/url.js`, localStorage
-  `newswall:favs`, shared with the wall (`panel.js` stars, favourites listed first) and
-  synced across tabs by the `storage` event. `openWall()` opens them as a wall. Gold
-  (`--star`) is theirs only, like red for on air.
+- **Favourites** (★, `g.favs`) *are* the wall of the current mode: `wallFor(mode,
+  readWallFromStorage(mode))` (both in core), written back with `storeWall` (localStorage
+  only, the globe keeps its URL), at most `MAX_WALL`. The wall's Sources panel shows its
+  tiles with the same star; each view follows the other's tab via the `storage` event on
+  `wallKey(mode)`. `openWall()` opens that wall. Gold (`--star`) is theirs only, like red
+  for on air.
 - `frontrow.js` (user-facing name: **Full screen**; closed by the `.front-close` X, Esc or the veil): FLIP animation (stage laid out at its final rect, a transform starts it from
   `rectOf(screen)` = the projected face corners). It borrows the screen's own `<video>`; a
   video removed from the document gets paused by the browser after the task, so `empty()`

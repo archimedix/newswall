@@ -123,10 +123,10 @@ regions push their screens apart, but the thread always goes back to the real pl
   viewfinder whose crosshair locks onto the screen in the middle, and a telemetry pane
   (view, altitude, where the sun is overhead, how many are live). The page opens with
   the camera flying in from far out.
-- **Favourites (★)** are kept in the browser and shared with the wall, whose Sources
-  panel has the same star and lists them first. *Open in the wall* (`⇧Enter`) opens them
-  as a wall (those of the current mode first, up to 12), through the same URL a shared
-  link uses.
+- **Favourites (★) are the wall's channels**: one list per mode, up to 12. Starring a
+  screen puts it on that mode's wall, a channel added on the wall is starred on the globe
+  (the Sources panel shows the same gold star), and an open tab of one view follows the
+  other. *Open the wall* (`⇧Enter`) goes there, through the same URL a shared link uses.
 - **Always hls.js.** A video becomes a WebGL texture only through MediaSource, so the
   globe always uses hls.js, never Safari's native HLS.
 - **On a slow device** the globe lowers its own resolution: when the frame rate stays under
@@ -143,7 +143,7 @@ regions push their screens apart, but the thread always goes back to the real pl
 | favourite | ★ | `B` | Y |
 | mode | top bar | `1`–`4` | LB / RB |
 | back | — | `Esc` | B |
-| open the favourites as a wall | *Open in the wall* | `⇧Enter` | Start |
+| open the wall (the favourites) | *Open the wall* | `⇧Enter` | Start |
 
 The plan for what comes next (a phone as a remote) is in
 [`docs/globe-plan.md`](docs/globe-plan.md).

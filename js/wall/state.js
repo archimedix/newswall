@@ -1,8 +1,9 @@
 /* What the wall modules share: the state of the wall and a few DOM helpers. */
 
-export const DEFAULT_TILES = 6;
+import { MAX_WALL } from '../core/data.js';
+
 export const LOW_QUALITY_CAP = 480;   // max height for tiles that are not enlarged
-export const MAX_TILES = 12;
+export const MAX_TILES = MAX_WALL;
 
 export const state = {
   mode: 'news',

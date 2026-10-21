@@ -96,8 +96,8 @@ Choices made along the way:
   towards the country) and the wire always goes back to the true point: Europe stays crowded
   until clusters arrive.
 - Hysteresis as in §6, so up to K+2 players at once (6 on desktop, 5 on touch).
-- The basket became **favourites (★)**, kept in localStorage and shared with the wall
-  (its Sources panel stars them too); they still open the wall via URL.
+- The basket became **favourites (★)**, and the favourites are the wall itself: one list
+  per mode, the same localStorage key, starred on the globe = a tile on the wall.
 - **No start screen**, neither on the globe nor on the wall: everything starts muted (muted
   autoplay needs no gesture) and the first click on a channel turns its audio on.
 - Added on request: **full screen** (first called "front row": the channel flies from the globe to full window and back to

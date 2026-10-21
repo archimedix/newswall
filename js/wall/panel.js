@@ -1,7 +1,7 @@
 /* The catalog panel and the quick search: the two ways to add or remove a channel. */
 
 import { byId, countryName, escapeHtml, firstStream, flag, isPlayable, langName, originText } from '../core/data.js';
-import { readFavs, saveFavs, saveWall } from '../core/url.js';
+import { saveWall } from '../core/url.js';
 import { $, MAX_TILES, state } from './state.js';
 
 /* Adding or removing a channel belongs to the wall: it hands its function here. */
@@ -11,18 +11,7 @@ export function initPanel(toggle) { toggleSource = toggle; }
 /* ---------------------------------------------------------------- panel */
 
 const filters = { tag: '', country: '', lang: '', q: '' };
-
-/* Favourites (★), shared with the globe through localStorage: they come
-   first in the list. Starring one does not put it on the wall. */
-let favs = readFavs();
-addEventListener('storage', (e) => {
-  if (e.key === 'newswall:favs') { favs = readFavs(); listSources(); }
-});
-function toggleFav(id) {
-  favs = favs.includes(id) ? favs.filter((x) => x !== id) : [...favs, id];
-  saveFavs(favs);
-  listSources();
-}
+const STAR = 'M8 1.7l1.93 3.98 4.37.6-3.18 3.05.78 4.35L8 11.6l-3.9 2.08.78-4.35L1.7 6.28l4.37-.6z';
 
 export function resetFilters() {
   Object.assign(filters, { tag: '', country: '', lang: '', q: '' });
@@ -86,32 +75,25 @@ export function listSources() {
     return hay.toLowerCase().includes(q);
   });
 
-  const starred = list.filter((s) => favs.includes(s.id));
-  const rest = list.filter((s) => !favs.includes(s.id));
+  // On the wall = a favourite (★) on the globe: the same list.
   const row = (s) => {
     const on = state.active.includes(s.id);
-    const fav = favs.includes(s.id);
     const dead = !isPlayable(s.id);
     const stream = s.streams[firstStream(s)] || s.streams[0];
     const alt = s.streams.length > 1 ? ` · ${s.streams.length} sources` : '';
     return `<div class="row ${on ? 'on' : ''} ${dead ? 'off-air' : ''}" data-id="${s.id}"
-                 title="${on ? 'Remove from the wall' : 'Add to the wall'}">
-      <span class="tick">${on ? '✓' : ''}</span>
+                 title="${on ? 'Remove from the wall (and the globe\'s favourites)' : 'Add to the wall (★ on the globe too)'}">
+      <span class="tick"><svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><path class="star" d="${STAR}" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg></span>
       <span class="rflag" title="${escapeHtml(countryName(s.country))}">${flag(s.country)}</span>
       <span class="rtext">
         <span class="rname">${escapeHtml(s.name)}</span>
         <span class="rorigin ${stream.origin?.kind || ''}">${escapeHtml(originText(stream))}${alt}</span>
       </span>
       <span class="rmeta">${dead ? 'off air' : `${escapeHtml(countryName(s.country))} · ${escapeHtml(langName(s.lang))}`}</span>
-      <button class="rfav ${fav ? 'in' : ''}" aria-label="Favourite" aria-pressed="${fav}"
-              title="${fav ? 'Favourite: remove' : 'Add to favourites (shared with the globe)'}"><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path class="star" d="M8 1.7l1.93 3.98 4.37.6-3.18 3.05.78 4.35L8 11.6l-3.9 2.08.78-4.35L1.7 6.28l4.37-.6z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg></button>
     </div>`;
   };
-  $('#panel-list').innerHTML = !list.length ? `<div class="empty">No channels match these filters.</div>`
-    : starred.length
-      ? `<div class="favs-sep">★ Favourites</div>${starred.map(row).join('')}`
-        + (rest.length ? `<div class="favs-sep">All channels</div>${rest.map(row).join('')}` : '')
-      : rest.map(row).join('');
+  $('#panel-list').innerHTML = list.length ? list.map(row).join('')
+    : `<div class="empty">No channels match these filters.</div>`;
 
   const shown = list.length, tot = state.sources.length;
   $('#panel-count').textContent = shown === tot
@@ -127,8 +109,6 @@ export function togglePanel(force) {
 }
 
 $('#panel-list').addEventListener('click', (e) => {
-  const star = e.target.closest('.rfav');
-  if (star) return toggleFav(star.closest('.row').dataset.id);
   const row = e.target.closest('.row');
   if (row) toggleSource(row.dataset.id);
 });

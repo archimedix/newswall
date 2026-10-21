@@ -91,7 +91,7 @@ export function renderCard(s, { target = false, onAir = false, isFav = false, pi
   const fav = card.querySelector('[data-op="fav"]');
   fav.classList.toggle('in', isFav);
   fav.setAttribute('aria-pressed', isFav);
-  fav.title = isFav ? 'Favourite: remove (B)' : 'Add to favourites (B)';
+  fav.title = isFav ? 'Favourite, on the wall: remove (B)' : 'Favourite: add to the wall (B)';
 }
 
 /* What the catalog and the last check know: language (also in itself), the
@@ -158,7 +158,7 @@ export function renderTelemetry(view, sun, live, total) {
   $('#t-live').textContent = `${live} / ${total}`;
 }
 
-export function renderFavs(sources, bump = false) {
+export function renderFavs(sources, wall, bump = false) {
   $('#favs-n').textContent = sources.length;
   const btn = $('#favs-btn');
   btn.classList.toggle('has', sources.length > 0);
@@ -167,11 +167,11 @@ export function renderFavs(sources, bump = false) {
     void btn.offsetWidth;
     btn.classList.add('bump');
   }
-  $('#favs-count').textContent = sources.length ? `${sources.length} · the first 12 open as a wall` : '';
+  $('#favs-count').textContent = `the ${wall} wall · ${sources.length}/12`;
   $('#favs-list').innerHTML = sources.length
-    ? sources.map((s) => `<li data-id="${s.id}" title="No longer a favourite"><span>${flag(s.country)}</span>
+    ? sources.map((s) => `<li data-id="${s.id}" title="Off the wall"><span>${flag(s.country)}</span>
         <span>${escapeHtml(s.name)}</span><span class="x">✕</span></li>`).join('')
-    : '<li class="empty">Select a screen and press ★ (or B) to keep it here. The wall shares them.</li>';
+    : '<li class="empty">Select a screen and press ★ (or B): it goes on the wall too.</li>';
 }
 
 export function renderOnAir(src) {

@@ -131,7 +131,7 @@ export function createFrontRow({ rectOf, onClose }) {
       const b = bar.querySelector('[data-fop="fav"]');
       b.classList.toggle('in', isFav);
       b.setAttribute('aria-pressed', isFav);
-      b.title = isFav ? 'Favourite: remove (B)' : 'Add to favourites (B)';
+      b.title = isFav ? 'Favourite, on the wall: remove (B)' : 'Favourite: add to the wall (B)';
     },
 
     /* Back to the globe: the stage shrinks onto the screen it came from. */
