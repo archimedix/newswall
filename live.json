@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-21T01:34:34+00:00",
+  "generated": "2026-10-21T07:36:43+00:00",
   "entries": {
     "aljazeera-en": {
       "state": "ok",
@@ -521,7 +521,7 @@
         },
         {
           "state": "unverified",
-          "reason": "segment: HTTP 403",
+          "reason": "variant: HTTP 403",
           "failing_since": "2026-10-20T23:27:50+00:00"
         }
       ],
@@ -813,12 +813,17 @@
     },
     "syria-tv": {
       "state": "ok",
-      "use": 1,
+      "use": 0,
       "streams": [
         {
-          "state": "unverified",
-          "reason": "unreachable (IncompleteRead)",
-          "failing_since": "2026-10-21T01:34:34+00:00"
+          "state": "ok",
+          "heights": [
+            240,
+            360,
+            480,
+            720,
+            1080
+          ]
         },
         {
           "state": "ok",
@@ -831,9 +836,14 @@
           ]
         },
         {
-          "state": "unverified",
-          "reason": "unreachable (IncompleteRead)",
-          "failing_since": "2026-10-21T01:34:34+00:00"
+          "state": "ok",
+          "heights": [
+            240,
+            360,
+            480,
+            720,
+            1080
+          ]
         }
       ],
       "reason": null
@@ -925,16 +935,19 @@
       "reason": null
     },
     "mrtv-news": {
-      "state": "unverified",
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "state": "unverified",
-          "reason": "unreachable (TimeoutError)",
-          "failing_since": "2026-10-21T01:34:34+00:00"
+          "state": "ok",
+          "heights": [
+            404,
+            720,
+            1080
+          ]
         }
       ],
-      "reason": "unreachable (TimeoutError)"
+      "reason": null
     },
     "rt-arabic": {
       "state": "ok",
@@ -1117,16 +1130,21 @@
       "reason": null
     },
     "al-araby-tv": {
-      "state": "unverified",
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "state": "unverified",
-          "reason": "unreachable (IncompleteRead)",
-          "failing_since": "2026-10-21T01:34:34+00:00"
+          "state": "ok",
+          "heights": [
+            240,
+            360,
+            480,
+            720,
+            1080
+          ]
         }
       ],
-      "reason": "unreachable (IncompleteRead)"
+      "reason": null
     },
     "asharq-news": {
       "state": "ok",
@@ -1473,7 +1491,7 @@
         {
           "state": "ok",
           "heights": [
-            1080
+            756
           ]
         },
         {
@@ -1563,27 +1581,28 @@
       "reason": null
     },
     "news-central": {
+      "state": "unverified",
+      "use": 0,
+      "streams": [
+        {
+          "state": "unverified",
+          "reason": "HTTP 404",
+          "failing_since": "2026-10-21T07:36:43+00:00"
+        }
+      ],
+      "reason": "HTTP 404"
+    },
+    "cctv-1": {
       "state": "ok",
       "use": 0,
       "streams": [
         {
           "state": "ok",
           "heights": [
-            480,
-            720
+            240,
+            360,
+            600
           ]
-        }
-      ],
-      "reason": null
-    },
-    "cctv-1": {
-      "state": "ok",
-      "use": 1,
-      "streams": [
-        {
-          "state": "unverified",
-          "reason": "segment: HTTP 404",
-          "failing_since": "2026-10-21T01:34:34+00:00"
         },
         {
           "state": "ok",
@@ -1985,16 +2004,19 @@
       "reason": null
     },
     "mrtv-sports": {
-      "state": "unverified",
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "state": "unverified",
-          "reason": "unreachable (TimeoutError)",
-          "failing_since": "2026-10-21T01:34:34+00:00"
+          "state": "ok",
+          "heights": [
+            404,
+            720,
+            1080
+          ]
         }
       ],
-      "reason": "unreachable (TimeoutError)"
+      "reason": null
     },
     "red-bull-tv": {
       "state": "ok",
@@ -2667,15 +2689,16 @@
       "reason": null
     },
     "the-weather-channel": {
-      "state": "ok",
+      "state": "unverified",
       "use": 0,
       "streams": [
         {
-          "state": "ok",
-          "heights": []
+          "state": "unverified",
+          "reason": "segment: no CORS for this site: would need a proxy",
+          "failing_since": "2026-10-21T07:36:43+00:00"
         }
       ],
-      "reason": null
+      "reason": "segment: no CORS for this site: would need a proxy"
     },
     "sky-news-weather-channel": {
       "state": "ok",
@@ -2733,16 +2756,19 @@
       "reason": null
     },
     "qbc": {
-      "state": "unverified",
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "state": "unverified",
-          "reason": "unreachable (IncompleteRead)",
-          "failing_since": "2026-10-21T01:34:34+00:00"
+          "state": "ok",
+          "heights": [
+            240,
+            480,
+            1080
+          ]
         }
       ],
-      "reason": "unreachable (IncompleteRead)"
+      "reason": null
     },
     "rbk-tv": {
       "state": "unverified",
