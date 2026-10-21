@@ -48,10 +48,10 @@ russia-24          # Russia, VGTRK's 24-hour news channel, on state platform Smo
 # oblast apiece; Mir is the Russia-Belarus union channel, no news division.
 # Belsat, the Polish-funded TV for Belarus, has zero streams in both catalogs
 # and its site refuses a plain fetch: Belarus on the wall is the state's.
-# tv-rain (TV Rain, Dozhd) is in sources.json by hand, not through the harvest:
-# iptv-org files it as NL, the country of its Amsterdam registry, and the
-# harvest would obey that. Its stream is on the channel's own domain
-# (wl.tvrain.tv) and the tile belongs on Russia.
+# tv-rain (TV Rain, Dozhd) is in sources.json by hand, on the channel's own
+# domain (wl.tvrain.tv). It sits in NL, where its newsroom works in exile, as
+# VOA sits in the US and Iran International in GB: a channel goes where it is
+# made, whoever it speaks to.
 24kz               # Kazakhstan
 
 # --- Asia ---

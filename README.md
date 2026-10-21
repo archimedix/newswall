@@ -303,12 +303,12 @@ changed. A new reason for the same failure (a timeout, then a 503) is not a chan
 
 ## The catalog
 
-**199 sources from 79 countries**, 171 of them fished out of
+**199 sources from 80 countries**, 171 of them fished out of
 [iptv-org](https://github.com/iptv-org/iptv) and hand-picked:
 
 | category | channels | countries |
 |---|---|---|
-| News | 136 | 68 |
+| News | 136 | 69 |
 | Sport | 35 | 25 |
 | Markets | 21 | 17 |
 | Weather | 9 | 5 |

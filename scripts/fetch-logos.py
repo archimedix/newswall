@@ -45,6 +45,8 @@ MANUAL = {
     "cbs-news": "CBSNews247.us",
     "current-time": "CurrentTimeTV.cz",
     "reuters": "ReutersTV.us",
+    # Placed where its newsroom is, not where iptv-org files it.
+    "voa-tv-china": "VoATVChina.cn",
 }
 
 
