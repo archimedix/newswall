@@ -2027,7 +2027,7 @@
       "name": "Iran International",
       "lang": "fa",
       "country": "GB",
-      "tz": "America/Toronto",
+      "tz": "Europe/London",
       "tags": [
         "mideast"
       ],
@@ -5463,8 +5463,8 @@
       "id": "voa-tv-china",
       "name": "VoA TV China",
       "lang": "zh",
-      "country": "CN",
-      "tz": "Asia/Shanghai",
+      "country": "US",
+      "tz": "America/New_York",
       "tags": [
         "asia"
       ],
