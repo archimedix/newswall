@@ -45,6 +45,7 @@ KNOWN = {
     "broadpeak-aas.com": "ERT",
     "mrtvott.com": "MRTV, Myanmar state TV",
     "voa-ingest.akamaized.net": "Voice of America",
+    "smotrim.ru": "VGTRK's own streaming platform",
 }
 
 # Operators that rebroadcast other channels but whose name we do know:
@@ -53,8 +54,11 @@ KNOWN = {
 # the same way thaimomo carries Thai ones: the feed is not the broadcaster's.
 # Intchoson is a Japanese hobbyist site that mirrors North Korea's domestic
 # output: Pyongyang publishes nothing abroad, so KCTV on the wall is Intchoson's copy.
+# Cinerama is an Uzbek film-and-TV portal (TuronTelecom, TAS-IX) that resells the
+# national channels: every Uzbek stream reachable from abroad goes through it.
 RELAY_KNOWN = {"antik.sk": "Antik Telecom", "mjunoon.tv": "Mjunoon",
-               "intchoson.com": "Intchoson, Japanese KCTV mirror"}
+               "intchoson.com": "Intchoson, Japanese KCTV mirror",
+               "cinerama.uz": "Cinerama, Uzbek OTT portal"}
 
 
 def host_of(url):

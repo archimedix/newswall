@@ -35,6 +35,23 @@ belarus-24         # Belarus
 channel-24         # Ukraine
 24-kanal           # Ukraine
 first-channel-news # Armenia
+# Channel One and NTV, Russia's two most-watched newsrooms, exist in the
+# catalogs only on aggregators (thestream.cyou, cinerama.uz, uplink.kz, the
+# ngenix pay-TV edge): no stream of their own to point at, so Russia on the
+# wall is VGTRK's own two, 360° and RBC.
+russia-24          # Russia, VGTRK's 24-hour news channel, on state platform Smotrim
+# RT's English flagship is not on rttv.com (only the language services are:
+# rt-arb, rt-esp, rt-fra, rt-de, rt-srb, rt-doc answer); what is reachable is a
+# reseller's OTT (wiseplayout) and an unattributable Rumble slot. The Indian
+# one is a separate channel of the same name in iptv-org (RT.in), not RT.ru's.
+# Govorit Moskva, Duma TV, Tolk and the regional 24s are one city or one
+# oblast apiece; Mir is the Russia-Belarus union channel, no news division.
+# Belsat, the Polish-funded TV for Belarus, has zero streams in both catalogs
+# and its site refuses a plain fetch: Belarus on the wall is the state's.
+# tv-rain (TV Rain, Dozhd) is in sources.json by hand, not through the harvest:
+# iptv-org files it as NL, the country of its Amsterdam registry, and the
+# harvest would obey that. Its stream is on the channel's own domain
+# (wl.tvrain.tv) and the tile belongs on Russia.
 24kz               # Kazakhstan
 
 # --- Asia ---
@@ -79,6 +96,22 @@ samaa-tv               # Pakistan, the most watched, via Mjunoon
 kantipur-tv            # Nepal, on its own domain (Kantipur group)
 capital-tv-hd          # Nepal, via tvnepal.com
 myanmar-international-tv  # Myanmar, the state's channel for abroad (MRTV's own OTT)
+
+# --- Central Asia: two screens each where the state streams itself ---
+o-zbekiston-24     # Uzbekistan, the state's 24-hour news channel
+uzreport-tv        # Uzbekistan, the state news agency's TV
+qazaqstan          # Kazakhstan, the public broadcaster's flagship channel
+# Uzbekistan's national channels all reach the open internet through one
+# server, stream8.cinerama.uz: an Uzbek operator repackaging them, which is why
+# their origin reads rebroadcast rather than the broadcaster's own host.
+# Kazakhstan answers on its own CDN (qazcdn.com) for Qazaqstan and QazSport;
+# 24KZ, the Kazakh channel for abroad, survives only on uplink.kz with a token.
+# Turkmenistan: alpha.tv.online.tm carries all seven state channels, Altyn Asyr
+# included, with real video and no Access-Control-Allow-Origin header — a static
+# page cannot read it. Tajikistan's own host (live.teleradiocom.tj) connects to
+# nobody outside Tajikistan, and Kyrgyzstan's single catalog feed for KTRK's
+# Ala-Too 24 (mediabay.tv) answers 403 to every request from here, with or
+# without a referer. Three countries with nothing verifiable, so three blanks.
 
 # --- East Asia: China and its own foreign service, Japan in Japanese, the two Korees ---
 # arirang-tv: the harvest takes the first working stream, and here that is a

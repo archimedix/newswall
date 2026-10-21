@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-21T20:58:58+00:00",
+  "generated": "2026-10-21T21:39:33+00:00",
   "entries": {
     "aljazeera-en": {
       "state": "ok",
@@ -1584,16 +1584,19 @@
       "reason": null
     },
     "cctv-2": {
-      "state": "unverified",
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "state": "unverified",
-          "reason": "segment: HTTP 404",
-          "failing_since": "2026-10-21T20:21:04+00:00"
+          "state": "ok",
+          "heights": [
+            240,
+            360,
+            600
+          ]
         }
       ],
-      "reason": "segment: HTTP 404"
+      "reason": null
     },
     "nation-tv": {
       "state": "ok",
@@ -1833,16 +1836,20 @@
       "reason": "variant: no CORS for this site: would need a proxy"
     },
     "a-spor": {
-      "state": "unverified",
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "state": "unverified",
-          "reason": "variant: unreachable (TimeoutError)",
-          "failing_since": "2026-10-21T20:58:58+00:00"
+          "state": "ok",
+          "heights": [
+            360,
+            480,
+            720,
+            1080
+          ]
         }
       ],
-      "reason": "variant: unreachable (TimeoutError)"
+      "reason": null
     },
     "esport3": {
       "state": "unverified",
@@ -2452,11 +2459,11 @@
       "streams": [
         {
           "state": "unverified",
-          "reason": "variant: HTTP 403",
+          "reason": "segment: HTTP 403",
           "failing_since": "2026-10-21T20:57:13+00:00"
         }
       ],
-      "reason": "variant: HTTP 403"
+      "reason": "segment: HTTP 403"
     },
     "cnbc-arabiya": {
       "state": "ok",
@@ -3200,6 +3207,75 @@
         {
           "state": "ok",
           "heights": [
+            1080
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "qazaqstan": {
+      "state": "ok",
+      "use": 0,
+      "streams": [
+        {
+          "state": "ok",
+          "heights": [
+            360,
+            540,
+            720,
+            1080
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "uzreport-tv": {
+      "state": "ok",
+      "use": 0,
+      "streams": [
+        {
+          "state": "ok",
+          "heights": [
+            1080
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "o-zbekiston-24": {
+      "state": "ok",
+      "use": 0,
+      "streams": [
+        {
+          "state": "ok",
+          "heights": [
+            1080
+          ]
+        }
+      ],
+      "reason": null
+    },
+    "russia-24": {
+      "state": "ok",
+      "use": 0,
+      "streams": [
+        {
+          "state": "ok",
+          "heights": []
+        }
+      ],
+      "reason": null
+    },
+    "tv-rain": {
+      "state": "ok",
+      "use": 0,
+      "streams": [
+        {
+          "state": "ok",
+          "heights": [
+            360,
+            480,
+            720,
             1080
           ]
         }

@@ -81,6 +81,7 @@ export const ANCHOR = {
   TN: [36.80, 10.18],   // Tunis
   TR: [41.01, 28.98],   // Istanbul
   UA: [50.45, 30.52],
+  UZ: [41.31, 69.30],   // Tashkent
   US: [40.71, -74.01],  // New York
   VE: [10.48, -66.90],
   VN: [21.03, 105.85],  // Hanoi

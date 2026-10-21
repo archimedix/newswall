@@ -5510,6 +5510,136 @@
           }
         }
       ]
+    },
+    {
+      "id": "qazaqstan",
+      "name": "Qazaqstan",
+      "lang": "kk",
+      "country": "KZ",
+      "tz": "Asia/Almaty",
+      "tags": [
+        "asia"
+      ],
+      "categories": [
+        "news"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://qazaqstantv-stream.qazcdn.com/qazaqstantv/qazaqstantv/playlist.m3u8",
+          "origin": {
+            "host": "qazaqstantv-stream.qazcdn.com",
+            "via": "iptv-org",
+            "kind": "broadcaster",
+            "label": "qazcdn.com"
+          }
+        }
+      ]
+    },
+    {
+      "id": "uzreport-tv",
+      "name": "UzReport TV",
+      "lang": "uz",
+      "country": "UZ",
+      "tz": "Asia/Tashkent",
+      "tags": [
+        "asia"
+      ],
+      "categories": [
+        "news"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://stream8.cinerama.uz/1015/tracks-v1a1/playlist.m3u8",
+          "origin": {
+            "host": "stream8.cinerama.uz",
+            "via": "iptv-org",
+            "kind": "rebroadcast",
+            "label": "Cinerama, Uzbek OTT portal"
+          }
+        }
+      ]
+    },
+    {
+      "id": "o-zbekiston-24",
+      "name": "O'zbekiston 24",
+      "lang": "uz",
+      "country": "UZ",
+      "tz": "Asia/Tashkent",
+      "tags": [
+        "asia"
+      ],
+      "categories": [
+        "news"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://stream8.cinerama.uz/1011/tracks-v1a1/playlist.m3u8",
+          "origin": {
+            "host": "stream8.cinerama.uz",
+            "via": "iptv-org",
+            "kind": "rebroadcast",
+            "label": "Cinerama, Uzbek OTT portal"
+          }
+        }
+      ]
+    },
+    {
+      "id": "russia-24",
+      "name": "Russia-24",
+      "lang": "ru",
+      "country": "RU",
+      "tz": "Europe/Moscow",
+      "tags": [
+        "europe"
+      ],
+      "categories": [
+        "news"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://stream.smotrim.ru/hls2/russia24nl_smotrim/playlist_5.m3u8",
+          "origin": {
+            "host": "stream.smotrim.ru",
+            "via": "iptv-org",
+            "kind": "broadcaster",
+            "label": "VGTRK's own streaming platform"
+          }
+        }
+      ]
+    },
+    {
+      "id": "tv-rain",
+      "name": "TV Rain",
+      "lang": "ru",
+      "country": "RU",
+      "tz": "Europe/Amsterdam",
+      "tags": [
+        "europe"
+      ],
+      "categories": [
+        "news"
+      ],
+      "via": "iptv-org",
+      "streams": [
+        {
+          "kind": "hls",
+          "url": "https://wl.tvrain.tv/transcode/ngrp:ses_all/playlist.m3u8",
+          "origin": {
+            "host": "wl.tvrain.tv",
+            "via": "iptv-org",
+            "kind": "broadcaster",
+            "label": "tvrain.tv"
+          }
+        }
+      ]
     }
   ]
 }
