@@ -1,22 +1,27 @@
 /* The catalog panel and the quick search: the two ways to add or remove a channel. */
 
-import { byId, countryName, escapeHtml, firstStream, flag, isPlayable, langName, originText } from '../core/data.js';
+import {
+  byId, catalog, countryName, escapeHtml, firstStream, flag, inCategory, isPlayable, langName, originText,
+} from '../core/data.js';
+import { mountFilter } from '../core/filter.js';
 import { saveWall } from '../core/url.js';
 import { $, MAX_TILES, state } from './state.js';
 
-/* Adding or removing a channel belongs to the wall: it hands its function here. */
+/* Adding or removing a channel, and changing the category filter, belong to
+   the wall: it hands its functions here. */
 let toggleSource = () => {};
-export function initPanel(toggle) { toggleSource = toggle; }
+let renderCats = () => {};
+export function initPanel(toggle, setFilter) {
+  toggleSource = toggle;
+  renderCats = mountFilter($('#panel-cats'), setFilter);
+}
 
 /* ---------------------------------------------------------------- panel */
 
+/* The narrower filters inside the categories: they survive a change of
+   category as long as what they point at is still there. */
 const filters = { tag: '', country: '', lang: '', q: '' };
 const STAR = 'M8 1.7l1.93 3.98 4.37.6-3.18 3.05.78 4.35L8 11.6l-3.9 2.08.78-4.35L1.7 6.28l4.37-.6z';
-
-export function resetFilters() {
-  Object.assign(filters, { tag: '', country: '', lang: '', q: '' });
-  $('#panel-search').value = '';
-}
 
 function buildCountrySelect() {
   const counts = {};
@@ -39,10 +44,13 @@ function buildLangSelect() {
 }
 
 export function buildPanel() {
+  renderCats(state.filter, (c) => (c ? catalog.all.filter((s) => inCategory(s, c)).length : catalog.all.length));
+
   const tags = [...new Set(state.sources.flatMap((s) => s.tags || []))].sort();
+  if (!tags.includes(filters.tag)) filters.tag = '';
   $('#panel-filters').innerHTML =
-    `<button data-tag="" class="on">all</button>` +
-    tags.map((t) => `<button data-tag="${t}">${t}</button>`).join('');
+    `<button data-tag="" class="${filters.tag ? '' : 'on'}">everywhere</button>` +
+    tags.map((t) => `<button data-tag="${t}" class="${t === filters.tag ? 'on' : ''}">${t}</button>`).join('');
 
   $('#panel-filters').onclick = (e) => {
     const b = e.target.closest('button');
@@ -55,6 +63,12 @@ export function buildPanel() {
 
   buildCountrySelect();
   buildLangSelect();
+  // Keep the country and language picked, if this catalog still has them.
+  for (const [k, sel] of [['country', '#panel-country'], ['lang', '#panel-lang']]) {
+    const el = $(sel);
+    el.value = filters[k];
+    if (el.value !== filters[k]) filters[k] = el.value = '';
+  }
   $('#panel-country').onchange = (e) => { filters.country = e.target.value; listSources(); };
   $('#panel-lang').onchange = (e) => { filters.lang = e.target.value; listSources(); };
   $('#panel-search').oninput = (e) => { filters.q = e.target.value.trim().toLowerCase(); listSources(); };
@@ -115,7 +129,7 @@ $('#panel-list').addEventListener('click', (e) => {
 $('#panel-close').onclick = () => togglePanel(false);
 
 $('#share').onclick = async () => {
-  saveWall(state.mode, state.active);
+  saveWall(state.active, state.filter);
   try {
     await navigator.clipboard.writeText(location.href);
     $('#share-msg').textContent = 'Link copied: it contains your sources.';
@@ -158,12 +172,14 @@ export function palRender() {
   const t = $('#pal-q').value.trim().toLowerCase();
   let list;
   if (!t) {
-    // Empty query: what is already on the wall comes first, so removing is instant.
+    // Empty query: what is already on the wall comes first, so removing is
+    // instant; then the catalog the filter shows.
     const inWall = state.active.map(byId).filter(Boolean);
     const rest = state.sources.filter((s) => !state.active.includes(s.id));
     list = [...inWall, ...rest];
   } else {
-    list = state.sources
+    // A name typed is a channel wanted: the search looks past the filter.
+    list = catalog.all
       .map((s) => ({ s, n: palScore(s, t) })).filter((x) => x.n > 0)
       .sort((a, b) => b.n - a.n || a.s.name.localeCompare(b.s.name)).map((x) => x.s);
   }

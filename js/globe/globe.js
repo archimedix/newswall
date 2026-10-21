@@ -4,8 +4,11 @@
    the wall's channels, the same list) and open them as the wall. */
 
 import * as THREE from 'three';
-import { MAX_WALL, MODES, byId, catalog, inMode, isPlayable, loadCatalog, wallFor } from '../core/data.js';
-import { readModeFromStorage, readModeFromUrl, readWallFromStorage, storeWall, wallHash, wallKey } from '../core/url.js';
+import { CATEGORIES, MAX_WALL, byId, catalog, inCategory, isPlayable, loadCatalog, passes, wallFor } from '../core/data.js';
+import { filterLabel, mountFilter, toggleCategory } from '../core/filter.js';
+import {
+  FILTER_KEY, readFilter, readStoredFilter, readWallFromStorage, storeFilter, storeWall, viewHash, WALL_KEY,
+} from '../core/url.js';
 import { createControls } from './controls.js';
 import { createEarth, loadEarth } from './earth.js';
 import { createFrontRow } from './frontrow.js';
@@ -38,14 +41,14 @@ const view = { lat: 12, lon: -62, dist: DIST.max + 1.5 };
 let fly = null;
 
 const g = {
-  mode: 'news',
+  filter: null,       // categories on the globe, none = all (core/filter.js)
   earth: null,
   screens: null,
   pool: createLivePool({ k: modest ? 2 : coarse ? 3 : 4, onLive, onIdle, onDead }),
   selected: null,
   candidate: null,
   audioOn: null,      // id of the screen that talks: one at a time, as on the wall
-  favs: [],           // ids: the wall of this mode, the same list (core/url.js wallKey)
+  favs: [],           // ids: the wall, the same list (core/url.js WALL_KEY)
   hover: null,
   sun: [0, 0],
   logos: {},          // source id -> file in assets/logos/, from scripts/fetch-logos.py
@@ -78,8 +81,8 @@ async function boot() {
     updateSun();
     loading.step('sun', `overhead at ${latLon(...g.sun)}`);
 
-    const m = readModeFromUrl() || readModeFromStorage();
-    setMode(MODES[m] ? m : 'news', true);
+    g.favs = wallFor(readWallFromStorage());
+    setFilter(readFilter(), true);
     hud.tickUtc();
 
     // The ground goes to the GPU now, behind the loading screen, not on the
@@ -100,26 +103,34 @@ async function boot() {
 }
 
 /* What the globe can show: streams the last check did not find dead. */
-const onGlobe = (s, mode) => inMode(s, mode) && isPlayable(s.id) && hlsOrder(s).length > 0;
+const onGlobe = (s) => isPlayable(s.id) && hlsOrder(s).length > 0;
 
-function setMode(m, first = false) {
-  if (!MODES[m] || (m === g.mode && !first)) return;
-  g.mode = m;
-  g.favs = wallFor(m, readWallFromStorage(m));
+/* The globe opens on every channel; the filter, shared with the wall's
+   catalog, narrows it. A new filter builds the screens anew. */
+const renderCats = mountFilter($('#filter-cats'), (f) => setFilter(f));
+
+function setFilter(filter, first = false) {
+  if (!first && filter.join() === g.filter.join()) return;
+  g.filter = filter;
   g.pool.stopAll();
   if (g.screens) {
     g.earth.group.remove(g.screens.group);
     g.screens.dispose();
   }
   select(null);
-  g.screens = createScreens(catalog.all.filter((s) => onGlobe(s, m)), g.logos);
+  g.screens = createScreens(catalog.all.filter((s) => onGlobe(s) && passes(s, filter)), g.logos);
   g.earth.group.add(g.screens.group);
   g.candidate = null;
-  history.replaceState(null, '', m === 'news' ? location.pathname : `#c=${m}`);
-  $('#to-wall').href = `index.html${m === 'news' ? '' : `#c=${m}`}`;
-  hud.renderModes(m, (x) => catalog.all.filter((s) => onGlobe(s, x)).length);
+  history.replaceState(null, '', location.pathname + viewHash(filter));
+  storeFilter(filter);
+
+  const playable = catalog.all.filter(onGlobe);
+  renderCats(filter, (c) => (c ? playable.filter((s) => inCategory(s, c)).length : playable.length));
+  $('#filter-count').textContent = `${g.screens.list.length} channels`;
+  $('#filter-label').textContent = filter.length ? filterLabel(filter) : 'All channels';
+  $('#filter-btn').classList.toggle('has', filter.length > 0);
   renderFavs();
-  if (!first) hud.toast(`${MODES[m].label} · ${g.screens.list.length} channels on the globe`);
+  if (!first) hud.toast(`${filter.length ? filterLabel(filter) : 'Every channel'} · ${g.screens.list.length} on the globe`);
 }
 
 /* ---------------------------------------------------------------- loop */
@@ -420,6 +431,7 @@ function back() {
   if (front.open) return front.close();
   if (!$('#keys').hidden) return hud.toggle('#keys', false);
   if (!$('#favs').hidden) return hud.toggle('#favs', false);
+  if (!$('#filter').hidden) return hud.toggle('#filter', false);
   if (g.selected) {
     const s = g.selected;
     select(null);
@@ -487,7 +499,7 @@ function onDead(s) {
 
 /* --------------------------------------------------------- favourites */
 
-/* The favourites are the wall of this mode: starring a channel here puts it
+/* The favourites are the wall: starring a channel here puts it
    on the wall, a tile added on the wall is a star here. */
 function toggleFav(id) {
   const name = byId(id).name;
@@ -495,26 +507,30 @@ function toggleFav(id) {
   if (i < 0 && g.favs.length >= MAX_WALL) return hud.toast(`The wall is full: ${MAX_WALL} channels max`);
   if (i >= 0) g.favs.splice(i, 1);
   else g.favs.push(id);
-  storeWall(g.mode, g.favs);
-  hud.toast(i >= 0 ? `${name}: off the ${MODES[g.mode].label} wall`
-    : `★ ${name} · on the ${MODES[g.mode].label} wall (${g.favs.length}/${MAX_WALL})`);
+  storeWall(g.favs);
+  hud.toast(i >= 0 ? `${name}: off the wall`
+    : `★ ${name} · on the wall (${g.favs.length}/${MAX_WALL})`);
   renderFavs(i < 0);
 }
 
 function renderFavs(bump = false) {
-  hud.renderFavs(g.favs.map(byId).filter(Boolean), MODES[g.mode].label, bump);
+  hud.renderFavs(g.favs.map(byId).filter(Boolean), bump);
   renderCard();
   if (front.screen) front.render(front.screen);
 }
 
-/* The wall changed in another tab: the same stars here. */
+/* The wall changed in another tab: the same stars here. Its catalog changed
+   category: the same channels here. */
 addEventListener('storage', (e) => {
-  if (e.key !== wallKey(g.mode) || !catalog.all.length) return;
-  g.favs = wallFor(g.mode, readWallFromStorage(g.mode));
-  renderFavs();
+  if (!g.screens) return;
+  if (e.key === WALL_KEY) {
+    g.favs = wallFor(readWallFromStorage());
+    renderFavs();
+  }
+  if (e.key === FILTER_KEY) setFilter(readStoredFilter());
 });
 
-const openWall = () => { location.href = `index.html${wallHash(g.mode, g.favs)}`; };
+const openWall = () => { location.href = `index.html${viewHash(g.filter, g.favs)}`; };
 
 /* ---------------------------------------------------------- controls */
 
@@ -569,11 +585,18 @@ const controls = createControls(canvas, {
   },
   audio() { const s = g.selected || g.candidate; if (s && !pileOf(s)) setAudio(s.id); },
   fav() { const s = g.selected || g.candidate; if (s && !pileOf(s)) toggleFav(s.id); },
-  mode(n, relative = false) {
+  /* 0 = every channel, 1–4 toggle a category; relative (the gamepad's
+     shoulders) steps through all, then one category at a time. */
+  filter(n, relative = false) {
     if (front.open) return;
-    const keys = Object.keys(MODES);
-    const i = relative ? (keys.indexOf(g.mode) + n + keys.length) % keys.length : n;
-    if (keys[i]) setMode(keys[i]);
+    const keys = Object.keys(CATEGORIES);
+    if (!relative) {
+      if (n === 0 || keys[n - 1]) setFilter(toggleCategory(g.filter, n ? keys[n - 1] : ''));
+      return;
+    }
+    const steps = [[], ...keys.map((k) => [k])];
+    const at = steps.findIndex((f) => f.join() === g.filter.join());
+    setFilter(steps[(at + n + steps.length) % steps.length]);
   },
   back,
   openWall,
@@ -596,10 +619,6 @@ addEventListener('keydown', (e) => {
 
 /* ----------------------------------------------------------------- HUD */
 
-$('#modes').addEventListener('click', (e) => {
-  const b = e.target.closest('[data-mode]');
-  if (b) setMode(b.dataset.mode);
-});
 $('#card').addEventListener('click', (e) => {
   const op = e.target.closest('[data-op]')?.dataset.op;
   const s = g.selected;
@@ -620,7 +639,9 @@ $('#front').addEventListener('click', (e) => {
   if (op === 'audio') setAudio(s.id);
   if (op === 'fav') toggleFav(s.id);
 });
-$('#favs-btn').onclick = () => hud.toggle('#favs');
+// The two panes share a corner: opening one closes the other.
+$('#favs-btn').onclick = () => { hud.toggle('#filter', false); hud.toggle('#favs'); };
+$('#filter-btn').onclick = () => { hud.toggle('#favs', false); hud.toggle('#filter'); };
 $('#favs-list').addEventListener('click', (e) => {
   const li = e.target.closest('li[data-id]');
   if (li) toggleFav(li.dataset.id);

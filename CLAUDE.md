@@ -6,8 +6,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Newswall: a static page showing a wall of live HLS channels, one with audio
 at a time, to compare how different countries tell the same event. `globe.html` is a second
-view of the same catalog: a three.js globe with the channels' screens over their countries. News is the main wall; the
-others (Sport, Markets, Weather) are "modes" keyed by iptv-org category ids. No backend, no build step,
+view of the same catalog: a three.js globe with the channels' screens over their countries. One wall; News, Sport,
+Markets, Weather are iptv-org category ids used as a shared filter (none = every channel). No backend, no build step,
 no package manager, no tests. Vanilla JS as native ES modules in `js/` (no bundler), plus
 `index.html` and `styles.css`; runtime dependencies are vendored in `assets/vendor/` (hls.js;
 three.js 0.170.0, loaded only by the globe through an import map). Fonts are vendored in
@@ -39,7 +39,7 @@ The exception is `build-earth.py`, a one-off asset build run by hand.
 - **`sources.json`** — curated catalog, edited by hand or by the scripts. Each source has
   `id, name, lang, country, tz, tags, categories, streams[]`. `lang` is ISO 639-1, or the
   ISO 639-3 code when there is no two-letter one; the UI names both via `Intl.DisplayNames`. `categories` holds iptv-org
-  category ids = the walls the source appears in (`news`, `sports`, `business`, `weather`). `streams` is an ordered preference list of
+  category ids, what the category filter matches (`news`, `sports`, `business`, `weather`). `streams` is an ordered preference list of
   `{kind: "hls", url, page?}`, each with an `origin`
   (`host, kind, label, via`), filled in by `annotate-origin.py`. `via` (`curated` / `iptv-org` / `free-tv`)
   comes from the source's top-level `via`, overridden by a stream-level `via` (fallbacks added by
@@ -60,7 +60,7 @@ The exception is `build-earth.py`, a one-off asset build run by hand.
   when the domain makes it obvious, or when the stream has a `page` (the broadcaster's own page
   that publishes the URL: the label is that page's domain); otherwise `cdn` / `unknown`. Relays/personal hosts
   (`github.io`, `workers.dev`, …) are `rebroadcast` and shown in orange in the UI.
-- **`scripts/curated/<category>.txt`** — the hand-picked iptv-org ids per wall (one per line,
+- **`scripts/curated/<category>.txt`** — the hand-picked iptv-org ids per category (one per line,
   reason in a comment); `harvest-iptv.py --write` only adds candidates listed there, and an id
   already in `sources.json` just gets that category appended. Selection criterion: legitimate
   origin (broadcaster, club/league, official FAST feed), no rebroadcasts or pay channels via proxies. Selection criterion: national/international broadcasters that represent a national
@@ -72,8 +72,11 @@ Native ES modules, loaded as they are (`<script type="module">`). Two layers:
 
 - **`js/core/`** — shared by every view (the wall today, the globe planned in
   `docs/globe-plan.md`). `data.js`: `loadCatalog()` fills `catalog` (`all`, `live`,
-  `generated`); `MODES`, `byId`, `inMode(s, mode)`, `liveState`, `isPlayable` (not dead), `firstStream`, `flag`,
-  `countryName`, `langName`, `originText`, `escapeHtml`. `url.js`: URL hash and localStorage.
+  `generated`); `CATEGORIES`, `byId`, `inCategory(s, c)`, `passes(s, filter)`, `wallFor(ids)`, `liveState`,
+  `isPlayable` (not dead), `firstStream`, `flag`, `countryName`, `langName`, `originText`, `escapeHtml`.
+  `url.js`: URL hash and localStorage (`WALL_KEY` = `newswall`, `FILTER_KEY` = `newswall:filter`).
+  `filter.js`: `mountFilter(el, onChange)` draws the category keys (both views), `toggleCategory`,
+  `filterLabel`.
   `hls-player.js`: `createHlsPlayer(url, {muted, cap, onReady, onFail})` → `{video, hls, play,
   setCap(height|null), destroy}` — one stream, retries + 15 s watchdog, then `onFail`; after
   `destroy()` no callback fires. hls.js stays a classic global script.
@@ -83,14 +86,15 @@ Native ES modules, loaded as they are (`<script type="module">`). Two layers:
 
 Wall behaviour:
 
-- **Modes**: `MODES` maps category id → label and optional hand-picked default `wall` (else
-  `wallFor(mode, ids)` in `core/data.js` picks the first live channels, one per country). `catalog.all` is the whole
-  catalog, `state.sources` the current mode's subset (panel and search use it); `byId` looks in
-  `catalog.all`. URL `#c=<mode>&s=…` (no `c` = news), localStorage `newswall` (news) /
-  `newswall:<mode>` per wall, `newswall:mode` for the last mode. `setMode()` swaps the wall
-  through `commit()`, so shared tiles keep playing.
+- **Category filter**: `state.filter` = the lit categories in `CATEGORIES` order, `[]` = all
+  (`cleanFilter` turns all four into `[]`). It picks what the catalog shows, never what is on
+  the wall: one wall, `wallFor(ids)` falls back to `DEFAULT_WALL`. `state.sources` = the
+  filtered catalog (panel list, empty quick search); a typed quick search looks in
+  `catalog.all`. The keys live in the Sources panel (`#panel-cats`), the bar only shows a
+  badge on the Sources button. URL `#c=news,sports&s=…` (old `#c=sports` links = a filter of
+  one), localStorage `newswall:filter`; both views follow each other via the `storage` event.
 - `state` (`active` ids in order, `players` Map id → `createHlsPlayer()` handle, `audioOn`,
-  `focused`). Wall comes from URL hash `#s=a,b,c`, then localStorage, then the mode default.
+  `focused`, `filter`). Wall comes from URL hash `#s=a,b,c`, then localStorage, then the default.
   `saveWall()`/`commit()` write both back — the URL *is* the shareable configuration.
   Max `MAX_TILES` = 12.
 - **Reconcile, don't rebuild**: `syncGrid()` only adds/removes changed tiles, and visual order is
@@ -113,7 +117,8 @@ Wall behaviour:
 - Earth-fixed frame: the globe never rotates, the camera orbits it (`view = {lat, lon, dist}`,
   `flyTo()` animates it). `geo.js` `toVec(lat, lon)` matches three's `SphereGeometry` UVs;
   the sun direction comes from `sun.js` `subsolar()` and drives the day/night shader.
-- `screens.js`: one group per channel of the mode,
+- `screens.js`: one group per channel passing the filter (all by default; a new filter
+  rebuilds them in `setFilter()`, a pane opened by `#filter-btn` holds the keys),
   placed by `relax()` (repulsion + spring to `geo.js` `ANCHOR[country]`); a country missing
   from `ANCHOR` gets no screen. Each frame `update()` sets `facing` (dot with the camera
   direction), orientation, scale, colours; idle cards and labels are canvas textures.
@@ -131,7 +136,7 @@ Wall behaviour:
   time; `hlsOrder(src)` = streams from `live.use`, skipping those `live.json` marks dead.
   Players use `createHlsPlayer(…, {native: false})` — Safari's native HLS can't be a texture.
 - Controls only emit commands (`rotate, zoom, pick, hover, front, next, select, audio, fav,
-  mode, back, openWall`): the phase 3 phone remote is meant to send the same ones.
+  filter, back, openWall`; `filter(0)` = all, `1`–`4` toggle, relative = gamepad shoulders): the phase 3 phone remote is meant to send the same ones.
 - **Ground**: `*-8k.jpg` (desktops) / `*-4k.jpg` (touch, or `maxTextureSize` < 8192).
   `day-*` = the Blue Marble's colours, used on the lit side; `earth-*` = R = land brightness (0 = water), G = elevation, B = city lights, 4:4:4
   chroma so channels don't bleed. The shader tilts the normal by the elevation's slope for
@@ -146,11 +151,10 @@ Wall behaviour:
   restart-after-removal trick as full screen) and every frame `placeCard()` centres the
   video on the screen's projected place, upright (`translate`). `liftOff()` flies it in
   from `rectOf()`. Full screen flies from `.cmedia` and gives the video back on close.
-- **Favourites** (★, `g.favs`) *are* the wall of the current mode: `wallFor(mode,
-  readWallFromStorage(mode))` (both in core), written back with `storeWall` (localStorage
-  only, the globe keeps its URL), at most `MAX_WALL`. The wall's Sources panel shows its
-  tiles with the same star; each view follows the other's tab via the `storage` event on
-  `wallKey(mode)`. `openWall()` opens that wall. Gold (`--star`) is theirs only, like red
+- **Favourites** (★, `g.favs`) *are* the wall: `wallFor(readWallFromStorage())` (both in
+  core), written back with `storeWall` (localStorage only, the globe keeps its URL), at most
+  `MAX_WALL`. The wall's Sources panel shows its tiles with the same star; each view follows
+  the other's tab via the `storage` event on `WALL_KEY`. `openWall()` opens that wall. Gold (`--star`) is theirs only, like red
   for on air.
 - `frontrow.js` (user-facing name: **Full screen**; closed by the `.front-close` X, Esc or the veil): FLIP animation (stage laid out at its final rect, a transform starts it from
   `rectOf(screen)` = the projected face corners). It borrows the screen's own `<video>`; a

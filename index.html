@@ -38,9 +38,6 @@
     </a>
   </nav>
 
-  <!-- One wall per mode: news, sport, markets, weather. -->
-  <nav id="modes" aria-label="Wall"></nav>
-
   <!-- The control room's red tally light: it always shows who is talking. -->
   <div id="onair" hidden><span class="dot"></span><span class="who"></span></div>
 
@@ -53,7 +50,7 @@
       <svg viewBox="0 0 16 16" width="13" height="13" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="7" cy="7" r="4.2"/><path d="M10.2 10.2 14 14" stroke-linecap="round"/></g></svg>
       <span>Search</span><kbd class="k">⌘K</kbd>
     </button>
-    <button data-act="sources" title="Browse the catalog (S)">Sources</button>
+    <button data-act="sources" title="Browse the catalog and pick the categories (S)">Sources<b id="sources-filter" class="fbadge" hidden></b></button>
     <button data-act="mute-all" title="Mute everything (M)">Mute</button>
     <button data-act="fullscreen" title="Full screen (F)">Full screen</button>
     <button data-act="keys" class="icon" title="Shortcuts (?)">?</button>
@@ -68,6 +65,9 @@
     <span class="meta" id="panel-count"></span>
     <button id="panel-close" class="icon" title="Close (Esc)">✕</button>
   </div>
+
+  <!-- What the catalog shows: shared with the globe. -->
+  <div id="panel-cats"></div>
 
   <div class="panel-find">
     <input id="panel-search" type="search" placeholder="Search channel, country or language…"

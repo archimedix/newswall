@@ -4,8 +4,9 @@ Several live news channels on the same screen. Only one talks, you keep an eye o
 others. The point is to see **how the same event is told by different countries**, at the
 same moment.
 
-News is the main wall, not the only one: the switch in the top bar turns it into a
-**Sport**, **Markets** or **Weather** wall, with the same rule — many countries, one screen.
+News comes first, not alone: the catalog also holds **Sport**, **Markets** and **Weather**
+channels, with the same rule — many countries, one screen. Every channel is there to pick;
+the category keys narrow it down to one or more of them.
 
 Beside the wall there is **the globe** (`globe.html`): the same channels as screens hanging
 over their countries, on an Earth with the real day and night. It is for exploring; the
@@ -36,8 +37,8 @@ after an edit, even on reload.
 | `1`–`9` | quick audio on the n-th tile |
 | `S` | catalog · `M` mute everything · `F` full screen |
 | `Esc` | back to the grid · `?` shortcuts |
-| News · Sport · Markets · Weather | switches wall (top bar) |
-| `G` · Globe | opens the globe on the same wall |
+| News · Sport · Markets · Weather | category keys, in the catalog: none lit = every channel |
+| `G` · Globe | opens the globe, with the same categories |
 
 ### Building the wall
 
@@ -46,12 +47,14 @@ Three ways, depending on what you already know:
 - **Quick search** (`⌘K`) — type and press enter. It searches the name, the country (also
   spelled out: *germany* → DW, DW Español, RT DE), the language (code or name: *pashto* →
   TOLOnews), the tags and the initials
-  (*aje* → Al Jazeera English). With an empty query it puts the channels already on the
-  wall at the top, so removing one is a single enter.
+  (*aje* → Al Jazeera English), across the whole catalog, whatever the category filter.
+  With an empty query it puts the channels already on the wall at the top, so removing
+  one is a single enter.
 - **On the tile** — hovering shows the controls: audio, enlarge, **switch source** (when
   the channel has more than one) and **✕ to remove it**. The dashed `+` slot takes the
   grid's leftover cell and opens the search.
-- **Catalog** (`S`) — for browsing. Filter by **country** and by **language** (menus with
+- **Catalog** (`S`) — for browsing. On top, the **category** keys (see below); then filter
+  by **country** and by **language** (menus with
   the names and the number of channels for each), by **area**, and with free-text search.
   The filters combine. Every channel carries its flag and its language, on the tile and in
   the list.
@@ -61,16 +64,21 @@ what is already there, and visual order is set by the CSS grid's `order`, not th
 (moving a `<video>` node would restart it).
 
 The wall's layout ends up in the URL: **the link is the configuration**, shareable as is
-(`#c=sports&s=…`; no `c` means news, so older links still work). Each wall remembers its
-own channels.
+(`#c=news,sports&s=…`). It is also kept in `localStorage` for convenience.
 
-### Walls
+### Categories
 
-A wall is an [iptv-org category](https://iptv-org.github.io/api/categories.json): `news`,
-`sports`, `business` (Markets), `weather`. Every source says which walls it belongs to in
-`categories`, and can be in more than one (CNBC is both news and markets). Switching
-wall keeps playing the channels the two walls share, for the same reason as above.
-It is also kept in `localStorage` for convenience.
+Every source carries one or more [iptv-org categories](https://iptv-org.github.io/api/categories.json)
+in `categories`: `news`, `sports` (Sport), `business` (Markets), `weather` (CNBC is both
+news and markets). They are a **filter, not separate walls**: with no key lit you see every
+channel; light one and only that category is left, light more and they add up. The keys
+sit at the top of the Sources panel, in the look of a vision mixer's bus (a white lamp on
+each lit key: red stays the tally's), and the Sources button names the filter when one is set.
+
+The filter chooses what the catalog shows, **not what is on the wall**: there is one wall,
+and its tiles stay whatever their category. It is shared with the globe like the
+favourites (`localStorage`, and `c` in the URL: the old one-wall links, `#c=sports`, open
+as a filter of one), and an open tab of one view follows the other.
 
 ## The globe
 
@@ -83,7 +91,9 @@ computed from the UTC time. The ground is in 8192×4096 maps (4096×2048 on phon
 GPUs), sharp up close, so the page opens on a short loading screen that shows what is
 ready.
 
-Every channel of the current mode is a screen hanging over its country, with a thread down
+Every channel is a screen hanging over its country (all of them, unless the category
+filter says otherwise: the *All channels* button in the bar opens the same keys as the
+wall's catalog, and changing them in one view changes the other), with a thread down
 to the place it broadcasts from (the capital, or the city its newsrooms work in). Crowded
 regions push their screens apart, but the thread always goes back to the real place.
 
@@ -107,8 +117,8 @@ regions push their screens apart, but the thread always goes back to the real pl
   enlarges it, gives it full quality and the audio: its frame turns red, the only red on
   the globe, as on the wall. Its country lights up, and its card shows what the catalog
   knows: the broadcaster's logo, the language (also in itself), the local time and its
-  UTC offset, the best picture the last check saw, where the stream comes from, the walls
-  it belongs to; then three icons: full screen, audio, favourite (★). On a large screen
+  UTC offset, the best picture the last check saw, where the stream comes from, its
+  categories; then three icons: full screen, audio, favourite (★). On a large screen
   the selected screen comes off the globe, straightens and grows into the card, video
   and all: an upright monitor with its facts underneath, which follows the channel's
   place as the globe turns (the thread to the ground stays). On phones and small windows
@@ -123,8 +133,8 @@ regions push their screens apart, but the thread always goes back to the real pl
   viewfinder whose crosshair locks onto the screen in the middle, and a telemetry pane
   (view, altitude, where the sun is overhead, how many are live). The page opens with
   the camera flying in from far out.
-- **Favourites (★) are the wall's channels**: one list per mode, up to 12. Starring a
-  screen puts it on that mode's wall, a channel added on the wall is starred on the globe
+- **Favourites (★) are the wall's channels**: one list, up to 12. Starring a
+  screen puts it on the wall, a channel added on the wall is starred on the globe
   (the Sources panel shows the same gold star), and an open tab of one view follows the
   other. *Open the wall* (`⇧Enter`) goes there, through the same URL a shared link uses.
 - **Always hls.js.** A video becomes a WebGL texture only through MediaSource, so the
@@ -141,7 +151,7 @@ regions push their screens apart, but the thread always goes back to the real pl
 | full screen, and back | double click / *Full screen*, X | `F` | A again / B |
 | audio on / off | click the selected one | `Space` | X |
 | favourite | ★ | `B` | Y |
-| mode | top bar | `1`–`4` | LB / RB |
+| categories | *All channels* in the bar | `1`–`4` toggle one, `0` all | LB / RB step through |
 | back | — | `Esc` | B |
 | open the wall (the favourites) | *Open the wall* | `⇧Enter` | Start |
 
@@ -179,8 +189,9 @@ are the broadcasters' trademarks, there only to tell the channels apart).
 them as they are):
 
 - `js/core/` — what any view of the catalog needs: `data.js` (load `sources.json` and
-  `live.json`, modes, names, flags, origins), `url.js` (the wall in the URL and in
-  localStorage), `hls-player.js` (one HLS stream in a `<video>`, with retries, watchdog and
+  `live.json`, categories, names, flags, origins), `url.js` (the wall and the category
+  filter in the URL and in localStorage), `filter.js` (the category keys, drawn the same
+  in both views), `hls-player.js` (one HLS stream in a `<video>`, with retries, watchdog and
   quality cap, knowing nothing about tiles).
 - `js/wall/` — the wall: `wall.js` (entry point: grid, tiles, audio, focus, keys),
   `panel.js` (catalog and quick search), `state.js` (what they share).
@@ -295,7 +306,7 @@ changed. A new reason for the same failure (a timeout, then a 503) is not a chan
 **169 sources from 74 countries**, 144 of them fished out of
 [iptv-org](https://github.com/iptv-org/iptv) and hand-picked:
 
-| wall | channels | countries |
+| category | channels | countries |
 |---|---|---|
 | News | 106 | 63 |
 | Sport | 35 | 25 |
@@ -309,7 +320,7 @@ In practice, that means putting IRINN (Iranian state TV), Press TV (its English 
 abroad) and Iran International (the opposition, based in London) on the same screen;
 Al-Manar and Makan 33; CCTV, Telesur and RT in four languages.
 
-The other walls follow the same idea. **Sport** is national sport channels (Iran's Varzesh
+The other categories follow the same idea. **Sport** is national sport channels (Iran's Varzesh
 next to Romania's TVR Sport and Kazakhstan's QazSport), clubs and leagues on their own
 channels, and the official free channels: live matches are almost never free, and pay
 channels that only turn up through anonymous proxies (Eurosport, ESPN, beIN…) are out.
@@ -436,12 +447,12 @@ Ideas collected along the way, not yet done. The globe's own next steps are in
 - **Honour iptv-org's `blocklist.json`.** Channels removed after DMCA notices or for being
   NSFW are listed there: `harvest-iptv.py` could skip them, instead of relying on the
   curated lists alone.
-- **An "explore iptv-org" mode.** Opt-in, loaded only on request, clearly labelled as
-  unverified and not hand-picked: for browsing beyond the curated walls, kept apart from
+- **An "explore iptv-org" view.** Opt-in, loaded only on request, clearly labelled as
+  unverified and not hand-picked: for browsing beyond the curated catalog, kept apart from
   them.
-- **A parliaments wall.** iptv-org's `legislative` category has ~100 usable channels from
+- **A parliaments category.** iptv-org's `legislative` category has ~100 usable channels from
   24 countries (Camera dei Deputati, Congreso, Tweede Kamer, Sansad TV…): one more
-  `scripts/curated/legislative.txt` and an entry in `MODES`.
+  `scripts/curated/legislative.txt` and an entry in `CATEGORIES`.
 - **Where a channel can be watched.** A per-source `geo` (e.g. `["ES"]` for Teledeporte)
   would let the wall say "only in Spain" instead of a generic failure, and let the check
   treat a 403 from elsewhere as expected. Today ESport3, Teledeporte, CBS Sports Golazo

@@ -1,18 +1,18 @@
-/* Newswall — a wall of live streams: news, and other walls beside it.
+/* Newswall — a wall of live streams, news first, sport, markets and weather beside it.
    No backend, no server-side state: the configuration lives in the URL
    (so a wall can be shared with a link) and in localStorage for convenience. */
 
 import {
-  MODES, byId, catalog, countryName, escapeHtml, firstStream, flag, inMode,
-  langName, liveState, loadCatalog, ORIGIN_LABEL, originText, wallFor,
+  byId, catalog, countryName, escapeHtml, firstStream, flag, langName, liveState,
+  loadCatalog, ORIGIN_LABEL, originText, passes, wallFor,
 } from '../core/data.js';
+import { filterLabel } from '../core/filter.js';
 import { createHlsPlayer } from '../core/hls-player.js';
 import {
-  readModeFromStorage, readModeFromUrl, readWallFromStorage, readWallFromUrl, saveMode, saveWall, wallKey,
+  FILTER_KEY, readFilter, readStoredFilter, readWallFromStorage, readWallFromUrl, saveWall, WALL_KEY,
 } from '../core/url.js';
 import {
-  buildPanel, initPanel, listSources, openPalette, pal, palMove, palPick, palRender,
-  resetFilters, togglePanel,
+  buildPanel, initPanel, listSources, openPalette, pal, palMove, palPick, palRender, togglePanel,
 } from './panel.js';
 import { $, grid, LOW_QUALITY_CAP, MAX_TILES, state, tileEl, toast } from './state.js';
 
@@ -20,24 +20,15 @@ import { $, grid, LOW_QUALITY_CAP, MAX_TILES, state, tileEl, toast } from './sta
 
 async function boot() {
   await loadCatalog();
-  const mode = readModeFromUrl() || readModeFromStorage();
-  state.mode = MODES[mode] ? mode : 'news';
-  state.sources = catalog.all.filter((s) => inMode(s, state.mode));
-  state.active = wallFor(state.mode, readWallFromUrl() || readWallFromStorage(state.mode));
-
-  initPanel(toggleSource);
-  renderModes();
-  renderCount();
-  buildPanel();
+  state.active = wallFor(readWallFromUrl() || readWallFromStorage());
+  initPanel(toggleSource, setFilter);
+  applyFilter(readFilter());
   syncGrid();
   save();
 }
 
-/* The globe opens on the same mode as the wall. */
-const save = () => {
-  saveWall(state.mode, state.active);
-  $('#to-globe').href = `globe.html${state.mode === 'news' ? '' : `#c=${state.mode}`}`;
-};
+/* The globe reads the same filter and the same wall from localStorage. */
+const save = () => saveWall(state.active, state.filter);
 
 function renderCount() {
   const n = (st) => state.sources.filter((s) => liveState(s.id) === st).length;
@@ -49,31 +40,23 @@ function renderCount() {
     + (unverified ? ` · ${unverified} unverified` : '') + ` · updated ${when}`;
 }
 
-/* ---------------------------------------------------------------- modes */
+/* ------------------------------------------------------------- filter */
 
-function renderModes() {
-  $('#modes').innerHTML = Object.entries(MODES).map(([m, { label }]) => {
-    const n = catalog.all.filter((s) => inMode(s, m)).length;
-    return `<button data-mode="${m}" class="${m === state.mode ? 'on' : ''}"
-      title="${label} wall · ${n} channels">${label}</button>`;
-  }).join('');
-}
-
-/* Switching wall keeps what the two walls share: the reconciling grid only
-   touches the tiles that change, so a channel in both walls keeps playing. */
-function setMode(m) {
-  if (!MODES[m] || m === state.mode) return;
-  state.mode = m;
-  state.sources = catalog.all.filter((s) => inMode(s, m));
-  state.active = wallFor(m, readWallFromStorage(m));
-  saveMode(m);
-
-  resetFilters();
-  renderModes();
+/* The filter picks what the catalog shows, not what is on the wall: the
+   tiles are yours, whatever their category. */
+function applyFilter(filter) {
+  state.filter = filter;
+  state.sources = catalog.all.filter((s) => passes(s, filter));
+  const badge = $('#sources-filter');
+  badge.hidden = !filter.length;
+  badge.textContent = filterLabel(filter);
   renderCount();
   buildPanel();
-  commit();
-  toast(`${MODES[m].label} wall · ${state.sources.length} channels`);
+}
+
+function setFilter(filter) {
+  applyFilter(filter);
+  save();
 }
 
 /* ------------------------------------------------------- grid layout */
@@ -337,9 +320,12 @@ const toggleSource = (id) => (state.active.includes(id) ? removeSource(id) : add
 /* The globe, in another tab, starred or unstarred a channel of this wall:
    its favourites are these tiles. */
 addEventListener('storage', (e) => {
-  if (e.key !== wallKey(state.mode) || !state.sources.length) return;
-  state.active = wallFor(state.mode, readWallFromStorage(state.mode));
-  commit();
+  if (!catalog.all.length) return;
+  if (e.key === WALL_KEY) {
+    state.active = wallFor(readWallFromStorage());
+    commit();
+  }
+  if (e.key === FILTER_KEY) setFilter(readStoredFilter());
 });
 
 /* The one place where the wall changes: redraw, save, resync everything. */
@@ -418,10 +404,6 @@ grid.addEventListener('dragend', () => {
   grid.querySelectorAll('.dragging, .drop-here').forEach((x) => x.classList.remove('dragging', 'drop-here'));
 });
 
-$('#modes').addEventListener('click', (e) => {
-  const b = e.target.closest('[data-mode]');
-  if (b) setMode(b.dataset.mode);
-});
 $('#logo').onclick = () => togglePanel();
 
 $('#controls').addEventListener('click', (e) => {

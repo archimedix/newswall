@@ -6,8 +6,8 @@ export const LOW_QUALITY_CAP = 480;   // max height for tiles that are not enlar
 export const MAX_TILES = MAX_WALL;
 
 export const state = {
-  mode: 'news',
-  sources: [],          // the catalog of the current mode
+  filter: [],           // categories on screen, none = all (core/filter.js)
+  sources: [],          // the catalog that passes the filter
   active: [],           // ids on the wall, in order
   players: new Map(),   // id -> createHlsPlayer() handle
   audioOn: null,        // one audio at a time: house rule

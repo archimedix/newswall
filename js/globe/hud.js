@@ -1,7 +1,7 @@
 /* The HTML over the globe: bar, channel card, favourites, on-air chip, toasts.
    Frosted glass only on surfaces seen one at a time, as on the wall. */
 
-import { MODES, catalog, countryName, escapeHtml, flag, langName, originText } from '../core/data.js';
+import { CATEGORIES, catalog, countryName, escapeHtml, flag, langName, originText } from '../core/data.js';
 
 export const $ = (sel) => document.querySelector(sel);
 
@@ -36,12 +36,6 @@ export function boot(groundSize) {
       root.querySelector('.boot-note').textContent = `Could not load the globe: ${err.message || err}. Reload to try again.`;
     },
   };
-}
-
-export function renderModes(current, count) {
-  $('#modes').innerHTML = Object.entries(MODES).map(([m, { label }], i) =>
-    `<button data-mode="${m}" class="${m === current ? 'on' : ''}"
-       title="${label} · ${count(m)} channels on the globe (${i + 1})">${label}</button>`).join('');
 }
 
 /* The selected channel, or — compact, without actions — the one in the crosshair. */
@@ -124,7 +118,7 @@ function renderFacts(card, s, src, stream) {
   fact('.f-pic', [best, n > 1 ? `${n} streams` : ''].filter(Boolean).join(' · '));
 
   fact('.f-origin', originText(stream)).className = `f-origin ${stream.origin?.kind || ''}`;
-  fact('.f-walls', (src.categories || ['news']).map((c) => MODES[c]?.label).filter(Boolean).join(' · '));
+  fact('.f-walls', (src.categories || ['news']).map((c) => CATEGORIES[c]?.label).filter(Boolean).join(' · '));
 }
 
 const nativeLang = (l) => {
@@ -158,7 +152,7 @@ export function renderTelemetry(view, sun, live, total) {
   $('#t-live').textContent = `${live} / ${total}`;
 }
 
-export function renderFavs(sources, wall, bump = false) {
+export function renderFavs(sources, bump = false) {
   $('#favs-n').textContent = sources.length;
   const btn = $('#favs-btn');
   btn.classList.toggle('has', sources.length > 0);
@@ -167,7 +161,7 @@ export function renderFavs(sources, wall, bump = false) {
     void btn.offsetWidth;
     btn.classList.add('bump');
   }
-  $('#favs-count').textContent = `the ${wall} wall · ${sources.length}/12`;
+  $('#favs-count').textContent = `the wall · ${sources.length}/12`;
   $('#favs-list').innerHTML = sources.length
     ? sources.map((s) => `<li data-id="${s.id}" title="Off the wall"><span>${flag(s.country)}</span>
         <span>${escapeHtml(s.name)}</span><span class="x">✕</span></li>`).join('')

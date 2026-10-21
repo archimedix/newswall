@@ -16,7 +16,7 @@ Newswall becomes two experiences on top of the same catalog:
   and (phase 3) by a smartphone as a remote, paired by scanning a QR code.
 
 The two pages are linked through the URL: on the globe you collect channels and **send them to
-the wall** (`index.html#c=<mode>&s=a,b,c`); a *Wall / Globe* switch in both bars says which
+the wall** (`index.html#c=<categories>&s=a,b,c`); a *Wall / Globe* switch in both bars says which
 view you are in and leads to the other.
 
 The project's principle does not change: **no third-party requests to render**, no accounts, no
@@ -40,7 +40,7 @@ globe.html            globe (type="module", importmap for three)
 remote.html           smartphone remote (phase 3)
 js/
   core/
-    data.js           loads sources.json + live.json, byId, inMode, MODES,
+    data.js           loads sources.json + live.json, byId, inCategory, passes, CATEGORIES,
                       flag, countryName, langName, originText, firstStream
     hls-player.js     creates/destroys an HLS <video> with stream fallback,
                       watchdog, quality cap — knowing nothing about grid or globe
@@ -97,7 +97,7 @@ Choices made along the way:
   until clusters arrive.
 - Hysteresis as in §6, so up to K+2 players at once (6 on desktop, 5 on touch).
 - The basket became **favourites (★)**, and the favourites are the wall itself: one list
-  per mode, the same localStorage key, starred on the globe = a tile on the wall.
+  (one, no longer per mode), the same localStorage key, starred on the globe = a tile on the wall.
 - **No start screen**, neither on the globe nor on the wall: everything starts muted (muted
   autoplay needs no gesture) and the first click on a channel turns its audio on.
 - Added on request: **full screen** (first called "front row": the channel flies from the globe to full window and back to
@@ -166,7 +166,7 @@ Assets, all public domain: NASA Blue Marble, GEBCO elevation and Black Marble in
 - The night side touches the screens too: those in the dark have a dimmer frame.
 
 **HUD** (frosted glass, only on surfaces seen one at a time, as per the wall's rules)
-- Top: logo, modes, live count, UTC time, favourites `★ 3 → Open in wall`.
+- Top: logo, category filter, live count, UTC time, favourites `★ 3 → Open in wall`.
 - Centre: a discreet **reticle**: the screen closest to it is the selection candidate
   (essential for the gamepad).
 - Bottom: the selected channel's card — name, country, language, stream origin with the same
@@ -190,7 +190,7 @@ Assets, all public domain: NASA Blue Marble, GEBCO elevation and Black Marble in
   tab is hidden.
 
 **Controls** — all translated into abstract commands (`rotate`, `zoom`, `next`, `select`,
-`audio`, `fav`, `mode`, `back`), so the remote and the gamepad use the same channel.
+`audio`, `fav`, `filter`, `back`), so the remote and the gamepad use the same channel.
 
 | Action | Mouse / touch | Keyboard | Gamepad |
 |---|---|---|---|
@@ -200,7 +200,7 @@ Assets, all public domain: NASA Blue Marble, GEBCO elevation and Black Marble in
 | select | click | `Enter` | A |
 | audio | click on the selected one | `Space` | X |
 | favourite ★ | button | `B` | Y |
-| change mode | bar | `1`–`4` | shoulder buttons |
+| category filter | bar | `1`–`4`, `0` | shoulder buttons |
 | back | `Esc` | `Esc` | B |
 | open in wall | button | `Shift-Enter` | Start |
 
@@ -212,7 +212,7 @@ phone, and `remote.html` opens already paired. On the phone:
 - at the top, the selected channel's card (name, country, live/still);
 - in the middle a **trackpad**: drag to rotate, pinch to zoom;
 - below, the list of **channels near** the reticle: tap to select;
-- large buttons: Audio · Favourite ★ · Open in wall · modes;
+- large buttons: Audio · Favourite ★ · Open in wall · categories;
 - vibration when the selection changes (Android);
 - optional: **gyroscope mode**, tilt the phone and the globe turns.
 
@@ -258,8 +258,8 @@ WebSockets); **Render** free (sleeps after ~15 min, 30–60 s wake-up); **Fly.io
 phone → globe      {t:"rotate", dx, dy}   (max 30/s)
                    {t:"zoom", d}
                    {t:"select", id} | {t:"next", dir}
-                   {t:"audio"} | {t:"fav", id} | {t:"mode", m} | {t:"open-wall"}
-globe → phone      {t:"state", mode, selected, near:[{id,name,cc,live}], favs:[…]}
+                   {t:"audio"} | {t:"fav", id} | {t:"filter", c:[…]} | {t:"open-wall"}
+globe → phone      {t:"state", filter, selected, near:[{id,name,cc,live}], favs:[…]}
 ```
 
 **Repo and deploy**: a `relay/` folder with the Worker (`wrangler.toml`), deployed by hand with

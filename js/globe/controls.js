@@ -1,6 +1,6 @@
 /* Mouse, touch, keyboard and gamepad, all turned into the same abstract
    commands: rotate, zoom, next, select, pick, hover, front, audio, fav,
-   mode, back, openWall. The phone remote (phase 3) will speak the same language.
+   filter, back, openWall. The phone remote (phase 3) will speak the same language.
 
    `cmd` is an object with one method per command; `update(dt)` runs every
    frame for the drag inertia, held keys and the gamepad. */
@@ -85,7 +85,7 @@ export function createControls(el, cmd) {
     if (k === 'b' || k === 'B') return cmd.fav();
     if (k === 'f' || k === 'F') return cmd.front();
     if (k === 'Escape') return cmd.back();
-    if (k >= '1' && k <= '9') return cmd.mode(Number(k) - 1);
+    if (k >= '0' && k <= '9') return cmd.filter(Number(k));
   });
   addEventListener('keyup', (e) => held.delete(e.key.toLowerCase()));
   addEventListener('blur', () => held.clear());
@@ -116,8 +116,8 @@ export function createControls(el, cmd) {
     if (hit(1)) cmd.back();
     if (hit(2)) cmd.audio();
     if (hit(3)) cmd.fav();
-    if (hit(4)) cmd.mode(-1, true);
-    if (hit(5)) cmd.mode(1, true);
+    if (hit(4)) cmd.filter(-1, true);
+    if (hit(5)) cmd.filter(1, true);
     if (hit(9)) cmd.openWall();
     pad.prev = b;
   }
