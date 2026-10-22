@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-22T07:32:48+00:00",
+  "generated": "2026-10-22T13:46:41+00:00",
   "entries": {
     "aljazeera-en": {
       "state": "ok",
@@ -1278,12 +1278,9 @@
           ]
         },
         {
-          "state": "ok",
-          "heights": [
-            240,
-            360,
-            720
-          ]
+          "state": "unverified",
+          "reason": "HTTP 404",
+          "failing_since": "2026-10-22T13:46:41+00:00"
         }
       ],
       "reason": null
@@ -1551,16 +1548,18 @@
       "reason": null
     },
     "news-central": {
-      "state": "unverified",
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "state": "unverified",
-          "reason": "unreachable (TimeoutError)",
-          "failing_since": "2026-10-21T22:29:19+00:00"
+          "state": "ok",
+          "heights": [
+            480,
+            720
+          ]
         }
       ],
-      "reason": "unreachable (TimeoutError)"
+      "reason": null
     },
     "cctv-1": {
       "state": "ok",
@@ -1638,7 +1637,7 @@
         {
           "state": "ok",
           "heights": [
-            360
+            720
           ]
         }
       ],
@@ -1847,16 +1846,19 @@
       "reason": null
     },
     "esport3": {
-      "state": "unverified",
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "state": "unverified",
-          "reason": "segment: HTTP 403",
-          "failing_since": "2026-10-21T18:37:35+00:00"
+          "state": "ok",
+          "heights": [
+            480,
+            720,
+            1080
+          ]
         }
       ],
-      "reason": "segment: HTTP 403"
+      "reason": null
     },
     "ge-fast": {
       "state": "ok",
@@ -1991,11 +1993,11 @@
       "streams": [
         {
           "state": "unverified",
-          "reason": "segment: HTTP 404",
+          "reason": "variant: unreachable (TimeoutError)",
           "failing_since": "2026-10-22T01:30:29+00:00"
         }
       ],
-      "reason": "segment: HTTP 404"
+      "reason": "variant: unreachable (TimeoutError)"
     },
     "red-bull-tv": {
       "state": "ok",
@@ -2447,11 +2449,11 @@
       "streams": [
         {
           "state": "unverified",
-          "reason": "variant: HTTP 403",
+          "reason": "segment: HTTP 403",
           "failing_since": "2026-10-21T20:57:13+00:00"
         }
       ],
-      "reason": "variant: HTTP 403"
+      "reason": "segment: HTTP 403"
     },
     "cnbc-arabiya": {
       "state": "ok",
@@ -2719,20 +2721,16 @@
       "reason": null
     },
     "weathernews": {
-      "state": "ok",
+      "state": "unverified",
       "use": 0,
       "streams": [
         {
-          "state": "ok",
-          "heights": [
-            216,
-            360,
-            540,
-            720
-          ]
+          "state": "unverified",
+          "reason": "unreachable (IncompleteRead)",
+          "failing_since": "2026-10-22T13:46:41+00:00"
         }
       ],
-      "reason": null
+      "reason": "unreachable (IncompleteRead)"
     },
     "ntv-news24": {
       "state": "ok",
@@ -3208,12 +3206,7 @@
       "streams": [
         {
           "state": "ok",
-          "heights": [
-            360,
-            540,
-            720,
-            1080
-          ]
+          "heights": []
         }
       ],
       "reason": null
@@ -3425,16 +3418,15 @@
       "reason": null
     },
     "savane-tv": {
-      "state": "unverified",
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "state": "unverified",
-          "reason": "HTTP 404",
-          "failing_since": "2026-10-22T07:32:48+00:00"
+          "state": "ok",
+          "heights": []
         }
       ],
-      "reason": "HTTP 404"
+      "reason": null
     },
     "senal-colombia": {
       "state": "ok",
