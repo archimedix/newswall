@@ -64,7 +64,28 @@ what is already there, and visual order is set by the CSS grid's `order`, not th
 (moving a `<video>` node would restart it).
 
 The wall's layout ends up in the URL: **the link is the configuration**, shareable as is
-(`#c=news,sports&s=…`). It is also kept in `localStorage` for convenience.
+(`#c=news,sports&n=Europe&s=…`: filter, name, channels).
+
+### Your walls
+
+You can keep **several named walls** ("Middle East", "Saturday football"…) and switch
+between them from the button beside the view switch (`W`): it shows the name of the one on
+screen, its menu names it, adds a new one (empty, the quick search opens), duplicates and
+deletes it (twice: the first click asks). The tiles that two walls share keep playing
+when you switch.
+
+There is **no account and no server**: the walls live in this browser's `localStorage`
+(`newswall:walls`; the single wall of before becomes the first one). Moving them is
+what the link is for. Opening a link:
+
+- that carries one of your walls (the same channels, in the same order) opens it;
+- on a first visit, its wall simply becomes your first one, with its name;
+- otherwise it is someone else's: shown with a *Shared* tag and a **Save** button, not
+  saved, so it never overwrites your own; it becomes one of your walls at the first
+  change, or with Save.
+
+Syncing across devices without an account (a secret key, an encrypted copy on the same
+relay as the phone remote) is planned with phase 3 of the globe.
 
 ### Categories
 
@@ -75,8 +96,8 @@ channel; light one and only that category is left, light more and they add up. T
 sit at the top of the Sources panel, in the look of a vision mixer's bus (a white lamp on
 each lit key: red stays the tally's), and the Sources button names the filter when one is set.
 
-The filter chooses what the catalog shows, **not what is on the wall**: there is one wall,
-and its tiles stay whatever their category. It is shared with the globe like the
+The filter chooses what the catalog shows, **not what is on the wall**: a wall's tiles
+stay whatever their category. It is shared with the globe like the
 favourites (`localStorage`, and `c` in the URL: the old one-wall links, `#c=sports`, open
 as a filter of one), and an open tab of one view follows the other.
 
@@ -133,10 +154,12 @@ regions push their screens apart, but the thread always goes back to the real pl
   viewfinder whose crosshair locks onto the screen in the middle, and a telemetry pane
   (view, altitude, where the sun is overhead, how many are live). The page opens with
   the camera flying in from far out.
-- **Favourites (★) are the wall's channels**: one list, up to 12. Starring a
-  screen puts it on the wall, a channel added on the wall is starred on the globe
+- **Favourites (★) are the channels of your active wall**: one list, up to 12. Starring a
+  screen puts it on that wall, a channel added on the wall is starred on the globe
   (the Sources panel shows the same gold star), and an open tab of one view follows the
-  other. *Open the wall* (`⇧Enter`) goes there, through the same URL a shared link uses.
+  other. The Favourites pane picks which of your walls takes the stars (the same choice
+  as the wall's button). *Open the wall* (`⇧Enter`) goes there, through the same URL a
+  shared link uses.
 - **Always hls.js.** A video becomes a WebGL texture only through MediaSource, so the
   globe always uses hls.js, never Safari's native HLS.
 - **On a slow device** the globe lowers its own resolution: when the frame rate stays under
@@ -190,11 +213,12 @@ them as they are):
 
 - `js/core/` — what any view of the catalog needs: `data.js` (load `sources.json` and
   `live.json`, categories, names, flags, origins), `url.js` (the wall and the category
-  filter in the URL and in localStorage), `filter.js` (the category keys, drawn the same
+  filter in the URL), `walls.js` (your named walls in localStorage, the active one), `filter.js` (the category keys, drawn the same
   in both views), `hls-player.js` (one HLS stream in a `<video>`, with retries, watchdog and
   quality cap, knowing nothing about tiles).
 - `js/wall/` — the wall: `wall.js` (entry point: grid, tiles, audio, focus, keys),
-  `panel.js` (catalog and quick search), `state.js` (what they share).
+  `panel.js` (catalog and quick search), `picker.js` (your walls: the bar button and its
+  menu), `state.js` (what they share).
 - `js/globe/` — the globe, loaded by `globe.html` with an import map for three:
   `globe.js` (entry point: loading, scene, camera, selection, audio, favourites), `earth.js`
   (ground texture, shaders, atmosphere, outlines, stars), `sun.js` (subsolar point), `geo.js` (where each country's
@@ -469,6 +493,17 @@ Ideas collected along the way, not yet done. The globe's own next steps are in
 - **Free-TV in the hourly Action.** `--source free-tv --alternatives` could join the
   "stream URLs that update themselves" step above: Free-TV fixes broken URLs by hand,
   often sooner than iptv-org.
+- **Your walls on every device, without an account.** The browser makes a random secret;
+  from it, an id and an AES key (WebCrypto). The phone remote's relay keeps only the
+  encrypted copy under that id; a new device joins by scanning a QR from one already in.
+  Lose every device and the walls are gone, unless their link was kept. Passkeys with the
+  PRF extension could later replace the QR.
+- **Translated subtitles, computed in the browser.** The channel on air is the one that
+  matters, and most viewers don't speak its language: a Whisper model run locally
+  (WebGPU/WASM, vendored like hls.js) could transcribe and translate its audio, keeping the
+  "no third-party requests" rule (the Web Speech API is out: it sends the audio to Google).
+  One audio at a time means one stream to transcribe; the cost is a model of tens to
+  hundreds of MB and a capable machine.
 - **Browser full screen on the globe.** The globe's *Full screen* fills the window, not the
   display: it could also ask for the Fullscreen API, as the wall's button does, with the
   first `Esc` leaving both at once.

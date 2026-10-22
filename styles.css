@@ -182,6 +182,74 @@ kbd{
 }
 #views a.on svg{filter:drop-shadow(0 0 5px rgba(160,200,255,.55))}
 
+/* Your walls: the name of the one on screen, user's words in the sans
+   (the mono is for codes). A shared wall, not yet yours, wears a tag. */
+#wallbox{display:flex;align-items:center;gap:6px;flex:none}
+#walls-btn{
+  display:flex;align-items:center;gap:7px;min-width:0;max-width:min(26vw,240px);
+  padding:6px 9px 6px 11px;border-radius:var(--r-sm);
+  border:1px solid var(--edge);background:rgba(255,255,255,.03);
+  font-size:12.5px;font-weight:500;color:var(--ice);
+  transition:background .16s var(--ease),border-color .16s var(--ease);
+}
+#walls-btn:hover,#walls-btn.on{background:var(--hover);border-color:var(--edge-lit)}
+#walls-btn .wname{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#walls-btn svg{flex:none;color:var(--dim);transition:transform .2s var(--ease)}
+#walls-btn.on svg{transform:rotate(180deg)}
+#walls-btn .wtag{
+  display:none;flex:none;padding:1px 5px;border-radius:4px;
+  font:500 9.5px/1.4 var(--mono);letter-spacing:.12em;text-transform:uppercase;
+  color:var(--ink);background:var(--mute);
+}
+#walls-btn.shared{border-style:dashed;border-color:rgba(255,255,255,.25)}
+#walls-btn.shared .wtag{display:block}
+#wall-save{
+  flex:none;padding:6px 11px;border-radius:var(--r-sm);font-size:12.5px;font-weight:600;
+  background:var(--ice);color:var(--ink);box-shadow:0 8px 20px -10px rgba(233,238,244,.55);
+}
+
+#walls{
+  position:fixed;top:calc(var(--bar-h) + 8px);left:8px;z-index:55;
+  width:min(300px,calc(100vw - 16px));padding:12px;border-radius:var(--r);
+  animation:rise .28s var(--ease) both;
+}
+.walls-name{display:flex;align-items:center;gap:8px}
+#wall-name{
+  flex:1;min-width:0;padding:8px 10px;border-radius:10px;
+  background:rgba(255,255,255,.05);border:1px solid var(--edge);
+  color:var(--ice);font-size:14px;font-weight:600;
+  transition:border-color .16s,background .16s;
+}
+#wall-name:hover{border-color:var(--edge-lit)}
+#wall-name:focus{outline:0;border-color:rgba(255,255,255,.3);background:rgba(255,255,255,.08)}
+#wall-n{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.walls-shared{margin:9px 2px 0;font-size:12px;color:var(--mute);line-height:1.4}
+.walls-shared b{color:var(--ice);font-weight:600}
+.walls-sub{margin:12px 2px 4px}
+#walls-list{list-style:none;margin:0;padding:0;max-height:46vh;overflow-y:auto;scrollbar-width:thin;scrollbar-color:#2b333d transparent}
+#walls-list li{
+  display:flex;align-items:center;gap:9px;padding:7px 8px;border-radius:9px;cursor:pointer;
+  font-size:13px;color:var(--mute);transition:background .14s,color .14s;
+}
+#walls-list li:hover{background:var(--hover);color:var(--ice)}
+#walls-list li.on{background:rgba(255,255,255,.09);color:var(--ice);cursor:default}
+#walls-list .wn{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#walls-list .meta{font-family:var(--mono);font-variant-numeric:tabular-nums}
+/* The same white lamp as the category keys: lit = on screen. */
+#walls-list .lamp{
+  flex:none;width:5px;height:5px;border-radius:50%;
+  background:#262d36;box-shadow:inset 0 0 0 1px rgba(0,0,0,.45);
+}
+#walls-list li.on .lamp{background:var(--ice);box-shadow:0 0 7px 1px rgba(233,238,244,.65)}
+.walls-foot{display:flex;flex-wrap:wrap;gap:5px;margin-top:10px;padding-top:10px;border-top:1px solid var(--edge)}
+.walls-foot button{
+  padding:6px 10px;border-radius:8px;font-size:12px;color:var(--mute);
+  border:1px solid var(--edge);transition:background .14s,color .14s,border-color .14s;
+}
+.walls-foot button:hover{background:var(--hover);color:var(--ice);border-color:var(--edge-lit)}
+.walls-foot [data-wop="link"]{margin-left:auto}
+.walls-foot button.armed{color:var(--ice);border-color:rgba(255,255,255,.4);background:rgba(255,255,255,.1)}
+
 #controls{display:flex;align-items:center;gap:3px}
 #controls button{
   display:flex;align-items:center;gap:7px;
@@ -549,6 +617,8 @@ body.focus .tile:not(.is-focus),body.focus .add-slot{display:none}
   #controls a,#controls button{padding:6px 7px}
   #views a{padding:6px 7px}
   #views a span{display:none}
+  #walls-btn{max-width:34vw;padding:6px 7px 6px 9px}
+  #walls-btn .wtag{display:none!important}
 }
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}

@@ -320,6 +320,14 @@ button.fav.in svg{animation:star-pop .45s var(--spring)}
   animation:card-in .35s var(--spring) both;
 }
 .favs-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:8px}
+.favs-wall{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+#favs-wall{
+  flex:1;min-width:0;padding:7px 9px;border-radius:10px;cursor:pointer;
+  background:rgba(255,255,255,.05);border:1px solid var(--edge);color:var(--ice);
+  font-size:12.5px;font-weight:500;
+}
+#favs-wall:focus{outline:0;border-color:rgba(255,255,255,.3)}
+#favs-wall option{background:#0d1117;color:var(--ice)}
 #favs-list{list-style:none;margin:0 0 10px;padding:0;max-height:50vh;overflow:auto}
 #favs-list li{
   display:flex;align-items:center;gap:8px;padding:7px 9px;border-radius:10px;

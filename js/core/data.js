@@ -41,12 +41,11 @@ export const passes = (s, filter) => !filter.length || filter.some((c) => inCate
 export const liveState = (id) => catalog.live[id]?.state || 'unverified';
 export const isPlayable = (id) => liveState(id) !== 'dead';
 
-/* The ids on the wall: what was asked for, if it exists, otherwise the
-   default. The globe's favourites are this same list. */
+/* The ids of a wall: the ones that exist, at most MAX_WALL. No list at all
+   (a first visit) is the default wall; an empty one stays empty. */
 export function wallFor(ids) {
-  const ok = (ids || []).filter((id) => byId(id));
-  if (ok.length) return ok.slice(0, MAX_WALL);
-  return DEFAULT_WALL.filter((id) => byId(id));
+  if (!Array.isArray(ids)) return DEFAULT_WALL.filter((id) => byId(id));
+  return ids.filter((id) => byId(id)).slice(0, MAX_WALL);
 }
 
 /* Which stream to try first: the first one the last check found working,

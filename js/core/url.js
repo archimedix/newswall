@@ -1,29 +1,18 @@
 /* The configuration lives in the URL (so a wall can be shared with a link)
-   and in localStorage for convenience. #c=news,sports&s=a,b,c — "c" is the
-   category filter, no "c" means every channel; the old one-mode links
-   (#c=sports) still work, as a filter of one. */
+   and in localStorage for convenience. #c=news,sports&n=Europe&s=a,b,c —
+   "c" is the category filter, no "c" means every channel; "n" the wall's
+   name, "s" its channels (the walls themselves: core/walls.js). The old
+   one-mode links (#c=sports) still work, as a filter of one. */
 
 import { CATEGORIES } from './data.js';
 
 const hash = () => new URLSearchParams(location.hash.slice(1));
 
-export function readWallFromUrl() {
-  const m = hash().get('s');
-  return m ? m.split(',').filter(Boolean) : null;
-}
-
-/* One wall, under the historic key. Its channels are also the globe's
-   favourites (★): both views read and write this key, and hear each other
-   through the `storage` event. */
-export const WALL_KEY = 'newswall';
-
-export function readWallFromStorage() {
-  try { return JSON.parse(localStorage.getItem(WALL_KEY) || 'null'); } catch { return null; }
-}
-
-/* The wall into the browser only: the globe keeps its own URL. */
-export function storeWall(ids) {
-  try { localStorage.setItem(WALL_KEY, JSON.stringify(ids)); } catch { /* private mode */ }
+/* The wall a link carries: its channels and, if it has one, its name. */
+export function readLinkWall() {
+  const h = hash();
+  const m = h.get('s');
+  return m ? { ids: m.split(',').filter(Boolean), name: h.get('n') || '' } : null;
 }
 
 /* The filter: the categories on screen, in CATEGORIES order, none = all.
@@ -51,16 +40,17 @@ export function storeFilter(list) {
 }
 
 /* The hash of a view: the filter, if any, and the wall, if given. */
-export function viewHash(filter, ids) {
+export function viewHash(filter, ids, name) {
   const q = new URLSearchParams();
   if (filter.length) q.set('c', filter.join(','));
+  if (ids && name) q.set('n', name);
   if (ids) q.set('s', ids.join(','));
   const s = q.toString().replace(/%2C/g, ',');
   return s ? '#' + s : '';
 }
 
-export function saveWall(ids, filter) {
-  history.replaceState(null, '', location.pathname + (viewHash(filter, ids) || '#'));
-  storeWall(ids);
+/* The wall's address bar: always the link to what is on screen. */
+export function saveView(ids, filter, name) {
+  history.replaceState(null, '', location.pathname + (viewHash(filter, ids, name) || '#'));
   storeFilter(filter);
 }

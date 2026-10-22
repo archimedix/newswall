@@ -38,6 +38,16 @@
     </a>
   </nav>
 
+  <!-- Your walls, kept in this browser: which one is on screen, and the menu
+       to switch, name, add or delete them. A shared one, not yet yours, says so. -->
+  <div id="wallbox">
+    <button id="walls-btn" title="Your walls (W)" aria-haspopup="true" aria-expanded="false" aria-controls="walls">
+      <span class="wtag">Shared</span><span class="wname"></span>
+      <svg viewBox="0 0 16 16" width="11" height="11" aria-hidden="true"><path d="m4 6 4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <button id="wall-save" hidden title="Keep this shared wall among yours">Save</button>
+  </div>
+
   <!-- The control room's red tally light: it always shows who is talking. -->
   <div id="onair" hidden><span class="dot"></span><span class="who"></span></div>
 
@@ -58,6 +68,22 @@
 </header>
 
 <main id="grid" aria-label="Wall of live streams"></main>
+
+<div id="walls" class="glass" hidden>
+  <div class="walls-name">
+    <input id="wall-name" type="text" maxlength="40" autocomplete="off" spellcheck="false" aria-label="Name of this wall">
+    <span class="meta" id="wall-n"></span>
+  </div>
+  <p class="walls-shared" hidden>Shared with you, not saved here: it becomes one of your walls at the first change, or with <b>Save</b>.</p>
+  <div class="walls-sub meta">Your walls · in this browser only</div>
+  <ol id="walls-list"></ol>
+  <div class="walls-foot">
+    <button data-wop="new">New</button>
+    <button data-wop="dup">Duplicate</button>
+    <button data-wop="del">Delete</button>
+    <button data-wop="link">Copy link</button>
+  </div>
+</div>
 
 <aside id="panel" class="glass" hidden>
   <div class="panel-head">
@@ -81,7 +107,6 @@
 
   <div class="panel-foot">
     <button id="share">Copy the link to this wall</button>
-    <span class="meta" id="share-msg"></span>
   </div>
 </aside>
 
@@ -112,6 +137,7 @@
       <dt><kbd>1</kbd>–<kbd>9</kbd></dt><dd>quick audio</dd>
       <dt><kbd>⌘K</kbd> <kbd>/</kbd></dt><dd>search and add</dd>
       <dt><kbd>S</kbd></dt><dd>catalog</dd>
+      <dt><kbd>W</kbd></dt><dd>your walls</dd>
       <dt><kbd>M</kbd></dt><dd>mute everything</dd>
       <dt><kbd>F</kbd></dt><dd>full screen</dd>
       <dt><kbd>G</kbd></dt><dd>the globe</dd>

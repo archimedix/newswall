@@ -8,27 +8,68 @@ import {
 } from '../core/data.js';
 import { filterLabel } from '../core/filter.js';
 import { createHlsPlayer } from '../core/hls-player.js';
+import { FILTER_KEY, readFilter, readLinkWall, readStoredFilter, saveView } from '../core/url.js';
 import {
-  FILTER_KEY, readFilter, readStoredFilter, readWallFromStorage, readWallFromUrl, saveWall, WALL_KEY,
-} from '../core/url.js';
+  activeWall, addWall, FIRST_NAME, findWall, loadWalls, setActive, setWallIds, WALLS_KEY,
+} from '../core/walls.js';
 import {
   buildPanel, initPanel, listSources, openPalette, pal, palMove, palPick, palRender, togglePanel,
 } from './panel.js';
+import { initPicker, renderPicker, togglePicker } from './picker.js';
 import { $, grid, LOW_QUALITY_CAP, MAX_TILES, state, tileEl, toast } from './state.js';
 
 /* ---------------------------------------------------------------- boot */
 
 async function boot() {
   await loadCatalog();
-  state.active = wallFor(readWallFromUrl() || readWallFromStorage());
+  openWall();
   initPanel(toggleSource, setFilter);
+  initPicker({ show, adopt, save });
   applyFilter(readFilter());
   syncGrid();
   save();
+  renderPicker();
 }
 
-/* The globe reads the same filter and the same wall from localStorage. */
-const save = () => saveWall(state.active, state.filter);
+/* Which wall to open. A link that carries one of your walls opens it; one
+   that carries someone else's shows it without saving it (it becomes yours
+   at the first change, or with "Save"), unless this is a first visit: then it
+   simply is your first wall. No link: the wall you used last. */
+function openWall() {
+  const book = loadWalls();
+  const link = readLinkWall();
+  if (!link) return put(activeWall(book));
+  const ids = wallFor(link.ids);
+  const mine = findWall(book, ids, link.name);
+  if (mine) return put(setActive(mine.id));
+  if (book.fresh) return put(addWall(link.name || FIRST_NAME, ids, book.active));
+  state.wall = { id: null, name: link.name || 'Shared wall' };
+  state.active = ids;
+}
+
+const put = (w) => { state.wall = { id: w.id, name: w.name }; state.active = [...w.ids]; };
+
+/* Puts one of your walls on screen: the tiles both walls share keep playing. */
+function show(w) {
+  put(w);
+  commit();
+}
+
+/* The shared wall on screen becomes one of yours. */
+function adopt() {
+  if (state.wall.id) return;
+  const w = addWall(state.wall.name, state.active);
+  state.wall = { id: w.id, name: w.name };
+  toast(`“${w.name}” is now one of your walls`);
+  renderPicker();
+}
+
+/* The address bar is the link to this wall; the globe reads the same filter
+   and the same walls from localStorage. */
+function save() {
+  saveView(state.active, state.filter, state.wall.name);
+  if (state.wall.id) setWallIds(state.wall.id, state.active);
+}
 
 function renderCount() {
   const n = (st) => state.sources.filter((s) => liveState(s.id) === st).length;
@@ -298,6 +339,7 @@ function addSource(id) {
   if (state.active.includes(id)) return;
   if (state.active.length >= MAX_TILES) return toast(`The wall is full: ${MAX_TILES} tiles max`);
   state.active.push(id);
+  adopt();
   commit();
   const src = byId(id);
   toast({
@@ -311,19 +353,23 @@ function removeSource(id) {
   const i = state.active.indexOf(id);
   if (i < 0) return;
   state.active.splice(i, 1);
+  adopt();
   commit();
   toast(`${byId(id).name} removed from the wall`);
 }
 
 const toggleSource = (id) => (state.active.includes(id) ? removeSource(id) : addSource(id));
 
-/* The globe, in another tab, starred or unstarred a channel of this wall:
-   its favourites are these tiles. */
+/* Another tab changed the walls: the globe starred a channel of this one
+   (its favourites are these tiles), or another wall was picked or renamed.
+   A shared wall on screen stays there until you leave it. */
 addEventListener('storage', (e) => {
   if (!catalog.all.length) return;
-  if (e.key === WALL_KEY) {
-    state.active = wallFor(readWallFromStorage());
-    commit();
+  if (e.key === WALLS_KEY) {
+    const w = activeWall(loadWalls());
+    if (state.wall.id && (w.id !== state.wall.id || w.name !== state.wall.name
+      || w.ids.join() !== state.active.join())) show(w);
+    else renderPicker();
   }
   if (e.key === FILTER_KEY) setFilter(readStoredFilter());
 });
@@ -333,6 +379,7 @@ function commit() {
   syncGrid();
   save();
   listSources();
+  renderPicker();
   if (pal.open) palRender();
 }
 
@@ -395,6 +442,7 @@ grid.addEventListener('drop', (e) => {
   const from = state.active.indexOf(state.drag);
   const to = state.active.indexOf(t.dataset.id);
   state.active.splice(to, 0, state.active.splice(from, 1)[0]);
+  adopt();
   orderTiles();
   save();
 });
@@ -446,12 +494,14 @@ addEventListener('keydown', (e) => {
   const k = e.key.toLowerCase();
   if (e.key === 'Escape') {
     if (!$('#keys').hidden) return toggleKeys(false);
+    if (!$('#walls').hidden) return togglePicker(false);
     if (state.focused) return setFocus(state.focused);
     return togglePanel(false);
   }
   if (e.key === '/') { e.preventDefault(); return openPalette(true); }
   if (e.key === '?') { e.preventDefault(); return toggleKeys(); }
   if (k === 's') { e.preventDefault(); return togglePanel(); }
+  if (k === 'w') { e.preventDefault(); return togglePicker(); }
   if (k === 'm') { e.preventDefault(); return setOnAir(null); }
   if (k === 'f') { e.preventDefault(); return toggleFullscreen(); }
   if (k === 'g') { e.preventDefault(); location.href = $('#to-globe').href; }

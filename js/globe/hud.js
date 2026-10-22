@@ -154,7 +154,9 @@ export function renderTelemetry(view, sun, live, total) {
   $('#t-live').textContent = `${live} / ${total}`;
 }
 
-export function renderFavs(sources, bump = false) {
+/* The favourites: the channels of the active wall, and the picker of the
+   wall that takes the stars. */
+export function renderFavs(sources, bump = false, walls = [], active = null) {
   $('#favs-n').textContent = sources.length;
   const btn = $('#favs-btn');
   btn.classList.toggle('has', sources.length > 0);
@@ -163,11 +165,16 @@ export function renderFavs(sources, bump = false) {
     void btn.offsetWidth;
     btn.classList.add('bump');
   }
-  $('#favs-count').textContent = `the wall · ${sources.length}/12`;
+  $('#favs-count').textContent = `${sources.length}/12`;
+  const pick = $('#favs-wall');
+  if (document.activeElement !== pick) {
+    pick.innerHTML = walls.map((w) => `<option value="${escapeHtml(w.id)}">${escapeHtml(w.name)} · ${w.ids.length}</option>`).join('');
+    pick.value = active;
+  }
   $('#favs-list').innerHTML = sources.length
-    ? sources.map((s) => `<li data-id="${s.id}" title="Off the wall"><span>${flag(s.country)}</span>
+    ? sources.map((s) => `<li data-id="${s.id}" title="Off this wall"><span>${flag(s.country)}</span>
         <span>${escapeHtml(s.name)}</span><span class="x">✕</span></li>`).join('')
-    : '<li class="empty">Select a screen and press ★ (or B): it goes on the wall too.</li>';
+    : '<li class="empty">Select a screen and press ★ (or B): it goes on this wall too.</li>';
 }
 
 export function renderOnAir(src) {

@@ -73,15 +73,22 @@ Native ES modules, loaded as they are (`<script type="module">`). Two layers:
 - **`js/core/`** — shared by every view (the wall today, the globe planned in
   `docs/globe-plan.md`). `data.js`: `loadCatalog()` fills `catalog` (`all`, `live`,
   `generated`); `CATEGORIES`, `byId`, `inCategory(s, c)`, `passes(s, filter)`, `wallFor(ids)`, `liveState`,
-  `isPlayable` (not dead), `firstStream`, `flag`, `countryName`, `langName`, `originText`, `escapeHtml`.
-  `url.js`: URL hash and localStorage (`WALL_KEY` = `newswall`, `FILTER_KEY` = `newswall:filter`).
+  `isPlayable` (not dead), `firstStream`, `wallFor(ids)` (null = the default wall, `[]` stays empty), `flag`, `countryName`, `langName`, `originText`, `escapeHtml`.
+  `url.js`: URL hash (`#c=…&n=<name>&s=…`, `readLinkWall()`, `viewHash(filter, ids, name)`,
+  `saveView`) and `FILTER_KEY` = `newswall:filter`.
+  `walls.js`: your named walls in localStorage, `WALLS_KEY` = `newswall:walls` =
+  `{active, walls: [{id, name, ids}]}`, never empty (the old single-wall key `newswall` is
+  migrated on first read). Every write re-reads first (`change()`): another tab may have
+  written. `loadWalls`, `activeWall`, `findWall(book, ids, name)`, `setActive`, `setWallIds`,
+  `addWall(name, ids, replace?)`, `renameWall`, `removeWall` (never the last), `freeName`.
   `filter.js`: `mountFilter(el, onChange)` draws the category keys (both views), `toggleCategory`,
   `filterLabel`.
   `hls-player.js`: `createHlsPlayer(url, {muted, cap, onReady, onFail})` → `{video, hls, play,
   setCap(height|null), destroy}` — one stream, retries + 15 s watchdog, then `onFail`; after
   `destroy()` no callback fires. hls.js stays a classic global script.
 - **`js/wall/`** — `wall.js` is the entry point; `panel.js` (catalog + quick search; gets
-  `toggleSource` via `initPanel`), `state.js` (wall `state`, `$`, `toast`).
+  `toggleSource` via `initPanel`), `picker.js` (the walls button and menu; gets `show`,
+  `adopt`, `save` via `initPicker`), `state.js` (wall `state`, `$`, `toast`, `copyLink`).
 - **`js/globe/`** — `globe.js` is the entry point (see "Globe" below).
 
 Wall behaviour:
@@ -93,10 +100,15 @@ Wall behaviour:
   `catalog.all`. The keys live in the Sources panel (`#panel-cats`), the bar only shows a
   badge on the Sources button. URL `#c=news,sports&s=…` (old `#c=sports` links = a filter of
   one), localStorage `newswall:filter`; both views follow each other via the `storage` event.
-- `state` (`active` ids in order, `players` Map id → `createHlsPlayer()` handle, `audioOn`,
-  `focused`, `filter`). Wall comes from URL hash `#s=a,b,c`, then localStorage, then the default.
-  `saveWall()`/`commit()` write both back — the URL *is* the shareable configuration.
-  Max `MAX_TILES` = 12.
+- `state` (`wall` = `{id, name}`, `active` ids in order, `players` Map id →
+  `createHlsPlayer()` handle, `audioOn`, `focused`, `filter`). **Named walls**: `openWall()`
+  picks the wall: a link (`#n=…&s=…`) matching one of yours (`findWall`) opens it; on a
+  first visit (`book.fresh`) it replaces the default wall; otherwise it is shown as a
+  *shared* wall (`state.wall.id === null`), never saved until `adopt()` (Save, or any
+  change: add/remove/reorder). No link: the active wall. `save()` writes the hash and,
+  for your own wall, its ids; `show(w)` puts a wall on screen through `commit()`.
+  The `storage` event on `WALLS_KEY` follows the other tab, except while a shared wall
+  is on screen. Max `MAX_TILES` = 12.
 - **Reconcile, don't rebuild**: `syncGrid()` only adds/removes changed tiles, and visual order is
   CSS `order` (`orderTiles()`), never DOM moves — moving a `<video>` node restarts it. Preserve
   this in any grid/reorder change.
@@ -152,10 +164,11 @@ Wall behaviour:
   restart-after-removal trick as full screen) and every frame `placeCard()` centres the
   video on the screen's projected place, upright (`translate`). `liftOff()` flies it in
   from `rectOf()`. Full screen flies from `.cmedia` and gives the video back on close.
-- **Favourites** (★, `g.favs`) *are* the wall: `wallFor(readWallFromStorage())` (both in
-  core), written back with `storeWall` (localStorage only, the globe keeps its URL), at most
-  `MAX_WALL`. The wall's Sources panel shows its tiles with the same star; each view follows
-  the other's tab via the `storage` event on `WALL_KEY`. `openWall()` opens that wall. Gold (`--star`) is theirs only, like red
+- **Favourites** (★, `g.favs`) *are* the active wall (`g.wall`, `readFavs()` from
+  `core/walls.js`), written back with `setWallIds` (localStorage only, the globe keeps its
+  URL), at most `MAX_WALL`. `#favs-wall` in the Favourites pane picks the active wall
+  (`pickWall`). The wall's Sources panel shows its tiles with the same star; each view follows
+  the other's tab via the `storage` event on `WALLS_KEY`. `openWall()` opens that wall (with its name). Gold (`--star`) is theirs only, like red
   for on air.
 - `frontrow.js` (user-facing name: **Full screen**; closed by the `.front-close` X, Esc or the veil): FLIP animation (stage laid out at its final rect, a transform starts it from
   `rectOf(screen)` = the projected face corners). It borrows the screen's own `<video>`; a

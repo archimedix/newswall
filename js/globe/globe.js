@@ -1,14 +1,13 @@
 /* Newswall Globe — the exploration view. The Earth turns under the camera
    with the real day and night; over each country hang its channels' screens.
    Turn it, come closer, pick one and listen; star your favourites (they are
-   the wall's channels, the same list) and open them as the wall. */
+   the channels of your active wall, the same list) and open them as the wall. */
 
 import * as THREE from 'three';
-import { CATEGORIES, MAX_WALL, byId, catalog, inCategory, isPlayable, loadCatalog, passes, wallFor } from '../core/data.js';
+import { CATEGORIES, MAX_WALL, byId, catalog, inCategory, isPlayable, loadCatalog, passes } from '../core/data.js';
 import { filterLabel, mountFilter, toggleCategory } from '../core/filter.js';
-import {
-  FILTER_KEY, readFilter, readStoredFilter, readWallFromStorage, storeFilter, storeWall, viewHash, WALL_KEY,
-} from '../core/url.js';
+import { FILTER_KEY, readFilter, readStoredFilter, storeFilter, viewHash } from '../core/url.js';
+import { activeWall, loadWalls, setActive, setWallIds, WALLS_KEY } from '../core/walls.js';
 import { createControls } from './controls.js';
 import { createEarth, loadEarth } from './earth.js';
 import { createFrontRow } from './frontrow.js';
@@ -48,7 +47,8 @@ const g = {
   selected: null,
   candidate: null,
   audioOn: null,      // id of the screen that talks: one at a time, as on the wall
-  favs: [],           // ids: the wall, the same list (core/url.js WALL_KEY)
+  wall: null,         // {id, name}: your active wall (core/walls.js)
+  favs: [],           // ids: that wall's channels, the same list
   hover: null,
   pointed: null,          // the screen under the mouse
   sun: [0, 0],
@@ -82,7 +82,7 @@ async function boot() {
     updateSun();
     loading.step('sun', `overhead at ${latLon(...g.sun)}`);
 
-    g.favs = wallFor(readWallFromStorage());
+    readFavs();
     setFilter(readFilter(), true);
     hud.tickUtc();
 
@@ -507,38 +507,53 @@ function onDead(s) {
 
 /* --------------------------------------------------------- favourites */
 
-/* The favourites are the wall: starring a channel here puts it
-   on the wall, a tile added on the wall is a star here. */
+/* The favourites are your active wall: starring a channel here puts it
+   on that wall, a tile added on the wall is a star here. */
+function readFavs() {
+  const w = activeWall(loadWalls());
+  g.wall = { id: w.id, name: w.name };
+  g.favs = [...w.ids];
+}
+
 function toggleFav(id) {
   const name = byId(id).name;
   const i = g.favs.indexOf(id);
-  if (i < 0 && g.favs.length >= MAX_WALL) return hud.toast(`The wall is full: ${MAX_WALL} channels max`);
+  if (i < 0 && g.favs.length >= MAX_WALL) return hud.toast(`“${g.wall.name}” is full: ${MAX_WALL} channels max`);
   if (i >= 0) g.favs.splice(i, 1);
   else g.favs.push(id);
-  storeWall(g.favs);
-  hud.toast(i >= 0 ? `${name}: off the wall`
-    : `★ ${name} · on the wall (${g.favs.length}/${MAX_WALL})`);
+  setWallIds(g.wall.id, g.favs);
+  hud.toast(i >= 0 ? `${name}: off “${g.wall.name}”`
+    : `★ ${name} · on “${g.wall.name}” (${g.favs.length}/${MAX_WALL})`);
   renderFavs(i < 0);
 }
 
+/* Another of your walls takes the stars. */
+function pickWall(id) {
+  setActive(id);
+  readFavs();
+  renderFavs();
+  hud.toast(`★ now stars “${g.wall.name}”`);
+}
+
 function renderFavs(bump = false) {
-  hud.renderFavs(g.favs.map(byId).filter(Boolean), bump);
+  hud.renderFavs(g.favs.map(byId).filter(Boolean), bump, loadWalls().walls, g.wall.id);
   renderCard();
   if (front.screen) front.render(front.screen);
 }
 
-/* The wall changed in another tab: the same stars here. Its catalog changed
+/* Your walls changed in another tab (a tile, a name, another wall picked):
+   the same stars here. Its catalog changed
    category: the same channels here. */
 addEventListener('storage', (e) => {
   if (!g.screens) return;
-  if (e.key === WALL_KEY) {
-    g.favs = wallFor(readWallFromStorage());
+  if (e.key === WALLS_KEY) {
+    readFavs();
     renderFavs();
   }
   if (e.key === FILTER_KEY) setFilter(readStoredFilter());
 });
 
-const openWall = () => { location.href = `index.html${viewHash(g.filter, g.favs)}`; };
+const openWall = () => { location.href = `index.html${viewHash(g.filter, g.favs, g.wall.name)}`; };
 
 /* ---------------------------------------------------------- controls */
 
@@ -656,6 +671,7 @@ $('#favs-list').addEventListener('click', (e) => {
   if (li) toggleFav(li.dataset.id);
 });
 $('#favs-open').onclick = openWall;
+$('#favs-wall').onchange = (e) => pickWall(e.target.value);
 $('[data-act="keys"]').onclick = () => hud.toggle('#keys');
 $('#keys-close').onclick = () => hud.toggle('#keys', false);
 $('#keys').addEventListener('mousedown', (e) => { if (e.target.id === 'keys') hud.toggle('#keys', false); });

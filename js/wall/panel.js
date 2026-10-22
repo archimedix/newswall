@@ -4,8 +4,7 @@ import {
   byId, catalog, countryName, escapeHtml, firstStream, flag, inCategory, isPlayable, langName, originText,
 } from '../core/data.js';
 import { mountFilter } from '../core/filter.js';
-import { saveWall } from '../core/url.js';
-import { $, MAX_TILES, state } from './state.js';
+import { $, copyLink, MAX_TILES, state } from './state.js';
 
 /* Adding or removing a channel, and changing the category filter, belong to
    the wall: it hands its functions here. */
@@ -110,9 +109,8 @@ export function listSources() {
     : `<div class="empty">No channels match these filters.</div>`;
 
   const shown = list.length, tot = state.sources.length;
-  $('#panel-count').textContent = shown === tot
-    ? `${state.active.length}/${MAX_TILES} on the wall`
-    : `${shown} of ${tot} · ${state.active.length}/${MAX_TILES} on the wall`;
+  const on = `${state.active.length}/${MAX_TILES} on “${state.wall.name}”`;
+  $('#panel-count').textContent = shown === tot ? on : `${shown} of ${tot} · ${on}`;
 }
 
 export function togglePanel(force) {
@@ -128,16 +126,7 @@ $('#panel-list').addEventListener('click', (e) => {
 });
 $('#panel-close').onclick = () => togglePanel(false);
 
-$('#share').onclick = async () => {
-  saveWall(state.active, state.filter);
-  try {
-    await navigator.clipboard.writeText(location.href);
-    $('#share-msg').textContent = 'Link copied: it contains your sources.';
-  } catch {
-    $('#share-msg').textContent = 'Copy the URL from the browser bar.';
-  }
-  setTimeout(() => { $('#share-msg').textContent = ''; }, 3500);
-};
+$('#share').onclick = copyLink;
 
 /* --------------------------------------------------------- quick search */
 
