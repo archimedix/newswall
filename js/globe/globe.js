@@ -50,6 +50,7 @@ const g = {
   audioOn: null,      // id of the screen that talks: one at a time, as on the wall
   favs: [],           // ids: the wall, the same list (core/url.js WALL_KEY)
   hover: null,
+  pointed: null,          // the screen under the mouse
   sun: [0, 0],
   logos: {},          // source id -> file in assets/logos/, from scripts/fetch-logos.py
 };
@@ -256,10 +257,15 @@ function updateCandidate() {
   renderCard();
 }
 
+/* The card tells about one channel at a time: the selected one; else the
+   one under the pointer, which a click selects; else the one in the
+   crosshair, which Enter selects. */
 function renderCard() {
-  const s = g.selected || g.candidate;
+  const pointed = g.selected ? null : g.pointed;
+  const s = g.selected || pointed || g.candidate;
   hud.renderCard(s, {
     target: !g.selected,
+    pointer: !!pointed,
     pile: pileOf(s),
     onAir: !!s && s.id === g.audioOn,
     isFav: !!s && g.favs.includes(s.id),
@@ -385,11 +391,13 @@ function updateHover() {
     raycaster.setFromCamera(g.hover, camera);
     s = raycaster.intersectObjects(pickable(), false)[0]?.object.userData.screen || null;
   }
-  const old = g.screens.list.find((x) => x.hover);
+  const old = g.pointed;
   if (old === s) return;
   if (old) old.hover = false;
   if (s) s.hover = true;
+  g.pointed = s;
   canvas.classList.toggle('hover', !!s);
+  if (!g.selected) renderCard();
 }
 
 /* Where a screen is on the page right now: the box of its four projected
@@ -564,7 +572,7 @@ const controls = createControls(canvas, {
   },
   pick(x, y) {
     const s = screenAt(x, y);
-    if (!s) return;
+    if (!s) return select(null);      // a click on the globe, beside the screens, lets go
     if (pileOf(s)) return openPile(s.pile);
     if (s !== g.selected) return select(s);
     clearTimeout(pendingAudio);
@@ -626,6 +634,7 @@ $('#card').addEventListener('click', (e) => {
   if (op === 'front') openFront(s);
   if (op === 'audio') setAudio(s.id);
   if (op === 'fav') toggleFav(s.id);
+  if (op === 'close') select(null);
 });
 $('#card .cmedia').addEventListener('dblclick', () => { if (g.selected) openFront(g.selected); });
 $('#front').addEventListener('click', (e) => {

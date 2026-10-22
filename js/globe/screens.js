@@ -1,6 +1,7 @@
-/* The screens hanging over the countries: a 16:9 panel in a glass bezel,
-   with a soft shadow behind it, a glow when it is targeted or talking, a
-   label underneath, a thread down to the ground and a pulsing marker there.
+/* The screens hanging over the countries: a 16:9 picture set in a card of
+   dark glass, as the HUD's panes, its name and local time on the glass under
+   the picture, a lit rim that says its state, a soft shadow behind it, a glow
+   when it is targeted or talking, a thread down to the ground and a pulsing marker there.
    Neighbours push each other apart (Europe is crowded) but the thread always
    goes back to the true place.
 
@@ -19,6 +20,11 @@ export const W = 0.078, H = W * 9 / 16;
 const ALT = 0.07;             // height of the screens above the ground
 const GAP = 0.092;            // minimum angle between two screens, in radians
 const LABEL_H = W * 0.15;
+const PAD = 0.0032;           // the glass around the picture
+/* The card: the picture in its upper part, the label in the lower. The
+   group's origin stays the picture's centre. */
+const CARD_W = W + PAD * 2, CARD_H = H + PAD * 2 + LABEL_H, CARD_Y = -LABEL_H / 2;
+const RADIUS_PX = 7;          // corners of the picture, on its 256 px mask
 const PILE_MIN = 2;           // channels of one country that make a pile
 /* Camera distances: folded beyond `far`, fanned out within `near`. */
 export const FAN = { near: 2.05, far: 2.65 };
@@ -27,53 +33,73 @@ const calm = matchMedia('(prefers-reduced-motion: reduce)').matches;
 /* The tally red is the only warm colour that means "talking"; the orange
    detail marks a rebroadcast, as on the wall. */
 const COLOR = {
-  idle: new THREE.Color(0x313a46),
-  live: new THREE.Color(0x8796a8),
+  idle: new THREE.Color(0x56616f),
+  live: new THREE.Color(0x9aa8b9),
   candidate: new THREE.Color(0xe9eef4),
   onAir: new THREE.Color(0xff4b2b),
 };
 const REBROADCAST = '#e0a45c';
 
 /* Textures every screen shares, drawn once: the rounded mask of the picture,
-   the glass bezel, and one soft shape for both the shadow and the glow. */
+   the glass card, its rim, and one soft shape for both the shadow and the glow. */
 let SHARED = null;
 function shared() {
   if (SHARED) return SHARED;
   const mask = canvas(256, 144);
   let g = mask.getContext('2d');
   g.fillStyle = '#000'; g.fillRect(0, 0, 256, 144);
-  g.fillStyle = '#fff'; round(g, 0, 0, 256, 144, 7); g.fill();
+  g.fillStyle = '#fff'; round(g, 0, 0, 256, 144, RADIUS_PX); g.fill();
 
-  // Bezel: frosted, brighter along the top edge, as glass catches the light.
-  const bezel = canvas(256, 152);
-  g = bezel.getContext('2d');
-  const body = g.createLinearGradient(0, 0, 0, 152);
-  body.addColorStop(0, 'rgba(255,255,255,.95)');
-  body.addColorStop(0.08, 'rgba(255,255,255,.62)');
-  body.addColorStop(1, 'rgba(255,255,255,.42)');
-  g.fillStyle = body; round(g, 1, 1, 254, 150, 11); g.fill();
-  g.globalCompositeOperation = 'destination-out';
-  g.fillStyle = '#000'; round(g, 5, 5, 246, 142, 8); g.fill();
+  // The card, in the pane's recipe: dark tinted glass, a sheen from the top
+  // left, and a darker well the picture sits in; corners concentric with its.
+  const k = 512 / CARD_W, cw = 512, ch = Math.round(CARD_H * k);
+  const inner = (RADIUS_PX / 256) * W * k, r = inner + PAD * k;
+  const card = canvas(cw, ch);
+  g = card.getContext('2d');
+  round(g, 0, 0, cw, ch, r); g.clip();
+  const body = g.createLinearGradient(0, 0, 0, ch);
+  body.addColorStop(0, 'rgba(44,55,70,.64)');
+  body.addColorStop(0.5, 'rgba(18,24,33,.74)');
+  body.addColorStop(1, 'rgba(8,12,18,.84)');
+  g.fillStyle = body; g.fillRect(0, 0, cw, ch);
+  const sheen = g.createLinearGradient(0, 0, cw * 0.5, ch);
+  sheen.addColorStop(0, 'rgba(255,255,255,.12)');
+  sheen.addColorStop(0.4, 'rgba(255,255,255,.035)');
+  sheen.addColorStop(1, 'rgba(255,255,255,0)');
+  g.fillStyle = sheen; g.fillRect(0, 0, cw, ch);
+  g.fillStyle = 'rgba(0,0,0,.55)';
+  round(g, PAD * k - 2, PAD * k - 2, W * k + 4, H * k + 4, inner + 2); g.fill();
 
-  const soft = canvas(128, 96);
+  // The rim: white, tinted by state; brighter along the top, as glass catches the light.
+  const rim = canvas(cw, ch);
+  g = rim.getContext('2d');
+  const edge = g.createLinearGradient(0, 0, 0, ch);
+  edge.addColorStop(0, 'rgba(255,255,255,1)');
+  edge.addColorStop(0.18, 'rgba(255,255,255,.55)');
+  edge.addColorStop(1, 'rgba(255,255,255,.3)');
+  g.strokeStyle = edge; g.lineWidth = 3;
+  round(g, 1.5, 1.5, cw - 3, ch - 3, r - 1.5); g.stroke();
+
+  const soft = canvas(160, 128);
   g = soft.getContext('2d');
-  g.filter = 'blur(9px)';
-  g.fillStyle = '#fff'; round(g, 22, 22, 84, 52, 10); g.fill();
+  g.filter = 'blur(14px)';
+  g.fillStyle = '#fff'; round(g, 30, 30, 100, 68, 16); g.fill();
 
-  // The cards behind a pile: dark glass with a lit edge.
-  const ghost = canvas(256, 152);
+  // The cards behind a pile: the same glass, opaque, with a lit edge.
+  const ghost = canvas(cw, ch);
   g = ghost.getContext('2d');
-  const edge = g.createLinearGradient(0, 0, 0, 152);
-  edge.addColorStop(0, '#aab6c4');
-  edge.addColorStop(0.1, '#5d6875');
-  edge.addColorStop(1, '#3a434e');
-  g.fillStyle = edge; round(g, 1, 1, 254, 150, 11); g.fill();
-  const glass = g.createLinearGradient(0, 0, 0, 152);
-  glass.addColorStop(0, '#1c2530');
+  const glass = g.createLinearGradient(0, 0, 0, ch);
+  glass.addColorStop(0, '#242e3b');
   glass.addColorStop(1, '#0c1117');
-  g.fillStyle = glass; round(g, 5, 5, 246, 142, 8); g.fill();
+  g.fillStyle = glass; round(g, 0, 0, cw, ch, r); g.fill();
+  const lit = g.createLinearGradient(0, 0, 0, ch);
+  lit.addColorStop(0, 'rgba(255,255,255,.5)');
+  lit.addColorStop(0.2, 'rgba(255,255,255,.14)');
+  lit.addColorStop(1, 'rgba(255,255,255,.06)');
+  g.strokeStyle = lit; g.lineWidth = 3;
+  round(g, 1.5, 1.5, cw - 3, ch - 3, r - 1.5); g.stroke();
 
-  SHARED = { mask: plain(mask), bezel: plain(bezel), soft: plain(soft), ghost: texture(ghost) };
+  SHARED = { mask: plain(mask), card: texture(card), rim: plain(rim), soft: plain(soft), ghost: texture(ghost) };
   return SHARED;
 }
 
@@ -135,7 +161,7 @@ export function createScreens(sources, logos = {}) {
     group,
     list,
     piles,
-    meshes: list.flatMap((s) => [s.face, s.frame]),
+    meshes: list.flatMap((s) => [s.face, s.card]),
     lift: ALT,
     /* True while the piles are (mostly) closed. */
     get folded() { return fold > 0.5; },
@@ -177,6 +203,8 @@ export function createScreens(sources, logos = {}) {
         const lift = s.selected ? ALT * 1.9 : ALT;
         s.group.position.copy(s.dir).multiplyScalar(RADIUS + lift * Math.max(1, s.scale * 0.8));
         s.group.scale.setScalar(s.scale);
+        // Back to front, a whole screen at a time: its glass is see-through.
+        s.group.renderOrder = 10 + 10 / camera.position.distanceTo(s.group.position);
 
         // Outwards, and turned most of the way towards the camera so that
         // screens near the edge of the globe stay readable.
@@ -190,7 +218,9 @@ export function createScreens(sources, logos = {}) {
         const night = 0.5 + 0.5 * lit;
         const lit3 = s.onAir || s.candidate || s.selected || s.hover;
         const c = s.onAir ? COLOR.onAir : lit3 ? COLOR.candidate : s.live ? COLOR.live : COLOR.idle;
-        s.frame.material.color.copy(c).multiplyScalar(lit3 ? 1 : night);
+        s.rim.material.color.copy(c).multiplyScalar(lit3 ? 1 : night);
+        s.rim.material.opacity = lit3 ? 1 : s.live ? 0.7 : 0.5;
+        s.card.material.color.setScalar(0.7 + 0.3 * night);
         s.face.material.color.setScalar((s.live ? 1 : 0.62) * (s.live ? 0.75 + 0.25 * lit : night));
         s.label.material.opacity = 0.35 + 0.65 * night;
 
@@ -199,13 +229,13 @@ export function createScreens(sources, logos = {}) {
         s.glow.material.opacity += (glow - s.glow.material.opacity) * 0.15;
         s.glow.material.color.copy(s.onAir ? COLOR.onAir : COLOR.candidate);
         s.glow.visible = !s.lifted && s.glow.material.opacity > 0.01;
-        s.shadow.material.opacity = 0.3 + 0.25 * night;
+        s.shadow.material.opacity = 0.28 + 0.22 * night;
         // Lifted: the HTML card stands in its place (globe.js dockCard); the thread stays.
-        s.face.visible = s.frame.visible = s.label.visible = s.shadow.visible = !s.lifted;
+        s.face.visible = s.card.visible = s.rim.visible = s.label.visible = s.shadow.visible = !s.lifted;
 
-        // The thread: from the ground to the bottom edge of the screen.
+        // The thread: from the ground to the bottom edge of the card.
         if (s.group.visible || lead) {
-          tmp.set(0, -(H / 2 + 0.004), 0).applyQuaternion(s.group.quaternion).multiplyScalar(s.scale).add(s.group.position);
+          tmp.set(0, CARD_Y - CARD_H / 2, 0).applyQuaternion(s.group.quaternion).multiplyScalar(s.scale).add(s.group.position);
         } else tmp.copy(s.anchor);
         threadPos.set([s.anchor.x * 1.002, s.anchor.y * 1.002, s.anchor.z * 1.002, tmp.x, tmp.y, tmp.z], i * 6);
       }
@@ -220,7 +250,7 @@ export function createScreens(sources, logos = {}) {
         p.ghosts.position.copy(r.position);
         p.ghosts.quaternion.copy(r.quaternion);
         p.ghosts.scale.copy(r.scale);
-        p.ghosts.children.forEach((m, k) => m.position.set((k + 1) * 0.0034 * fold, (k + 1) * 0.0034 * fold, -0.0009 * (k + 1)));
+        p.ghosts.children.forEach((m, k) => m.position.set((k + 1) * 0.0034 * fold, CARD_Y + (k + 1) * 0.0034 * fold, -0.0009 * (k + 1)));
       }
     },
 
@@ -267,7 +297,7 @@ export function createScreens(sources, logos = {}) {
     dispose() {
       for (const s of list) {
         s.videoTex?.dispose();
-        for (const m of [s.face, s.frame, s.label, s.shadow, s.glow]) { m.geometry.dispose(); m.material.dispose(); }
+        for (const m of [s.face, s.card, s.rim, s.label, s.shadow, s.glow]) { m.geometry.dispose(); m.material.dispose(); }
         s.idleTex.dispose();
         s.labelTex.dispose();
       }
@@ -283,23 +313,28 @@ function makeScreen(src, anchor, logoFile) {
 
   const idleCanvas = canvas(512, 288);
   const idleTex = texture(idleCanvas);
-  const { mask, bezel, soft } = shared();
+  const { mask, card: glass, rim: ring, soft } = shared();
   const face = new THREE.Mesh(new THREE.PlaneGeometry(W, H),
     new THREE.MeshBasicMaterial({ map: idleTex, alphaMap: mask, alphaTest: 0.5 }));
   face.position.z = 0.0008;
 
-  const B = 0.0042;           // bezel width
-  const frame = new THREE.Mesh(new THREE.PlaneGeometry(W + B, H + B),
-    new THREE.MeshBasicMaterial({ map: bezel, color: COLOR.idle, transparent: true, depthWrite: false }));
-  frame.position.z = 0.0012;
+  // The glass writes depth (its clear corners do not), so that what lies
+  // behind it is drawn first or not at all; the label and the rim go on it.
+  const card = new THREE.Mesh(new THREE.PlaneGeometry(CARD_W, CARD_H),
+    new THREE.MeshBasicMaterial({ map: glass, transparent: true, alphaTest: 0.05 }));
+  card.position.y = CARD_Y;
+  const rim = new THREE.Mesh(new THREE.PlaneGeometry(CARD_W, CARD_H),
+    new THREE.MeshBasicMaterial({ map: ring, color: COLOR.idle, transparent: true, depthWrite: false }));
+  rim.position.set(0, CARD_Y, 0.0012);
 
-  // A soft shadow, a little below and behind: the screen floats.
-  const shadow = new THREE.Mesh(new THREE.PlaneGeometry(W * 1.55, H * 1.8),
-    new THREE.MeshBasicMaterial({ color: 0x000000, alphaMap: soft, transparent: true, depthWrite: false }));
-  shadow.position.set(0.002, -0.006, -0.004);
-  const glow = new THREE.Mesh(new THREE.PlaneGeometry(W * 1.9, H * 2.1),
+  // A soft shadow, a little below and behind: the screen floats. Its shape
+  // is the map's alpha (an alphaMap reads green, which is white to the edge).
+  const shadow = new THREE.Mesh(new THREE.PlaneGeometry(CARD_W * 1.5, CARD_H * 1.75),
+    new THREE.MeshBasicMaterial({ color: 0x000000, map: soft, transparent: true, depthWrite: false }));
+  shadow.position.set(0.0015, CARD_Y - 0.005, -0.004);
+  const glow = new THREE.Mesh(new THREE.PlaneGeometry(CARD_W * 1.8, CARD_H * 2.05),
     new THREE.MeshBasicMaterial({ map: soft, transparent: true, opacity: 0, depthWrite: false, blending: THREE.AdditiveBlending }));
-  glow.position.z = -0.002;
+  glow.position.set(0, CARD_Y, -0.002);
 
   const labelCanvas = canvas(512, 76);
   drawLabel(labelCanvas, src);
@@ -308,18 +343,20 @@ function makeScreen(src, anchor, logoFile) {
     new THREE.PlaneGeometry(W, LABEL_H),
     new THREE.MeshBasicMaterial({ map: labelTex, transparent: true, depthWrite: false }),
   );
-  label.position.set(0, -(H / 2 + 0.0048 + LABEL_H / 2), 0.0012);
+  label.position.set(0, -(H / 2 + PAD * 0.6 + LABEL_H / 2), 0.0012);
+  // Within a screen: shadow, glow, glass, then what is on the glass.
+  [shadow, glow, card, face, rim, label].forEach((m, i) => { m.renderOrder = i; });
 
-  group.add(shadow, glow, face, frame, label);
+  group.add(shadow, glow, card, face, rim, label);
   const s = {
     src, id: src.id, place: src.country, anchor, dir: anchor.clone(), fan: null, packed: null, pile: null,
-    group, face, frame, label, shadow, glow,
+    group, face, card, rim, label, shadow, glow,
     idleCanvas, idleTex, labelCanvas, labelTex, videoTex: null, still: null, stillAt: null,
     logo: null, logoFile: null, logoLight: false, logoCrop: null,
     scale: 1, facing: 0, live: false, dead: false, hidden: false, asPile: false,
     selected: false, candidate: false, onAir: false, hover: false, lifted: false,
   };
-  face.userData.screen = frame.userData.screen = s;
+  face.userData.screen = card.userData.screen = s;
   s.logoFile = logoFile;
   drawIdle(s);
   return s;
@@ -369,9 +406,8 @@ function inspect(img) {
 /* Two cards behind a pile's screen, hidden behind it until the pile folds. */
 function makeGhosts() {
   const g = new THREE.Group();
-  const B = 0.0042;
   for (let k = 0; k < 2; k++) {
-    const m = new THREE.Mesh(new THREE.PlaneGeometry(W + B, H + B),
+    const m = new THREE.Mesh(new THREE.PlaneGeometry(CARD_W, CARD_H),
       new THREE.MeshBasicMaterial({ map: shared().ghost, color: new THREE.Color().setScalar(1 - k * 0.3), alphaTest: 0.5 }));
     g.add(m);
   }
@@ -517,21 +553,13 @@ function chip(g, text, x, y) {
   return w;
 }
 
-/* Under the screen: flag, name, local time; orange dot for a rebroadcast.
+/* On the glass under the picture: flag, name, local time; orange dot for a rebroadcast.
    A folded pile says its country and how many channels it holds instead. */
 function drawLabel(c, src, pile = null) {
   const g = c.getContext('2d');
   g.clearRect(0, 0, c.width, c.height);
-  const grd = g.createLinearGradient(0, 0, 0, c.height);
-  grd.addColorStop(0, 'rgba(14,19,27,.88)');
-  grd.addColorStop(1, 'rgba(6,9,13,.72)');
-  g.fillStyle = grd;
-  round(g, 0, 4, c.width, c.height - 6, 14); g.fill();
-  g.strokeStyle = 'rgba(255,255,255,.16)';
-  g.lineWidth = 2;
-  g.beginPath(); g.moveTo(14, 5); g.lineTo(c.width - 14, 5); g.stroke();
   g.textBaseline = 'middle';
-  const y = c.height / 2 + 2;
+  const y = c.height / 2;
 
   let right = `×${pile?.members.length}`;
   if (!pile) {
@@ -543,12 +571,12 @@ function drawLabel(c, src, pile = null) {
   g.font = `500 28px ${MONO}`;
   const tw = g.measureText(right).width;
   g.fillStyle = pile ? '#e9eef4' : '#8d98a5';
-  g.fillText(right, c.width - 14 - tw, y);
+  g.fillText(right, c.width - 4 - tw, y);
 
-  let x = 14;
+  let x = 4;
   if (!pile && src.streams[hlsOrder(src)[0]]?.origin?.kind === 'rebroadcast') {
     g.fillStyle = REBROADCAST;
-    g.beginPath(); g.arc(c.width - 30 - tw, y, 6, 0, Math.PI * 2); g.fill();
+    g.beginPath(); g.arc(c.width - 20 - tw, y, 6, 0, Math.PI * 2); g.fill();
   }
   g.font = `34px ${SANS}`;
   g.fillText(flag(src.country), x, y);

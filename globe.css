@@ -205,6 +205,10 @@ body.selected #reticle{opacity:0}
   box-shadow:0 10px 24px -10px rgba(233,238,244,.55),inset 0 1px 0 #fff;
 }
 .card-ops .primary:hover{background:#fff}
+/* Close stands apart from the actions: a hairline before it. */
+.card-ops .close{margin-left:6px;background:transparent;color:var(--mute);position:relative}
+.card-ops .close::before{content:'';position:absolute;left:-7px;top:9px;bottom:9px;width:1px;background:rgba(255,255,255,.1)}
+.card-ops .close:hover{color:var(--ice)}
 .card-ops button.on{background:var(--tally);border-color:var(--tally);color:#fff;box-shadow:0 8px 22px -8px rgba(255,75,43,.7)}
 /* The star (styles.css): filled gold once it is a favourite. */
 button.fav.in{color:var(--star);border-color:rgba(255,206,92,.35);background:rgba(255,206,92,.1)}
@@ -274,6 +278,7 @@ button.fav.in svg{animation:star-pop .45s var(--spring)}
 #card.docked .card-ops > :nth-child(1){animation-delay:.38s}
 #card.docked .card-ops > :nth-child(2){animation-delay:.42s}
 #card.docked .card-ops > :nth-child(3){animation-delay:.46s}
+#card.docked .card-ops > :nth-child(4){animation-delay:.5s}
 #card.docked .cfacts{animation:fade .5s .36s var(--ease) both}
 #card.docked .cfacts > div > *{animation:fact-in .45s .4s var(--spring) both}
 #card.docked .cfacts > div:nth-child(2) > *{animation-delay:.44s}

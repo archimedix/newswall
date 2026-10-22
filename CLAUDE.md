@@ -142,10 +142,11 @@ Wall behaviour:
   chroma so channels don't bleed. The shader tilts the normal by the elevation's slope for
   relief lit by `sunDir`. `boot()` loads both behind `#boot` (`hud.boot()`: progress by bytes,
   a log line per asset) and uploads them with `renderer.initTexture` before the first flight.
-- **Card** (`hud.renderCard`): compact in the crosshair (`.target`); selected, it shows the
+- **Card** (`hud.renderCard`): compact (`.target`) for the screen under the pointer
+  (`g.pointed`, "click select"), else the one in the crosshair; selected, it shows the
   logo plate (`g.logos`, dark plate when `s.logoLight`) and `.cfacts` (language + its own
   name, local time + UTC offset, best `heights` from live.json, origin, walls); icon-only
-  actions. On a large screen (`roomy` media query) `dockCard()` in `globe.js` makes it the
+  actions, the last one ✕. A click on the globe beside the screens, ✕ or Esc lets go. On a large screen (`roomy` media query) `dockCard()` in `globe.js` makes it the
   screen itself: `s.lifted` hides the 3D face, frame, label (not the thread), the card
   takes the screen's `<video>` into `.cmedia` (`fillMedia`/`releaseMedia`, the same
   restart-after-removal trick as full screen) and every frame `placeCard()` centres the

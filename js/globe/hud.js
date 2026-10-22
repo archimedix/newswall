@@ -38,12 +38,13 @@ export function boot(groundSize) {
   };
 }
 
-/* The selected channel, or — compact, without actions — the one in the crosshair. */
+/* The selected channel, or — compact, without actions — the one under the
+   pointer or in the crosshair, with what selects it. */
 let shown = null;
-export function renderCard(s, { target = false, onAir = false, isFav = false, pile = null, logo = null } = {}) {
+export function renderCard(s, { target = false, pointer = false, onAir = false, isFav = false, pile = null, logo = null } = {}) {
   const card = $('#card');
   card.hidden = !s;
-  $('#reticle').classList.toggle('lock', !!s && target);
+  $('#reticle').classList.toggle('lock', !!s && target && !pointer);
   if (!s) { shown = null; return; }
   const key = `${pile ? `pile:${pile.country}` : s.id}:${target}`;
   if (shown !== key) {
@@ -53,9 +54,10 @@ export function renderCard(s, { target = false, onAir = false, isFav = false, pi
     card.classList.add('swap');
     shown = key;
   }
-  card.querySelector('.chint').innerHTML = pile
-    ? '<kbd>↵</kbd> come closer · <kbd>Tab</kbd> next'
-    : '<kbd>↵</kbd> select · <kbd>Tab</kbd> next';
+  const go = pile ? 'come closer' : 'select';
+  card.querySelector('.chint').innerHTML = pointer
+    ? `<kbd>click</kbd> ${go}`
+    : `<kbd>↵</kbd> ${go} · <kbd>Tab</kbd> next`;
   if (pile) return renderPile(card, pile);
   const src = s.src;
   const stream = src.streams[s.stream ?? 0];
