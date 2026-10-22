@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-22T01:30:29+00:00",
+  "generated": "2026-10-22T07:32:48+00:00",
   "entries": {
     "aljazeera-en": {
       "state": "ok",
@@ -894,16 +894,19 @@
       "reason": null
     },
     "mrtv-news": {
-      "state": "unverified",
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "state": "unverified",
-          "reason": "unreachable (TimeoutError)",
-          "failing_since": "2026-10-22T01:30:29+00:00"
+          "state": "ok",
+          "heights": [
+            404,
+            720,
+            1080
+          ]
         }
       ],
-      "reason": "unreachable (TimeoutError)"
+      "reason": null
     },
     "rt-arabic": {
       "state": "ok",
@@ -1561,15 +1564,12 @@
     },
     "cctv-1": {
       "state": "ok",
-      "use": 0,
+      "use": 1,
       "streams": [
         {
-          "state": "ok",
-          "heights": [
-            240,
-            360,
-            600
-          ]
+          "state": "unverified",
+          "reason": "segment: HTTP 404",
+          "failing_since": "2026-10-22T07:32:48+00:00"
         },
         {
           "state": "ok",
@@ -1579,16 +1579,19 @@
       "reason": null
     },
     "cctv-2": {
-      "state": "unverified",
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "state": "unverified",
-          "reason": "segment: HTTP 404",
-          "failing_since": "2026-10-22T01:30:29+00:00"
+          "state": "ok",
+          "heights": [
+            240,
+            360,
+            600
+          ]
         }
       ],
-      "reason": "segment: HTTP 404"
+      "reason": null
     },
     "nation-tv": {
       "state": "ok",
@@ -1968,16 +1971,19 @@
       "reason": null
     },
     "mrtv-sports": {
-      "state": "unverified",
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "state": "unverified",
-          "reason": "unreachable (TimeoutError)",
-          "failing_since": "2026-10-22T01:30:29+00:00"
+          "state": "ok",
+          "heights": [
+            404,
+            720,
+            1080
+          ]
         }
       ],
-      "reason": "unreachable (TimeoutError)"
+      "reason": null
     },
     "myanmar-international-tv": {
       "state": "unverified",
@@ -1985,11 +1991,11 @@
       "streams": [
         {
           "state": "unverified",
-          "reason": "unreachable (TimeoutError)",
+          "reason": "segment: HTTP 404",
           "failing_since": "2026-10-22T01:30:29+00:00"
         }
       ],
-      "reason": "unreachable (TimeoutError)"
+      "reason": "segment: HTTP 404"
     },
     "red-bull-tv": {
       "state": "ok",
@@ -2075,16 +2081,20 @@
       "reason": null
     },
     "oman-sports-tv": {
-      "state": "unverified",
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "state": "unverified",
-          "reason": "variant: HTTP 404",
-          "failing_since": "2026-10-22T01:30:29+00:00"
+          "state": "ok",
+          "heights": [
+            240,
+            480,
+            720,
+            1080
+          ]
         }
       ],
-      "reason": "variant: HTTP 404"
+      "reason": null
     },
     "africa-24-sport": {
       "state": "ok",
@@ -2437,11 +2447,11 @@
       "streams": [
         {
           "state": "unverified",
-          "reason": "segment: HTTP 403",
+          "reason": "variant: HTTP 403",
           "failing_since": "2026-10-21T20:57:13+00:00"
         }
       ],
-      "reason": "segment: HTTP 403"
+      "reason": "variant: HTTP 403"
     },
     "cnbc-arabiya": {
       "state": "ok",
@@ -2876,16 +2886,19 @@
       "reason": null
     },
     "qbc": {
-      "state": "unverified",
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "state": "unverified",
-          "reason": "unreachable (IncompleteRead)",
-          "failing_since": "2026-10-22T01:30:29+00:00"
+          "state": "ok",
+          "heights": [
+            240,
+            480,
+            1080
+          ]
         }
       ],
-      "reason": "unreachable (IncompleteRead)"
+      "reason": null
     },
     "rbk-tv": {
       "state": "ok",
@@ -3412,15 +3425,16 @@
       "reason": null
     },
     "savane-tv": {
-      "state": "ok",
+      "state": "unverified",
       "use": 0,
       "streams": [
         {
-          "state": "ok",
-          "heights": []
+          "state": "unverified",
+          "reason": "HTTP 404",
+          "failing_since": "2026-10-22T07:32:48+00:00"
         }
       ],
-      "reason": null
+      "reason": "HTTP 404"
     },
     "senal-colombia": {
       "state": "ok",
