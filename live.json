@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-23T07:29:55+00:00",
+  "generated": "2026-10-23T13:24:32+00:00",
   "entries": {
     "aljazeera-en": {
       "state": "ok",
@@ -198,20 +198,16 @@
       "reason": null
     },
     "abc-au": {
-      "state": "ok",
+      "state": "unverified",
       "use": 0,
       "streams": [
         {
-          "state": "ok",
-          "heights": [
-            288,
-            360,
-            576,
-            720
-          ]
+          "state": "unverified",
+          "reason": "unreachable (IncompleteRead)",
+          "failing_since": "2026-10-23T13:24:32+00:00"
         }
       ],
-      "reason": null
+      "reason": "unreachable (IncompleteRead)"
     },
     "nbc-news": {
       "state": "ok",
@@ -1764,11 +1760,11 @@
       "streams": [
         {
           "state": "dead",
-          "reason": "no CORS for this site: would need a proxy",
+          "reason": "segment: no CORS for this site: would need a proxy",
           "failing_since": "2026-10-20T22:17:49+00:00"
         }
       ],
-      "reason": "no CORS for this site: would need a proxy"
+      "reason": "segment: no CORS for this site: would need a proxy"
     },
     "reuters": {
       "state": "ok",
@@ -1846,16 +1842,19 @@
       "reason": null
     },
     "esport3": {
-      "state": "unverified",
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "state": "unverified",
-          "reason": "segment: HTTP 403",
-          "failing_since": "2026-10-22T18:32:14+00:00"
+          "state": "ok",
+          "heights": [
+            480,
+            720,
+            1080
+          ]
         }
       ],
-      "reason": "segment: HTTP 403"
+      "reason": null
     },
     "ge-fast": {
       "state": "ok",
@@ -2921,11 +2920,11 @@
       "streams": [
         {
           "state": "unverified",
-          "reason": "HTTP 404",
+          "reason": "segment: HTTP 404",
           "failing_since": "2026-10-22T22:19:12+00:00"
         }
       ],
-      "reason": "HTTP 404"
+      "reason": "segment: HTTP 404"
     },
     "2m-monde": {
       "state": "ok",
@@ -2956,28 +2955,30 @@
       "reason": "playlist without segments"
     },
     "el-watania-2": {
-      "state": "unverified",
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "state": "unverified",
-          "reason": "unreachable (TimeoutError)",
-          "failing_since": "2026-10-22T22:19:12+00:00"
+          "state": "ok",
+          "heights": [
+            1080
+          ]
         }
       ],
-      "reason": "unreachable (TimeoutError)"
+      "reason": null
     },
     "el-watania-1": {
-      "state": "unverified",
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "state": "unverified",
-          "reason": "unreachable (TimeoutError)",
-          "failing_since": "2026-10-22T22:19:12+00:00"
+          "state": "ok",
+          "heights": [
+            720
+          ]
         }
       ],
-      "reason": "unreachable (TimeoutError)"
+      "reason": null
     },
     "tvm": {
       "state": "ok",
@@ -3205,12 +3206,7 @@
       "streams": [
         {
           "state": "ok",
-          "heights": [
-            360,
-            540,
-            720,
-            1080
-          ]
+          "heights": []
         }
       ],
       "reason": null
