@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-23T01:30:03+00:00",
+  "generated": "2026-10-23T07:29:55+00:00",
   "entries": {
     "aljazeera-en": {
       "state": "ok",
@@ -894,16 +894,19 @@
       "reason": null
     },
     "mrtv-news": {
-      "state": "unverified",
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "state": "unverified",
-          "reason": "unreachable (TimeoutError)",
-          "failing_since": "2026-10-23T01:30:03+00:00"
+          "state": "ok",
+          "heights": [
+            404,
+            720,
+            1080
+          ]
         }
       ],
-      "reason": "unreachable (TimeoutError)"
+      "reason": null
     },
     "rt-arabic": {
       "state": "ok",
@@ -1275,12 +1278,9 @@
           ]
         },
         {
-          "state": "ok",
-          "heights": [
-            240,
-            360,
-            720
-          ]
+          "state": "unverified",
+          "reason": "HTTP 404",
+          "failing_since": "2026-10-23T07:29:55+00:00"
         }
       ],
       "reason": null
@@ -1563,15 +1563,12 @@
     },
     "cctv-1": {
       "state": "ok",
-      "use": 0,
+      "use": 1,
       "streams": [
         {
-          "state": "ok",
-          "heights": [
-            240,
-            360,
-            600
-          ]
+          "state": "unverified",
+          "reason": "segment: HTTP 404",
+          "failing_since": "2026-10-23T07:29:55+00:00"
         },
         {
           "state": "ok",
@@ -1973,28 +1970,31 @@
       "reason": null
     },
     "mrtv-sports": {
-      "state": "unverified",
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "state": "unverified",
-          "reason": "unreachable (TimeoutError)",
-          "failing_since": "2026-10-23T01:30:03+00:00"
+          "state": "ok",
+          "heights": [
+            404,
+            720,
+            1080
+          ]
         }
       ],
-      "reason": "unreachable (TimeoutError)"
+      "reason": null
     },
     "myanmar-international-tv": {
-      "state": "unverified",
-      "use": 0,
+      "state": "dead",
+      "use": null,
       "streams": [
         {
-          "state": "unverified",
-          "reason": "unreachable (TimeoutError)",
+          "state": "dead",
+          "reason": "segment: HTTP 404",
           "failing_since": "2026-10-22T01:30:29+00:00"
         }
       ],
-      "reason": "unreachable (TimeoutError)"
+      "reason": "segment: HTTP 404"
     },
     "red-bull-tv": {
       "state": "ok",
@@ -2885,16 +2885,19 @@
       "reason": null
     },
     "qbc": {
-      "state": "unverified",
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "state": "unverified",
-          "reason": "variant: unreachable (IncompleteRead)",
-          "failing_since": "2026-10-22T18:32:14+00:00"
+          "state": "ok",
+          "heights": [
+            240,
+            480,
+            1080
+          ]
         }
       ],
-      "reason": "variant: unreachable (IncompleteRead)"
+      "reason": null
     },
     "rbk-tv": {
       "state": "ok",
@@ -2918,11 +2921,11 @@
       "streams": [
         {
           "state": "unverified",
-          "reason": "playlist not moving: the stream is stuck",
+          "reason": "HTTP 404",
           "failing_since": "2026-10-22T22:19:12+00:00"
         }
       ],
-      "reason": "playlist not moving: the stream is stuck"
+      "reason": "HTTP 404"
     },
     "2m-monde": {
       "state": "ok",
@@ -2941,17 +2944,16 @@
       "reason": null
     },
     "tele-sahel": {
-      "state": "ok",
+      "state": "unverified",
       "use": 0,
       "streams": [
         {
-          "state": "ok",
-          "heights": [
-            1080
-          ]
+          "state": "unverified",
+          "reason": "playlist without segments",
+          "failing_since": "2026-10-23T07:29:55+00:00"
         }
       ],
-      "reason": null
+      "reason": "playlist without segments"
     },
     "el-watania-2": {
       "state": "unverified",
