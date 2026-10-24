@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-24T05:50:16+00:00",
+  "generated": "2026-10-24T10:55:47+00:00",
   "entries": {
     "aljazeera-en": {
       "state": "ok",
@@ -675,7 +675,7 @@
         {
           "state": "ok",
           "heights": [
-            360
+            720
           ]
         }
       ],
@@ -894,16 +894,19 @@
       "reason": null
     },
     "mrtv-news": {
-      "state": "unverified",
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "state": "unverified",
-          "reason": "unreachable (TimeoutError)",
-          "failing_since": "2026-10-23T18:19:36+00:00"
+          "state": "ok",
+          "heights": [
+            404,
+            720,
+            1080
+          ]
         }
       ],
-      "reason": "unreachable (TimeoutError)"
+      "reason": null
     },
     "rt-arabic": {
       "state": "ok",
@@ -1563,15 +1566,12 @@
     },
     "cctv-1": {
       "state": "ok",
-      "use": 0,
+      "use": 1,
       "streams": [
         {
-          "state": "ok",
-          "heights": [
-            240,
-            360,
-            600
-          ]
+          "state": "unverified",
+          "reason": "segment: HTTP 404",
+          "failing_since": "2026-10-24T10:55:47+00:00"
         },
         {
           "state": "ok",
@@ -1581,19 +1581,16 @@
       "reason": null
     },
     "cctv-2": {
-      "state": "ok",
+      "state": "unverified",
       "use": 0,
       "streams": [
         {
-          "state": "ok",
-          "heights": [
-            240,
-            360,
-            600
-          ]
+          "state": "unverified",
+          "reason": "segment: HTTP 404",
+          "failing_since": "2026-10-24T10:55:47+00:00"
         }
       ],
-      "reason": null
+      "reason": "segment: HTTP 404"
     },
     "nation-tv": {
       "state": "ok",
@@ -1973,28 +1970,31 @@
       "reason": null
     },
     "mrtv-sports": {
-      "state": "unverified",
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "state": "unverified",
-          "reason": "unreachable (TimeoutError)",
-          "failing_since": "2026-10-23T18:19:36+00:00"
+          "state": "ok",
+          "heights": [
+            404,
+            720,
+            1080
+          ]
         }
       ],
-      "reason": "unreachable (TimeoutError)"
+      "reason": null
     },
     "myanmar-international-tv": {
-      "state": "unverified",
-      "use": 0,
+      "state": "dead",
+      "use": null,
       "streams": [
         {
-          "state": "unverified",
-          "reason": "unreachable (TimeoutError)",
+          "state": "dead",
+          "reason": "segment: HTTP 404",
           "failing_since": "2026-10-22T01:30:29+00:00"
         }
       ],
-      "reason": "unreachable (TimeoutError)"
+      "reason": "segment: HTTP 404"
     },
     "red-bull-tv": {
       "state": "ok",
@@ -2300,21 +2300,16 @@
       "reason": "HTTP 403"
     },
     "cnbc-tv18": {
-      "state": "ok",
+      "state": "unverified",
       "use": 0,
       "streams": [
         {
-          "state": "ok",
-          "heights": [
-            180,
-            360,
-            540,
-            720,
-            1080
-          ]
+          "state": "unverified",
+          "reason": "variant: unreachable (IncompleteRead)",
+          "failing_since": "2026-10-24T10:55:47+00:00"
         }
       ],
-      "reason": null
+      "reason": "variant: unreachable (IncompleteRead)"
     },
     "class-cnbc": {
       "state": "ok",
@@ -2446,11 +2441,11 @@
       "streams": [
         {
           "state": "unverified",
-          "reason": "variant: HTTP 403",
+          "reason": "segment: HTTP 403",
           "failing_since": "2026-10-21T20:57:13+00:00"
         }
       ],
-      "reason": "variant: HTTP 403"
+      "reason": "segment: HTTP 403"
     },
     "cnbc-arabiya": {
       "state": "ok",
@@ -2916,16 +2911,15 @@
       "reason": null
     },
     "press-tv": {
-      "state": "dead",
-      "use": null,
+      "state": "ok",
+      "use": 0,
       "streams": [
         {
-          "state": "dead",
-          "reason": "HTTP 404",
-          "failing_since": "2026-10-22T22:19:12+00:00"
+          "state": "ok",
+          "heights": []
         }
       ],
-      "reason": "HTTP 404"
+      "reason": null
     },
     "2m-monde": {
       "state": "ok",
@@ -3208,7 +3202,12 @@
       "streams": [
         {
           "state": "ok",
-          "heights": []
+          "heights": [
+            360,
+            540,
+            720,
+            1080
+          ]
         }
       ],
       "reason": null
