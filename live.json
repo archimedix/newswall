@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-24T00:40:34+00:00",
+  "generated": "2026-10-24T05:50:16+00:00",
   "entries": {
     "aljazeera-en": {
       "state": "ok",
@@ -1275,9 +1275,12 @@
           ]
         },
         {
-          "state": "unverified",
-          "reason": "HTTP 404",
-          "failing_since": "2026-10-24T00:40:34+00:00"
+          "state": "ok",
+          "heights": [
+            240,
+            360,
+            720
+          ]
         }
       ],
       "reason": null
@@ -1896,12 +1899,7 @@
       "streams": [
         {
           "state": "ok",
-          "heights": [
-            360,
-            540,
-            720,
-            1080
-          ]
+          "heights": []
         }
       ],
       "reason": null
@@ -2274,16 +2272,20 @@
       "reason": null
     },
     "cnbc-e": {
-      "state": "unverified",
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "state": "unverified",
-          "reason": "playlist not moving: the stream is stuck",
-          "failing_since": "2026-10-24T00:40:34+00:00"
+          "state": "ok",
+          "heights": [
+            360,
+            480,
+            720,
+            1080
+          ]
         }
       ],
-      "reason": "playlist not moving: the stream is stuck"
+      "reason": null
     },
     "kanaal-z": {
       "state": "unverified",
@@ -2444,11 +2446,11 @@
       "streams": [
         {
           "state": "unverified",
-          "reason": "segment: HTTP 403",
+          "reason": "variant: HTTP 403",
           "failing_since": "2026-10-21T20:57:13+00:00"
         }
       ],
-      "reason": "segment: HTTP 403"
+      "reason": "variant: HTTP 403"
     },
     "cnbc-arabiya": {
       "state": "ok",
@@ -2883,16 +2885,19 @@
       "reason": null
     },
     "qbc": {
-      "state": "unverified",
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "state": "unverified",
-          "reason": "variant: unreachable (IncompleteRead)",
-          "failing_since": "2026-10-24T00:40:34+00:00"
+          "state": "ok",
+          "heights": [
+            240,
+            480,
+            1080
+          ]
         }
       ],
-      "reason": "variant: unreachable (IncompleteRead)"
+      "reason": null
     },
     "rbk-tv": {
       "state": "ok",
@@ -3203,12 +3208,7 @@
       "streams": [
         {
           "state": "ok",
-          "heights": [
-            360,
-            540,
-            720,
-            1080
-          ]
+          "heights": []
         }
       ],
       "reason": null
