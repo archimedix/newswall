@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-23T22:09:03+00:00",
+  "generated": "2026-10-24T00:40:34+00:00",
   "entries": {
     "aljazeera-en": {
       "state": "ok",
@@ -1275,12 +1275,9 @@
           ]
         },
         {
-          "state": "ok",
-          "heights": [
-            240,
-            360,
-            720
-          ]
+          "state": "unverified",
+          "reason": "HTTP 404",
+          "failing_since": "2026-10-24T00:40:34+00:00"
         }
       ],
       "reason": null
@@ -1563,12 +1560,15 @@
     },
     "cctv-1": {
       "state": "ok",
-      "use": 1,
+      "use": 0,
       "streams": [
         {
-          "state": "unverified",
-          "reason": "segment: HTTP 404",
-          "failing_since": "2026-10-23T22:09:03+00:00"
+          "state": "ok",
+          "heights": [
+            240,
+            360,
+            600
+          ]
         },
         {
           "state": "ok",
@@ -1578,16 +1578,19 @@
       "reason": null
     },
     "cctv-2": {
-      "state": "unverified",
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "state": "unverified",
-          "reason": "segment: HTTP 404",
-          "failing_since": "2026-10-23T18:19:36+00:00"
+          "state": "ok",
+          "heights": [
+            240,
+            360,
+            600
+          ]
         }
       ],
-      "reason": "segment: HTTP 404"
+      "reason": null
     },
     "nation-tv": {
       "state": "ok",
@@ -2271,20 +2274,16 @@
       "reason": null
     },
     "cnbc-e": {
-      "state": "ok",
+      "state": "unverified",
       "use": 0,
       "streams": [
         {
-          "state": "ok",
-          "heights": [
-            360,
-            480,
-            720,
-            1080
-          ]
+          "state": "unverified",
+          "reason": "playlist not moving: the stream is stuck",
+          "failing_since": "2026-10-24T00:40:34+00:00"
         }
       ],
-      "reason": null
+      "reason": "playlist not moving: the stream is stuck"
     },
     "kanaal-z": {
       "state": "unverified",
@@ -2445,11 +2444,11 @@
       "streams": [
         {
           "state": "unverified",
-          "reason": "variant: HTTP 403",
+          "reason": "segment: HTTP 403",
           "failing_since": "2026-10-21T20:57:13+00:00"
         }
       ],
-      "reason": "variant: HTTP 403"
+      "reason": "segment: HTTP 403"
     },
     "cnbc-arabiya": {
       "state": "ok",
@@ -2884,19 +2883,16 @@
       "reason": null
     },
     "qbc": {
-      "state": "ok",
+      "state": "unverified",
       "use": 0,
       "streams": [
         {
-          "state": "ok",
-          "heights": [
-            240,
-            480,
-            1080
-          ]
+          "state": "unverified",
+          "reason": "variant: unreachable (IncompleteRead)",
+          "failing_since": "2026-10-24T00:40:34+00:00"
         }
       ],
-      "reason": null
+      "reason": "variant: unreachable (IncompleteRead)"
     },
     "rbk-tv": {
       "state": "ok",
@@ -2915,11 +2911,11 @@
       "reason": null
     },
     "press-tv": {
-      "state": "unverified",
-      "use": 0,
+      "state": "dead",
+      "use": null,
       "streams": [
         {
-          "state": "unverified",
+          "state": "dead",
           "reason": "HTTP 404",
           "failing_since": "2026-10-22T22:19:12+00:00"
         }
@@ -2993,15 +2989,16 @@
       "reason": null
     },
     "rtnc": {
-      "state": "ok",
+      "state": "unverified",
       "use": 0,
       "streams": [
         {
-          "state": "ok",
-          "heights": []
+          "state": "unverified",
+          "reason": "HTTP 403",
+          "failing_since": "2026-10-24T00:40:34+00:00"
         }
       ],
-      "reason": null
+      "reason": "HTTP 403"
     },
     "eri-tv-1": {
       "state": "ok",
@@ -3194,11 +3191,11 @@
       "streams": [
         {
           "state": "unverified",
-          "reason": "HTTP 404",
+          "reason": "unreachable (TimeoutError)",
           "failing_since": "2026-10-23T22:09:03+00:00"
         }
       ],
-      "reason": "HTTP 404"
+      "reason": "unreachable (TimeoutError)"
     },
     "qazaqstan": {
       "state": "ok",
