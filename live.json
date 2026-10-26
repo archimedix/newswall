@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-26T12:56:54+00:00",
+  "generated": "2026-10-26T19:17:36+00:00",
   "entries": {
     "aljazeera-en": {
       "state": "ok",
@@ -739,16 +739,20 @@
       "reason": null
     },
     "ert-news": {
-      "state": "unverified",
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "state": "unverified",
-          "reason": "HTTP 404",
-          "failing_since": "2026-10-26T12:56:54+00:00"
+          "state": "ok",
+          "heights": [
+            360,
+            576,
+            720,
+            1080
+          ]
         }
       ],
-      "reason": "HTTP 404"
+      "reason": null
     },
     "makan-33": {
       "state": "ok",
@@ -890,16 +894,19 @@
       "reason": null
     },
     "mrtv-news": {
-      "state": "unverified",
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "state": "unverified",
-          "reason": "unreachable (TimeoutError)",
-          "failing_since": "2026-10-26T06:10:52+00:00"
+          "state": "ok",
+          "heights": [
+            404,
+            720,
+            1080
+          ]
         }
       ],
-      "reason": "unreachable (TimeoutError)"
+      "reason": null
     },
     "rt-arabic": {
       "state": "ok",
@@ -1603,19 +1610,17 @@
     },
     "telesur": {
       "state": "ok",
-      "use": 0,
+      "use": 2,
       "streams": [
         {
-          "state": "ok",
-          "heights": [
-            360
-          ]
+          "state": "unverified",
+          "reason": "playlist not moving: the stream is stuck",
+          "failing_since": "2026-10-26T19:17:36+00:00"
         },
         {
-          "state": "ok",
-          "heights": [
-            1080
-          ]
+          "state": "unverified",
+          "reason": "playlist not moving: the stream is stuck",
+          "failing_since": "2026-10-26T19:17:36+00:00"
         },
         {
           "state": "ok",
@@ -1826,20 +1831,16 @@
       "reason": "variant: no CORS for this site: would need a proxy"
     },
     "a-spor": {
-      "state": "ok",
+      "state": "unverified",
       "use": 0,
       "streams": [
         {
-          "state": "ok",
-          "heights": [
-            360,
-            480,
-            720,
-            1080
-          ]
+          "state": "unverified",
+          "reason": "variant: unreachable (TimeoutError)",
+          "failing_since": "2026-10-26T19:17:36+00:00"
         }
       ],
-      "reason": null
+      "reason": "variant: unreachable (TimeoutError)"
     },
     "esport3": {
       "state": "unverified",
@@ -1966,28 +1967,34 @@
       "reason": null
     },
     "mrtv-sports": {
-      "state": "unverified",
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "state": "unverified",
-          "reason": "unreachable (TimeoutError)",
-          "failing_since": "2026-10-26T06:10:52+00:00"
+          "state": "ok",
+          "heights": [
+            404,
+            720,
+            1080
+          ]
         }
       ],
-      "reason": "unreachable (TimeoutError)"
+      "reason": null
     },
     "myanmar-international-tv": {
-      "state": "unverified",
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "state": "unverified",
-          "reason": "unreachable (TimeoutError)",
-          "failing_since": "2026-10-26T06:10:52+00:00"
+          "state": "ok",
+          "heights": [
+            404,
+            720,
+            1080
+          ]
         }
       ],
-      "reason": "unreachable (TimeoutError)"
+      "reason": null
     },
     "red-bull-tv": {
       "state": "ok",
@@ -2884,19 +2891,16 @@
       "reason": null
     },
     "qbc": {
-      "state": "ok",
+      "state": "unverified",
       "use": 0,
       "streams": [
         {
-          "state": "ok",
-          "heights": [
-            240,
-            480,
-            1080
-          ]
+          "state": "unverified",
+          "reason": "variant: unreachable (IncompleteRead)",
+          "failing_since": "2026-10-26T19:17:36+00:00"
         }
       ],
-      "reason": null
+      "reason": "variant: unreachable (IncompleteRead)"
     },
     "rbk-tv": {
       "state": "ok",
@@ -2955,17 +2959,16 @@
       "reason": null
     },
     "el-watania-2": {
-      "state": "ok",
+      "state": "unverified",
       "use": 0,
       "streams": [
         {
-          "state": "ok",
-          "heights": [
-            1080
-          ]
+          "state": "unverified",
+          "reason": "segment: unreachable (TimeoutError)",
+          "failing_since": "2026-10-26T19:17:36+00:00"
         }
       ],
-      "reason": null
+      "reason": "segment: unreachable (TimeoutError)"
     },
     "el-watania-1": {
       "state": "ok",
@@ -3207,12 +3210,7 @@
       "streams": [
         {
           "state": "ok",
-          "heights": [
-            360,
-            540,
-            720,
-            1080
-          ]
+          "heights": []
         }
       ],
       "reason": null
@@ -3341,16 +3339,17 @@
       "reason": null
     },
     "tvc-benin": {
-      "state": "unverified",
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "state": "unverified",
-          "reason": "HTTP 404",
-          "failing_since": "2026-10-26T12:56:54+00:00"
+          "state": "ok",
+          "heights": [
+            720
+          ]
         }
       ],
-      "reason": "HTTP 404"
+      "reason": null
     },
     "haiti-news-channel": {
       "state": "ok",
