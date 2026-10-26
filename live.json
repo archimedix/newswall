@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-26T00:21:17+00:00",
+  "generated": "2026-10-26T06:10:52+00:00",
   "entries": {
     "aljazeera-en": {
       "state": "ok",
@@ -709,16 +709,21 @@
       "reason": null
     },
     "al-manar": {
-      "state": "unverified",
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "state": "unverified",
-          "reason": "unreachable (SSLCertVerificationError)",
-          "failing_since": "2026-10-26T00:21:17+00:00"
+          "state": "ok",
+          "heights": [
+            144,
+            240,
+            360,
+            576,
+            1080
+          ]
         }
       ],
-      "reason": "unreachable (SSLCertVerificationError)"
+      "reason": null
     },
     "canal-26": {
       "state": "ok",
@@ -889,19 +894,16 @@
       "reason": null
     },
     "mrtv-news": {
-      "state": "ok",
+      "state": "unverified",
       "use": 0,
       "streams": [
         {
-          "state": "ok",
-          "heights": [
-            404,
-            720,
-            1080
-          ]
+          "state": "unverified",
+          "reason": "unreachable (TimeoutError)",
+          "failing_since": "2026-10-26T06:10:52+00:00"
         }
       ],
-      "reason": null
+      "reason": "unreachable (TimeoutError)"
     },
     "rt-arabic": {
       "state": "ok",
@@ -1273,12 +1275,9 @@
           ]
         },
         {
-          "state": "ok",
-          "heights": [
-            240,
-            360,
-            720
-          ]
+          "state": "unverified",
+          "reason": "HTTP 404",
+          "failing_since": "2026-10-26T06:10:52+00:00"
         }
       ],
       "reason": null
@@ -1412,16 +1411,21 @@
       "reason": null
     },
     "metro-tv": {
-      "state": "unverified",
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "state": "unverified",
-          "reason": "variant: HTTP 404",
-          "failing_since": "2026-10-25T19:03:48+00:00"
+          "state": "ok",
+          "heights": [
+            160,
+            240,
+            360,
+            480,
+            720
+          ]
         }
       ],
-      "reason": "variant: HTTP 404"
+      "reason": null
     },
     "news-one": {
       "state": "ok",
@@ -1541,25 +1545,30 @@
       "reason": null
     },
     "news-central": {
-      "state": "unverified",
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "state": "unverified",
-          "reason": "variant: HTTP 404",
-          "failing_since": "2026-10-26T00:21:17+00:00"
+          "state": "ok",
+          "heights": [
+            480,
+            720
+          ]
         }
       ],
-      "reason": "variant: HTTP 404"
+      "reason": null
     },
     "cctv-1": {
       "state": "ok",
-      "use": 1,
+      "use": 0,
       "streams": [
         {
-          "state": "unverified",
-          "reason": "segment: HTTP 404",
-          "failing_since": "2026-10-26T00:21:17+00:00"
+          "state": "ok",
+          "heights": [
+            240,
+            360,
+            600
+          ]
         },
         {
           "state": "ok",
@@ -1887,12 +1896,7 @@
       "streams": [
         {
           "state": "ok",
-          "heights": [
-            360,
-            540,
-            720,
-            1080
-          ]
+          "heights": []
         }
       ],
       "reason": null
@@ -1966,34 +1970,28 @@
       "reason": null
     },
     "mrtv-sports": {
-      "state": "ok",
+      "state": "unverified",
       "use": 0,
       "streams": [
         {
-          "state": "ok",
-          "heights": [
-            404,
-            720,
-            1080
-          ]
+          "state": "unverified",
+          "reason": "unreachable (TimeoutError)",
+          "failing_since": "2026-10-26T06:10:52+00:00"
         }
       ],
-      "reason": null
+      "reason": "unreachable (TimeoutError)"
     },
     "myanmar-international-tv": {
-      "state": "ok",
+      "state": "unverified",
       "use": 0,
       "streams": [
         {
-          "state": "ok",
-          "heights": [
-            404,
-            720,
-            1080
-          ]
+          "state": "unverified",
+          "reason": "unreachable (TimeoutError)",
+          "failing_since": "2026-10-26T06:10:52+00:00"
         }
       ],
-      "reason": null
+      "reason": "unreachable (TimeoutError)"
     },
     "red-bull-tv": {
       "state": "ok",
@@ -2444,11 +2442,11 @@
       "streams": [
         {
           "state": "unverified",
-          "reason": "variant: HTTP 403",
+          "reason": "segment: HTTP 403",
           "failing_since": "2026-10-21T20:57:13+00:00"
         }
       ],
-      "reason": "variant: HTTP 403"
+      "reason": "segment: HTTP 403"
     },
     "cnbc-arabiya": {
       "state": "ok",
@@ -2856,16 +2854,22 @@
       "reason": null
     },
     "bein-sports-xtra": {
-      "state": "dead",
-      "use": null,
+      "state": "ok",
+      "use": 0,
       "streams": [
         {
-          "state": "dead",
-          "reason": "no CORS for this site: would need a proxy",
-          "failing_since": "2026-10-20T22:17:49+00:00"
+          "state": "ok",
+          "heights": [
+            240,
+            360,
+            480,
+            576,
+            720,
+            1080
+          ]
         }
       ],
-      "reason": "no CORS for this site: would need a proxy"
+      "reason": null
     },
     "real-madrid-tv": {
       "state": "ok",
@@ -3206,12 +3210,7 @@
       "streams": [
         {
           "state": "ok",
-          "heights": [
-            360,
-            540,
-            720,
-            1080
-          ]
+          "heights": []
         }
       ],
       "reason": null
