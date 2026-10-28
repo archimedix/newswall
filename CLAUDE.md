@@ -10,7 +10,7 @@ view of the same catalog: a three.js globe with the channels' screens over their
 Markets, Weather are iptv-org category ids used as a shared filter (none = every channel). No backend, no build step,
 no package manager, no tests. Vanilla JS as native ES modules in `js/` (no bundler), plus
 `index.html` and `styles.css`; runtime dependencies are vendored in `assets/vendor/` (hls.js;
-three.js 0.170.0, loaded only by the globe through an import map). Fonts are vendored in
+mp4-muxer 5.2.2 for Replay; three.js 0.170.0, loaded only by the globe through an import map). Fonts are vendored in
 `assets/fonts/` on purpose: the page must make **no third-party requests** to render (do not add
 CDN links). The README is the design document — read it before non-trivial changes. Its "Possible improvements" section is the backlog: add ideas there, remove them once done.
 
@@ -86,9 +86,19 @@ Native ES modules, loaded as they are (`<script type="module">`). Two layers:
   `hls-player.js`: `createHlsPlayer(url, {muted, cap, onReady, onFail})` → `{video, hls, play,
   setCap(height|null), destroy}` — one stream, retries + 15 s watchdog, then `onFail`; after
   `destroy()` no callback fires. hls.js stays a classic global script.
+  `replay.js`: `replaySupported()`, `createReplay({canvas, draw, context, input, seconds})` →
+  `{length, seconds, mark(), export(secs, until), destroy}`: a Worker ticks `draw()` +
+  `VideoEncoder` (H.264 1080p, keyframe every 2 s), `audio-tap.js` (AudioWorklet) feeds
+  `AudioEncoder` (AAC); a ring of GOPs dropped from the front; `export` muxes to MP4 with
+  mp4-muxer. The audio track never has holes (silence fills them: no edit lists in the MP4).
 - **`js/wall/`** — `wall.js` is the entry point; `panel.js` (catalog + quick search; gets
   `toggleSource` via `initPanel`), `picker.js` (the walls button and menu; gets `show`,
-  `adopt`, `save` via `initPicker`), `state.js` (wall `state`, `$`, `toast`, `copyLink`).
+  `adopt`, `save` via `initPicker`), `state.js` (wall `state`, `$`, `toast`, `copyLink`),
+  `program.js` (Replay's program feed: draws the grid from the tiles' real rects into a
+  1920×1080 canvas; once on, every video goes through `createMediaElementSource` into one
+  `bus` → speakers + recorder, wired in `attach`, unwired in `stopPlayer`, for good:
+  the context is never closed), `replay-menu.js` (button, ring, menu, save; prefs in
+  `newswall:replay`). Plan and next phases: `docs/replay-plan.md`.
 - **`js/globe/`** — `globe.js` is the entry point (see "Globe" below).
 
 Wall behaviour:

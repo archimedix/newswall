@@ -36,6 +36,7 @@ after an edit, even on reload.
 | `⌘K` / `Ctrl-K` / `/` | quick search: add and remove channels |
 | `1`–`9` | quick audio on the n-th tile |
 | `S` | catalog · `M` mute everything · `F` full screen |
+| `R` · `Shift-R` | Replay: turn it on and open its menu · save everything it kept |
 | `Esc` | back to the grid · `?` shortcuts |
 | News · Sport · Markets · Weather | category keys, in the catalog: none lit = every channel |
 | `G` · Globe | opens the globe, with the same categories |
@@ -100,6 +101,24 @@ The filter chooses what the catalog shows, **not what is on the wall**: a wall's
 stay whatever their category. It is shared with the globe like the
 favourites (`localStorage`, and `c` in the URL: the old one-wall links, `#c=sports`, open
 as a filter of one), and an open tab of one view follows the other.
+
+### Replay
+
+You notice something only once it has happened. **Replay** (`R`, in the bar) keeps the
+last 2, 5 or 10 minutes of the wall in memory, and saves the last 1, 2 or 5 of them, or
+all of it, as an **MP4** (H.264 + AAC, 1920×1080): in the "Save as" dialog on Chrome and
+Edge, as a download elsewhere.
+
+It records the wall **as you direct it**, like a control room's program output: the
+tiles in their layout, the channel you hear, the tile you enlarge, with each tile's flag,
+name and local clock and the date and UTC time in a corner. The bar, the panels and the
+hover controls are never in it. A ring in the button fills up to the length kept.
+
+It is off by default (composing and encoding cost some CPU, and 5 minutes ≈ 150 MB of
+memory) and the choice is remembered. Everything happens in the browser: the canvas is
+encoded with WebCodecs, the MP4 written by the vendored
+[mp4-muxer](https://github.com/Vanilagy/mp4-muxer), nothing leaves the page. The clips are
+for your own use. Without WebCodecs there is no Replay button.
 
 ## The globe
 
@@ -200,7 +219,8 @@ Mono** for clocks, codes and origins. They live in the repo, not on a CDN: the p
 ## How it's built
 
 Vanilla JS, no build step. Runtime dependencies are vendored in `assets/vendor/`:
-[hls.js](https://github.com/video-dev/hls.js), and [three.js](https://threejs.org) 0.170.0
+[hls.js](https://github.com/video-dev/hls.js), [mp4-muxer](https://github.com/Vanilagy/mp4-muxer) 5.2.2
+for Replay, and [three.js](https://threejs.org) 0.170.0
 for the globe only (the wall never loads it). The globe's Earth is in `assets/earth/`: NASA
 Blue Marble, GEBCO elevation and Black Marble (public domain) packed by
 `scripts/build-earth.py` into two JPEGs per size (8192×4096 and 4096×2048): the
@@ -215,10 +235,13 @@ them as they are):
   `live.json`, categories, names, flags, origins), `url.js` (the wall and the category
   filter in the URL), `walls.js` (your named walls in localStorage, the active one), `filter.js` (the category keys, drawn the same
   in both views), `hls-player.js` (one HLS stream in a `<video>`, with retries, watchdog and
-  quality cap, knowing nothing about tiles).
+  quality cap, knowing nothing about tiles), `replay.js` + `audio-tap.js` (Replay's rolling
+  buffer: WebCodecs encoders, a ring of keyframe groups, export to MP4).
 - `js/wall/` — the wall: `wall.js` (entry point: grid, tiles, audio, focus, keys),
   `panel.js` (catalog and quick search), `picker.js` (your walls: the bar button and its
-  menu), `state.js` (what they share).
+  menu), `program.js` (the program feed: the grid drawn into a canvas, every tile's audio
+  through one AudioContext), `replay-menu.js` (the Replay button and menu), `state.js`
+  (what they share).
 - `js/globe/` — the globe, loaded by `globe.html` with an import map for three:
   `globe.js` (entry point: loading, scene, camera, selection, audio, favourites), `earth.js`
   (ground texture, shaders, atmosphere, outlines, stars), `sun.js` (subsolar point), `geo.js` (where each country's
@@ -452,6 +475,9 @@ CORS, against all expectations, is not the problem: 1 in 70.
   globe open straight away, muted, and the first click on a channel brings its audio.
 - **Sources come and go.** Daily breakages are normal: the Action detects them, and the
   tile says what happened.
+- **Replay in a hidden tab.** Its clock runs in a Worker so it keeps time when the tab is
+  hidden, but the browser may stop drawing background videos: what was recorded then
+  may be frozen.
 - **A crowded globe.** Piles fold each country into one screen, but Europe and the Middle
   East have many countries close together: from afar their screens still touch.
 

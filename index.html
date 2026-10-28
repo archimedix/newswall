@@ -61,6 +61,9 @@
       <span>Search</span><kbd class="k">⌘K</kbd>
     </button>
     <button data-act="sources" title="Browse the catalog and pick the categories (S)">Sources<b id="sources-filter" class="fbadge" hidden></b></button>
+    <button id="replay-btn" hidden aria-haspopup="true" aria-expanded="false" aria-controls="replay">
+      <span class="rp-ring" aria-hidden="true"></span><span>Replay</span><span class="rp-time"></span>
+    </button>
     <button data-act="mute-all" title="Mute everything (M)">Mute</button>
     <button data-act="fullscreen" title="Full screen (F)">Full screen</button>
     <button data-act="keys" class="icon" title="Shortcuts (?)">?</button>
@@ -83,6 +86,18 @@
     <button data-wop="del">Delete</button>
     <button data-wop="link">Copy link</button>
   </div>
+</div>
+
+<!-- Replay: the last minutes of the wall as you directed it, kept in this
+     browser only, saved as MP4 on request. -->
+<div id="replay" class="glass" hidden>
+  <div class="replay-head"><strong>Replay</strong><span class="meta" id="replay-kept"></span></div>
+  <div class="replay-sub meta">Save</div>
+  <div id="replay-clips"></div>
+  <div class="replay-sub meta">Keep</div>
+  <div id="replay-len"></div>
+  <p class="replay-note">What the wall shows and the channel you hear, with the date in a corner. For your own use; nothing leaves this browser.</p>
+  <div class="replay-foot"><button data-rop="off">Turn off</button></div>
 </div>
 
 <aside id="panel" class="glass" hidden>
@@ -140,6 +155,8 @@
       <dt><kbd>W</kbd></dt><dd>your walls</dd>
       <dt><kbd>M</kbd></dt><dd>mute everything</dd>
       <dt><kbd>F</kbd></dt><dd>full screen</dd>
+      <dt><kbd>R</kbd></dt><dd>replay: turn on, save</dd>
+      <dt><kbd>⇧R</kbd></dt><dd>save everything kept</dd>
       <dt><kbd>G</kbd></dt><dd>the globe</dd>
       <dt><kbd>Esc</kbd></dt><dd>back to the grid</dd>
       <dt><kbd>drag</kbd></dt><dd>reorder the tiles</dd>

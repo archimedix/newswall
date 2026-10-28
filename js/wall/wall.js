@@ -16,6 +16,8 @@ import {
   buildPanel, initPanel, listSources, openPalette, pal, palMove, palPick, palRender, togglePanel,
 } from './panel.js';
 import { initPicker, renderPicker, togglePicker } from './picker.js';
+import { programResume, programUnwire, programWire } from './program.js';
+import { initReplay, saveReplay, toggleReplay } from './replay-menu.js';
 import { $, grid, LOW_QUALITY_CAP, MAX_TILES, state, tileEl, toast } from './state.js';
 
 /* ---------------------------------------------------------------- boot */
@@ -29,6 +31,7 @@ async function boot() {
   syncGrid();
   save();
   renderPicker();
+  initReplay();
 }
 
 /* Which wall to open. A link that carries one of your walls opens it; one
@@ -270,13 +273,15 @@ function attach(tile, src, idx) {
   });
   tile.appendChild(player.video);
   state.players.set(src.id, player);
+  programWire(player.video);
 
   // Muted autoplay needs no gesture; the first click on a tile brings the sound.
   player.play();
 }
 
 function stopPlayer(id) {
-  state.players.get(id)?.destroy();
+  const p = state.players.get(id);
+  if (p) { programUnwire(p.video); p.destroy(); }
   state.players.delete(id);
 }
 
@@ -305,6 +310,7 @@ function setAudio(id) {
 
 function setOnAir(id) {
   state.audioOn = id;
+  if (id) programResume();
   for (const [sid, p] of state.players) {
     const on = sid === state.audioOn;
     tileEl(sid)?.classList.toggle('audio-on', on);
@@ -495,6 +501,7 @@ addEventListener('keydown', (e) => {
   if (e.key === 'Escape') {
     if (!$('#keys').hidden) return toggleKeys(false);
     if (!$('#walls').hidden) return togglePicker(false);
+    if (!$('#replay').hidden) return toggleReplay(false);
     if (state.focused) return setFocus(state.focused);
     return togglePanel(false);
   }
@@ -504,6 +511,7 @@ addEventListener('keydown', (e) => {
   if (k === 'w') { e.preventDefault(); return togglePicker(); }
   if (k === 'm') { e.preventDefault(); return setOnAir(null); }
   if (k === 'f') { e.preventDefault(); return toggleFullscreen(); }
+  if (k === 'r' && !e.metaKey && !e.ctrlKey) { e.preventDefault(); return e.shiftKey ? saveReplay() : toggleReplay(); }
   if (k === 'g') { e.preventDefault(); location.href = $('#to-globe').href; }
 });
 
