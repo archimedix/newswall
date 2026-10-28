@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-28T12:50:00+00:00",
+  "generated": "2026-10-28T18:51:20+00:00",
   "entries": {
     "aljazeera-en": {
       "state": "ok",
@@ -772,17 +772,12 @@
     },
     "syria-tv": {
       "state": "ok",
-      "use": 0,
+      "use": 1,
       "streams": [
         {
-          "state": "ok",
-          "heights": [
-            240,
-            360,
-            480,
-            720,
-            1080
-          ]
+          "state": "unverified",
+          "reason": "unreachable (IncompleteRead)",
+          "failing_since": "2026-10-28T18:51:20+00:00"
         },
         {
           "state": "ok",
@@ -795,14 +790,9 @@
           ]
         },
         {
-          "state": "ok",
-          "heights": [
-            240,
-            360,
-            480,
-            720,
-            1080
-          ]
+          "state": "unverified",
+          "reason": "unreachable (IncompleteRead)",
+          "failing_since": "2026-10-28T18:51:20+00:00"
         }
       ],
       "reason": null
@@ -894,19 +884,16 @@
       "reason": null
     },
     "mrtv-news": {
-      "state": "ok",
+      "state": "unverified",
       "use": 0,
       "streams": [
         {
-          "state": "ok",
-          "heights": [
-            404,
-            720,
-            1080
-          ]
+          "state": "unverified",
+          "reason": "unreachable (TimeoutError)",
+          "failing_since": "2026-10-28T18:51:20+00:00"
         }
       ],
-      "reason": null
+      "reason": "unreachable (TimeoutError)"
     },
     "rt-arabic": {
       "state": "ok",
@@ -1278,9 +1265,12 @@
           ]
         },
         {
-          "state": "unverified",
-          "reason": "HTTP 404",
-          "failing_since": "2026-10-28T12:50:00+00:00"
+          "state": "ok",
+          "heights": [
+            240,
+            360,
+            720
+          ]
         }
       ],
       "reason": null
@@ -1471,16 +1461,19 @@
       "reason": null
     },
     "dunya-news": {
-      "state": "unverified",
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "state": "unverified",
-          "reason": "HTTP 404",
-          "failing_since": "2026-10-28T12:50:00+00:00"
+          "state": "ok",
+          "heights": [
+            160,
+            360,
+            720
+          ]
         }
       ],
-      "reason": "HTTP 404"
+      "reason": null
     },
     "tolonews": {
       "state": "ok",
@@ -1560,15 +1553,12 @@
     },
     "cctv-1": {
       "state": "ok",
-      "use": 0,
+      "use": 1,
       "streams": [
         {
-          "state": "ok",
-          "heights": [
-            240,
-            360,
-            600
-          ]
+          "state": "unverified",
+          "reason": "segment: HTTP 404",
+          "failing_since": "2026-10-28T18:51:20+00:00"
         },
         {
           "state": "ok",
@@ -1964,34 +1954,28 @@
       "reason": null
     },
     "mrtv-sports": {
-      "state": "ok",
+      "state": "unverified",
       "use": 0,
       "streams": [
         {
-          "state": "ok",
-          "heights": [
-            404,
-            720,
-            1080
-          ]
+          "state": "unverified",
+          "reason": "unreachable (TimeoutError)",
+          "failing_since": "2026-10-28T18:51:20+00:00"
         }
       ],
-      "reason": null
+      "reason": "unreachable (TimeoutError)"
     },
     "myanmar-international-tv": {
-      "state": "ok",
+      "state": "unverified",
       "use": 0,
       "streams": [
         {
-          "state": "ok",
-          "heights": [
-            404,
-            720,
-            1080
-          ]
+          "state": "unverified",
+          "reason": "unreachable (TimeoutError)",
+          "failing_since": "2026-10-28T18:51:20+00:00"
         }
       ],
-      "reason": null
+      "reason": "unreachable (TimeoutError)"
     },
     "red-bull-tv": {
       "state": "ok",
@@ -2617,11 +2601,11 @@
       "streams": [
         {
           "state": "unverified",
-          "reason": "unreachable (RemoteDisconnected)",
+          "reason": "HTTP 403",
           "failing_since": "2026-10-22T01:30:29+00:00"
         }
       ],
-      "reason": "unreachable (RemoteDisconnected)"
+      "reason": "HTTP 403"
     },
     "bfm-business": {
       "state": "ok",
