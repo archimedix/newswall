@@ -1,6 +1,6 @@
 # Newswall Replay — plan
 
-> Status: **approved on 2026-10-28**. Phases 0, 1 and 2 done; 3 remains. When a phase is
+> Status: **approved on 2026-10-28**. Phases 0–3 done; what is left is under *Later*. When a phase is
 > done, it gets described in the README and only a note stays here.
 
 ## 1. Vision
@@ -147,16 +147,20 @@ keeps the channel on air. Learned: the AAC encoder may emit a chunk that steps b
 block after a jump in its input; such chunks are dropped, or the muxer refuses the clip
 (this also broke some phase 1 saves).
 
-### Phase 3 — REC
+### Phase 3 — REC ✅ (2026-10-28)
 
-Start/stop with no time limit, *Save* when it stops. In memory up to a cap (e.g. 60 min ≈
-1.8 GB at 4 Mb/s, with a warning); on Chrome/Edge, optionally choose the file at start and
-write to disk while recording (File System Access), so length is no longer limited by RAM.
+Done, in the README. Changed from the plan: no file chosen at start. The recording's own
+muxer writes as it goes into Blobs (which Chrome can page to disk), the "Save as" dialog
+comes at stop, and cancelling it keeps recording. Cap: 60 min (20 on phones), saved by
+itself, warned 5 minutes before; without a gesture the dialog is refused, so that save is a
+download. Writing straight to a file chosen at start (File System Access) stays possible
+if an hour turns out to be too short.
 
 ### Later
 
 The globe's program (its WebGL canvas into the same `replay.js`); a lighter 720p option for
-modest machines.
+modest machines; Rec straight to a file chosen at start, for recordings over an hour.
+Safari and Firefox are still untested.
 
 ## 7. Risks and open questions
 

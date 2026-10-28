@@ -7,7 +7,7 @@
    keyframes: the buffer is a ring of groups of pictures (GOP), each starting
    with one, and drops whole groups from the front. */
 
-import { ArrayBufferTarget, Muxer } from '../../assets/vendor/mp4-muxer-5.2.2.mjs';
+import { ArrayBufferTarget, Muxer, StreamTarget } from '../../assets/vendor/mp4-muxer-5.2.2.mjs';
 
 const VIDEO = { codec: 'avc1.640028', width: 1920, height: 1080 };   // H.264 High, level 4.0
 const AUDIO = { codec: 'mp4a.40.2', numberOfChannels: 2, bitrate: 128000 };   // AAC-LC
@@ -50,6 +50,7 @@ export async function createReplay({ canvas, draw, context, input, seconds = 300
       if (chunk.type === 'key') gops.push({ t: chunk.timestamp, chunks: [] });
       gops.at(-1)?.chunks.push(chunk);
       trim();
+      if (rec) recVideo(chunk);
     },
     error: fail,
   });
@@ -90,6 +91,7 @@ export async function createReplay({ canvas, draw, context, input, seconds = 300
       if (chunk.timestamp <= lastAudio) return;
       lastAudio = chunk.timestamp;
       audio.push(chunk);
+      if (rec) recAudio(chunk);
     },
     error: fail,
   });
@@ -196,7 +198,69 @@ export async function createReplay({ canvas, draw, context, input, seconds = 300
     };
   }
 
+  /* ---- REC: from now until stopped, with no time limit. The same chunks
+     also go, as they come, to a muxer of their own whose bytes pile up in
+     small Blobs: the browser may keep those on disk, not in the page. It
+     starts at the next frame, forced to be a keyframe. */
+  let rec = null;
+
+  function startRec() {
+    if (rec) return;
+    const out = blobTarget();
+    rec = {
+      from: now(), base: null, until: Infinity, last: 0, pending: [], error: null, out,
+      muxer: new Muxer({
+        target: out.target,
+        video: { codec: 'avc', width: VIDEO.width, height: VIDEO.height },
+        audio: { codec: 'aac', numberOfChannels: 2, sampleRate: context.sampleRate },
+        fastStart: false,
+        firstTimestampBehavior: 'cross-track-offset',
+      }),
+    };
+    lastKey = -Infinity;
+  }
+
+  function recVideo(c) {
+    if (rec.base === null) {
+      if (c.type !== 'key' || c.timestamp < rec.from) return;
+      rec.base = c.timestamp;
+    }
+    if (c.timestamp > rec.until || rec.error) return;
+    try {
+      rec.muxer.addVideoChunk(c, rec.last ? undefined : { decoderConfig: videoConfig }, c.timestamp - rec.base);
+      rec.last = c.timestamp + (c.duration || 0);
+      // The audio that came before the first frame, from that frame on.
+      for (const a of rec.pending.splice(0)) recAudio(a);
+    } catch (e) { rec.error = e; }
+  }
+
+  function recAudio(c) {
+    if (rec.base === null || !rec.last) {
+      if (c.timestamp >= rec.from - 1e5) rec.pending.push(c);
+      return;
+    }
+    if (c.timestamp < rec.base || c.timestamp > rec.until || rec.error) return;
+    try {
+      rec.muxer.addAudioChunk(c, rec.audioOn ? undefined : { decoderConfig: audioConfig }, c.timestamp - rec.base);
+      rec.audioOn = true;
+    } catch (e) { rec.error = e; }
+  }
+
+  /* Ends the recording at `until` (mark() taken when asked): the MP4 as a Blob. */
+  async function stopRec(until = now()) {
+    const r = rec;
+    if (!r) return null;
+    r.until = until;
+    await Promise.all([venc.flush(), aenc.flush()]).catch(() => {});
+    rec = null;
+    if (r.error) throw r.error;
+    if (!r.last) return null;
+    r.muxer.finalize();
+    return { blob: r.out.blob(), seconds: (r.last - r.base) / 1e6 };
+  }
+
   function destroy() {
+    rec = null;
     ticker.terminate();
     URL.revokeObjectURL(tickUrl);
     try { input.disconnect(tap); } catch {}
@@ -213,6 +277,10 @@ export async function createReplay({ canvas, draw, context, input, seconds = 300
     set seconds(s) { seconds = s; trim(); },
     mark: now,
     export: exportClip,
+    rec: startRec,
+    stopRec,
+    /* Seconds recorded so far, null when not recording. */
+    get recording() { return rec ? (now() - rec.from) / 1e6 : null; },
     /* Stops dropping the oldest minutes; the returned function lets go. */
     hold() {
       held++;
@@ -221,4 +289,26 @@ export async function createReplay({ canvas, draw, context, input, seconds = 300
     },
     destroy,
   };
+}
+
+/* A muxer target whose bytes become Blobs as they come. Writes are in order,
+   except the size of the media box, patched at the end into bytes already
+   written. */
+function blobTarget() {
+  const parts = [];   // [{ at, blob }]
+  let end = 0;
+  const target = new StreamTarget({
+    onData(data, pos) {
+      if (pos >= end) {
+        if (pos > end) parts.push({ at: end, blob: new Blob([new Uint8Array(pos - end)]) });
+        parts.push({ at: pos, blob: new Blob([data]) });
+        end = pos + data.byteLength;
+        return;
+      }
+      const p = parts.findLast((x) => x.at <= pos);
+      const o = pos - p.at;
+      p.blob = new Blob([p.blob.slice(0, o), data, p.blob.slice(o + data.byteLength)]);
+    },
+  });
+  return { target, blob: () => new Blob(parts.map((p) => p.blob), { type: 'video/mp4' }) };
 }

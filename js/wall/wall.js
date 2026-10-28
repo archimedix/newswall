@@ -17,7 +17,7 @@ import {
 } from './panel.js';
 import { initPicker, renderPicker, togglePicker } from './picker.js';
 import { programResume, programUnwire, programWire } from './program.js';
-import { initReplay, saveReplay, toggleReplay, watchReplay } from './replay-menu.js';
+import { initReplay, saveReplay, toggleRec, toggleReplay, watchReplay } from './replay-menu.js';
 import { $, grid, LOW_QUALITY_CAP, MAX_TILES, state, tileEl, toast } from './state.js';
 
 /* ---------------------------------------------------------------- boot */
@@ -513,6 +513,7 @@ addEventListener('keydown', (e) => {
   if (k === 'f') { e.preventDefault(); return toggleFullscreen(); }
   if (k === 'r' && !e.metaKey && !e.ctrlKey) { e.preventDefault(); return e.shiftKey ? saveReplay() : toggleReplay(); }
   if (k === 'v') { e.preventDefault(); return watchReplay(); }
+  if (k === 'c' && !e.metaKey && !e.ctrlKey) { e.preventDefault(); return toggleRec(); }
   if (k === 'g') { e.preventDefault(); location.href = $('#to-globe').href; }
 });
 

@@ -37,6 +37,7 @@ after an edit, even on reload.
 | `1`–`9` | quick audio on the n-th tile |
 | `S` | catalog · `M` mute everything · `F` full screen |
 | `R` · `Shift-R` | Replay: turn it on and open its menu · save everything it kept |
+| `C` | Rec: start recording the wall · stop and save it |
 | `V` | Replay viewer: watch what it kept; `Space` plays, `I` / `O` mark in and out, `←` `→` move 5 s (1 s with `Shift`), `Enter` saves |
 | `Esc` | back to the grid · `?` shortcuts |
 | News · Sport · Markets · Weather | category keys, in the catalog: none lit = every channel |
@@ -121,6 +122,15 @@ now: drag along the track or mark **in** and **out** (the handles at its ends, o
 the in mark, at most 2 s earlier. While the player is open the wall goes quiet (one audio
 at a time, here too) but keeps recording, with the channel on air as before, and the
 oldest minutes are not dropped until it closes.
+
+**Rec** (`C`, beside Replay) records the wall from one click to the next, with no window
+to fill: the same program, the same MP4. It turns Replay on if it was off. When you stop
+it, Chrome and Edge ask where to save the file (cancel the dialog and it keeps recording);
+elsewhere it is downloaded, named after the moment it started. Its bytes pile up in Blobs
+as it records, which the browser may keep on disk, so an hour (≈ 1.8 GB at 4 Mb/s) does not
+sit in the page's memory; still, it stops and saves itself at 60 minutes (20 on phones),
+with a warning 5 minutes before. While it records, Replay cannot be turned off. The dot is
+white and pulses: red stays the on-air tally's.
 
 It is off by default (composing and encoding cost some CPU, and 5 minutes ≈ 150 MB of
 memory) and the choice is remembered. Everything happens in the browser: the canvas is

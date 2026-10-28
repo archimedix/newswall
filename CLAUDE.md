@@ -92,14 +92,17 @@ Native ES modules, loaded as they are (`<script type="module">`). Two layers:
   `AudioEncoder` (AAC); a ring of GOPs dropped from the front; `export` muxes to MP4 with
   mp4-muxer. The audio track never has holes (silence fills them: no edit lists in the MP4),
   and an AAC chunk that steps back in time is dropped (the muxer refuses it). `hold()` stops
-  the trimming while the viewer is open.
+  the trimming while the viewer is open. REC: `rec()` starts at the next frame (forced
+  keyframe), every chunk then also goes to a second muxer (`fastStart: false`, a
+  `StreamTarget` whose bytes become Blobs; the mdat size is patched into the first one);
+  `stopRec(until)` → `{blob, seconds}`, `recording` = seconds or null.
 - **`js/wall/`** — `wall.js` is the entry point; `panel.js` (catalog + quick search; gets
   `toggleSource` via `initPanel`), `picker.js` (the walls button and menu; gets `show`,
   `adopt`, `save` via `initPicker`), `state.js` (wall `state`, `$`, `toast`, `copyLink`),
   `program.js` (Replay's program feed: draws the grid from the tiles' real rects into a
   1920×1080 canvas; once on, every video goes through `createMediaElementSource` into one
   `bus` → `monitor` → speakers, and `bus` → recorder, wired in `attach`, unwired in `stopPlayer`, for good:
-  the context is never closed; `programHush()` mutes `monitor` only), `replay-menu.js` (button, ring, menu, save; prefs in
+  the context is never closed; `programHush()` mutes `monitor` only), `replay-menu.js` (button, ring, menu, save; the Rec button, `toggleRec()`, its cap; prefs in
   `newswall:replay`), `replay-view.js` (the viewer: `<video>` of the whole buffer, in/out
   marks, save; a capture-phase keydown takes every key while it is open). Plan and next phases: `docs/replay-plan.md`.
 - **`js/globe/`** — `globe.js` is the entry point (see "Globe" below).
