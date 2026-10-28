@@ -87,18 +87,21 @@ Native ES modules, loaded as they are (`<script type="module">`). Two layers:
   setCap(height|null), destroy}` — one stream, retries + 15 s watchdog, then `onFail`; after
   `destroy()` no callback fires. hls.js stays a classic global script.
   `replay.js`: `replaySupported()`, `createReplay({canvas, draw, context, input, seconds})` →
-  `{length, seconds, mark(), export(secs, until), destroy}`: a Worker ticks `draw()` +
+  `{length, seconds, mark(), export(secs, until) → {blob, seconds, start}, hold() → release, destroy}`: a Worker ticks `draw()` +
   `VideoEncoder` (H.264 1080p, keyframe every 2 s), `audio-tap.js` (AudioWorklet) feeds
   `AudioEncoder` (AAC); a ring of GOPs dropped from the front; `export` muxes to MP4 with
-  mp4-muxer. The audio track never has holes (silence fills them: no edit lists in the MP4).
+  mp4-muxer. The audio track never has holes (silence fills them: no edit lists in the MP4),
+  and an AAC chunk that steps back in time is dropped (the muxer refuses it). `hold()` stops
+  the trimming while the viewer is open.
 - **`js/wall/`** — `wall.js` is the entry point; `panel.js` (catalog + quick search; gets
   `toggleSource` via `initPanel`), `picker.js` (the walls button and menu; gets `show`,
   `adopt`, `save` via `initPicker`), `state.js` (wall `state`, `$`, `toast`, `copyLink`),
   `program.js` (Replay's program feed: draws the grid from the tiles' real rects into a
   1920×1080 canvas; once on, every video goes through `createMediaElementSource` into one
-  `bus` → speakers + recorder, wired in `attach`, unwired in `stopPlayer`, for good:
-  the context is never closed), `replay-menu.js` (button, ring, menu, save; prefs in
-  `newswall:replay`). Plan and next phases: `docs/replay-plan.md`.
+  `bus` → `monitor` → speakers, and `bus` → recorder, wired in `attach`, unwired in `stopPlayer`, for good:
+  the context is never closed; `programHush()` mutes `monitor` only), `replay-menu.js` (button, ring, menu, save; prefs in
+  `newswall:replay`), `replay-view.js` (the viewer: `<video>` of the whole buffer, in/out
+  marks, save; a capture-phase keydown takes every key while it is open). Plan and next phases: `docs/replay-plan.md`.
 - **`js/globe/`** — `globe.js` is the entry point (see "Globe" below).
 
 Wall behaviour:

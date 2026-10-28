@@ -92,12 +92,34 @@
      browser only, saved as MP4 on request. -->
 <div id="replay" class="glass" hidden>
   <div class="replay-head"><strong>Replay</strong><span class="meta" id="replay-kept"></span></div>
+  <button data-rop="watch" class="replay-watch">Watch again <kbd>V</kbd></button>
   <div class="replay-sub meta">Save</div>
   <div id="replay-clips"></div>
   <div class="replay-sub meta">Keep</div>
   <div id="replay-len"></div>
   <p class="replay-note">What the wall shows and the channel you hear, with the date in a corner. For your own use; nothing leaves this browser.</p>
   <div class="replay-foot"><button data-rop="off">Turn off</button></div>
+</div>
+
+<!-- The replay viewer: watch what is kept, mark in and out, save. -->
+<div id="rview" hidden>
+  <div class="rv-card glass">
+    <div class="rv-head">
+      <strong>Replay</strong><span class="meta" id="rv-now"></span>
+      <button id="rv-close" class="icon" title="Close (Esc)">✕</button>
+    </div>
+    <video id="rv-video" playsinline></video>
+    <div class="rv-bar">
+      <button id="rv-play" class="icon">▶</button>
+      <div id="rv-track"><span class="rv-sel"></span><span class="rv-pos"></span><span class="rv-in" title="In"></span><span class="rv-out" title="Out"></span></div>
+    </div>
+    <div class="rv-foot">
+      <button data-vop="in">Mark in <kbd>I</kbd></button>
+      <button data-vop="out">Mark out <kbd>O</kbd></button>
+      <span class="meta" id="rv-sel"></span>
+      <button data-vop="save" class="rv-save">Save <kbd>↵</kbd></button>
+    </div>
+  </div>
 </div>
 
 <aside id="panel" class="glass" hidden>
@@ -157,6 +179,7 @@
       <dt><kbd>F</kbd></dt><dd>full screen</dd>
       <dt><kbd>R</kbd></dt><dd>replay: turn on, save</dd>
       <dt><kbd>⇧R</kbd></dt><dd>save everything kept</dd>
+      <dt><kbd>V</kbd></dt><dd>watch the replay; <kbd>I</kbd> <kbd>O</kbd> mark in and out</dd>
       <dt><kbd>G</kbd></dt><dd>the globe</dd>
       <dt><kbd>Esc</kbd></dt><dd>back to the grid</dd>
       <dt><kbd>drag</kbd></dt><dd>reorder the tiles</dd>

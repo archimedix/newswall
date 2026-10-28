@@ -37,6 +37,7 @@ after an edit, even on reload.
 | `1`–`9` | quick audio on the n-th tile |
 | `S` | catalog · `M` mute everything · `F` full screen |
 | `R` · `Shift-R` | Replay: turn it on and open its menu · save everything it kept |
+| `V` | Replay viewer: watch what it kept; `Space` plays, `I` / `O` mark in and out, `←` `→` move 5 s (1 s with `Shift`), `Enter` saves |
 | `Esc` | back to the grid · `?` shortcuts |
 | News · Sport · Markets · Weather | category keys, in the catalog: none lit = every channel |
 | `G` · Globe | opens the globe, with the same categories |
@@ -113,6 +114,13 @@ It records the wall **as you direct it**, like a control room's program output: 
 tiles in their layout, the channel you hear, the tile you enlarge, with each tile's flag,
 name and local clock and the date and UTC time in a corner. The bar, the panels and the
 hover controls are never in it. A ring in the button fills up to the length kept.
+
+**Watch again** (`V`, or the menu) opens what it kept in a player, starting 30 s before
+now: drag along the track or mark **in** and **out** (the handles at its ends, or `I` /
+`O`) and save only that moment; the start snaps to the keyframe just before
+the in mark, at most 2 s earlier. While the player is open the wall goes quiet (one audio
+at a time, here too) but keeps recording, with the channel on air as before, and the
+oldest minutes are not dropped until it closes.
 
 It is off by default (composing and encoding cost some CPU, and 5 minutes ≈ 150 MB of
 memory) and the choice is remembered. Everything happens in the browser: the canvas is
@@ -240,7 +248,7 @@ them as they are):
 - `js/wall/` — the wall: `wall.js` (entry point: grid, tiles, audio, focus, keys),
   `panel.js` (catalog and quick search), `picker.js` (your walls: the bar button and its
   menu), `program.js` (the program feed: the grid drawn into a canvas, every tile's audio
-  through one AudioContext), `replay-menu.js` (the Replay button and menu), `state.js`
+  through one AudioContext), `replay-menu.js` (the Replay button and menu), `replay-view.js` (the replay viewer), `state.js`
   (what they share).
 - `js/globe/` — the globe, loaded by `globe.html` with an import map for three:
   `globe.js` (entry point: loading, scene, camera, selection, audio, favourites), `earth.js`

@@ -80,10 +80,15 @@ export async function createReplay({ canvas, draw, context, input, seconds = 300
 
   // ---- audio: PCM blocks from the tap, timestamped on the same clock
   const audio = [];   // EncodedAudioChunk, oldest first
-  let audioConfig = null;
+  let audioConfig = null, lastAudio = -Infinity;
   const aenc = new AudioEncoder({
     output(chunk, meta) {
       if (meta?.decoderConfig) audioConfig = meta.decoderConfig;
+      // After a jump in its input the encoder may hand back a chunk that steps
+      // back in time (one 2048-frame block): the MP4 cannot take it, a 20 ms
+      // gap in the sound is better than no clip.
+      if (chunk.timestamp <= lastAudio) return;
+      lastAudio = chunk.timestamp;
       audio.push(chunk);
     },
     error: fail,
@@ -133,8 +138,11 @@ export async function createReplay({ canvas, draw, context, input, seconds = 300
   input.connect(tap);
   tap.connect(context.destination);   // silent: it only keeps the tap running
 
-  /* Keeps just enough GOPs to cover `seconds`, and the audio from the first one on. */
+  /* Keeps just enough GOPs to cover `seconds`, and the audio from the first one on.
+     While held (the viewer is open) nothing is dropped: its marks stay inside. */
+  let held = 0;
   function trim() {
+    if (held) return;
     const newest = gops.at(-1)?.t ?? 0;
     while (gops.length > 1 && newest - gops[1].t >= seconds * 1e6) gops.shift();
     const from = gops[0]?.t ?? 0;
@@ -145,7 +153,7 @@ export async function createReplay({ canvas, draw, context, input, seconds = 300
   const length = () => (gops.length ? Math.max(0, (now() - gops[0].t) / 1e6) : 0);
 
   /* The `secs` seconds before `until` (from the keyframe just before) as an
-     MP4 Blob. `until` = mark() taken when asked, so a slow save dialog does
+     MP4 Blob, with `start` = the program time of its first frame. `until` = mark() taken when asked, so a slow save dialog does
      not shift the clip. The buffer keeps running meanwhile. */
   async function exportClip(secs, until = now()) {
     await Promise.all([venc.flush(), aenc.flush()]).catch(() => {});
@@ -184,6 +192,7 @@ export async function createReplay({ canvas, draw, context, input, seconds = 300
     return {
       blob: new Blob([muxer.target.buffer], { type: 'video/mp4' }),
       seconds: (last.timestamp + (last.duration || 0) - base) / 1e6,
+      start: base,
     };
   }
 
@@ -204,6 +213,12 @@ export async function createReplay({ canvas, draw, context, input, seconds = 300
     set seconds(s) { seconds = s; trim(); },
     mark: now,
     export: exportClip,
+    /* Stops dropping the oldest minutes; the returned function lets go. */
+    hold() {
+      held++;
+      let done = false;
+      return () => { if (!done) { done = true; held--; trim(); } };
+    },
     destroy,
   };
 }

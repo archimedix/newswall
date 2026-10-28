@@ -4,6 +4,7 @@
 
 import { replaySupported } from '../core/replay.js';
 import { startProgram } from './program.js';
+import { closeViewer, openViewer } from './replay-view.js';
 import { $, state, toast } from './state.js';
 
 const KEY = 'newswall:replay';
@@ -54,6 +55,7 @@ async function start() {
 }
 
 function stop() {
+  closeViewer();
   replay?.destroy();
   replay = null;
   clearInterval(timer);
@@ -96,13 +98,24 @@ export function toggleReplay(force) {
   render();
 }
 
-/* Saves the `secs` seconds before now. With the "Save as" dialog (Chrome,
-   Edge) the end is marked before it opens: the time spent choosing a folder
-   is not in the clip. Elsewhere, a download. */
-export async function saveReplay(secs = prefs.seconds) {
-  if (!replay) return;
-  const until = replay.mark();
-  const name = fileName();
+/* Saves the `secs` seconds before now. The end is marked before the "Save as"
+   dialog opens: the time spent choosing a folder is not in the clip. */
+export function saveReplay(secs = prefs.seconds) {
+  if (replay) return saveRange(secs, replay.mark());
+}
+
+/* Opens what is kept in the viewer, to watch it and trim it before saving. */
+export function watchReplay() {
+  if (!replay) return toast('Replay is off: R turns it on');
+  toggleReplay(false);
+  openViewer(replay, saveRange);
+}
+
+/* The `secs` seconds before `until` (program time): the "Save as" dialog on
+   Chrome and Edge, a download elsewhere. Resolves true once saved. */
+async function saveRange(secs, until) {
+  if (!replay) return false;
+  const name = fileName(new Date(Date.now() - (replay.mark() - until) / 1000));
   let handle = null;
   if (window.showSaveFilePicker) {
     try {
@@ -112,7 +125,7 @@ export async function saveReplay(secs = prefs.seconds) {
         types: [{ description: 'MP4 video', accept: { 'video/mp4': ['.mp4'] } }],
       });
     } catch (e) {
-      if (e.name === 'AbortError') return;
+      if (e.name === 'AbortError') return false;
     }
   }
   toggleReplay(false);
@@ -127,9 +140,10 @@ export async function saveReplay(secs = prefs.seconds) {
     }
   } catch (e) {
     console.error('replay', e);
-    return toast('The clip could not be saved');
+    toast('The clip could not be saved');
+    return false;
   }
-  if (!clip) return toast('Nothing to save yet');
+  if (!clip) { toast('Nothing to save yet'); return false; }
   if (!handle) {
     const a = document.createElement('a');
     a.href = URL.createObjectURL(clip.blob);
@@ -142,11 +156,11 @@ export async function saveReplay(secs = prefs.seconds) {
   }
   // The "Save as" dialog shows no download bar: the name says where to look.
   toast(`Saved ${handle?.name || name} · ${clock(clip.seconds)} · ${(clip.blob.size / 1e6).toFixed(0)} MB`);
+  return true;
 }
 
-/* newswall-<wall name>-2026-10-28-1432.mp4, local time. */
-function fileName() {
-  const d = new Date();
+/* newswall-<wall name>-2026-10-28-1432.mp4, local time of the clip's end. */
+function fileName(d) {
   const p = (n) => String(n).padStart(2, '0');
   const slug = state.wall.name.normalize('NFKD').replace(/[̀-ͯ]/g, '')
     .toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'wall';
@@ -160,6 +174,7 @@ menu.addEventListener('click', (e) => {
   if (!b || b.disabled) return;
   const op = b.dataset.rop;
   if (op === 'save') return saveReplay(Number(b.dataset.s));
+  if (op === 'watch') return watchReplay();
   if (op === 'off') return stop();
   if (op === 'len') {
     prefs.seconds = Number(b.dataset.s);

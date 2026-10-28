@@ -1,6 +1,6 @@
 # Newswall Replay — plan
 
-> Status: **approved on 2026-10-28**. Phases 0 and 1 done; 2 and 3 remain. When a phase is
+> Status: **approved on 2026-10-28**. Phases 0, 1 and 2 done; 3 remains. When a phase is
 > done, it gets described in the README and only a note stays here.
 
 ## 1. Vision
@@ -138,9 +138,14 @@ waits for a gesture. Key `Shift+R` saves everything kept.
 `core/replay.js`, `core/audio-tap.js`, `wall/program.js`, the bar button and indicator,
 *Save last N min*, the vendored muxer, README section and limitation.
 
-### Phase 2 — The replay viewer
+### Phase 2 — The replay viewer ✅ (2026-10-28)
 
-`wall/replay-view.js`: rewatch before saving, trim in/out, audio handover.
+Done, in the README. The viewer plays an MP4 of the whole buffer (exported when it opens),
+the save re-exports the marked range from the buffer, which `hold()` keeps from trimming
+meanwhile. The live sound is hushed by a gain before the speakers only, so the recording
+keeps the channel on air. Learned: the AAC encoder may emit a chunk that steps back by one
+block after a jump in its input; such chunks are dropped, or the muxer refuses the clip
+(this also broke some phase 1 saves).
 
 ### Phase 3 — REC
 

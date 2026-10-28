@@ -5,7 +5,8 @@
 
    The sound: once Replay is on, every tile's video goes through one
    AudioContext into `bus`, and from there to the speakers and to the
-   recorder. The videos stay muted and unmuted by setOnAir() as always: a
+   recorder; `monitor` sits before the speakers only, so the replay viewer
+   can hush the live sound while the recorder keeps it. The videos stay muted and unmuted by setOnAir() as always: a
    muted element sends silence. A video, once wired, stays wired: the browser
    offers no way back. */
 
@@ -18,7 +19,7 @@ canvas.width = W;
 canvas.height = H;
 const g = canvas.getContext('2d', { alpha: false });
 
-let ctx = null, bus = null;
+let ctx = null, bus = null, monitor = null;
 const wired = new Map();   // <video> -> MediaElementAudioSourceNode
 
 /* A tile got a new video: if the program is listening, its sound joins. */
@@ -41,12 +42,18 @@ export function programResume() {
   if (ctx?.state === 'suspended') ctx.resume().catch(() => {});
 }
 
+/* The replay viewer talks: the wall goes quiet in the speakers, not in the recording. */
+export function programHush(on) {
+  monitor?.gain.setTargetAtTime(on ? 0 : 1, ctx.currentTime, 0.04);
+}
+
 /* Starts the buffer; resolves to the replay handle (core/replay.js). */
 export async function startProgram({ seconds, onError }) {
   if (!ctx) {
     ctx = new AudioContext({ sampleRate: 48000 });
     bus = ctx.createGain();
-    bus.connect(ctx.destination);
+    monitor = ctx.createGain();
+    bus.connect(monitor).connect(ctx.destination);
   }
   programResume();
   grid.querySelectorAll('.tile video').forEach(programWire);
