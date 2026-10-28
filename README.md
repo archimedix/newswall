@@ -138,6 +138,8 @@ encoded with WebCodecs, the MP4 written by the vendored
 [mp4-muxer](https://github.com/Vanilagy/mp4-muxer), nothing leaves the page. The clips are
 for your own use. Without WebCodecs there is no Replay button.
 
+The globe has the same Replay and Rec, recording the globe as you fly it (see below).
+
 ## The globe
 
 `globe.html` is the exploration view; a *Wall / Globe* switch next to the logo, on both
@@ -201,6 +203,12 @@ regions push their screens apart, but the thread always goes back to the real pl
   globe always uses hls.js, never Safari's native HLS.
 - **On a slow device** the globe lowers its own resolution: when the frame rate stays under
   40 fps, the pixel ratio steps down (never below 1, never back up).
+- **Replay and Rec** work here as on the wall (same buttons, keys and viewer, the same
+  setting): they record the globe **as you fly it**, the window cropped to 16:9 (on a
+  phone held upright, a band across the middle), with the channel you hold on top: the
+  selected one in its card lifted off the globe, with its name and the red frame when it
+  talks, or the one in full screen. The bar, panes, card text and crosshair are never in
+  it; the sound is the channel you hear. Files are named `newswall-globe-…`.
 
 | | mouse / touch | keyboard | gamepad |
 |---|---|---|---|
@@ -214,6 +222,7 @@ regions push their screens apart, but the thread always goes back to the real pl
 | categories | *All channels* in the bar | `1`–`4` toggle one, `0` all | LB / RB step through |
 | back | — | `Esc` | B |
 | open the wall (the favourites) | *Open the wall* | `⇧Enter` | Start |
+| Replay · save all kept · watch · Rec | *Replay*, *Rec* in the bar | `R` · `⇧R` · `V` · `C` | — |
 
 The plan for what comes next (a phone as a remote) is in
 [`docs/globe-plan.md`](docs/globe-plan.md).
@@ -254,18 +263,20 @@ them as they are):
   filter in the URL), `walls.js` (your named walls in localStorage, the active one), `filter.js` (the category keys, drawn the same
   in both views), `hls-player.js` (one HLS stream in a `<video>`, with retries, watchdog and
   quality cap, knowing nothing about tiles), `replay.js` + `audio-tap.js` (Replay's rolling
-  buffer: WebCodecs encoders, a ring of keyframe groups, export to MP4).
+  buffer: WebCodecs encoders, a ring of keyframe groups, export to MP4), `program.js`
+  (a program's sound: every video through one AudioContext), `replay-menu.js` (the Replay
+  and Rec buttons and menu), `replay-view.js` (the replay viewer), `toast.js`.
 - `js/wall/` — the wall: `wall.js` (entry point: grid, tiles, audio, focus, keys),
   `panel.js` (catalog and quick search), `picker.js` (your walls: the bar button and its
-  menu), `program.js` (the program feed: the grid drawn into a canvas, every tile's audio
-  through one AudioContext), `replay-menu.js` (the Replay button and menu), `replay-view.js` (the replay viewer), `state.js`
+  menu), `program.js` (the program feed: the grid drawn into a canvas), `state.js`
   (what they share).
 - `js/globe/` — the globe, loaded by `globe.html` with an import map for three:
   `globe.js` (entry point: loading, scene, camera, selection, audio, favourites), `earth.js`
   (ground texture, shaders, atmosphere, outlines, stars), `sun.js` (subsolar point), `geo.js` (where each country's
   screens hang), `screens.js` (screens, threads, markers), `livepool.js` (who is live),
   `controls.js` (mouse, touch, keyboard, gamepad → commands), `hud.js` (the HTML on top),
-  `frontrow.js` (full screen and its flight in and out).
+  `frontrow.js` (full screen and its flight in and out), `program.js` (Replay's picture:
+  the scene and the channel held, composed after each render).
 
 Every stream is **HLS** (`kind: "hls"`), played in a native `<video>`. The app decides the
 quality, so small tiles download a small variant (`capLevelToPlayerSize`) and only the

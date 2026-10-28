@@ -4,8 +4,10 @@
    the channels of your active wall, the same list) and open them as the wall. */
 
 import * as THREE from 'three';
-import { CATEGORIES, MAX_WALL, byId, catalog, inCategory, isPlayable, loadCatalog, passes } from '../core/data.js';
+import { CATEGORIES, MAX_WALL, byId, catalog, flag, inCategory, isPlayable, loadCatalog, passes } from '../core/data.js';
 import { filterLabel, mountFilter, toggleCategory } from '../core/filter.js';
+import { programResume, programUnwire, programWire } from '../core/program.js';
+import { initReplay, saveReplay, toggleRec, toggleReplay, watchReplay } from '../core/replay-menu.js';
 import { FILTER_KEY, readFilter, readStoredFilter, storeFilter, viewHash } from '../core/url.js';
 import { activeWall, loadWalls, setActive, setWallIds, WALLS_KEY } from '../core/walls.js';
 import { createControls } from './controls.js';
@@ -15,6 +17,7 @@ import { toLatLon, toVec } from './geo.js';
 import * as hud from './hud.js';
 import { $, latLon } from './hud.js';
 import { createLivePool, hlsOrder, LIVE_CAP } from './livepool.js';
+import { createGlobeProgram } from './program.js';
 import { createScreens, FAN, H, W } from './screens.js';
 import { subsolar } from './sun.js';
 
@@ -96,6 +99,7 @@ async function boot() {
     return loading.fail(err);
   }
   await loading.done();
+  initReplay({ start: program.start, name: () => 'globe', what: 'the globe' });
 
   // No welcome screen: muted video needs no gesture, and the first click on a
   // screen brings the sound.
@@ -173,6 +177,7 @@ function frame(now) {
   }
 
   renderer.render(scene, camera);
+  program.frame();
 }
 let lastHud = 0;
 
@@ -436,6 +441,7 @@ function select(s) {
 }
 
 function back() {
+  if (!$('#replay').hidden) return toggleReplay(false);
   if (front.open) return front.close();
   if (!$('#keys').hidden) return hud.toggle('#keys', false);
   if (!$('#favs').hidden) return hud.toggle('#favs', false);
@@ -457,6 +463,22 @@ const front = createFrontRow({
 });
 front.flags = (s) => ({ onAir: s.id === g.audioOn, isFav: g.favs.includes(s.id) });
 
+/* ------------------------------------------------------------ replay */
+
+/* Replay records the window as you fly it, and the channel you hold: in full
+   screen, or in its card lifted off the globe. */
+const program = createGlobeProgram({
+  scene: canvas,
+  render: () => renderer.render(scene, camera),
+  videos: () => g.screens.list.map((s) => s.player?.video).filter(Boolean),
+  held() {
+    const s = front.open ? front.screen : docked;
+    const video = s && (front.open ? $('#front .front-media video') : $('#card.docked .cmedia video'));
+    if (!video) return null;
+    return { video, el: video, flag: flag(s.src.country), name: s.src.name, onAir: s.id === g.audioOn, full: front.open };
+  },
+});
+
 /* One channel to the front: it is selected, it talks, and it fills the window. */
 function openFront(s) {
   if (!s) return;
@@ -469,6 +491,7 @@ function openFront(s) {
 
 function setAudio(id) {
   g.audioOn = g.audioOn === id ? null : id;
+  if (g.audioOn) programResume();
   for (const s of g.screens.list) {
     s.onAir = s.id === g.audioOn;
     if (s.player) {
@@ -485,6 +508,7 @@ function setAudio(id) {
 
 function onLive(s) {
   g.screens.setVideo(s, s.player.video);
+  programWire(s.player.video);
   s.player.video.muted = s.id !== g.audioOn;
   if (s.selected) s.player.setCap(null);
   if (s === g.selected || s === g.candidate) renderCard();
@@ -494,6 +518,7 @@ function onLive(s) {
 
 function onIdle(s) {
   g.screens.capture(s);
+  programUnwire(s.player?.video);
   g.screens.setVideo(s, null);
   if (s === docked) fillMedia(s);            // its last frame, in the card too
   if (s.id === g.audioOn) setAudio(s.id);    // its voice goes with it
@@ -675,7 +700,14 @@ $('#favs-wall').onchange = (e) => pickWall(e.target.value);
 $('[data-act="keys"]').onclick = () => hud.toggle('#keys');
 $('#keys-close').onclick = () => hud.toggle('#keys', false);
 $('#keys').addEventListener('mousedown', (e) => { if (e.target.id === 'keys') hud.toggle('#keys', false); });
-addEventListener('keydown', (e) => { if (e.key === '?') hud.toggle('#keys'); });
+addEventListener('keydown', (e) => {
+  if (e.key === '?') return hud.toggle('#keys');
+  if (e.target.closest?.('input, textarea, select') || e.metaKey || e.ctrlKey || e.altKey) return;
+  const k = e.key.toLowerCase();
+  if (k === 'r') { e.preventDefault(); return e.shiftKey ? saveReplay() : toggleReplay(); }
+  if (k === 'v') { e.preventDefault(); return watchReplay(); }
+  if (k === 'c') { e.preventDefault(); return toggleRec(); }
+});
 
 /* A clicked button must not keep the focus: Space and Enter belong to the globe. */
 addEventListener('click', (e) => { if (e.detail) e.target.closest('button')?.blur(); });

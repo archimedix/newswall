@@ -96,15 +96,21 @@ Native ES modules, loaded as they are (`<script type="module">`). Two layers:
   keyframe), every chunk then also goes to a second muxer (`fastStart: false`, a
   `StreamTarget` whose bytes become Blobs; the mdat size is patched into the first one);
   `stopRec(until)` → `{blob, seconds}`, `recording` = seconds or null.
+  `program.js`: a program's sound, shared by both views: once on, every video goes through
+  `createMediaElementSource` into one `bus` → `monitor` → speakers, and `bus` → recorder
+  (`programWire`/`programUnwire`/`programResume`); the context is never closed;
+  `programHush()` mutes `monitor` only. `startProgram({canvas, draw, videos, seconds, onError})`.
+  `replay-menu.js`: `initReplay({start, name, what})` (each view's program and file name):
+  button, ring, menu, save; the Rec button, `toggleRec()`, its cap; prefs in
+  `newswall:replay`, shared by both views. `replay-view.js`: the viewer (`<video>` of the
+  whole buffer, in/out marks, save; a capture-phase keydown takes every key while open).
+  `toast.js`: re-exported by `wall/state.js` and `globe/hud.js`.
 - **`js/wall/`** — `wall.js` is the entry point; `panel.js` (catalog + quick search; gets
   `toggleSource` via `initPanel`), `picker.js` (the walls button and menu; gets `show`,
   `adopt`, `save` via `initPicker`), `state.js` (wall `state`, `$`, `toast`, `copyLink`),
-  `program.js` (Replay's program feed: draws the grid from the tiles' real rects into a
-  1920×1080 canvas; once on, every video goes through `createMediaElementSource` into one
-  `bus` → `monitor` → speakers, and `bus` → recorder, wired in `attach`, unwired in `stopPlayer`, for good:
-  the context is never closed; `programHush()` mutes `monitor` only), `replay-menu.js` (button, ring, menu, save; the Rec button, `toggleRec()`, its cap; prefs in
-  `newswall:replay`), `replay-view.js` (the viewer: `<video>` of the whole buffer, in/out
-  marks, save; a capture-phase keydown takes every key while it is open). Plan and next phases: `docs/replay-plan.md`.
+  `program.js` (Replay's picture: draws the grid from the tiles' real rects into a
+  1920×1080 canvas; tile videos are wired in `attach`, unwired in `stopPlayer`). Plan and
+  next phases: `docs/replay-plan.md`.
 - **`js/globe/`** — `globe.js` is the entry point (see "Globe" below).
 
 Wall behaviour:
@@ -191,6 +197,11 @@ Wall behaviour:
   video removed from the document gets paused by the browser after the task, so `empty()`
   restarts it with a short timeout. While open, a capture-phase keydown in `globe.js` takes
   Esc/F/arrows/Space/B before the globe controls.
+- **Replay** (`program.js`): the WebGL canvas can only be read right after `render()`, so
+  the encoder's `draw()` sets a flag and `frame()` composes after rendering (hidden tab:
+  the program renders by itself). Scene cropped to 16:9, then the held channel's DOM
+  `<video>` (`#card.docked .cmedia` or `#front .front-media`) at its rect, with name and
+  tally. Videos wired in `onLive`, unwired in `onIdle`; keys R/⇧R/V/C in `globe.js`.
 - Same house rules as the wall: one audio at a time, red only for the one talking, orange
   for rebroadcasts, `backdrop-filter` only on HUD surfaces seen one at a time.
 

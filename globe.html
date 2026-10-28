@@ -76,6 +76,12 @@
     <button id="favs-btn" class="ghost" title="Favourites: the channels of your active wall (B stars the selected one)">
       <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path class="star" d="M8 1.7l1.93 3.98 4.37.6-3.18 3.05.78 4.35L8 11.6l-3.9 2.08.78-4.35L1.7 6.28l4.37-.6z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg><span>Favourites</span><b id="favs-n">0</b>
     </button>
+    <button id="replay-btn" hidden aria-haspopup="true" aria-expanded="false" aria-controls="replay">
+      <span class="rp-ring" aria-hidden="true"></span><span>Replay</span><span class="rp-time"></span>
+    </button>
+    <button id="rec-btn" hidden>
+      <span class="rec-dot" aria-hidden="true"></span><span>Rec</span><span class="rec-time"></span>
+    </button>
     <button data-act="keys" class="icon" title="Controls (?)">?</button>
   </nav>
 </header>
@@ -193,6 +199,40 @@
   </div>
 </div>
 
+<!-- Replay: the last minutes of the globe as you flew it, kept in this
+     browser only, saved as MP4 on request. -->
+<div id="replay" class="glass" hidden>
+  <div class="replay-head"><strong>Replay</strong><span class="meta" id="replay-kept"></span></div>
+  <button data-rop="watch" class="replay-watch">Watch again <kbd>V</kbd></button>
+  <div class="replay-sub meta">Save</div>
+  <div id="replay-clips"></div>
+  <div class="replay-sub meta">Keep</div>
+  <div id="replay-len"></div>
+  <p class="replay-note">The globe as you fly it, the channel you hold and the one you hear, with the date in a corner. For your own use; nothing leaves this browser.</p>
+  <div class="replay-foot"><button data-rop="off">Turn off</button></div>
+</div>
+
+<!-- The replay viewer: watch what is kept, mark in and out, save. -->
+<div id="rview" hidden>
+  <div class="rv-card glass">
+    <div class="rv-head">
+      <strong>Replay</strong><span class="meta" id="rv-now"></span>
+      <button id="rv-close" class="icon" title="Close (Esc)">✕</button>
+    </div>
+    <video id="rv-video" playsinline></video>
+    <div class="rv-bar">
+      <button id="rv-play" class="icon">▶</button>
+      <div id="rv-track"><span class="rv-sel"></span><span class="rv-pos"></span><span class="rv-in" title="In"></span><span class="rv-out" title="Out"></span></div>
+    </div>
+    <div class="rv-foot">
+      <button data-vop="in">Mark in <kbd>I</kbd></button>
+      <button data-vop="out">Mark out <kbd>O</kbd></button>
+      <span class="meta" id="rv-sel"></span>
+      <button data-vop="save" class="rv-save">Save <kbd>↵</kbd></button>
+    </div>
+  </div>
+</div>
+
 <div id="keys" hidden>
   <div class="keys-card glass">
     <div class="keys-head"><strong>Controls</strong><button id="keys-close" class="icon">✕</button></div>
@@ -207,6 +247,9 @@
       <dt><kbd>⇧↵</kbd></dt><dd>open the wall</dd>
       <dt><kbd>1</kbd>–<kbd>4</kbd></dt><dd>show or hide news, sport, markets, weather</dd>
       <dt><kbd>0</kbd></dt><dd>every channel</dd>
+      <dt><kbd>R</kbd></dt><dd>replay: turn on, save; <kbd>⇧R</kbd> save everything kept</dd>
+      <dt><kbd>V</kbd></dt><dd>watch the replay; <kbd>I</kbd> <kbd>O</kbd> mark in and out</dd>
+      <dt><kbd>C</kbd></dt><dd>rec: start, stop and save</dd>
       <dt><kbd>Esc</kbd> <kbd>click</kbd> the globe</dt><dd>back, let go of the channel</dd>
       <dt><kbd>🎮</kbd></dt><dd>stick turns, triggers zoom, A selects (again: full screen), X audio, Y favourite, LB/RB category, Start opens the wall</dd>
     </dl>

@@ -1,6 +1,6 @@
 # Newswall Replay — plan
 
-> Status: **approved on 2026-10-28**. Phases 0–3 done; what is left is under *Later*. When a phase is
+> Status: **approved on 2026-10-28**. Phases 0–3 done, and the globe has it too; what is left is under *Later*. When a phase is
 > done, it gets described in the README and only a note stays here.
 
 ## 1. Vision
@@ -156,11 +156,20 @@ itself, warned 5 minutes before; without a gesture the dialog is refused, so tha
 download. Writing straight to a file chosen at start (File System Access) stays possible
 if an hour turns out to be too short.
 
+### The globe ✅ (2026-10-28)
+
+Done, in the README. The menu, the viewer and the sound moved to `js/core/` (`program.js`,
+`replay-menu.js`, `replay-view.js`); each view brings only its picture. The globe's
+(`js/globe/program.js`) is the WebGL canvas cropped to 16:9 with the channel held drawn
+on top (docked card or full screen: DOM videos, not in the canvas). Learned: a WebGL
+canvas can only be read in the task that rendered it, so the frame loop composes right
+after `render()` when the encoder asked for a frame; in a hidden tab the program renders
+by itself.
+
 ### Later
 
-The globe's program (its WebGL canvas into the same `replay.js`); a lighter 720p option for
-modest machines; Rec straight to a file chosen at start, for recordings over an hour.
-Safari and Firefox are still untested.
+A lighter 720p option for modest machines; Rec straight to a file chosen at start, for
+recordings over an hour. Safari and Firefox are still untested.
 
 ## 7. Risks and open questions
 

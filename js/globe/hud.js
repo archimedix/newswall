@@ -187,13 +187,7 @@ export function tickUtc() {
   $('#utc').textContent = `${new Date().toISOString().slice(11, 16)} UTC`;
 }
 
-export function toast(msg) {
-  const el = document.createElement('div');
-  el.className = 'toast';
-  el.textContent = msg;
-  $('#toast').appendChild(el);
-  setTimeout(() => { el.classList.add('out'); setTimeout(() => el.remove(), 320); }, 2400);
-}
+export { toast } from '../core/toast.js';
 
 export function toggle(sel, force) {
   const el = $(sel);

@@ -8,6 +8,8 @@ import {
 } from '../core/data.js';
 import { filterLabel } from '../core/filter.js';
 import { createHlsPlayer } from '../core/hls-player.js';
+import { programResume, programUnwire, programWire } from '../core/program.js';
+import { initReplay, saveReplay, toggleRec, toggleReplay, watchReplay } from '../core/replay-menu.js';
 import { FILTER_KEY, readFilter, readLinkWall, readStoredFilter, saveView } from '../core/url.js';
 import {
   activeWall, addWall, FIRST_NAME, findWall, loadWalls, setActive, setWallIds, WALLS_KEY,
@@ -16,8 +18,7 @@ import {
   buildPanel, initPanel, listSources, openPalette, pal, palMove, palPick, palRender, togglePanel,
 } from './panel.js';
 import { initPicker, renderPicker, togglePicker } from './picker.js';
-import { programResume, programUnwire, programWire } from './program.js';
-import { initReplay, saveReplay, toggleRec, toggleReplay, watchReplay } from './replay-menu.js';
+import { startWallProgram } from './program.js';
 import { $, grid, LOW_QUALITY_CAP, MAX_TILES, state, tileEl, toast } from './state.js';
 
 /* ---------------------------------------------------------------- boot */
@@ -31,7 +32,7 @@ async function boot() {
   syncGrid();
   save();
   renderPicker();
-  initReplay();
+  initReplay({ start: startWallProgram, name: () => state.wall.name, what: 'the wall' });
 }
 
 /* Which wall to open. A link that carries one of your walls opens it; one

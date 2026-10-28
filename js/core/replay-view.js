@@ -1,11 +1,13 @@
 /* The replay viewer: what Replay keeps, in a player, before saving it. Marks
    in and out keep only the moment that matters. While it is open the live
-   sound is hushed (one audio at a time, here too) and the wall keeps
+   sound is hushed (one audio at a time, here too) and the view keeps
    buffering behind it; the buffer stops dropping its oldest minutes until it
    closes, so the marks stay inside it. */
 
 import { programHush } from './program.js';
-import { $, toast } from './state.js';
+import { toast } from './toast.js';
+
+const $ = (sel) => document.querySelector(sel);
 
 const view = $('#rview'), video = $('#rv-video'), track = $('#rv-track');
 const playBtn = $('#rv-play');
@@ -136,7 +138,7 @@ view.addEventListener('click', (e) => {
   if (op === 'save') save();
 });
 
-/* While it is open, the wall's keys are its keys. Capture phase: the wall's
+/* While it is open, the view's keys are its keys. Capture phase: the view's
    own handler never sees them. */
 addEventListener('keydown', (e) => {
   if (!s) return;

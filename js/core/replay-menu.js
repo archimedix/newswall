@@ -1,12 +1,12 @@
 /* Replay in the bar: the button that turns it on, the ring that fills up to
    the chosen length, and the menu that saves the last minutes. Off by
-   default: it costs CPU and memory. The choice is remembered here.
-   Beside it, Rec: from a click to the next, with the same program. */
+   default: it costs CPU and memory. The choice is remembered here, the same
+   for the wall and the globe. Beside it, Rec: from a click to the next, with
+   the same program. Each view brings its own program (how it draws). */
 
-import { replaySupported } from '../core/replay.js';
-import { startProgram } from './program.js';
+import { replaySupported } from './replay.js';
 import { closeViewer, openViewer } from './replay-view.js';
-import { $, state, toast } from './state.js';
+import { toast } from './toast.js';
 
 const KEY = 'newswall:replay';
 const touch = matchMedia('(pointer: coarse)').matches;
@@ -17,10 +17,15 @@ const REC_CAP = (touch ? 20 : 60) * 60;   // seconds: past it the recording stop
 let replay = null, starting = false, timer = 0;
 let recName = '', recWarned = false, recSaving = false;
 let prefs = { on: false, seconds: touch ? 120 : 300 };
+/* The view: `start({seconds, onError})` → its program's replay handle,
+   `name()` for the file, `what` for the messages ("the wall"). */
+let view = null;
 
+const $ = (sel) => document.querySelector(sel);
 const btn = $('#replay-btn'), menu = $('#replay'), recBtn = $('#rec-btn');
 
-export async function initReplay() {
+export async function initReplay(v) {
+  view = v;
   if (!(await replaySupported())) return;   // no WebCodecs here: no button
   try { Object.assign(prefs, JSON.parse(localStorage.getItem(KEY)) || {}); } catch {}
   if (!LENGTHS.includes(prefs.seconds)) prefs.seconds = LENGTHS.at(-1);
@@ -37,7 +42,7 @@ async function start() {
   if (replay || starting) return;
   starting = true;
   try {
-    replay = await startProgram({
+    replay = await view.start({
       seconds: prefs.seconds,
       onError: (e) => {
         console.error('replay', e);
@@ -78,7 +83,7 @@ function render() {
   btn.querySelector('.rp-time').textContent = replay ? clock(Math.min(len, prefs.seconds)) : '';
   btn.title = replay
     ? `Replay: the last ${clock(Math.min(len, prefs.seconds))} are kept (R)`
-    : 'Replay: keep the last minutes of the wall, to see them again and save them (R)';
+    : `Replay: keep the last minutes of ${view.what}, to see them again and save them (R)`;
   if (menu.hidden) return;
 
   $('#replay-kept').textContent = replay ? `${clock(Math.min(len, prefs.seconds))} kept of ${clock(prefs.seconds)}` : '';
@@ -184,7 +189,7 @@ export async function toggleRec() {
   recName = fileName(new Date(), 'rec');
   recWarned = false;
   render();
-  toast('Recording the wall: Rec again stops it and saves the file');
+  toast(`Recording ${view.what}: Rec again stops it and saves the file`);
 }
 
 /* The end is marked before the dialog; cancelling it keeps recording. */
@@ -205,7 +210,7 @@ function renderRec() {
   recBtn.querySelector('.rec-time').textContent = secs != null ? clock(secs) : '';
   recBtn.title = secs != null
     ? `Recording, ${clock(secs)}: click to stop and save (C)`
-    : 'Rec: record the wall until you stop, then save it (C)';
+    : `Rec: record ${view.what} until you stop, then save it (C)`;
   if (secs == null || recSaving) return;
   if (secs >= REC_CAP - 300 && !recWarned) {
     recWarned = true;
@@ -214,10 +219,10 @@ function renderRec() {
   if (secs >= REC_CAP) stopRec();
 }
 
-/* newswall-<wall name>[-rec]-2026-10-28-1432.mp4, local time. */
+/* newswall-<wall name, or globe>[-rec]-2026-10-28-1432.mp4, local time. */
 function fileName(d, kind) {
   const p = (n) => String(n).padStart(2, '0');
-  const slug = state.wall.name.normalize('NFKD').replace(/[̀-ͯ]/g, '')
+  const slug = view.name().normalize('NFKD').replace(/[̀-ͯ]/g, '')
     .toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'wall';
   return `newswall-${slug}${kind ? `-${kind}` : ''}-${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())}-${p(d.getHours())}${p(d.getMinutes())}.mp4`;
 }

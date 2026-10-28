@@ -1,6 +1,7 @@
 /* What the wall modules share: the state of the wall and a few DOM helpers. */
 
 import { MAX_WALL } from '../core/data.js';
+import { toast } from '../core/toast.js';
 
 export const LOW_QUALITY_CAP = 480;   // max height for tiles that are not enlarged
 export const MAX_TILES = MAX_WALL;
@@ -20,14 +21,7 @@ export const $ = (sel) => document.querySelector(sel);
 export const grid = $('#grid');
 export const tileEl = (id) => [...grid.children].find((t) => t.dataset.id === id);
 
-/* A short message that then fades: it does not steal space from the video. */
-export function toast(msg) {
-  const el = document.createElement('div');
-  el.className = 'toast';
-  el.textContent = msg;
-  $('#toast').appendChild(el);
-  setTimeout(() => { el.classList.add('out'); setTimeout(() => el.remove(), 320); }, 2400);
-}
+export { toast };
 
 /* The address bar is always the link to the wall on screen: copying it is sharing it. */
 export async function copyLink() {
