@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-28T18:51:20+00:00",
+  "generated": "2026-10-28T23:14:06+00:00",
   "entries": {
     "aljazeera-en": {
       "state": "ok",
@@ -772,12 +772,17 @@
     },
     "syria-tv": {
       "state": "ok",
-      "use": 1,
+      "use": 0,
       "streams": [
         {
-          "state": "unverified",
-          "reason": "unreachable (IncompleteRead)",
-          "failing_since": "2026-10-28T18:51:20+00:00"
+          "state": "ok",
+          "heights": [
+            240,
+            360,
+            480,
+            720,
+            1080
+          ]
         },
         {
           "state": "ok",
@@ -790,9 +795,14 @@
           ]
         },
         {
-          "state": "unverified",
-          "reason": "unreachable (IncompleteRead)",
-          "failing_since": "2026-10-28T18:51:20+00:00"
+          "state": "ok",
+          "heights": [
+            240,
+            360,
+            480,
+            720,
+            1080
+          ]
         }
       ],
       "reason": null
@@ -858,17 +868,16 @@
       "reason": null
     },
     "channel-9": {
-      "state": "ok",
+      "state": "unverified",
       "use": 0,
       "streams": [
         {
-          "state": "ok",
-          "heights": [
-            1080
-          ]
+          "state": "unverified",
+          "reason": "playlist not moving: the stream is stuck",
+          "failing_since": "2026-10-28T23:14:06+00:00"
         }
       ],
-      "reason": null
+      "reason": "playlist not moving: the stream is stuck"
     },
     "crtv-news": {
       "state": "ok",
@@ -1568,16 +1577,19 @@
       "reason": null
     },
     "cctv-2": {
-      "state": "unverified",
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "state": "unverified",
-          "reason": "segment: HTTP 404",
-          "failing_since": "2026-10-28T05:38:29+00:00"
+          "state": "ok",
+          "heights": [
+            240,
+            360,
+            600
+          ]
         }
       ],
-      "reason": "segment: HTTP 404"
+      "reason": null
     },
     "nation-tv": {
       "state": "ok",
@@ -1883,27 +1895,35 @@
       "streams": [
         {
           "state": "ok",
-          "heights": []
+          "heights": [
+            360,
+            540,
+            720,
+            1080
+          ]
         }
       ],
       "reason": null
     },
     "belarus-5": {
-      "state": "unverified",
-      "use": 0,
+      "state": "ok",
+      "use": 1,
       "streams": [
         {
           "state": "unverified",
-          "reason": "unreachable (RemoteDisconnected)",
+          "reason": "variant: HTTP 504",
           "failing_since": "2026-10-20T22:17:49+00:00"
         },
         {
-          "state": "unverified",
-          "reason": "unreachable (RemoteDisconnected)",
-          "failing_since": "2026-10-28T05:38:29+00:00"
+          "state": "ok",
+          "heights": [
+            360,
+            720,
+            1080
+          ]
         }
       ],
-      "reason": "unreachable (RemoteDisconnected)"
+      "reason": null
     },
     "ktv-sport": {
       "state": "ok",
@@ -2427,11 +2447,11 @@
       "streams": [
         {
           "state": "unverified",
-          "reason": "variant: HTTP 403",
+          "reason": "segment: HTTP 403",
           "failing_since": "2026-10-27T14:29:15+00:00"
         }
       ],
-      "reason": "variant: HTTP 403"
+      "reason": "segment: HTTP 403"
     },
     "cnbc-arabiya": {
       "state": "ok",
@@ -2866,19 +2886,16 @@
       "reason": null
     },
     "qbc": {
-      "state": "ok",
+      "state": "unverified",
       "use": 0,
       "streams": [
         {
-          "state": "ok",
-          "heights": [
-            240,
-            480,
-            1080
-          ]
+          "state": "unverified",
+          "reason": "variant: unreachable (IncompleteRead)",
+          "failing_since": "2026-10-28T23:14:06+00:00"
         }
       ],
-      "reason": null
+      "reason": "variant: unreachable (IncompleteRead)"
     },
     "rbk-tv": {
       "state": "ok",
