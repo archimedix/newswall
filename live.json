@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-29T02:26:39+00:00",
+  "generated": "2026-10-29T09:55:32+00:00",
   "entries": {
     "aljazeera-en": {
       "state": "ok",
@@ -169,7 +169,7 @@
         },
         {
           "state": "dead",
-          "reason": "HTTP 404",
+          "reason": "variant: HTTP 404",
           "failing_since": "2026-10-20T22:17:49+00:00"
         }
       ],
@@ -894,19 +894,16 @@
       "reason": null
     },
     "mrtv-news": {
-      "state": "ok",
+      "state": "unverified",
       "use": 0,
       "streams": [
         {
-          "state": "ok",
-          "heights": [
-            404,
-            720,
-            1080
-          ]
+          "state": "unverified",
+          "reason": "unreachable (TimeoutError)",
+          "failing_since": "2026-10-29T09:55:32+00:00"
         }
       ],
-      "reason": null
+      "reason": "unreachable (TimeoutError)"
     },
     "rt-arabic": {
       "state": "ok",
@@ -1278,12 +1275,9 @@
           ]
         },
         {
-          "state": "ok",
-          "heights": [
-            240,
-            360,
-            720
-          ]
+          "state": "unverified",
+          "reason": "HTTP 404",
+          "failing_since": "2026-10-29T09:55:32+00:00"
         }
       ],
       "reason": null
@@ -1417,21 +1411,16 @@
       "reason": null
     },
     "metro-tv": {
-      "state": "ok",
+      "state": "unverified",
       "use": 0,
       "streams": [
         {
-          "state": "ok",
-          "heights": [
-            160,
-            240,
-            360,
-            480,
-            720
-          ]
+          "state": "unverified",
+          "reason": "variant: HTTP 404",
+          "failing_since": "2026-10-29T09:55:32+00:00"
         }
       ],
-      "reason": null
+      "reason": "variant: HTTP 404"
     },
     "news-one": {
       "state": "ok",
@@ -1566,12 +1555,15 @@
     },
     "cctv-1": {
       "state": "ok",
-      "use": 1,
+      "use": 0,
       "streams": [
         {
-          "state": "unverified",
-          "reason": "segment: HTTP 404",
-          "failing_since": "2026-10-28T18:51:20+00:00"
+          "state": "ok",
+          "heights": [
+            240,
+            360,
+            600
+          ]
         },
         {
           "state": "ok",
@@ -1833,13 +1825,24 @@
       "reason": "no CORS: redirect 301 without CORS"
     },
     "a-spor": {
+      "state": "unverified",
+      "use": 0,
+      "streams": [
+        {
+          "state": "unverified",
+          "reason": "variant: unreachable (TimeoutError)",
+          "failing_since": "2026-10-29T09:55:32+00:00"
+        }
+      ],
+      "reason": "variant: unreachable (TimeoutError)"
+    },
+    "esport3": {
       "state": "ok",
       "use": 0,
       "streams": [
         {
           "state": "ok",
           "heights": [
-            360,
             480,
             720,
             1080
@@ -1847,18 +1850,6 @@
         }
       ],
       "reason": null
-    },
-    "esport3": {
-      "state": "unverified",
-      "use": 0,
-      "streams": [
-        {
-          "state": "unverified",
-          "reason": "segment: HTTP 403",
-          "failing_since": "2026-10-27T20:05:27+00:00"
-        }
-      ],
-      "reason": "segment: HTTP 403"
     },
     "ge-fast": {
       "state": "ok",
@@ -1905,24 +1896,21 @@
       "reason": null
     },
     "belarus-5": {
-      "state": "ok",
-      "use": 1,
+      "state": "unverified",
+      "use": 0,
       "streams": [
         {
           "state": "unverified",
-          "reason": "variant: HTTP 504",
+          "reason": "unreachable (RemoteDisconnected)",
           "failing_since": "2026-10-20T22:17:49+00:00"
         },
         {
-          "state": "ok",
-          "heights": [
-            360,
-            720,
-            1080
-          ]
+          "state": "unverified",
+          "reason": "unreachable (RemoteDisconnected)",
+          "failing_since": "2026-10-29T09:55:32+00:00"
         }
       ],
-      "reason": null
+      "reason": "unreachable (RemoteDisconnected)"
     },
     "ktv-sport": {
       "state": "ok",
@@ -1973,16 +1961,19 @@
       "reason": null
     },
     "mrtv-sports": {
-      "state": "unverified",
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "state": "unverified",
-          "reason": "variant: unreachable (TimeoutError)",
-          "failing_since": "2026-10-28T18:51:20+00:00"
+          "state": "ok",
+          "heights": [
+            404,
+            720,
+            1080
+          ]
         }
       ],
-      "reason": "variant: unreachable (TimeoutError)"
+      "reason": null
     },
     "myanmar-international-tv": {
       "state": "unverified",
@@ -1990,11 +1981,11 @@
       "streams": [
         {
           "state": "unverified",
-          "reason": "variant: unreachable (TimeoutError)",
+          "reason": "unreachable (TimeoutError)",
           "failing_since": "2026-10-28T18:51:20+00:00"
         }
       ],
-      "reason": "variant: unreachable (TimeoutError)"
+      "reason": "unreachable (TimeoutError)"
     },
     "red-bull-tv": {
       "state": "ok",
@@ -2601,18 +2592,16 @@
       "reason": null
     },
     "aleph-business": {
-      "state": "ok",
+      "state": "unverified",
       "use": 0,
       "streams": [
         {
-          "state": "ok",
-          "heights": [
-            360,
-            720
-          ]
+          "state": "unverified",
+          "reason": "HTTP 504",
+          "failing_since": "2026-10-29T09:55:32+00:00"
         }
       ],
-      "reason": null
+      "reason": "HTTP 504"
     },
     "nw-economie": {
       "state": "unverified",
@@ -2885,16 +2874,19 @@
       "reason": null
     },
     "qbc": {
-      "state": "unverified",
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "state": "unverified",
-          "reason": "unreachable (IncompleteRead)",
-          "failing_since": "2026-10-28T23:14:06+00:00"
+          "state": "ok",
+          "heights": [
+            240,
+            480,
+            1080
+          ]
         }
       ],
-      "reason": "unreachable (IncompleteRead)"
+      "reason": null
     },
     "rbk-tv": {
       "state": "ok",
