@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-02T18:20:16+00:00",
+  "generated": "2026-11-03T01:35:01+00:00",
   "entries": {
     "aljazeera-en": {
       "state": "ok",
@@ -169,7 +169,7 @@
         },
         {
           "state": "dead",
-          "reason": "variant: HTTP 404",
+          "reason": "HTTP 404",
           "failing_since": "2026-10-20T22:17:49+00:00"
         }
       ],
@@ -709,21 +709,16 @@
       "reason": null
     },
     "al-manar": {
-      "state": "ok",
+      "state": "unverified",
       "use": 0,
       "streams": [
         {
-          "state": "ok",
-          "heights": [
-            144,
-            240,
-            360,
-            576,
-            1080
-          ]
+          "state": "unverified",
+          "reason": "unreachable (SSLCertVerificationError)",
+          "failing_since": "2026-11-03T01:35:01+00:00"
         }
       ],
-      "reason": null
+      "reason": "unreachable (SSLCertVerificationError)"
     },
     "canal-26": {
       "state": "ok",
@@ -795,14 +790,9 @@
           ]
         },
         {
-          "state": "ok",
-          "heights": [
-            240,
-            360,
-            480,
-            720,
-            1080
-          ]
+          "state": "unverified",
+          "reason": "unreachable (IncompleteRead)",
+          "failing_since": "2026-11-03T01:35:01+00:00"
         }
       ],
       "reason": null
@@ -1563,12 +1553,15 @@
     },
     "cctv-1": {
       "state": "ok",
-      "use": 1,
+      "use": 0,
       "streams": [
         {
-          "state": "dead",
-          "reason": "segment: HTTP 404",
-          "failing_since": "2026-11-01T16:02:50+00:00"
+          "state": "ok",
+          "heights": [
+            240,
+            360,
+            600
+          ]
         },
         {
           "state": "ok",
@@ -1578,16 +1571,19 @@
       "reason": null
     },
     "cctv-2": {
-      "state": "dead",
-      "use": null,
+      "state": "ok",
+      "use": 0,
       "streams": [
         {
-          "state": "dead",
-          "reason": "segment: HTTP 404",
-          "failing_since": "2026-11-01T09:14:18+00:00"
+          "state": "ok",
+          "heights": [
+            240,
+            360,
+            600
+          ]
         }
       ],
-      "reason": "segment: HTTP 404"
+      "reason": null
     },
     "nation-tv": {
       "state": "ok",
@@ -1893,7 +1889,12 @@
       "streams": [
         {
           "state": "ok",
-          "heights": []
+          "heights": [
+            360,
+            540,
+            720,
+            1080
+          ]
         }
       ],
       "reason": null
@@ -2853,11 +2854,11 @@
       "reason": null
     },
     "bein-sports-xtra": {
-      "state": "unverified",
-      "use": 0,
+      "state": "dead",
+      "use": null,
       "streams": [
         {
-          "state": "unverified",
+          "state": "dead",
           "reason": "no CORS for this site: would need a proxy",
           "failing_since": "2026-11-02T00:42:12+00:00"
         }
@@ -2880,19 +2881,16 @@
       "reason": null
     },
     "qbc": {
-      "state": "ok",
+      "state": "unverified",
       "use": 0,
       "streams": [
         {
-          "state": "ok",
-          "heights": [
-            240,
-            480,
-            1080
-          ]
+          "state": "unverified",
+          "reason": "unreachable (IncompleteRead)",
+          "failing_since": "2026-11-03T01:35:01+00:00"
         }
       ],
-      "reason": null
+      "reason": "unreachable (IncompleteRead)"
     },
     "rbk-tv": {
       "state": "ok",
