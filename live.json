@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-06T06:39:56+00:00",
+  "generated": "2026-11-06T15:00:36+00:00",
   "entries": {
     "aljazeera-en": {
       "state": "ok",
@@ -169,7 +169,7 @@
         },
         {
           "state": "dead",
-          "reason": "variant: HTTP 404",
+          "reason": "HTTP 404",
           "failing_since": "2026-10-20T22:17:49+00:00"
         }
       ],
@@ -386,16 +386,17 @@
       "reason": null
     },
     "alarabiya-en": {
-      "state": "unverified",
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "state": "unverified",
-          "reason": "segment: unreachable (TimeoutError)",
-          "failing_since": "2026-11-06T06:39:56+00:00"
+          "state": "ok",
+          "heights": [
+            1080
+          ]
         }
       ],
-      "reason": "segment: unreachable (TimeoutError)"
+      "reason": null
     },
     "africanews-en": {
       "state": "ok",
@@ -893,19 +894,16 @@
       "reason": null
     },
     "mrtv-news": {
-      "state": "ok",
+      "state": "unverified",
       "use": 0,
       "streams": [
         {
-          "state": "ok",
-          "heights": [
-            404,
-            720,
-            1080
-          ]
+          "state": "unverified",
+          "reason": "unreachable (TimeoutError)",
+          "failing_since": "2026-11-06T15:00:36+00:00"
         }
       ],
-      "reason": null
+      "reason": "unreachable (TimeoutError)"
     },
     "rt-arabic": {
       "state": "ok",
@@ -1580,19 +1578,16 @@
       "reason": null
     },
     "cctv-2": {
-      "state": "ok",
+      "state": "unverified",
       "use": 0,
       "streams": [
         {
-          "state": "ok",
-          "heights": [
-            240,
-            360,
-            600
-          ]
+          "state": "unverified",
+          "reason": "segment: HTTP 404",
+          "failing_since": "2026-11-06T15:00:36+00:00"
         }
       ],
-      "reason": null
+      "reason": "segment: HTTP 404"
     },
     "nation-tv": {
       "state": "ok",
@@ -1972,34 +1967,28 @@
       "reason": null
     },
     "mrtv-sports": {
-      "state": "ok",
+      "state": "unverified",
       "use": 0,
       "streams": [
         {
-          "state": "ok",
-          "heights": [
-            404,
-            720,
-            1080
-          ]
+          "state": "unverified",
+          "reason": "unreachable (TimeoutError)",
+          "failing_since": "2026-11-06T15:00:36+00:00"
         }
       ],
-      "reason": null
+      "reason": "unreachable (TimeoutError)"
     },
     "myanmar-international-tv": {
-      "state": "ok",
+      "state": "unverified",
       "use": 0,
       "streams": [
         {
-          "state": "ok",
-          "heights": [
-            404,
-            720,
-            1080
-          ]
+          "state": "unverified",
+          "reason": "unreachable (TimeoutError)",
+          "failing_since": "2026-11-06T15:00:36+00:00"
         }
       ],
-      "reason": null
+      "reason": "unreachable (TimeoutError)"
     },
     "red-bull-tv": {
       "state": "ok",
@@ -2452,11 +2441,11 @@
       "streams": [
         {
           "state": "unverified",
-          "reason": "variant: HTTP 403",
+          "reason": "segment: HTTP 403",
           "failing_since": "2026-11-06T06:39:56+00:00"
         }
       ],
-      "reason": "variant: HTTP 403"
+      "reason": "segment: HTTP 403"
     },
     "cnbc-arabiya": {
       "state": "ok",
@@ -3152,16 +3141,15 @@
       "reason": null
     },
     "eac-news-tv": {
-      "state": "dead",
-      "use": null,
+      "state": "ok",
+      "use": 0,
       "streams": [
         {
-          "state": "dead",
-          "reason": "HTTP 404",
-          "failing_since": "2026-11-04T14:30:41+00:00"
+          "state": "ok",
+          "heights": []
         }
       ],
-      "reason": "HTTP 404"
+      "reason": null
     },
     "arirang-tv": {
       "state": "ok",
@@ -3197,17 +3185,16 @@
       "reason": null
     },
     "korean-central-television": {
-      "state": "ok",
+      "state": "unverified",
       "use": 0,
       "streams": [
         {
-          "state": "ok",
-          "heights": [
-            1080
-          ]
+          "state": "unverified",
+          "reason": "HTTP 404",
+          "failing_since": "2026-11-06T15:00:36+00:00"
         }
       ],
-      "reason": null
+      "reason": "HTTP 404"
     },
     "qazaqstan": {
       "state": "ok",
@@ -3357,16 +3344,17 @@
       "reason": null
     },
     "haiti-news-channel": {
-      "state": "unverified",
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "state": "unverified",
-          "reason": "HTTP 404",
-          "failing_since": "2026-11-06T06:39:56+00:00"
+          "state": "ok",
+          "heights": [
+            720
+          ]
         }
       ],
-      "reason": "HTTP 404"
+      "reason": null
     },
     "hiru-tv": {
       "state": "ok",
