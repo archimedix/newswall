@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-11T10:53:47+00:00",
+  "generated": "2026-11-11T18:41:55+00:00",
   "entries": {
     "aljazeera-en": {
       "state": "ok",
@@ -709,16 +709,21 @@
       "reason": null
     },
     "al-manar": {
-      "state": "unverified",
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "state": "unverified",
-          "reason": "unreachable (SSLCertVerificationError)",
-          "failing_since": "2026-11-11T10:53:47+00:00"
+          "state": "ok",
+          "heights": [
+            144,
+            240,
+            360,
+            576,
+            1080
+          ]
         }
       ],
-      "reason": "unreachable (SSLCertVerificationError)"
+      "reason": null
     },
     "canal-26": {
       "state": "ok",
@@ -790,9 +795,14 @@
           ]
         },
         {
-          "state": "unverified",
-          "reason": "unreachable (IncompleteRead)",
-          "failing_since": "2026-11-11T10:53:47+00:00"
+          "state": "ok",
+          "heights": [
+            240,
+            360,
+            480,
+            720,
+            1080
+          ]
         }
       ],
       "reason": null
@@ -1138,20 +1148,16 @@
       "reason": null
     },
     "medi1tv-arabic": {
-      "state": "ok",
+      "state": "unverified",
       "use": 0,
       "streams": [
         {
-          "state": "ok",
-          "heights": [
-            240,
-            360,
-            720,
-            1080
-          ]
+          "state": "unverified",
+          "reason": "HTTP 404",
+          "failing_since": "2026-11-11T18:41:55+00:00"
         }
       ],
-      "reason": null
+      "reason": "HTTP 404"
     },
     "medi1tv-afrique": {
       "state": "ok",
@@ -1407,16 +1413,21 @@
       "reason": null
     },
     "metro-tv": {
-      "state": "unverified",
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "state": "unverified",
-          "reason": "unreachable (TimeoutError)",
-          "failing_since": "2026-11-11T10:53:47+00:00"
+          "state": "ok",
+          "heights": [
+            160,
+            240,
+            360,
+            480,
+            720
+          ]
         }
       ],
-      "reason": "unreachable (TimeoutError)"
+      "reason": null
     },
     "news-one": {
       "state": "ok",
@@ -1551,22 +1562,6 @@
     },
     "cctv-1": {
       "state": "ok",
-      "use": 1,
-      "streams": [
-        {
-          "state": "unverified",
-          "reason": "segment: HTTP 404",
-          "failing_since": "2026-11-10T23:17:12+00:00"
-        },
-        {
-          "state": "ok",
-          "heights": []
-        }
-      ],
-      "reason": null
-    },
-    "cctv-2": {
-      "state": "ok",
       "use": 0,
       "streams": [
         {
@@ -1576,9 +1571,25 @@
             360,
             600
           ]
+        },
+        {
+          "state": "ok",
+          "heights": []
         }
       ],
       "reason": null
+    },
+    "cctv-2": {
+      "state": "unverified",
+      "use": 0,
+      "streams": [
+        {
+          "state": "unverified",
+          "reason": "segment: HTTP 404",
+          "failing_since": "2026-11-11T18:41:55+00:00"
+        }
+      ],
+      "reason": "segment: HTTP 404"
     },
     "nation-tv": {
       "state": "ok",
@@ -1752,11 +1763,11 @@
       "streams": [
         {
           "state": "dead",
-          "reason": "segment: no CORS for this site: would need a proxy",
+          "reason": "no CORS for this site: would need a proxy",
           "failing_since": "2026-11-09T00:52:40+00:00"
         }
       ],
-      "reason": "segment: no CORS for this site: would need a proxy"
+      "reason": "no CORS for this site: would need a proxy"
     },
     "reuters": {
       "state": "ok",
@@ -1976,16 +1987,19 @@
       "reason": null
     },
     "myanmar-international-tv": {
-      "state": "unverified",
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "state": "unverified",
-          "reason": "segment: unreachable (TimeoutError)",
-          "failing_since": "2026-11-11T10:53:47+00:00"
+          "state": "ok",
+          "heights": [
+            404,
+            720,
+            1080
+          ]
         }
       ],
-      "reason": "segment: unreachable (TimeoutError)"
+      "reason": null
     },
     "red-bull-tv": {
       "state": "ok",
@@ -2437,11 +2451,11 @@
       "streams": [
         {
           "state": "unverified",
-          "reason": "segment: HTTP 403",
+          "reason": "variant: HTTP 403",
           "failing_since": "2026-11-11T10:53:47+00:00"
         }
       ],
-      "reason": "segment: HTTP 403"
+      "reason": "variant: HTTP 403"
     },
     "cnbc-arabiya": {
       "state": "ok",
@@ -2843,16 +2857,22 @@
       "reason": null
     },
     "bein-sports-xtra": {
-      "state": "dead",
-      "use": null,
+      "state": "ok",
+      "use": 0,
       "streams": [
         {
-          "state": "dead",
-          "reason": "no CORS for this site: would need a proxy",
-          "failing_since": "2026-11-10T09:46:25+00:00"
+          "state": "ok",
+          "heights": [
+            240,
+            360,
+            480,
+            576,
+            720,
+            1080
+          ]
         }
       ],
-      "reason": "no CORS for this site: would need a proxy"
+      "reason": null
     },
     "real-madrid-tv": {
       "state": "ok",
@@ -2928,16 +2948,17 @@
       "reason": null
     },
     "tele-sahel": {
-      "state": "unverified",
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "state": "unverified",
-          "reason": "playlist without segments",
-          "failing_since": "2026-11-11T10:53:47+00:00"
+          "state": "ok",
+          "heights": [
+            1080
+          ]
         }
       ],
-      "reason": "playlist without segments"
+      "reason": null
     },
     "el-watania-2": {
       "state": "ok",
@@ -3130,15 +3151,16 @@
       "reason": null
     },
     "eac-news-tv": {
-      "state": "ok",
+      "state": "unverified",
       "use": 0,
       "streams": [
         {
-          "state": "ok",
-          "heights": []
+          "state": "unverified",
+          "reason": "HTTP 404",
+          "failing_since": "2026-11-11T18:41:55+00:00"
         }
       ],
-      "reason": null
+      "reason": "HTTP 404"
     },
     "arirang-tv": {
       "state": "ok",
@@ -3192,12 +3214,7 @@
       "streams": [
         {
           "state": "ok",
-          "heights": [
-            360,
-            540,
-            720,
-            1080
-          ]
+          "heights": []
         }
       ],
       "reason": null
