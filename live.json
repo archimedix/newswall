@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-14T17:04:34+00:00",
+  "generated": "2026-11-14T21:28:31+00:00",
   "entries": {
     "aljazeera-en": {
       "state": "ok",
@@ -889,16 +889,19 @@
       "reason": null
     },
     "mrtv-news": {
-      "state": "unverified",
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "state": "unverified",
-          "reason": "unreachable (TimeoutError)",
-          "failing_since": "2026-11-14T10:20:31+00:00"
+          "state": "ok",
+          "heights": [
+            404,
+            720,
+            1080
+          ]
         }
       ],
-      "reason": "unreachable (TimeoutError)"
+      "reason": null
     },
     "rt-arabic": {
       "state": "ok",
@@ -1558,15 +1561,12 @@
     },
     "cctv-1": {
       "state": "ok",
-      "use": 0,
+      "use": 1,
       "streams": [
         {
-          "state": "ok",
-          "heights": [
-            240,
-            360,
-            600
-          ]
+          "state": "unverified",
+          "reason": "segment: HTTP 404",
+          "failing_since": "2026-11-14T21:28:31+00:00"
         },
         {
           "state": "ok",
@@ -1828,20 +1828,16 @@
       "reason": "no CORS: redirect 301 without CORS"
     },
     "a-spor": {
-      "state": "ok",
+      "state": "unverified",
       "use": 0,
       "streams": [
         {
-          "state": "ok",
-          "heights": [
-            360,
-            480,
-            720,
-            1080
-          ]
+          "state": "unverified",
+          "reason": "variant: unreachable (TimeoutError)",
+          "failing_since": "2026-11-14T21:28:31+00:00"
         }
       ],
-      "reason": null
+      "reason": "variant: unreachable (TimeoutError)"
     },
     "esport3": {
       "state": "unverified",
@@ -1900,24 +1896,21 @@
       "reason": null
     },
     "belarus-5": {
-      "state": "ok",
-      "use": 1,
+      "state": "unverified",
+      "use": 0,
       "streams": [
         {
           "state": "unverified",
-          "reason": "variant: HTTP 504",
+          "reason": "unreachable (RemoteDisconnected)",
           "failing_since": "2026-10-20T22:17:49+00:00"
         },
         {
-          "state": "ok",
-          "heights": [
-            360,
-            720,
-            1080
-          ]
+          "state": "unverified",
+          "reason": "unreachable (RemoteDisconnected)",
+          "failing_since": "2026-11-14T21:28:31+00:00"
         }
       ],
-      "reason": null
+      "reason": "unreachable (RemoteDisconnected)"
     },
     "ktv-sport": {
       "state": "ok",
@@ -1968,28 +1961,34 @@
       "reason": null
     },
     "mrtv-sports": {
-      "state": "unverified",
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "state": "unverified",
-          "reason": "unreachable (TimeoutError)",
-          "failing_since": "2026-11-14T10:20:31+00:00"
+          "state": "ok",
+          "heights": [
+            404,
+            720,
+            1080
+          ]
         }
       ],
-      "reason": "unreachable (TimeoutError)"
+      "reason": null
     },
     "myanmar-international-tv": {
-      "state": "unverified",
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "state": "unverified",
-          "reason": "unreachable (TimeoutError)",
-          "failing_since": "2026-11-14T10:20:31+00:00"
+          "state": "ok",
+          "heights": [
+            404,
+            720,
+            1080
+          ]
         }
       ],
-      "reason": "unreachable (TimeoutError)"
+      "reason": null
     },
     "red-bull-tv": {
       "state": "ok",
@@ -2436,16 +2435,18 @@
       "reason": "HTTP 404"
     },
     "kantipur-tv": {
-      "state": "unverified",
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "state": "unverified",
-          "reason": "variant: HTTP 403",
-          "failing_since": "2026-11-13T15:22:58+00:00"
+          "state": "ok",
+          "heights": [
+            720,
+            1080
+          ]
         }
       ],
-      "reason": "variant: HTTP 403"
+      "reason": null
     },
     "cnbc-arabiya": {
       "state": "ok",
@@ -2605,16 +2606,16 @@
       "reason": null
     },
     "nw-economie": {
-      "state": "unverified",
-      "use": 0,
+      "state": "dead",
+      "use": null,
       "streams": [
         {
-          "state": "unverified",
-          "reason": "HTTP 403",
+          "state": "dead",
+          "reason": "segment: HTTP 404",
           "failing_since": "2026-10-31T13:38:52+00:00"
         }
       ],
-      "reason": "HTTP 403"
+      "reason": "segment: HTTP 404"
     },
     "bfm-business": {
       "state": "ok",
@@ -2848,11 +2849,11 @@
       "streams": [
         {
           "state": "dead",
-          "reason": "segment: no CORS for this site: would need a proxy",
+          "reason": "no CORS for this site: would need a proxy",
           "failing_since": "2026-11-13T06:40:11+00:00"
         }
       ],
-      "reason": "segment: no CORS for this site: would need a proxy"
+      "reason": "no CORS for this site: would need a proxy"
     },
     "real-madrid-tv": {
       "state": "ok",
@@ -2928,16 +2929,17 @@
       "reason": null
     },
     "tele-sahel": {
-      "state": "unverified",
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "state": "unverified",
-          "reason": "playlist without segments",
-          "failing_since": "2026-11-14T17:04:34+00:00"
+          "state": "ok",
+          "heights": [
+            1080
+          ]
         }
       ],
-      "reason": "playlist without segments"
+      "reason": null
     },
     "el-watania-2": {
       "state": "ok",
