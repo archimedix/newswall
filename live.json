@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-18T13:06:42+00:00",
+  "generated": "2026-11-18T21:25:46+00:00",
   "entries": {
     "aljazeera-en": {
       "state": "ok",
@@ -790,14 +790,9 @@
           ]
         },
         {
-          "state": "ok",
-          "heights": [
-            240,
-            360,
-            480,
-            720,
-            1080
-          ]
+          "state": "unverified",
+          "reason": "unreachable (IncompleteRead)",
+          "failing_since": "2026-11-18T21:25:46+00:00"
         }
       ],
       "reason": null
@@ -1475,8 +1470,6 @@
         {
           "state": "ok",
           "heights": [
-            160,
-            360,
             720
           ]
         }
@@ -1561,12 +1554,15 @@
     },
     "cctv-1": {
       "state": "ok",
-      "use": 1,
+      "use": 0,
       "streams": [
         {
-          "state": "unverified",
-          "reason": "segment: HTTP 404",
-          "failing_since": "2026-11-18T13:06:42+00:00"
+          "state": "ok",
+          "heights": [
+            240,
+            360,
+            600
+          ]
         },
         {
           "state": "ok",
@@ -1663,15 +1659,16 @@
       "reason": null
     },
     "24kz": {
-      "state": "ok",
+      "state": "unverified",
       "use": 0,
       "streams": [
         {
-          "state": "ok",
-          "heights": []
+          "state": "unverified",
+          "reason": "unreachable (gaierror)",
+          "failing_since": "2026-11-18T21:25:46+00:00"
         }
       ],
-      "reason": null
+      "reason": "unreachable (gaierror)"
     },
     "dvb-tv": {
       "state": "ok",
@@ -1761,11 +1758,11 @@
       "streams": [
         {
           "state": "dead",
-          "reason": "no CORS for this site: would need a proxy",
+          "reason": "segment: no CORS for this site: would need a proxy",
           "failing_since": "2026-11-09T00:52:40+00:00"
         }
       ],
-      "reason": "no CORS for this site: would need a proxy"
+      "reason": "segment: no CORS for this site: would need a proxy"
     },
     "reuters": {
       "state": "ok",
@@ -1892,7 +1889,12 @@
       "streams": [
         {
           "state": "ok",
-          "heights": []
+          "heights": [
+            360,
+            540,
+            720,
+            1080
+          ]
         }
       ],
       "reason": null
@@ -1966,16 +1968,19 @@
       "reason": null
     },
     "mrtv-sports": {
-      "state": "unverified",
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "state": "unverified",
-          "reason": "segment: unreachable (TimeoutError)",
-          "failing_since": "2026-11-18T04:17:11+00:00"
+          "state": "ok",
+          "heights": [
+            404,
+            720,
+            1080
+          ]
         }
       ],
-      "reason": "segment: unreachable (TimeoutError)"
+      "reason": null
     },
     "myanmar-international-tv": {
       "state": "ok",
@@ -2434,18 +2439,16 @@
       "reason": "HTTP 404"
     },
     "kantipur-tv": {
-      "state": "ok",
+      "state": "unverified",
       "use": 0,
       "streams": [
         {
-          "state": "ok",
-          "heights": [
-            720,
-            1080
-          ]
+          "state": "unverified",
+          "reason": "variant: HTTP 403",
+          "failing_since": "2026-11-18T21:25:46+00:00"
         }
       ],
-      "reason": null
+      "reason": "variant: HTTP 403"
     },
     "cnbc-arabiya": {
       "state": "ok",
@@ -2605,16 +2608,16 @@
       "reason": null
     },
     "nw-economie": {
-      "state": "unverified",
-      "use": 0,
+      "state": "dead",
+      "use": null,
       "streams": [
         {
-          "state": "unverified",
-          "reason": "HTTP 403",
+          "state": "dead",
+          "reason": "segment: HTTP 404",
           "failing_since": "2026-10-31T13:38:52+00:00"
         }
       ],
-      "reason": "HTTP 403"
+      "reason": "segment: HTTP 404"
     },
     "bfm-business": {
       "state": "ok",
@@ -2906,15 +2909,16 @@
       "reason": null
     },
     "press-tv": {
-      "state": "ok",
+      "state": "unverified",
       "use": 0,
       "streams": [
         {
-          "state": "ok",
-          "heights": []
+          "state": "unverified",
+          "reason": "playlist not moving: the stream is stuck",
+          "failing_since": "2026-11-18T21:25:46+00:00"
         }
       ],
-      "reason": null
+      "reason": "playlist not moving: the stream is stuck"
     },
     "2m-monde": {
       "state": "ok",
@@ -3064,21 +3068,16 @@
       "reason": null
     },
     "tvri-nasional": {
-      "state": "ok",
+      "state": "unverified",
       "use": 0,
       "streams": [
         {
-          "state": "ok",
-          "heights": [
-            240,
-            360,
-            480,
-            720,
-            1080
-          ]
+          "state": "unverified",
+          "reason": "variant: HTTP 502",
+          "failing_since": "2026-11-18T21:25:46+00:00"
         }
       ],
-      "reason": null
+      "reason": "variant: HTTP 502"
     },
     "tnn16": {
       "state": "ok",
@@ -3178,17 +3177,16 @@
       "reason": null
     },
     "korean-central-television": {
-      "state": "ok",
+      "state": "unverified",
       "use": 0,
       "streams": [
         {
-          "state": "ok",
-          "heights": [
-            1080
-          ]
+          "state": "unverified",
+          "reason": "HTTP 404",
+          "failing_since": "2026-11-18T21:25:46+00:00"
         }
       ],
-      "reason": null
+      "reason": "HTTP 404"
     },
     "qazaqstan": {
       "state": "ok",
@@ -3196,7 +3194,12 @@
       "streams": [
         {
           "state": "ok",
-          "heights": []
+          "heights": [
+            360,
+            540,
+            720,
+            1080
+          ]
         }
       ],
       "reason": null
