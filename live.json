@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-19T03:23:29+00:00",
+  "generated": "2026-11-19T13:00:04+00:00",
   "entries": {
     "aljazeera-en": {
       "state": "ok",
@@ -198,20 +198,16 @@
       "reason": null
     },
     "abc-au": {
-      "state": "ok",
+      "state": "unverified",
       "use": 0,
       "streams": [
         {
-          "state": "ok",
-          "heights": [
-            288,
-            360,
-            576,
-            720
-          ]
+          "state": "unverified",
+          "reason": "unreachable (IncompleteRead)",
+          "failing_since": "2026-11-19T13:00:04+00:00"
         }
       ],
-      "reason": null
+      "reason": "unreachable (IncompleteRead)"
     },
     "nbc-news": {
       "state": "ok",
@@ -750,16 +746,20 @@
       "reason": null
     },
     "makan-33": {
-      "state": "unverified",
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "state": "unverified",
-          "reason": "HTTP 403",
-          "failing_since": "2026-11-19T03:23:29+00:00"
+          "state": "ok",
+          "heights": [
+            360,
+            540,
+            720,
+            1080
+          ]
         }
       ],
-      "reason": "HTTP 403"
+      "reason": null
     },
     "syria-tv": {
       "state": "ok",
@@ -786,9 +786,14 @@
           ]
         },
         {
-          "state": "unverified",
-          "reason": "variant: unreachable (IncompleteRead)",
-          "failing_since": "2026-11-18T21:25:46+00:00"
+          "state": "ok",
+          "heights": [
+            240,
+            360,
+            480,
+            720,
+            1080
+          ]
         }
       ],
       "reason": null
@@ -983,11 +988,11 @@
       "streams": [
         {
           "state": "unverified",
-          "reason": "HTTP 404",
+          "reason": "HTTP 504",
           "failing_since": "2026-11-19T03:23:29+00:00"
         }
       ],
-      "reason": "HTTP 404"
+      "reason": "HTTP 504"
     },
     "arirang-un": {
       "state": "ok",
@@ -1397,21 +1402,16 @@
       "reason": null
     },
     "metro-tv": {
-      "state": "ok",
+      "state": "unverified",
       "use": 0,
       "streams": [
         {
-          "state": "ok",
-          "heights": [
-            160,
-            240,
-            360,
-            480,
-            720
-          ]
+          "state": "unverified",
+          "reason": "variant: HTTP 404",
+          "failing_since": "2026-11-19T13:00:04+00:00"
         }
       ],
-      "reason": null
+      "reason": "variant: HTTP 404"
     },
     "news-one": {
       "state": "ok",
@@ -1429,15 +1429,16 @@
       "reason": null
     },
     "24-news-hd": {
-      "state": "ok",
+      "state": "unverified",
       "use": 0,
       "streams": [
         {
-          "state": "ok",
-          "heights": []
+          "state": "unverified",
+          "reason": "HTTP 404",
+          "failing_since": "2026-11-19T13:00:04+00:00"
         }
       ],
-      "reason": null
+      "reason": "HTTP 404"
     },
     "samaa-tv": {
       "state": "ok",
@@ -1446,6 +1447,7 @@
         {
           "state": "ok",
           "heights": [
+            360,
             720
           ]
         }
@@ -1545,15 +1547,12 @@
     },
     "cctv-1": {
       "state": "ok",
-      "use": 0,
+      "use": 1,
       "streams": [
         {
-          "state": "ok",
-          "heights": [
-            240,
-            360,
-            600
-          ]
+          "state": "unverified",
+          "reason": "segment: HTTP 404",
+          "failing_since": "2026-11-19T13:00:04+00:00"
         },
         {
           "state": "ok",
@@ -2863,16 +2862,19 @@
       "reason": null
     },
     "qbc": {
-      "state": "unverified",
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "state": "unverified",
-          "reason": "unreachable (IncompleteRead)",
-          "failing_since": "2026-11-19T03:23:29+00:00"
+          "state": "ok",
+          "heights": [
+            240,
+            480,
+            1080
+          ]
         }
       ],
-      "reason": "unreachable (IncompleteRead)"
+      "reason": null
     },
     "rbk-tv": {
       "state": "ok",
@@ -2896,11 +2898,11 @@
       "streams": [
         {
           "state": "unverified",
-          "reason": "playlist not moving: the stream is stuck",
+          "reason": "segment: HTTP 404",
           "failing_since": "2026-11-18T21:25:46+00:00"
         }
       ],
-      "reason": "playlist not moving: the stream is stuck"
+      "reason": "segment: HTTP 404"
     },
     "2m-monde": {
       "state": "ok",
@@ -3120,15 +3122,16 @@
       "reason": null
     },
     "eac-news-tv": {
-      "state": "ok",
+      "state": "unverified",
       "use": 0,
       "streams": [
         {
-          "state": "ok",
-          "heights": []
+          "state": "unverified",
+          "reason": "HTTP 404",
+          "failing_since": "2026-11-19T13:00:04+00:00"
         }
       ],
-      "reason": null
+      "reason": "HTTP 404"
     },
     "arirang-tv": {
       "state": "ok",
@@ -3342,16 +3345,17 @@
       "reason": null
     },
     "hiru-tv": {
-      "state": "unverified",
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "state": "unverified",
-          "reason": "HTTP 404",
-          "failing_since": "2026-11-19T03:23:29+00:00"
+          "state": "ok",
+          "heights": [
+            360
+          ]
         }
       ],
-      "reason": "HTTP 404"
+      "reason": null
     },
     "etv": {
       "state": "ok",
