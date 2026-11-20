@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-20T11:32:06+00:00",
+  "generated": "2026-11-20T20:11:08+00:00",
   "entries": {
     "aljazeera-en": {
       "state": "ok",
@@ -169,7 +169,7 @@
         },
         {
           "state": "dead",
-          "reason": "HTTP 404",
+          "reason": "variant: HTTP 404",
           "failing_since": "2026-10-20T22:17:49+00:00"
         }
       ],
@@ -1355,16 +1355,17 @@
       "reason": null
     },
     "ntv": {
-      "state": "unverified",
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "state": "unverified",
-          "reason": "HTTP 404",
-          "failing_since": "2026-11-20T11:32:06+00:00"
+          "state": "ok",
+          "heights": [
+            720
+          ]
         }
       ],
-      "reason": "HTTP 404"
+      "reason": null
     },
     "ici-rdi": {
       "state": "ok",
@@ -1411,11 +1412,11 @@
       "reason": null
     },
     "metro-tv": {
-      "state": "unverified",
-      "use": 0,
+      "state": "dead",
+      "use": null,
       "streams": [
         {
-          "state": "unverified",
+          "state": "dead",
           "reason": "variant: HTTP 404",
           "failing_since": "2026-11-19T13:00:04+00:00"
         }
@@ -1758,11 +1759,11 @@
       "streams": [
         {
           "state": "unverified",
-          "reason": "no CORS for this site: would need a proxy",
+          "reason": "segment: no CORS for this site: would need a proxy",
           "failing_since": "2026-11-20T11:32:06+00:00"
         }
       ],
-      "reason": "no CORS for this site: would need a proxy"
+      "reason": "segment: no CORS for this site: would need a proxy"
     },
     "reuters": {
       "state": "ok",
@@ -1889,35 +1890,27 @@
       "streams": [
         {
           "state": "ok",
-          "heights": [
-            360,
-            540,
-            720,
-            1080
-          ]
+          "heights": []
         }
       ],
       "reason": null
     },
     "belarus-5": {
-      "state": "ok",
-      "use": 1,
+      "state": "unverified",
+      "use": 0,
       "streams": [
         {
           "state": "unverified",
-          "reason": "variant: HTTP 504",
+          "reason": "unreachable (RemoteDisconnected)",
           "failing_since": "2026-10-20T22:17:49+00:00"
         },
         {
-          "state": "ok",
-          "heights": [
-            360,
-            720,
-            1080
-          ]
+          "state": "unverified",
+          "reason": "unreachable (RemoteDisconnected)",
+          "failing_since": "2026-11-20T20:11:08+00:00"
         }
       ],
-      "reason": null
+      "reason": "unreachable (RemoteDisconnected)"
     },
     "ktv-sport": {
       "state": "ok",
@@ -2608,16 +2601,20 @@
       "reason": null
     },
     "nw-economie": {
-      "state": "dead",
-      "use": null,
+      "state": "ok",
+      "use": 0,
       "streams": [
         {
-          "state": "dead",
-          "reason": "segment: HTTP 404",
-          "failing_since": "2026-10-31T13:38:52+00:00"
+          "state": "ok",
+          "heights": [
+            144,
+            240,
+            360,
+            576
+          ]
         }
       ],
-      "reason": "segment: HTTP 404"
+      "reason": null
     },
     "bfm-business": {
       "state": "ok",
@@ -3402,16 +3399,15 @@
       "reason": null
     },
     "sahara-24": {
-      "state": "unverified",
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "state": "unverified",
-          "reason": "HTTP 404",
-          "failing_since": "2026-11-20T03:10:33+00:00"
+          "state": "ok",
+          "heights": []
         }
       ],
-      "reason": "HTTP 404"
+      "reason": null
     },
     "savane-tv": {
       "state": "ok",
