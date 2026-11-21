@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-21T17:29:01+00:00",
+  "generated": "2026-11-21T23:12:20+00:00",
   "entries": {
     "aljazeera-en": {
       "state": "ok",
@@ -987,22 +987,16 @@
       "reason": null
     },
     "al-masirah": {
-      "state": "ok",
+      "state": "unverified",
       "use": 0,
       "streams": [
         {
-          "state": "ok",
-          "heights": [
-            160,
-            240,
-            360,
-            480,
-            720,
-            1080
-          ]
+          "state": "unverified",
+          "reason": "HTTP 404",
+          "failing_since": "2026-11-21T23:12:20+00:00"
         }
       ],
-      "reason": null
+      "reason": "HTTP 404"
     },
     "arirang-un": {
       "state": "ok",
@@ -1829,16 +1823,20 @@
       "reason": "no CORS: redirect 301 without CORS"
     },
     "a-spor": {
-      "state": "unverified",
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "state": "unverified",
-          "reason": "variant: unreachable (TimeoutError)",
-          "failing_since": "2026-11-21T17:29:01+00:00"
+          "state": "ok",
+          "heights": [
+            360,
+            480,
+            720,
+            1080
+          ]
         }
       ],
-      "reason": "variant: unreachable (TimeoutError)"
+      "reason": null
     },
     "esport3": {
       "state": "unverified",
@@ -1891,27 +1889,35 @@
       "streams": [
         {
           "state": "ok",
-          "heights": []
+          "heights": [
+            360,
+            540,
+            720,
+            1080
+          ]
         }
       ],
       "reason": null
     },
     "belarus-5": {
-      "state": "unverified",
-      "use": 0,
+      "state": "ok",
+      "use": 1,
       "streams": [
         {
           "state": "unverified",
-          "reason": "unreachable (RemoteDisconnected)",
+          "reason": "variant: HTTP 504",
           "failing_since": "2026-10-20T22:17:49+00:00"
         },
         {
-          "state": "unverified",
-          "reason": "unreachable (RemoteDisconnected)",
-          "failing_since": "2026-11-21T17:29:01+00:00"
+          "state": "ok",
+          "heights": [
+            360,
+            720,
+            1080
+          ]
         }
       ],
-      "reason": "unreachable (RemoteDisconnected)"
+      "reason": null
     },
     "ktv-sport": {
       "state": "ok",
@@ -2705,20 +2711,16 @@
       "reason": null
     },
     "weathernews": {
-      "state": "ok",
+      "state": "unverified",
       "use": 0,
       "streams": [
         {
-          "state": "ok",
-          "heights": [
-            216,
-            360,
-            540,
-            720
-          ]
+          "state": "unverified",
+          "reason": "unreachable (IncompleteRead)",
+          "failing_since": "2026-11-21T23:12:20+00:00"
         }
       ],
-      "reason": null
+      "reason": "unreachable (IncompleteRead)"
     },
     "ntv-news24": {
       "state": "ok",
@@ -3195,7 +3197,12 @@
       "streams": [
         {
           "state": "ok",
-          "heights": []
+          "heights": [
+            360,
+            540,
+            720,
+            1080
+          ]
         }
       ],
       "reason": null
@@ -3332,17 +3339,16 @@
       "reason": null
     },
     "haiti-news-channel": {
-      "state": "ok",
+      "state": "unverified",
       "use": 0,
       "streams": [
         {
-          "state": "ok",
-          "heights": [
-            720
-          ]
+          "state": "unverified",
+          "reason": "HTTP 404",
+          "failing_since": "2026-11-21T23:12:20+00:00"
         }
       ],
-      "reason": null
+      "reason": "HTTP 404"
     },
     "hiru-tv": {
       "state": "ok",
