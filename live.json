@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-20T20:11:08+00:00",
+  "generated": "2026-11-21T01:30:06+00:00",
   "entries": {
     "aljazeera-en": {
       "state": "ok",
@@ -958,10 +958,9 @@
           ]
         },
         {
-          "state": "ok",
-          "heights": [
-            1080
-          ]
+          "state": "unverified",
+          "reason": "playlist not moving: the stream is stuck",
+          "failing_since": "2026-11-21T01:30:06+00:00"
         }
       ],
       "reason": null
@@ -1412,16 +1411,21 @@
       "reason": null
     },
     "metro-tv": {
-      "state": "dead",
-      "use": null,
+      "state": "ok",
+      "use": 0,
       "streams": [
         {
-          "state": "dead",
-          "reason": "variant: HTTP 404",
-          "failing_since": "2026-11-19T13:00:04+00:00"
+          "state": "ok",
+          "heights": [
+            160,
+            240,
+            360,
+            480,
+            720
+          ]
         }
       ],
-      "reason": "variant: HTTP 404"
+      "reason": null
     },
     "news-one": {
       "state": "ok",
@@ -1759,11 +1763,11 @@
       "streams": [
         {
           "state": "unverified",
-          "reason": "segment: no CORS for this site: would need a proxy",
+          "reason": "no CORS for this site: would need a proxy",
           "failing_since": "2026-11-20T11:32:06+00:00"
         }
       ],
-      "reason": "segment: no CORS for this site: would need a proxy"
+      "reason": "no CORS for this site: would need a proxy"
     },
     "reuters": {
       "state": "ok",
@@ -1890,27 +1894,35 @@
       "streams": [
         {
           "state": "ok",
-          "heights": []
+          "heights": [
+            360,
+            540,
+            720,
+            1080
+          ]
         }
       ],
       "reason": null
     },
     "belarus-5": {
-      "state": "unverified",
-      "use": 0,
+      "state": "ok",
+      "use": 1,
       "streams": [
         {
           "state": "unverified",
-          "reason": "unreachable (RemoteDisconnected)",
+          "reason": "variant: HTTP 504",
           "failing_since": "2026-10-20T22:17:49+00:00"
         },
         {
-          "state": "unverified",
-          "reason": "unreachable (RemoteDisconnected)",
-          "failing_since": "2026-11-20T20:11:08+00:00"
+          "state": "ok",
+          "heights": [
+            360,
+            720,
+            1080
+          ]
         }
       ],
-      "reason": "unreachable (RemoteDisconnected)"
+      "reason": null
     },
     "ktv-sport": {
       "state": "ok",
@@ -2601,20 +2613,16 @@
       "reason": null
     },
     "nw-economie": {
-      "state": "ok",
+      "state": "unverified",
       "use": 0,
       "streams": [
         {
-          "state": "ok",
-          "heights": [
-            144,
-            240,
-            360,
-            576
-          ]
+          "state": "unverified",
+          "reason": "HTTP 403",
+          "failing_since": "2026-11-21T01:30:06+00:00"
         }
       ],
-      "reason": null
+      "reason": "HTTP 403"
     },
     "bfm-business": {
       "state": "ok",
@@ -3033,20 +3041,16 @@
       "reason": null
     },
     "abante-tv": {
-      "state": "ok",
+      "state": "unverified",
       "use": 0,
       "streams": [
         {
-          "state": "ok",
-          "heights": [
-            360,
-            480,
-            720,
-            1080
-          ]
+          "state": "unverified",
+          "reason": "playlist not moving: the stream is stuck",
+          "failing_since": "2026-11-21T01:30:06+00:00"
         }
       ],
-      "reason": null
+      "reason": "playlist not moving: the stream is stuck"
     },
     "tvri-world": {
       "state": "ok",
@@ -3198,12 +3202,7 @@
       "streams": [
         {
           "state": "ok",
-          "heights": [
-            360,
-            540,
-            720,
-            1080
-          ]
+          "heights": []
         }
       ],
       "reason": null
@@ -3399,15 +3398,16 @@
       "reason": null
     },
     "sahara-24": {
-      "state": "ok",
+      "state": "unverified",
       "use": 0,
       "streams": [
         {
-          "state": "ok",
-          "heights": []
+          "state": "unverified",
+          "reason": "HTTP 404",
+          "failing_since": "2026-11-21T01:30:06+00:00"
         }
       ],
-      "reason": null
+      "reason": "HTTP 404"
     },
     "savane-tv": {
       "state": "ok",
