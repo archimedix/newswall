@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-21T09:45:46+00:00",
+  "generated": "2026-11-21T17:29:01+00:00",
   "entries": {
     "aljazeera-en": {
       "state": "ok",
@@ -987,16 +987,22 @@
       "reason": null
     },
     "al-masirah": {
-      "state": "unverified",
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "state": "unverified",
-          "reason": "HTTP 404",
-          "failing_since": "2026-11-21T09:45:46+00:00"
+          "state": "ok",
+          "heights": [
+            160,
+            240,
+            360,
+            480,
+            720,
+            1080
+          ]
         }
       ],
-      "reason": "HTTP 404"
+      "reason": null
     },
     "arirang-un": {
       "state": "ok",
@@ -1555,12 +1561,15 @@
     },
     "cctv-1": {
       "state": "ok",
-      "use": 1,
+      "use": 0,
       "streams": [
         {
-          "state": "unverified",
-          "reason": "unreachable (TimeoutError)",
-          "failing_since": "2026-11-21T09:45:46+00:00"
+          "state": "ok",
+          "heights": [
+            240,
+            360,
+            600
+          ]
         },
         {
           "state": "ok",
@@ -1750,19 +1759,16 @@
       "reason": null
     },
     "livenow-fox": {
-      "state": "ok",
+      "state": "unverified",
       "use": 0,
       "streams": [
         {
-          "state": "ok",
-          "heights": [
-            240,
-            480,
-            720
-          ]
+          "state": "unverified",
+          "reason": "no CORS for this site: would need a proxy",
+          "failing_since": "2026-11-21T17:29:01+00:00"
         }
       ],
-      "reason": null
+      "reason": "no CORS for this site: would need a proxy"
     },
     "reuters": {
       "state": "ok",
@@ -1823,20 +1829,16 @@
       "reason": "no CORS: redirect 301 without CORS"
     },
     "a-spor": {
-      "state": "ok",
+      "state": "unverified",
       "use": 0,
       "streams": [
         {
-          "state": "ok",
-          "heights": [
-            360,
-            480,
-            720,
-            1080
-          ]
+          "state": "unverified",
+          "reason": "variant: unreachable (TimeoutError)",
+          "failing_since": "2026-11-21T17:29:01+00:00"
         }
       ],
-      "reason": null
+      "reason": "variant: unreachable (TimeoutError)"
     },
     "esport3": {
       "state": "unverified",
@@ -1895,24 +1897,21 @@
       "reason": null
     },
     "belarus-5": {
-      "state": "ok",
-      "use": 1,
+      "state": "unverified",
+      "use": 0,
       "streams": [
         {
           "state": "unverified",
-          "reason": "variant: HTTP 504",
+          "reason": "unreachable (RemoteDisconnected)",
           "failing_since": "2026-10-20T22:17:49+00:00"
         },
         {
-          "state": "ok",
-          "heights": [
-            360,
-            720,
-            1080
-          ]
+          "state": "unverified",
+          "reason": "unreachable (RemoteDisconnected)",
+          "failing_since": "2026-11-21T17:29:01+00:00"
         }
       ],
-      "reason": null
+      "reason": "unreachable (RemoteDisconnected)"
     },
     "ktv-sport": {
       "state": "ok",
@@ -2439,11 +2438,11 @@
       "streams": [
         {
           "state": "unverified",
-          "reason": "segment: HTTP 403",
+          "reason": "variant: HTTP 403",
           "failing_since": "2026-11-20T03:10:33+00:00"
         }
       ],
-      "reason": "segment: HTTP 403"
+      "reason": "variant: HTTP 403"
     },
     "cnbc-arabiya": {
       "state": "ok",
@@ -3196,12 +3195,7 @@
       "streams": [
         {
           "state": "ok",
-          "heights": [
-            360,
-            540,
-            720,
-            1080
-          ]
+          "heights": []
         }
       ],
       "reason": null
@@ -3297,11 +3291,11 @@
       "reason": null
     },
     "orf-1": {
-      "state": "unverified",
-      "use": 0,
+      "state": "dead",
+      "use": null,
       "streams": [
         {
-          "state": "unverified",
+          "state": "dead",
           "reason": "unreachable (gaierror)",
           "failing_since": "2026-11-20T11:32:06+00:00"
         }
