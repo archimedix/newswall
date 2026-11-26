@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-26T15:09:44+00:00",
+  "generated": "2026-11-26T23:50:24+00:00",
   "entries": {
     "aljazeera-en": {
       "state": "ok",
@@ -734,20 +734,16 @@
       "reason": null
     },
     "ert-news": {
-      "state": "ok",
+      "state": "unverified",
       "use": 0,
       "streams": [
         {
-          "state": "ok",
-          "heights": [
-            360,
-            576,
-            720,
-            1080
-          ]
+          "state": "unverified",
+          "reason": "HTTP 404",
+          "failing_since": "2026-11-26T23:50:24+00:00"
         }
       ],
-      "reason": null
+      "reason": "HTTP 404"
     },
     "makan-33": {
       "state": "ok",
@@ -869,6 +865,8 @@
         {
           "state": "ok",
           "heights": [
+            360,
+            720,
             1080
           ]
         }
@@ -881,7 +879,9 @@
       "streams": [
         {
           "state": "ok",
-          "heights": []
+          "heights": [
+            1080
+          ]
         }
       ],
       "reason": null
@@ -1407,16 +1407,21 @@
       "reason": null
     },
     "metro-tv": {
-      "state": "unverified",
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "state": "unverified",
-          "reason": "variant: HTTP 404",
-          "failing_since": "2026-11-26T15:09:44+00:00"
+          "state": "ok",
+          "heights": [
+            160,
+            240,
+            360,
+            480,
+            720
+          ]
         }
       ],
-      "reason": "variant: HTTP 404"
+      "reason": null
     },
     "news-one": {
       "state": "ok",
@@ -1547,12 +1552,15 @@
     },
     "cctv-1": {
       "state": "ok",
-      "use": 1,
+      "use": 0,
       "streams": [
         {
-          "state": "unverified",
-          "reason": "segment: HTTP 404",
-          "failing_since": "2026-11-26T04:59:57+00:00"
+          "state": "ok",
+          "heights": [
+            240,
+            360,
+            600
+          ]
         },
         {
           "state": "ok",
@@ -1748,11 +1756,11 @@
       "streams": [
         {
           "state": "dead",
-          "reason": "no CORS for this site: would need a proxy",
+          "reason": "segment: no CORS for this site: would need a proxy",
           "failing_since": "2026-11-22T18:33:06+00:00"
         }
       ],
-      "reason": "no CORS for this site: would need a proxy"
+      "reason": "segment: no CORS for this site: would need a proxy"
     },
     "reuters": {
       "state": "ok",
@@ -1813,16 +1821,20 @@
       "reason": "no CORS: redirect 301 without CORS"
     },
     "a-spor": {
-      "state": "unverified",
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "state": "unverified",
-          "reason": "variant: unreachable (TimeoutError)",
-          "failing_since": "2026-11-26T15:09:44+00:00"
+          "state": "ok",
+          "heights": [
+            360,
+            480,
+            720,
+            1080
+          ]
         }
       ],
-      "reason": "variant: unreachable (TimeoutError)"
+      "reason": null
     },
     "esport3": {
       "state": "unverified",
@@ -1875,7 +1887,12 @@
       "streams": [
         {
           "state": "ok",
-          "heights": []
+          "heights": [
+            360,
+            540,
+            720,
+            1080
+          ]
         }
       ],
       "reason": null
@@ -1954,23 +1971,26 @@
       "streams": [
         {
           "state": "unverified",
-          "reason": "unreachable (TimeoutError)",
+          "reason": "segment: unreachable (TimeoutError)",
           "failing_since": "2026-11-25T02:23:13+00:00"
         }
       ],
-      "reason": "unreachable (TimeoutError)"
+      "reason": "segment: unreachable (TimeoutError)"
     },
     "myanmar-international-tv": {
-      "state": "unverified",
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "state": "unverified",
-          "reason": "unreachable (TimeoutError)",
-          "failing_since": "2026-11-25T02:23:13+00:00"
+          "state": "ok",
+          "heights": [
+            404,
+            720,
+            1080
+          ]
         }
       ],
-      "reason": "unreachable (TimeoutError)"
+      "reason": null
     },
     "red-bull-tv": {
       "state": "ok",
@@ -2840,31 +2860,31 @@
       "reason": "no CORS for this site: would need a proxy"
     },
     "real-madrid-tv": {
-      "state": "unverified",
-      "use": 0,
-      "streams": [
-        {
-          "state": "unverified",
-          "reason": "variant: HTTP 404",
-          "failing_since": "2026-11-25T22:29:31+00:00"
-        }
-      ],
-      "reason": "variant: HTTP 404"
-    },
-    "qbc": {
       "state": "ok",
       "use": 0,
       "streams": [
         {
           "state": "ok",
           "heights": [
-            240,
-            480,
-            1080
+            180,
+            360,
+            720
           ]
         }
       ],
       "reason": null
+    },
+    "qbc": {
+      "state": "unverified",
+      "use": 0,
+      "streams": [
+        {
+          "state": "unverified",
+          "reason": "unreachable (IncompleteRead)",
+          "failing_since": "2026-11-26T23:50:24+00:00"
+        }
+      ],
+      "reason": "unreachable (IncompleteRead)"
     },
     "rbk-tv": {
       "state": "ok",
@@ -3348,15 +3368,16 @@
       "reason": null
     },
     "etv": {
-      "state": "ok",
+      "state": "unverified",
       "use": 0,
       "streams": [
         {
-          "state": "ok",
-          "heights": []
+          "state": "unverified",
+          "reason": "playlist not moving: the stream is stuck",
+          "failing_since": "2026-11-26T23:50:24+00:00"
         }
       ],
-      "reason": null
+      "reason": "playlist not moving: the stream is stuck"
     },
     "mnb": {
       "state": "ok",
