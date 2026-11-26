@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-26T04:59:57+00:00",
+  "generated": "2026-11-26T15:09:44+00:00",
   "entries": {
     "aljazeera-en": {
       "state": "ok",
@@ -881,9 +881,7 @@
       "streams": [
         {
           "state": "ok",
-          "heights": [
-            1080
-          ]
+          "heights": []
         }
       ],
       "reason": null
@@ -1081,16 +1079,21 @@
       "reason": null
     },
     "al-araby-tv": {
-      "state": "unverified",
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "state": "unverified",
-          "reason": "unreachable (IncompleteRead)",
-          "failing_since": "2026-11-26T04:59:57+00:00"
+          "state": "ok",
+          "heights": [
+            240,
+            360,
+            480,
+            720,
+            1080
+          ]
         }
       ],
-      "reason": "unreachable (IncompleteRead)"
+      "reason": null
     },
     "asharq-news": {
       "state": "ok",
@@ -1404,21 +1407,16 @@
       "reason": null
     },
     "metro-tv": {
-      "state": "ok",
+      "state": "unverified",
       "use": 0,
       "streams": [
         {
-          "state": "ok",
-          "heights": [
-            160,
-            240,
-            360,
-            480,
-            720
-          ]
+          "state": "unverified",
+          "reason": "variant: HTTP 404",
+          "failing_since": "2026-11-26T15:09:44+00:00"
         }
       ],
-      "reason": null
+      "reason": "variant: HTTP 404"
     },
     "news-one": {
       "state": "ok",
@@ -1815,35 +1813,28 @@
       "reason": "no CORS: redirect 301 without CORS"
     },
     "a-spor": {
-      "state": "ok",
+      "state": "unverified",
       "use": 0,
       "streams": [
         {
-          "state": "ok",
-          "heights": [
-            360,
-            480,
-            720,
-            1080
-          ]
+          "state": "unverified",
+          "reason": "variant: unreachable (TimeoutError)",
+          "failing_since": "2026-11-26T15:09:44+00:00"
         }
       ],
-      "reason": null
+      "reason": "variant: unreachable (TimeoutError)"
     },
     "esport3": {
-      "state": "ok",
+      "state": "unverified",
       "use": 0,
       "streams": [
         {
-          "state": "ok",
-          "heights": [
-            480,
-            720,
-            1080
-          ]
+          "state": "unverified",
+          "reason": "segment: HTTP 403",
+          "failing_since": "2026-11-26T15:09:44+00:00"
         }
       ],
-      "reason": null
+      "reason": "segment: HTTP 403"
     },
     "ge-fast": {
       "state": "ok",
@@ -1890,21 +1881,24 @@
       "reason": null
     },
     "belarus-5": {
-      "state": "unverified",
-      "use": 0,
+      "state": "ok",
+      "use": 1,
       "streams": [
         {
           "state": "unverified",
-          "reason": "unreachable (RemoteDisconnected)",
+          "reason": "variant: HTTP 504",
           "failing_since": "2026-10-20T22:17:49+00:00"
         },
         {
-          "state": "unverified",
-          "reason": "unreachable (RemoteDisconnected)",
-          "failing_since": "2026-11-26T04:59:57+00:00"
+          "state": "ok",
+          "heights": [
+            360,
+            720,
+            1080
+          ]
         }
       ],
-      "reason": "unreachable (RemoteDisconnected)"
+      "reason": null
     },
     "ktv-sport": {
       "state": "ok",
@@ -2228,16 +2222,15 @@
       "reason": null
     },
     "al-iraqia-sport": {
-      "state": "unverified",
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "state": "unverified",
-          "reason": "HTTP 404",
-          "failing_since": "2026-11-25T12:47:55+00:00"
+          "state": "ok",
+          "heights": []
         }
       ],
-      "reason": "HTTP 404"
+      "reason": null
     },
     "fox-sports-news": {
       "state": "ok",
@@ -2421,16 +2414,18 @@
       "reason": "HTTP 404"
     },
     "kantipur-tv": {
-      "state": "unverified",
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "state": "unverified",
-          "reason": "variant: HTTP 403",
-          "failing_since": "2026-11-20T03:10:33+00:00"
+          "state": "ok",
+          "heights": [
+            720,
+            1080
+          ]
         }
       ],
-      "reason": "variant: HTTP 403"
+      "reason": null
     },
     "cnbc-arabiya": {
       "state": "ok",
@@ -2857,16 +2852,19 @@
       "reason": "variant: HTTP 404"
     },
     "qbc": {
-      "state": "unverified",
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "state": "unverified",
-          "reason": "unreachable (IncompleteRead)",
-          "failing_since": "2026-11-26T04:59:57+00:00"
+          "state": "ok",
+          "heights": [
+            240,
+            480,
+            1080
+          ]
         }
       ],
-      "reason": "unreachable (IncompleteRead)"
+      "reason": null
     },
     "rbk-tv": {
       "state": "ok",
@@ -3177,7 +3175,12 @@
       "streams": [
         {
           "state": "ok",
-          "heights": []
+          "heights": [
+            360,
+            540,
+            720,
+            1080
+          ]
         }
       ],
       "reason": null
@@ -3306,16 +3309,17 @@
       "reason": null
     },
     "tvc-benin": {
-      "state": "unverified",
+      "state": "ok",
       "use": 0,
       "streams": [
         {
-          "state": "unverified",
-          "reason": "HTTP 404",
-          "failing_since": "2026-11-26T04:59:57+00:00"
+          "state": "ok",
+          "heights": [
+            720
+          ]
         }
       ],
-      "reason": "HTTP 404"
+      "reason": null
     },
     "haiti-news-channel": {
       "state": "ok",
