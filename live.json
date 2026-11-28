@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-27T18:56:09+00:00",
+  "generated": "2026-11-28T01:57:37+00:00",
   "entries": {
     "aljazeera-en": {
       "state": "ok",
@@ -790,9 +790,14 @@
           ]
         },
         {
-          "state": "unverified",
-          "reason": "unreachable (IncompleteRead)",
-          "failing_since": "2026-11-27T18:56:09+00:00"
+          "state": "ok",
+          "heights": [
+            240,
+            360,
+            480,
+            720,
+            1080
+          ]
         }
       ],
       "reason": null
@@ -886,19 +891,16 @@
       "reason": null
     },
     "mrtv-news": {
-      "state": "ok",
+      "state": "unverified",
       "use": 0,
       "streams": [
         {
-          "state": "ok",
-          "heights": [
-            404,
-            720,
-            1080
-          ]
+          "state": "unverified",
+          "reason": "segment: unreachable (TimeoutError)",
+          "failing_since": "2026-11-28T01:57:37+00:00"
         }
       ],
-      "reason": null
+      "reason": "segment: unreachable (TimeoutError)"
     },
     "rt-arabic": {
       "state": "ok",
@@ -1693,16 +1695,15 @@
       "reason": null
     },
     "al-ghad-tv": {
-      "state": "dead",
-      "use": null,
+      "state": "ok",
+      "use": 0,
       "streams": [
         {
-          "state": "dead",
-          "reason": "playlist not moving: the stream is stuck",
-          "failing_since": "2026-11-08T21:08:48+00:00"
+          "state": "ok",
+          "heights": []
         }
       ],
-      "reason": "playlist not moving: the stream is stuck"
+      "reason": null
     },
     "current-time": {
       "state": "ok",
@@ -1753,19 +1754,16 @@
       "reason": null
     },
     "livenow-fox": {
-      "state": "ok",
+      "state": "unverified",
       "use": 0,
       "streams": [
         {
-          "state": "ok",
-          "heights": [
-            240,
-            480,
-            720
-          ]
+          "state": "unverified",
+          "reason": "no CORS for this site: would need a proxy",
+          "failing_since": "2026-11-28T01:57:37+00:00"
         }
       ],
-      "reason": null
+      "reason": "no CORS for this site: would need a proxy"
     },
     "reuters": {
       "state": "ok",
@@ -1892,7 +1890,12 @@
       "streams": [
         {
           "state": "ok",
-          "heights": []
+          "heights": [
+            360,
+            540,
+            720,
+            1080
+          ]
         }
       ],
       "reason": null
@@ -1966,34 +1969,28 @@
       "reason": null
     },
     "mrtv-sports": {
-      "state": "ok",
+      "state": "unverified",
       "use": 0,
       "streams": [
         {
-          "state": "ok",
-          "heights": [
-            404,
-            720,
-            1080
-          ]
+          "state": "unverified",
+          "reason": "variant: unreachable (TimeoutError)",
+          "failing_since": "2026-11-28T01:57:37+00:00"
         }
       ],
-      "reason": null
+      "reason": "variant: unreachable (TimeoutError)"
     },
     "myanmar-international-tv": {
-      "state": "ok",
+      "state": "unverified",
       "use": 0,
       "streams": [
         {
-          "state": "ok",
-          "heights": [
-            404,
-            720,
-            1080
-          ]
+          "state": "unverified",
+          "reason": "unreachable (TimeoutError)",
+          "failing_since": "2026-11-28T01:57:37+00:00"
         }
       ],
-      "reason": null
+      "reason": "unreachable (TimeoutError)"
     },
     "red-bull-tv": {
       "state": "ok",
@@ -2442,11 +2439,11 @@
       "streams": [
         {
           "state": "unverified",
-          "reason": "segment: HTTP 403",
+          "reason": "variant: HTTP 403",
           "failing_since": "2026-11-27T18:56:09+00:00"
         }
       ],
-      "reason": "segment: HTTP 403"
+      "reason": "variant: HTTP 403"
     },
     "cnbc-arabiya": {
       "state": "ok",
@@ -2878,11 +2875,11 @@
       "streams": [
         {
           "state": "unverified",
-          "reason": "unreachable (IncompleteRead)",
+          "reason": "variant: unreachable (IncompleteRead)",
           "failing_since": "2026-11-27T18:56:09+00:00"
         }
       ],
-      "reason": "unreachable (IncompleteRead)"
+      "reason": "variant: unreachable (IncompleteRead)"
     },
     "rbk-tv": {
       "state": "ok",
@@ -3405,15 +3402,16 @@
       "reason": null
     },
     "savane-tv": {
-      "state": "ok",
+      "state": "unverified",
       "use": 0,
       "streams": [
         {
-          "state": "ok",
-          "heights": []
+          "state": "unverified",
+          "reason": "unreachable (OSError)",
+          "failing_since": "2026-11-28T01:57:37+00:00"
         }
       ],
-      "reason": null
+      "reason": "unreachable (OSError)"
     },
     "senal-colombia": {
       "state": "ok",
